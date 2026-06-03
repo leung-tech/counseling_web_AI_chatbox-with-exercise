@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心靈小樹洞 - 學生專屬空間</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        warm: { 50: '#fdf8f5', 100: '#fbece1', 200: '#f7d8c4', 300: '#f3c1a3', 400: '#eea77e', 500: '#e89e75', 600: '#d97d4b' },
+                        sage: { 50: '#f4fbf7', 100: '#e6f7ed', 200: '#c2edd3', 300: '#86d4a5', 400: '#68c48d', 500: '#5ab27f', 600: '#469b6a' },
+                        sky: { 50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc', 400: '#38bdf8', 500: '#0ea5e9' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #f8fafc; overflow-x: hidden; transition: background-color 0.4s, color 0.4s; }
+        .fade-in { animation: fadeIn 0.4s ease-out forwards; }
+        .slide-up { animation: slideUp 0.3s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .typing-indicator span { animation: blink 1.4s infinite both; }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes blink { 0%, 100% { opacity: 0.2; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } }
+
+        /* 動畫特效 */
+        .breathe-circle { animation: breatheCycle 8s infinite ease-in-out; }
+        @keyframes breatheCycle { 0%, 100% { transform: scale(1); background-color: #bae6fd; box-shadow: 0 0 0 0 rgba(56,189,248,0); } 50% { transform: scale(1.5); background-color: #0ea5e9; box-shadow: 0 0 30px 10px rgba(14,165,233,0.4); } }
+        
+        .shake-hard { animation: shakeHard 0.5s infinite; }
+        @keyframes shakeHard { 0% { transform: translate(2px, 1px) rotate(0deg); } 10% { transform: translate(-1px, -2px) rotate(-1deg); } 20% { transform: translate(-3px, 0px) rotate(1deg); } 30% { transform: translate(0px, 2px) rotate(0deg); } 40% { transform: translate(1px, -1px) rotate(1deg); } 50% { transform: translate(-1px, 2px) rotate(-1deg); } 60% { transform: translate(-3px, 1px) rotate(0deg); } 70% { transform: translate(2px, 1px) rotate(-1deg); } 80% { transform: translate(-1px, -1px) rotate(1deg); } 90% { transform: translate(2px, 2px) rotate(0deg); } 100% { transform: translate(1px, -2px) rotate(-1deg); } }
+        
+        .pulse-ring { animation: pulseRing 1s infinite; }
+        @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.6); } 70% { box-shadow: 0 0 0 25px rgba(239,68,68,0); } 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); } }
+
+        @keyframes leftTap { 0%, 100% { transform: scale(1); background-color: rgba(251, 146, 60, 0.1); box-shadow: 0 0 10px rgba(251,146,60,0.1); filter: brightness(1); } 50% { transform: scale(1.1); background-color: rgba(251, 146, 60, 0.4); box-shadow: 0 0 25px rgba(251,146,60,0.6); filter: brightness(1.1); } }
+        @keyframes rightTap { 0%, 100% { transform: scale(1); background-color: rgba(56, 189, 248, 0.1); box-shadow: 0 0 10px rgba(56,189,248,0.1); filter: brightness(1); } 50% { transform: scale(1.1); background-color: rgba(56, 189, 248, 0.4); box-shadow: 0 0 25px rgba(56,189,248,0.6); filter: brightness(1.1); } }
+        .wing-left-active { animation: leftTap 1.5s infinite ease-in-out; }
+        .wing-right-active { animation: rightTap 1.5s infinite ease-in-out; animation-delay: 0.75s; }
+
+        .card-perspective { perspective: 1000px; }
+        .card-inner { transition: transform 0.6s; transform-style: preserve-3d; }
+        .card-flipped { transform: rotateY(180deg); }
+        .card-front, .card-back { backface-visibility: hidden; position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .card-back { transform: rotateY(180deg); }
+
+        @keyframes shred { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(120px); opacity: 0; } }
+        .shred-strip { animation: shred 1.5s ease-in forwards; }
+
+        @keyframes floatLeaf { 0% { transform: translate(100vw, 0) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translate(-50vw, 30px) rotate(180deg); opacity: 0; } }
+        .leaf-float { animation: floatLeaf 12s linear forwards; }
+
+        @keyframes stampDrop { 0% { transform: scale(4) rotate(-30deg); opacity: 0; } 50% { transform: scale(0.8) rotate(-15deg); opacity: 1; } 100% { transform: scale(1) rotate(-15deg); opacity: 1; } }
+        .stamp-drop { animation: stampDrop 0.4s cubic-bezier(0.175,0.885,0.32,1.275) forwards; }
+
+        @keyframes floatPet { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        .virtual-pet { animation: floatPet 3s ease-in-out infinite; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+
+        .bubble { width: 50px; height: 50px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #ffffff 0%, #bae6fd 20%, #38bdf8 80%); box-shadow: inset -2px -2px 6px rgba(0,0,0,0.1), 2px 2px 5px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.1s, background 0.2s, box-shadow 0.2s; }
+        @media (min-width: 768px) { .bubble { width: 60px; height: 60px; } }
+        .bubble.popped { background: #e0f2fe; box-shadow: inset 2px 2px 4px rgba(0,0,0,0.1); transform: scale(0.85); }
+
+        /* 深夜模式 CSS Overrides */
+        body.dark-mode { background-color: #0f172a; color: #cbd5e1; }
+        body.dark-mode .bg-white { background-color: #1e293b !important; border-color: #334155 !important; color: #e2e8f0; }
+        body.dark-mode .text-slate-800 { color: #f1f5f9 !important; }
+        body.dark-mode .text-slate-700 { color: #e2e8f0 !important; }
+        body.dark-mode .text-slate-500 { color: #94a3b8 !important; }
+        body.dark-mode .bg-slate-50, body.dark-mode .bg-slate-100 { background-color: #0f172a !important; border-color: #1e293b !important; }
+        body.dark-mode input, body.dark-mode textarea, body.dark-mode select { background-color: #0f172a !important; color: #f1f5f9 !important; border-color: #334155 !important; }
+        body.dark-mode header { background-color: rgba(30, 41, 59, 0.95) !important; border-bottom-color: #334155 !important; }
+        body.dark-mode .shadow-sm, body.dark-mode .shadow-md { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.5) !important; }
+        body.dark-mode .bg-indigo-500 { background-color: #4338ca !important; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col text-slate-700 transition-colors duration-500">
+
+    <!-- 隱私保密免責聲明 -->
+    <div id="consent-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-[100] flex items-center justify-center p-4 fade-in">
+        <div class="bg-white max-w-lg w-full rounded-3xl p-8 shadow-2xl border border-slate-100 slide-up">
+            <div class="w-16 h-16 bg-sage-50 rounded-full flex items-center justify-center text-sage-500 mb-6 text-2xl mx-auto shadow-inner"><i class="fa-solid fa-shield-heart"></i></div>
+            <h3 class="text-2xl font-bold text-center text-slate-800 mb-2">歡迎來到安全的小樹洞</h3>
+            <p class="text-base text-center text-slate-500 leading-relaxed mb-6">在開始之前，請了解我們將如何保護與協助你：</p>
+            <div class="space-y-4 mb-8 text-[15px] text-slate-600">
+                <div class="flex gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-100"><i class="fa-solid fa-lock text-sage-500 mt-0.5 text-lg"></i><div><strong class="text-slate-700 block">數據加密與保密</strong>對話與日記皆被匿名處理或僅存本地。這裡是一個不帶批判、專屬你的抒發空間。</div></div>
+                <div class="flex gap-3 bg-rose-50 p-4 rounded-2xl border border-rose-100"><i class="fa-solid fa-triangle-exclamation text-rose-500 mt-0.5 text-lg"></i><div><strong class="text-rose-700 block">緊急生命安全原則</strong>若偵測到高風險，為了保護你，我們將啟動危機處理機制通知社工。</div></div>
+            </div>
+            <button onclick="closeConsent()" class="w-full bg-gradient-to-r from-sage-500 to-emerald-500 text-white font-bold py-3.5 rounded-2xl hover:opacity-90 transition shadow-lg shadow-sage-200 text-lg">我明白並同意，進入樹洞</button>
+        </div>
+    </div>
+
+    <!-- 頂部導航 -->
+    <header class="bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 lg:px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-sage-400 to-emerald-500 flex items-center justify-center text-white shadow-md"><i class="fa-solid fa-seedling text-lg"></i></div>
+                <h1 class="font-bold text-slate-800 text-lg md:text-xl tracking-wide flex items-center gap-2">心靈小樹洞 <span id="header-student-id" class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full font-mono font-medium border border-slate-200">Std-Wait</span></h1>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="toggleDarkMode()" class="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition shadow-inner" title="切換深淺色模式">
+                    <i id="dark-mode-icon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主體區域 -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 lg:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
+        
+        <!-- 左側：多功能工具與導航 -->
+        <aside class="lg:col-span-4 space-y-5">
+            <!-- 1. 每日心靈抽籤 -->
+            <div class="bg-gradient-to-r from-amber-100 to-orange-100 p-5 rounded-3xl shadow-sm border border-amber-200 flex items-center justify-between cursor-pointer hover:shadow-md transition group" onclick="openToolOverlay('card')">
+                <div><h3 class="font-bold text-amber-800 text-base"><i class="fa-solid fa-sun mr-2 animate-spin-slow"></i>今日心靈御守</h3><p class="text-xs text-amber-700 mt-1 font-medium">點擊翻開你的專屬力量肯定句</p></div>
+                <div class="w-12 h-12 bg-white/60 rounded-full flex items-center justify-center text-amber-500 text-2xl shadow-inner group-hover:scale-110 transition-transform"><i class="fa-solid fa-hand-sparkles"></i></div>
+            </div>
+
+            <!-- 2. 自我了解與紀錄 -->
+            <div class="bg-white p-5 lg:p-6 rounded-3xl shadow-sm border border-slate-200">
+                <h2 class="text-base font-bold text-slate-800 mb-3"><i class="fa-solid fa-seedling text-emerald-500 mr-2"></i>自我了解與紀錄</h2>
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="openToolOverlay('diary')" class="p-3.5 rounded-2xl bg-indigo-50 text-indigo-700 hover:bg-indigo-100 text-[13px] font-bold border border-indigo-100 shadow-sm transition flex flex-col items-center"><i class="fa-solid fa-book-journal-whills mb-2 text-2xl text-indigo-500"></i>心情日記本</button>
+                    <button onclick="openToolOverlay('psychoedu')" class="p-3.5 rounded-2xl bg-amber-50 text-amber-700 hover:bg-amber-100 text-[13px] font-bold border border-amber-100 shadow-sm transition flex flex-col items-center"><i class="fa-solid fa-book-open-reader mb-2 text-2xl text-amber-500"></i>心靈充電站</button>
+                </div>
+            </div>
+
+            <!-- 3. 探索與連結區 -->
+            <div class="bg-white p-5 lg:p-6 rounded-3xl shadow-sm border border-slate-200">
+                <div class="grid grid-cols-1 gap-3">
+                    <button onclick="openToolOverlay('quiz')" class="p-3.5 rounded-2xl bg-violet-50 text-violet-700 hover:bg-violet-100 text-[13px] font-bold border border-violet-100 shadow-sm transition flex flex-col items-center"><i class="fa-solid fa-clipboard-question mb-2 text-2xl text-violet-500"></i>10題專業生涯測驗</button>
+                </div>
+            </div>
+
+            <!-- 4. 快速情緒急救包 -->
+            <div class="bg-white p-5 lg:p-6 rounded-3xl shadow-sm border border-slate-200">
+                <h2 class="text-base font-bold text-slate-800 mb-3 flex items-center gap-2"><i class="fa-solid fa-toolbox text-sage-500"></i> 快速情緒急救包</h2>
+                <div class="relative min-h-[140px]">
+                    <div id="toolkit-page-1" class="grid grid-cols-3 gap-2.5 transition-all duration-300 fade-in">
+                        <button onclick="openToolOverlay('breathe')" class="py-2.5 rounded-xl bg-sky-50 text-sky-700 hover:bg-sky-100 hover:-translate-y-0.5 text-xs font-bold border border-sky-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-wind mb-1 text-xl text-sky-500"></i>4-4-4 呼吸</button>
+                        <button onclick="toggleWhiteNoise()" id="btn-noise" class="py-2.5 rounded-xl bg-slate-50 text-slate-700 hover:bg-slate-100 hover:-translate-y-0.5 text-xs font-bold border border-slate-200 transition flex flex-col items-center justify-center"><i id="icon-noise" class="fa-solid fa-headphones mb-1 text-xl text-slate-500"></i><span id="text-noise">風雨聲</span></button>
+                        <button onclick="openToolOverlay('hopebox')" class="py-2.5 rounded-xl bg-teal-50 text-teal-700 hover:bg-teal-100 hover:-translate-y-0.5 text-xs font-bold border border-teal-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-box-open mb-1 text-xl text-teal-500"></i>安撫寶盒</button>
+                        <button onclick="openToolOverlay('bubble')" class="py-2.5 rounded-xl bg-blue-50 text-blue-700 hover:bg-blue-100 hover:-translate-y-0.5 text-xs font-bold border border-blue-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-circle-dot mb-1 text-xl text-blue-500"></i>戳泡泡紙</button>
+                        <button onclick="openToolOverlay('wallpush')" class="py-2.5 rounded-xl bg-red-50 text-red-700 hover:bg-red-100 hover:-translate-y-0.5 text-xs font-bold border border-red-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-person-walking-arrow-right mb-1 text-xl text-red-500"></i>推牆釋放</button>
+                        <button onclick="openToolOverlay('butterfly')" class="py-2.5 rounded-xl bg-indigo-50 text-indigo-700 hover:bg-indigo-100 hover:-translate-y-0.5 text-xs font-bold border border-indigo-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-hands-holding mb-1 text-xl text-indigo-500"></i>蝴蝶擁抱</button>
+                    </div>
+                    <div id="toolkit-page-2" class="grid grid-cols-3 gap-2.5 transition-all duration-300 fade-in hidden">
+                        <button onclick="openToolOverlay('grounding')" class="py-2.5 rounded-xl bg-emerald-50 text-emerald-700 hover:bg-emerald-100 hover:-translate-y-0.5 text-xs font-bold border border-emerald-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-shoe-prints mb-1 text-xl text-emerald-500"></i>五感著陸</button>
+                        <button onclick="openToolOverlay('stream')" class="py-2.5 rounded-xl bg-cyan-50 text-cyan-700 hover:bg-cyan-100 hover:-translate-y-0.5 text-xs font-bold border border-cyan-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-leaf mb-1 text-xl text-cyan-500"></i>溪水落葉</button>
+                        <button onclick="openToolOverlay('shredder')" class="py-2.5 rounded-xl bg-orange-50 text-orange-700 hover:bg-orange-100 hover:-translate-y-0.5 text-xs font-bold border border-orange-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-file-prescription mb-1 text-xl text-orange-500"></i>碎紙機</button>
+                        <button onclick="openToolOverlay('fakenews')" class="py-2.5 rounded-xl bg-yellow-50 text-yellow-700 hover:bg-yellow-100 hover:-translate-y-0.5 text-xs font-bold border border-yellow-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-newspaper mb-1 text-xl text-yellow-500"></i>大腦假新聞</button>
+                        <button onclick="openToolOverlay('rpg')" class="py-2.5 rounded-xl bg-purple-50 text-purple-700 hover:bg-purple-100 hover:-translate-y-0.5 text-xs font-bold border border-purple-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-gamepad mb-1 text-xl text-purple-500"></i>RPG面板</button>
+                        <button onclick="openToolOverlay('scribble')" class="py-2.5 rounded-xl bg-rose-50 text-rose-700 hover:bg-rose-100 hover:-translate-y-0.5 text-xs font-bold border border-rose-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-palette mb-1 text-xl text-rose-500"></i>塗鴉畫板</button>
+                    </div>
+                </div>
+                <div class="flex justify-center items-center gap-2 mt-4 pt-3 border-t border-slate-100">
+                    <button id="dot-page-1" onclick="switchToolkitPage(1)" class="w-2.5 h-2.5 rounded-full bg-sage-500 hover:scale-125 transition-all shadow-sm"></button>
+                    <button id="dot-page-2" onclick="switchToolkitPage(2)" class="w-2.5 h-2.5 rounded-full bg-slate-200 hover:bg-sage-300 hover:scale-125 transition-all shadow-sm"></button>
+                </div>
+            </div>
+
+            <!-- 傾訴範疇 -->
+            <div class="bg-white p-5 lg:p-6 rounded-3xl shadow-sm border border-slate-200">
+                <div class="flex items-center justify-between mb-3">
+                    <h2 class="text-base font-bold text-slate-800">選擇傾訴範疇</h2>
+                    <button onclick="startNewCase()" class="text-[11px] text-indigo-600 hover:bg-indigo-50 px-2.5 py-1.5 rounded-lg transition font-bold"><i class="fa-solid fa-arrows-rotate mr-1"></i>新個案</button>
+                </div>
+                <div class="grid grid-cols-4 gap-1.5">
+                    <button onclick="setCategory('家庭')" class="py-2 rounded-xl bg-warm-50 text-warm-700 hover:bg-warm-100 text-[10px] font-bold transition"><i class="fa-solid fa-house-chimney mb-1 block"></i>家庭</button>
+                    <button onclick="setCategory('朋輩')" class="py-2 rounded-xl bg-sky-50 text-sky-700 hover:bg-sky-100 text-[10px] font-bold transition"><i class="fa-solid fa-users mb-1 block"></i>朋輩</button>
+                    <button onclick="setCategory('生涯')" class="py-2 rounded-xl bg-indigo-50 text-indigo-700 hover:bg-indigo-100 text-[10px] font-bold transition"><i class="fa-solid fa-road mb-1 block"></i>生涯</button>
+                    <button onclick="setCategory('情緒')" class="py-2 rounded-xl bg-rose-50 text-rose-700 hover:bg-rose-100 text-[10px] font-bold transition"><i class="fa-solid fa-cloud-rain mb-1 block"></i>情緒</button>
+                </div>
+            </div>
+
+            <!-- 求助熱線 -->
+            <div class="bg-white p-5 rounded-3xl shadow-sm border border-slate-200">
+                <h3 class="font-bold text-slate-800 text-sm mb-2"><i class="fa-solid fa-phone-volume text-rose-500 mr-2"></i>專業求助與預約社工</h3>
+                <div class="space-y-1.5">
+                    <a href="https://www.openup.hk/" target="_blank" class="block w-full py-2 px-3 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-xl text-xs font-bold transition text-center border border-rose-100"><i class="fa-solid fa-comment-dots mr-1.5"></i>Open噏 24小時網上輔導</a>
+                    <a href="tel:28960000" class="block w-full py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition text-center border border-slate-200"><i class="fa-solid fa-phone mr-1.5"></i>撒瑪利亞會熱線：2896 0000</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 右側：聊天室主體 -->
+        <section class="lg:col-span-8 flex flex-col h-[calc(100vh-8rem)] bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden relative">
+            <div class="px-6 py-4 bg-white flex items-center justify-between border-b border-slate-100 shadow-sm z-10 relative">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-full bg-gradient-to-br from-sage-400 to-emerald-500 flex items-center justify-center text-white shadow-md"><i class="fa-solid fa-robot text-lg"></i></div>
+                    <div>
+                        <h2 class="font-bold text-slate-800 text-base md:text-lg flex items-center gap-2">小樹洞 AI 伴讀 <span id="current-category-label" class="text-xs bg-slate-100 px-3 py-1 rounded-full text-slate-500 font-medium">自由傾談</span></h2>
+                        <span class="text-xs text-sage-600 mt-0.5 inline-block font-medium"><i class="fa-solid fa-circle text-[8px] animate-pulse mr-1 text-emerald-500"></i>雙引擎防護運作中</span>
+                    </div>
+                </div>
+                <!-- 緊急隱蔽按鈕 -->
+                <button onclick="panicHide()" class="absolute right-6 top-1/2 -translate-y-1/2 bg-slate-100 hover:bg-slate-200 text-slate-500 px-3 py-1.5 rounded-lg text-xs font-bold transition shadow-inner border border-slate-200 flex items-center gap-1.5" title="有人來了！一鍵偽裝成 Google">
+                    <i class="fa-solid fa-eye-slash"></i> <span class="hidden sm:inline">緊急隱蔽 (Esc)</span>
+                </button>
+            </div>
+
+            <div id="emergency-banner" class="hidden bg-rose-500 text-white p-3 text-center text-sm md:text-base font-bold shadow-md z-10 flex flex-col sm:flex-row items-center justify-center gap-3 w-full">
+                <div class="flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation animate-pulse text-xl"></i> 生命珍貴，請給我們陪伴你的機會。</div>
+                <a href="tel:28960000" class="bg-white text-rose-600 px-5 py-2 rounded-full text-sm hover:bg-rose-50 shadow-sm font-bold transition">撥打 2896 0000</a>
+            </div>
+
+            <!-- 對話區 -->
+            <div id="chat-box" class="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 bg-slate-50/50 no-scrollbar relative scroll-smooth pb-24"></div>
+
+            <!-- 虛擬陪伴小精靈 -->
+            <div id="virtual-pet" class="absolute bottom-[100px] right-6 virtual-pet z-20 flex flex-col items-center">
+                <div id="pet-bubble" class="bg-white text-slate-600 text-[10px] font-bold px-3 py-1.5 rounded-2xl shadow-md border border-slate-100 mb-2 opacity-0 transition-opacity duration-300 relative after:content-[''] after:absolute after:bottom-[-6px] after:left-1/2 after:-translate-x-1/2 after:border-t-[6px] after:border-t-white after:border-l-[6px] after:border-l-transparent after:border-r-[6px] after:border-r-transparent">我在這裡陪你喔</div>
+                <div id="pet-emoji" class="text-5xl cursor-pointer hover:scale-110 transition-transform" onclick="pokePet()">🦉</div>
+            </div>
+
+            <div id="typing-indicator" class="hidden absolute bottom-[100px] left-6 bg-white px-5 py-4 rounded-3xl rounded-tl-none shadow-md border border-slate-100 flex items-center gap-3 w-fit slide-up z-10">
+                <div class="w-8 h-8 rounded-full bg-sage-50 flex items-center justify-center text-sage-500"><i class="fa-solid fa-robot text-xs"></i></div>
+                <div class="typing-indicator flex gap-1.5 items-center">
+                    <span class="w-2.5 h-2.5 bg-sage-400 rounded-full"></span><span class="w-2.5 h-2.5 bg-sage-400 rounded-full"></span><span class="w-2.5 h-2.5 bg-sage-400 rounded-full"></span>
+                    <span id="indicator-text" class="text-xs text-sage-500 ml-2 font-medium">正在回覆中...</span>
+                </div>
+            </div>
+
+            <div id="quick-replies-container" class="px-5 pb-3 bg-white flex flex-wrap gap-2.5 pt-3 border-t border-slate-100 min-h-[48px] items-center"></div>
+
+            <form id="chat-form" onsubmit="handleChatSubmit(event)" class="px-4 pb-4 pt-2 bg-white flex gap-3 items-center z-10 relative">
+                <input id="chat-input" type="text" autocomplete="off" placeholder="寫下你的真實想法..." class="flex-1 bg-slate-50 border border-slate-200 focus:border-sage-400 focus:ring-2 focus:ring-sage-100 rounded-full px-6 py-3.5 text-base md:text-lg focus:outline-none transition shadow-inner text-slate-700">
+                <button id="send-btn" type="submit" class="bg-sage-500 text-white font-medium px-6 py-3.5 rounded-full hover:bg-sage-600 transition flex items-center justify-center gap-2 shadow-md shadow-sage-200 flex-shrink-0">
+                    <i class="fa-solid fa-paper-plane text-base"></i> <span class="hidden md:inline text-lg font-bold">送出</span>
+                </button>
+            </form>
+
+            <!-- ==================== Overlays (急救包與工具) ==================== -->
+
+            <!-- 2. 心情日記本 -->
+            <div id="overlay-diary" class="absolute inset-0 bg-slate-100/95 backdrop-blur-md z-50 flex flex-col hidden opacity-0 transition-opacity duration-300">
+                <div class="p-4 md:p-6 flex justify-between items-center border-b border-slate-200/50 bg-white/50">
+                    <h3 class="text-2xl md:text-3xl font-bold text-indigo-500"><i class="fa-solid fa-book-journal-whills mr-2"></i>專屬心情日記本</h3>
+                    <button onclick="closeToolOverlay('diary')" class="text-slate-400 hover:text-slate-600 text-3xl md:text-4xl"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="flex-1 overflow-y-auto p-4 md:p-6 flex flex-col lg:flex-row gap-4 md:gap-6">
+                    <div class="w-full lg:w-1/3 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 h-fit">
+                        <h4 class="font-bold text-slate-700 mb-4 text-base md:text-lg"><i class="fa-solid fa-calendar-days mr-2"></i>最近的心情軌跡</h4>
+                        <div id="diary-history" class="space-y-3 max-h-[400px] overflow-y-auto no-scrollbar"><p class="text-sm text-slate-400 italic">目前還沒有紀錄喔，寫下你的第一篇日記吧！</p></div>
+                    </div>
+                    <div class="w-full lg:w-2/3 bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="font-bold text-slate-700 text-lg md:text-xl"><i class="fa-solid fa-pen mr-2"></i>今日私密樹洞 (不上傳)</h4>
+                            <span class="text-xs md:text-sm bg-indigo-50 text-indigo-600 px-3 py-1.5 rounded-lg font-bold"><i class="fa-solid fa-lock mr-1"></i>僅存本地設備</span>
+                        </div>
+                        <textarea id="diary-input" class="flex-1 w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 md:p-6 text-slate-700 focus:outline-none focus:border-indigo-400 resize-none text-base md:text-lg min-h-[250px]" placeholder="把今天開心、難過或煩悶的事情都寫下來吧..."></textarea>
+                        <div class="mt-4 md:mt-6 flex justify-end">
+                            <button onclick="saveDiary()" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold px-8 py-3 rounded-full shadow-md transition text-base md:text-lg active:scale-95"><i class="fa-solid fa-save mr-2"></i>安全儲存日記</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 3. 心靈充電站 -->
+            <div id="overlay-psychoedu" class="absolute inset-0 bg-amber-50/95 backdrop-blur-md z-50 flex flex-col hidden opacity-0 transition-opacity duration-300">
+                <div class="p-4 md:p-6 flex justify-between items-center border-b border-amber-200/50 bg-white/50">
+                    <h3 class="text-2xl md:text-3xl font-bold text-amber-600"><i class="fa-solid fa-book-open-reader mr-2"></i>心靈充電站</h3>
+                    <button onclick="closeToolOverlay('psychoedu')" class="text-slate-400 hover:text-slate-600 text-3xl md:text-4xl"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 max-w-4xl mx-auto w-full">
+                    <details class="bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-amber-100 group cursor-pointer">
+                        <summary class="font-bold text-lg md:text-xl text-slate-800 focus:outline-none list-none flex justify-between items-center"><span><i class="fa-solid fa-pen-nib text-amber-500 mr-3"></i>如何面對考試與選科的極度焦慮？</span><i class="fa-solid fa-chevron-down text-slate-400 group-open:rotate-180 transition-transform"></i></summary>
+                        <div class="mt-4 md:mt-6 text-slate-600 leading-relaxed space-y-2 border-t border-slate-100 pt-4 text-base"><p>焦慮是因為我們在乎結果。當心跳加速時，請告訴自己：「這份緊張，是因為我想做好。」</p><p><strong>實用小技巧：</strong></p><ul class="list-disc list-inside ml-4 space-y-1"><li>把大目標切碎：不要想「我要考滿分」，而是想「我今晚只專心看這 5 頁」。</li><li>允許不完美：DSE 或考試只是人生無數分岔路口的其中一個，它絕對無法定義你的全部價值。</li></ul></div>
+                    </details>
+                    <details class="bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-amber-100 group cursor-pointer">
+                        <summary class="font-bold text-lg md:text-xl text-slate-800 focus:outline-none list-none flex justify-between items-center"><span><i class="fa-solid fa-cloud-showers-heavy text-blue-500 mr-3"></i>我好像生病了？認識憂鬱與情緒低谷</span><i class="fa-solid fa-chevron-down text-slate-400 group-open:rotate-180 transition-transform"></i></summary>
+                        <div class="mt-4 md:mt-6 text-slate-600 leading-relaxed space-y-2 border-t border-slate-100 pt-4 text-base"><p>情緒就像天氣，有時連日暴雨，有時陰天。如果你連續兩週以上感到「對任何事都提不起勁」、「持續失眠」或「覺得自己毫無價值」，這可能是大腦感冒了。</p><p>憂鬱不是因為你軟弱，而是因為你堅強了太久。這時請記得：<strong>你不必一個人硬撐。</strong> 尋求社工、輔導老師或 Shall We Talk 專線的協助，是勇敢且明智的選擇。</p></div>
+                    </details>
+                    <details class="bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-amber-100 group cursor-pointer">
+                        <summary class="font-bold text-lg md:text-xl text-slate-800 focus:outline-none list-none flex justify-between items-center"><span><i class="fa-solid fa-bed text-indigo-500 mr-3"></i>腦袋一直轉，晚上睡不著怎麼辦？</span><i class="fa-solid fa-chevron-down text-slate-400 group-open:rotate-180 transition-transform"></i></summary>
+                        <div class="mt-4 md:mt-6 text-slate-600 leading-relaxed space-y-2 border-t border-slate-100 pt-4 text-base"><p>失眠往往伴隨著焦慮。不要強迫自己「立刻睡著」，這反而會讓你更清醒。</p><ul class="list-disc list-inside ml-4 space-y-1"><li><strong>離開床舖：</strong>如果躺了 20 分鐘還睡不著，起身去昏暗的地方坐著，做點無聊的事，有睡意再回床。</li><li><strong>大腦清倉：</strong>把腦中一直轉的擔憂寫在紙上，告訴大腦「我已經記下來了，明天再處理」。</li><li>使用我們左側工具箱的「白噪音」與「4-4-4呼吸法」來幫助放鬆。</li></ul></div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- 5. 呼吸放大版 -->
+            <div id="overlay-breathe" class="absolute inset-0 bg-sky-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white overflow-y-auto">
+                <div class="my-auto flex flex-col items-center justify-center p-6 w-full min-h-full">
+                    <button onclick="closeToolOverlay('breathe')" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg text-sky-100">4-4-4 呼吸放鬆</h3>
+                    <p class="text-sky-200 text-lg md:text-xl mb-16 tracking-wide font-medium">專注在圓圈的變化，跟著節奏呼吸...</p>
+                    <div class="relative w-56 h-56 md:w-64 md:h-64 flex items-center justify-center mb-16 mt-6">
+                        <div class="absolute w-full h-full rounded-full border-2 border-sky-300/30"></div>
+                        <div class="breathe-circle w-28 h-28 md:w-32 md:h-32 rounded-full"></div>
+                        <div id="breathe-text" class="absolute font-bold text-sky-900 text-3xl md:text-4xl tracking-widest drop-shadow-md">吸氣</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. 推牆放大版 -->
+            <div id="overlay-wallpush" class="absolute inset-0 bg-red-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 text-center overflow-y-auto">
+                <div class="my-auto flex flex-col items-center justify-center w-full min-h-full">
+                    <button onclick="closeToolOverlay('wallpush')" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-4xl md:text-5xl font-bold mb-4 text-red-400 drop-shadow-lg">推牆釋放法</h3>
+                    <p class="text-red-200 text-lg md:text-xl max-w-lg mx-auto mb-10 leading-relaxed font-medium">站起來，雙手用力推著實體的牆壁！<br>把體內所有的壓力、憤怒全部推出去！</p>
+                    <div id="wall-circle" class="w-56 h-56 md:w-64 md:h-64 rounded-full border-8 border-red-500 flex items-center justify-center mb-10 shadow-[0_0_40px_rgba(239,68,68,0.5)] transition-all">
+                        <span id="wall-timer" class="text-[6rem] md:text-[8rem] font-bold text-white drop-shadow-xl">15</span>
+                    </div>
+                    <button id="wall-btn" onclick="startWallPush()" class="bg-red-600 hover:bg-red-500 text-white font-bold px-10 py-4 md:px-12 md:py-5 rounded-full shadow-lg transition text-2xl active:scale-95">開始全力推牆！</button>
+                </div>
+            </div>
+
+            <!-- 7. 五感著陸放大版 -->
+            <div id="overlay-grounding" class="absolute inset-0 bg-emerald-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 overflow-y-auto">
+                <div class="my-auto flex flex-col items-center justify-center w-full min-h-full">
+                    <button onclick="closeToolOverlay('grounding')" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-4 text-emerald-300 drop-shadow-md">五感著陸尋寶遊戲</h3>
+                    <p class="text-emerald-100 text-lg md:text-xl text-center mb-8 font-medium">專注於你身邊的真實世界，跟著提示找出事物：</p>
+                    <div class="bg-white/10 p-6 md:p-8 rounded-3xl border border-white/20 w-full max-w-lg text-center shadow-xl backdrop-blur-lg">
+                        <div class="w-24 h-24 md:w-32 md:h-32 bg-emerald-500/30 rounded-full flex items-center justify-center text-[4rem] md:text-[5rem] mx-auto mb-6 animate-bounce shadow-inner border border-emerald-400/30" id="grounding-icon">👀</div>
+                        <h4 class="font-bold text-xl md:text-2xl mb-4 text-emerald-400 tracking-widest fade-in" id="grounding-step-title">步驟 1 / 5</h4>
+                        <p class="text-xl md:text-2xl text-emerald-50 mb-8 leading-relaxed font-bold min-h-[60px] fade-in" id="grounding-instruction">在周圍找出 5 件你眼睛「看得見」的東西。</p>
+                        <button onclick="nextGroundingStep()" class="bg-emerald-500 hover:bg-emerald-400 text-white font-bold px-10 py-4 rounded-full shadow-lg transition text-xl active:scale-95">我找到了！</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. 碎紙機放大版 -->
+            <div id="overlay-shredder" class="absolute inset-0 bg-orange-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 overflow-y-auto">
+                <div class="my-auto flex flex-col items-center justify-center w-full min-h-full">
+                    <button onclick="closeToolOverlay('shredder')" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-4 text-orange-400 drop-shadow-md"><i class="fa-solid fa-file-prescription mr-2"></i>情緒煩惱碎紙機</h3>
+                    <p class="text-orange-100 text-lg md:text-xl text-center mb-8 font-medium">把讓你生氣、難過的負面想法寫下，讓我們把它徹底粉碎：</p>
+                    <div class="w-full max-w-xl space-y-6">
+                        <input id="shredder-input" type="text" placeholder="例如：我真的做得很差..." class="w-full bg-white/10 border-2 border-orange-500/50 rounded-2xl px-6 py-4 md:py-5 text-white focus:outline-none focus:border-orange-400 text-lg md:text-xl font-bold shadow-inner">
+                        <button onclick="shredThought()" class="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-400 hover:to-red-400 text-white font-bold py-4 rounded-2xl shadow-lg transition text-xl active:scale-95">放入碎紙機粉碎它！</button>
+                        <div id="shredder-box" class="h-48 md:h-56 w-full bg-black/60 border border-white/20 rounded-2xl relative overflow-hidden hidden flex flex-col items-center justify-start pt-4 shadow-xl">
+                            <div class="h-2.5 w-full bg-gray-600 mb-4 shadow-inner rounded-full"></div>
+                            <div id="shred-text-container" class="relative w-full text-center h-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. 蝴蝶安全擁抱 -->
+            <div id="overlay-butterfly" class="absolute inset-0 bg-indigo-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 overflow-y-auto">
+                <div class="my-auto flex flex-col items-center justify-center w-full min-h-full">
+                    <button onclick="closeToolOverlay('butterfly')" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-md">蝴蝶安全擁抱</h3>
+                    <p class="text-indigo-200 text-lg md:text-xl text-center mb-10 font-medium max-w-lg">雙手在胸前交叉抱肩。看著左右閃爍的節奏，輕拍自己左右肩：</p>
+                    <div class="flex flex-col sm:flex-row gap-6 sm:gap-12 items-center justify-center">
+                        <div id="wing-left" class="w-32 h-32 md:w-40 md:h-40 rounded-[2rem] border-4 border-orange-400 flex flex-col items-center justify-center font-bold text-orange-200 text-xl md:text-2xl shadow-[0_0_20px_rgba(251,146,60,0.3)]">
+                            <i class="fa-solid fa-hand text-[3.5rem] md:text-[4.5rem] mb-2"></i>拍左肩
+                        </div>
+                        <div id="wing-right" class="w-32 h-32 md:w-40 md:h-40 rounded-[2rem] border-4 border-sky-400 flex flex-col items-center justify-center font-bold text-sky-200 text-xl md:text-2xl shadow-[0_0_20px_rgba(56,189,248,0.3)]">
+                            <i class="fa-solid fa-hand text-[3.5rem] md:text-[4.5rem] mb-2"></i>拍右肩
+                        </div>
+                    </div>
+                    <p class="text-indigo-300 text-sm md:text-base font-medium mt-10">(建議開啟聲音體驗沉浸療癒)</p>
+                </div>
+            </div>
+
+            <!-- 10. 力量卡 -->
+            <div id="overlay-card" class="absolute inset-0 bg-amber-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 overflow-y-auto">
+                <div class="my-auto flex flex-col items-center justify-center w-full min-h-full">
+                    <button onclick="closeToolOverlay('card')" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-4xl md:text-5xl font-bold mb-6 drop-shadow-md">今日力量抽卡</h3>
+                    <div class="card-perspective w-64 h-[24rem] md:w-72 md:h-[28rem] cursor-pointer hover:scale-105 transition-transform" onclick="flipAffirmationCard()">
+                        <div id="card-inner" class="card-inner w-full h-full relative">
+                            <div class="card-front bg-gradient-to-tr from-amber-500 to-amber-700 rounded-[2rem] p-6 border-4 border-amber-300 shadow-xl flex flex-col items-center justify-center">
+                                <div class="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center text-white text-[4rem] mb-6 shadow-inner"><i class="fa-solid fa-star"></i></div>
+                                <span class="font-bold tracking-widest text-2xl md:text-3xl">開啟力量</span>
+                            </div>
+                            <div class="card-back bg-white text-slate-800 rounded-[2rem] p-6 border-4 border-amber-400 shadow-xl flex flex-col justify-between">
+                                <span class="text-amber-500 font-bold text-lg md:text-xl text-center mt-3">✨ 心靈肯定句 ✨</span>
+                                <p id="card-quote" class="text-slate-700 text-xl md:text-2xl font-bold leading-relaxed text-center my-4 md:my-6">你的努力，值得被自己好好看見。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11. 溪水落葉 -->
+            <div id="overlay-stream" class="absolute inset-0 bg-teal-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 overflow-hidden">
+                <button onclick="closeToolOverlay('stream')" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl z-20"><i class="fa-solid fa-xmark"></i></button>
+                <div class="relative z-10 flex flex-col items-center w-full max-w-xl mt-8">
+                    <h3 class="text-4xl md:text-5xl font-bold mb-4 text-teal-300 drop-shadow-md">溪水落葉法</h3>
+                    <p class="text-teal-100 text-lg md:text-xl text-center mb-8 font-medium">想像腦中的煩惱只是一片落葉。寫下它，看著它隨水流走：</p>
+                    <div class="w-full space-y-6">
+                        <input id="stream-input" type="text" placeholder="我現在腦中一直盤旋的想法是..." class="w-full bg-white/10 border-2 border-teal-500/50 rounded-2xl px-6 py-4 md:py-5 text-white focus:outline-none focus:border-teal-400 text-lg md:text-xl font-medium shadow-inner">
+                        <button onclick="putWorryOnLeaf()" class="w-full bg-teal-500 hover:bg-teal-400 text-white font-bold py-4 rounded-2xl shadow-[0_8px_20px_rgba(20,184,166,0.3)] transition text-xl md:text-2xl active:scale-95">放到落葉上飄走 🍃</button>
+                    </div>
+                </div>
+                <div class="absolute bottom-0 w-full h-[45%] bg-gradient-to-t from-teal-900 to-transparent border-t border-teal-800/50">
+                    <div id="river-container" class="relative w-full h-full overflow-hidden"></div>
+                </div>
+            </div>
+
+            <!-- 12. 大腦假新聞 -->
+            <div id="overlay-fakenews" class="absolute inset-0 bg-slate-900/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 overflow-y-auto">
+                <div class="my-auto flex flex-col items-center justify-center w-full min-h-full">
+                    <button onclick="closeToolOverlay('fakenews')" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-4 text-yellow-400 drop-shadow-md"><i class="fa-solid fa-newspaper mr-2"></i>大腦假新聞查核</h3>
+                    <div class="bg-white text-slate-800 p-6 md:p-8 rounded-3xl w-full max-w-xl shadow-xl relative mt-4">
+                        <textarea id="fakenews-input" rows="3" placeholder="輸入腦海中一直盤旋的負面聲音..." class="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-5 py-4 md:px-6 text-slate-700 focus:outline-none focus:border-yellow-500 text-lg md:text-xl font-bold resize-none mb-6"></textarea>
+                        <button onclick="stampFakeNews()" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 rounded-xl shadow-md transition text-xl md:text-2xl active:scale-95">進行事實查核</button>
+                        <div id="fakenews-stamp" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-4 md:border-8 border-red-600 text-red-600 font-black text-3xl md:text-5xl px-6 py-3 rounded-2xl hidden z-10 bg-white/90 backdrop-blur-md pointer-events-none text-center shadow-xl">FAKE NEWS<br><span class="text-2xl md:text-4xl">大腦假新聞</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 13. RPG 面板 -->
+            <div id="overlay-rpg" class="absolute inset-0 bg-purple-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 overflow-y-auto">
+                <div class="my-auto flex flex-col items-center justify-center w-full min-h-full">
+                    <button onclick="closeToolOverlay('rpg')" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-4xl md:text-5xl font-bold mb-4 text-purple-300 drop-shadow-md"><i class="fa-solid fa-gamepad mr-2"></i>玩家狀態面板</h3>
+                    <div class="bg-black/40 border-2 border-purple-500/50 p-6 md:p-8 rounded-3xl w-full max-w-xl shadow-xl font-mono mt-4">
+                        <div class="mb-8">
+                            <div class="flex justify-between text-red-400 font-bold mb-2 text-lg md:text-xl"><span>HP (生命值)</span> <span id="rpg-hp-text">30/100</span></div>
+                            <div class="w-full bg-gray-800 rounded-full h-6 border-2 border-gray-700"><div id="rpg-hp-bar" class="bg-red-500 h-full rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(239,68,68,0.8)]" style="width: 30%"></div></div>
+                        </div>
+                        <div class="mb-10">
+                            <div class="flex justify-between text-blue-400 font-bold mb-2 text-lg md:text-xl"><span>MP (精力)</span> <span id="rpg-mp-text">15/100</span></div>
+                            <div class="w-full bg-gray-800 rounded-full h-6 border-2 border-gray-700"><div id="rpg-mp-bar" class="bg-blue-500 h-full rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(59,130,246,0.8)]" style="width: 15%"></div></div>
+                        </div>
+                        <button onclick="drinkPotion()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-4 rounded-xl shadow-[0_0_20px_rgba(168,85,247,0.5)] transition text-xl md:text-2xl active:scale-95"><i class="fa-solid fa-flask mr-2"></i>喝下恢復藥水</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 14. 泡泡紙 -->
+            <div id="overlay-bubble" class="absolute inset-0 bg-blue-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 overflow-y-auto">
+                <div class="my-auto flex flex-col items-center justify-center w-full min-h-full">
+                    <button onclick="closeToolOverlay('bubble')" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-4xl md:text-5xl font-bold mb-4 text-blue-300 drop-shadow-md"><i class="fa-solid fa-circle-dot mr-2"></i>紓壓泡泡紙</h3>
+                    <p class="text-blue-100 text-lg md:text-xl text-center mb-8 font-medium max-w-xl">當你覺得焦慮或靜不下來時，隨意戳破這些泡泡吧！</p>
+                    <div class="bg-white/10 p-6 md:p-8 rounded-3xl shadow-inner border border-white/20 backdrop-blur-md">
+                        <div id="bubble-container" class="grid grid-cols-4 sm:grid-cols-6 gap-3 md:gap-4 justify-items-center"></div>
+                    </div>
+                    <button onclick="initBubbleWrap()" class="mt-8 text-blue-200 hover:text-white text-xl md:text-2xl font-bold transition flex items-center active:scale-95"><i class="fa-solid fa-rotate-right mr-2"></i>換一張全新的</button>
+                </div>
+            </div>
+
+            <!-- 15. 10題 專業趣味心理測驗 -->
+            <div id="overlay-quiz" class="absolute inset-0 bg-violet-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 overflow-y-auto">
+                <div class="my-auto flex flex-col items-center justify-center w-full min-h-full relative">
+                    <button onclick="closeToolOverlay('quiz')" class="absolute top-0 right-0 text-white/50 hover:text-white text-5xl z-20"><i class="fa-solid fa-xmark"></i></button>
+                    
+                    <!-- Q1 -->
+                    <div id="quiz-step-1" class="quiz-step w-full max-w-xl text-center">
+                        <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 1/10</h4>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">週末終於有空閒了，<br>你最想做什麼？</h3>
+                        <div class="space-y-4">
+                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-wrench mr-3 text-violet-300"></i>動手拆修東西或做手工藝</button>
+                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-magnifying-glass mr-3 text-violet-300"></i>看科普影片或玩解謎遊戲</button>
+                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-palette mr-3 text-violet-300"></i>聽音樂、畫畫或看電影</button>
+                        </div>
+                    </div>
+                    <div id="quiz-step-2" class="quiz-step w-full max-w-xl text-center hidden">
+                        <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 2/10</h4>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">在班級分組報告中，<br>你通常扮演什麼角色？</h3>
+                        <div class="space-y-4">
+                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-people-arrows mr-3 text-violet-300"></i>關心組員進度，協調大家意見</button>
+                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-bullhorn mr-3 text-violet-300"></i>擔任組長，分配任務並上台主講</button>
+                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-file-lines mr-3 text-violet-300"></i>負責排版整理資料，確保不漏細節</button>
+                        </div>
+                    </div>
+                    <div id="quiz-step-3" class="quiz-step w-full max-w-xl text-center hidden">
+                        <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 3/10</h4>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">遇到一個完全不懂的難題時，<br>你會怎麼辦？</h3>
+                        <div class="space-y-4">
+                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-book mr-3 text-violet-300"></i>立刻上網查資料，想找出背後原理</button>
+                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-handshake-angle mr-3 text-violet-300"></i>去問老師或朋友，聽聽別人的建議</button>
+                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-screwdriver-wrench mr-3 text-violet-300"></i>直接動手試錯，壞了再說</button>
+                        </div>
+                    </div>
+                    <div id="quiz-step-4" class="quiz-step w-full max-w-xl text-center hidden">
+                        <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 4/10</h4>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">你最嚮往的工作環境<br>是哪一種？</h3>
+                        <div class="space-y-4">
+                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-chart-line mr-3 text-violet-300"></i>充滿競爭、業績挑戰與豐厚獎金</button>
+                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-camera mr-3 text-violet-300"></i>自由無拘束、可以發揮創意的設計室</button>
+                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-building mr-3 text-violet-300"></i>穩定、有規律且制度完善的辦公室</button>
+                        </div>
+                    </div>
+                    <div id="quiz-step-5" class="quiz-step w-full max-w-xl text-center hidden">
+                        <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 5/10</h4>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">在好朋友的眼中，<br>你通常是一個怎樣的人？</h3>
+                        <div class="space-y-4">
+                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-ear-listen mr-3 text-violet-300"></i>溫暖的傾聽者，總能安慰到人</button>
+                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-brain mr-3 text-violet-300"></i>理性的分析大師，看事情很客觀</button>
+                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-flag mr-3 text-violet-300"></i>充滿點子、喜歡號召大家出去玩的領袖</button>
+                        </div>
+                    </div>
+                    <div id="quiz-step-6" class="quiz-step w-full max-w-xl text-center hidden">
+                        <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 6/10</h4>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">如果有機會參加社團，<br>你會優先考慮哪一個？</h3>
+                        <div class="space-y-4">
+                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-hammer mr-3 text-violet-300"></i>模型製作社 或 木工社</button>
+                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-masks-theater mr-3 text-violet-300"></i>話劇社 或 流行音樂社</button>
+                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-sitemap mr-3 text-violet-300"></i>學生會行政事務部 或 會計學會</button>
+                        </div>
+                    </div>
+                    <div id="quiz-step-7" class="quiz-step w-full max-w-xl text-center hidden">
+                        <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 7/10</h4>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">玩電子遊戲時，<br>你最享受哪個部分？</h3>
+                        <div class="space-y-4">
+                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-puzzle-piece mr-3 text-violet-300"></i>破解複雜機關，找出隱藏的通關策略</button>
+                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-chess-knight mr-3 text-violet-300"></i>帶領公會成員打贏大型戰役，獲得成就</button>
+                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-users-rays mr-3 text-violet-300"></i>在遊戲大廳聊天交朋友，幫助新手</button>
+                        </div>
+                    </div>
+                    <div id="quiz-step-8" class="quiz-step w-full max-w-xl text-center hidden">
+                        <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 8/10</h4>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">看到桌上有一堆雜物，<br>你會怎麼處理？</h3>
+                        <div class="space-y-4">
+                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-boxes-stacked mr-3 text-violet-300"></i>依照類別、大小完美分類收納好</button>
+                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-star-of-life mr-3 text-violet-300"></i>隨意擺放，覺得亂亂的也有一種美感</button>
+                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-toolbox mr-3 text-violet-300"></i>只把最實用、待會要用的工具拿出來放</button>
+                        </div>
+                    </div>
+                    <div id="quiz-step-9" class="quiz-step w-full max-w-xl text-center hidden">
+                        <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 9/10</h4>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">如果可以選一個超能力，<br>你希望是？</h3>
+                        <div class="space-y-4">
+                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-microchip mr-3 text-violet-300"></i>一眼看透萬物運作原理的智慧</button>
+                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-hand-holding-medical mr-3 text-violet-300"></i>能瞬間治癒他人悲傷與痛苦的魔法</button>
+                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-handshake mr-3 text-violet-300"></i>擁有無限說服力，讓人願意跟隨你</button>
+                        </div>
+                    </div>
+                    <div id="quiz-step-10" class="quiz-step w-full max-w-xl text-center hidden">
+                        <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 10/10</h4>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">對於未來的自己，<br>你最大的期許是？</h3>
+                        <div class="space-y-4">
+                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-gem mr-3 text-violet-300"></i>能創造出獨一無二、驚豔大眾的作品</button>
+                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-house-circle-check mr-3 text-violet-300"></i>擁有一份安穩、零風險且踏實的生活</button>
+                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-medal mr-3 text-violet-300"></i>成為某個專業技術領域無可取代的達人</button>
+                        </div>
+                    </div>
+
+                    <!-- 測驗結果 -->
+                    <div id="quiz-result" class="quiz-step w-full max-w-xl text-center hidden bg-white/10 p-6 md:p-8 rounded-3xl border border-white/20 backdrop-blur-md shadow-xl mt-12">
+                        <div class="w-20 h-20 md:w-24 md:h-24 bg-violet-500/30 rounded-full flex items-center justify-center text-4xl md:text-5xl mx-auto mb-6"><i class="fa-solid fa-star"></i></div>
+                        <p class="text-violet-300 font-bold mb-3 text-lg md:text-xl">測驗結果分析</p>
+                        <h3 id="quiz-result-title" class="text-3xl md:text-4xl font-bold mb-4 text-white drop-shadow-md">結果運算中...</h3>
+                        <p id="quiz-result-desc" class="text-lg md:text-xl text-violet-100 mb-6 leading-relaxed font-medium"></p>
+                        <button onclick="sendQuizResultToChat()" class="bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:from-violet-400 hover:to-fuchsia-400 text-white font-bold w-full py-4 rounded-xl shadow-lg transition text-xl md:text-2xl active:scale-95">告訴小樹洞，獲取專屬建議</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 16. 塗鴉畫布 -->
+            <div id="overlay-scribble" class="absolute inset-0 bg-orange-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 overflow-y-auto">
+                <div class="my-auto flex flex-col items-center justify-center w-full min-h-full relative">
+                    <button onclick="closeToolOverlay('scribble')" class="absolute top-0 right-0 text-white/50 hover:text-white text-5xl z-20"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-4 text-orange-400"><i class="fa-solid fa-palette mr-2"></i>心情宣洩塗鴉畫板</h3>
+                    <p class="text-orange-200 text-base md:text-lg mb-6 font-medium text-center">不管畫什麼都可以，把心裡的煩悶隨意塗抹出來吧！</p>
+                    <div class="w-full max-w-3xl bg-white/20 p-2 rounded-3xl shadow-xl backdrop-blur-sm">
+                        <canvas id="fullscreen-scribble" class="w-full h-72 md:h-96 bg-slate-50 rounded-2xl cursor-crosshair shadow-inner border-2 border-orange-300"></canvas>
+                    </div>
+                    <button onclick="clearScribbleCanvas('fullscreen-scribble')" class="mt-6 bg-orange-500 hover:bg-orange-400 text-white font-bold px-8 py-3.5 rounded-full shadow-md transition text-lg active:scale-95"><i class="fa-solid fa-eraser mr-2"></i>清空畫板</button>
+                </div>
+            </div>
+
+            <!-- 安撫寶盒 -->
+            <div id="overlay-hopebox" class="absolute inset-0 calm-bg z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-slate-800 p-6 overflow-y-auto">
+                <div class="my-auto flex flex-col items-center justify-center w-full min-h-full relative">
+                    <button onclick="closeToolOverlay('hopebox')" class="absolute top-0 right-0 text-slate-600 hover:text-slate-800 text-5xl"><i class="fa-solid fa-xmark"></i></button>
+                    <div class="bg-white/60 backdrop-blur-xl p-6 md:p-8 rounded-3xl w-full max-w-xl shadow-xl border border-white/50 text-center mt-12">
+                        <h3 class="text-3xl md:text-4xl font-bold mb-3 text-teal-800"><i class="fa-solid fa-box-open mr-2"></i>虛擬安撫寶盒</h3>
+                        <div class="space-y-4 mt-6">
+                            <div class="bg-white/80 p-5 rounded-2xl shadow-sm flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+                                <div class="w-16 h-16 bg-blue-100 rounded-full flex justify-center items-center text-blue-500 text-3xl flex-shrink-0"><i class="fa-solid fa-eye"></i></div>
+                                <div>
+                                    <strong class="text-xl block text-slate-800 font-bold">呼吸釋壓球</strong>
+                                    <div class="mt-3 flex flex-col sm:flex-row items-center gap-3">
+                                        <button onmousedown="pressStressBall()" onmouseup="releaseStressBall()" ontouchstart="pressStressBall()" ontouchend="releaseStressBall()" id="stress-ball" class="px-5 py-2 bg-teal-500 hover:bg-teal-400 text-white rounded-xl text-base font-bold transition active:scale-90 shadow-sm">按住釋壓</button>
+                                        <span id="stress-ball-text" class="text-base text-teal-700 font-medium">按住深呼吸</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-white/80 p-5 rounded-2xl shadow-sm flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left cursor-pointer hover:bg-white transition" onclick="toggleWhiteNoise()">
+                                <div class="w-16 h-16 bg-emerald-100 rounded-full flex justify-center items-center text-emerald-500 text-3xl flex-shrink-0"><i class="fa-solid fa-music"></i></div>
+                                <div><strong class="text-xl block text-slate-800 font-bold">聽覺安撫</strong><p class="text-sm text-slate-500 mt-1">點擊我，播放輕柔的風雨白噪音。</p></div>
+                            </div>
+                            <div class="bg-white/80 p-5 rounded-2xl shadow-sm flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+                                <div class="w-16 h-16 bg-orange-100 rounded-full flex justify-center items-center text-orange-500 text-3xl flex-shrink-0"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                                <div><strong class="text-xl block text-slate-800 font-bold">觸覺安撫</strong><p class="text-sm text-slate-500 mt-1">現在拿一件外套或抱枕，緊緊抱住它 10 秒鐘。</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        // 🔒 在此處貼上您的 API 金鑰 (必須是 AIzaSy... 開頭的格式)
+        // ⚠️ 上傳到 GitHub 後，請務必至 Google Cloud 設定「HTTP 參照網址」限制，以防止他人盜用！
+        const apiKey = "請在這裡貼上您的API金鑰"; 
+        
+        let conversationHistory = [];
+        let currentStudentId = "";
+        let currentCategory = '自由傾談';
+        
+        const affirmationQuotes = [
+            "你今天已經做得很好了，允許自己好好休息一下吧。", "你的存在本身就是有價值的，這與分數無關。",
+            "每一次走得慢，都是在為更穩健的未來做準備。", "不要為昨天流淚，你是今天全新的你。",
+            "感到害怕是完全正常的，這正代表你開始在乎。", "你不需要扮演完美，在小樹洞裡你只要做真實的你。",
+            "你的內心深處，其實比自己想像得更具韌性。", "挫折只是一場路過的暴風雨，它定義不了你是誰。"
+        ];
+
+        // --- Web Audio 專屬音效合成系統 ---
+        let sfxCtx;
+        function initAudio() {
+            if (!sfxCtx) { sfxCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+            if (sfxCtx.state === 'suspended') { sfxCtx.resume(); }
+        }
+        function playSound(type) {
+            initAudio();
+            if (!sfxCtx) return;
+            const t = sfxCtx.currentTime;
+            const gainNode = sfxCtx.createGain();
+            gainNode.connect(sfxCtx.destination);
+            
+            if (type === 'pop') {
+                const osc = sfxCtx.createOscillator(); osc.type = 'sine'; osc.connect(gainNode);
+                osc.frequency.setValueAtTime(800, t); osc.frequency.exponentialRampToValueAtTime(300, t + 0.1);
+                gainNode.gain.setValueAtTime(0.5, t); gainNode.gain.exponentialRampToValueAtTime(0.01, t + 0.1);
+                osc.start(t); osc.stop(t + 0.1);
+            } else if (type === 'tap') {
+                const osc = sfxCtx.createOscillator(); osc.type = 'sine'; osc.connect(gainNode);
+                osc.frequency.setValueAtTime(150, t); gainNode.gain.setValueAtTime(0.3, t); gainNode.gain.exponentialRampToValueAtTime(0.01, t + 0.3);
+                osc.start(t); osc.stop(t + 0.3);
+            } else if (type === 'chime') {
+                const osc = sfxCtx.createOscillator(); osc.type = 'triangle'; osc.connect(gainNode);
+                osc.frequency.setValueAtTime(600, t); gainNode.gain.setValueAtTime(0.3, t); gainNode.gain.exponentialRampToValueAtTime(0.01, t + 1.5);
+                osc.start(t); osc.stop(t + 1.5);
+            } else if (type === 'shred') {
+                const bufferSize = sfxCtx.sampleRate * 1.5; const buffer = sfxCtx.createBuffer(1, bufferSize, sfxCtx.sampleRate); const data = buffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+                const noise = sfxCtx.createBufferSource(); noise.buffer = buffer;
+                const filter = sfxCtx.createBiquadFilter(); filter.type = 'bandpass'; filter.frequency.value = 1000;
+                noise.connect(filter); filter.connect(gainNode);
+                gainNode.gain.setValueAtTime(0, t); gainNode.gain.linearRampToValueAtTime(1, t + 0.1); gainNode.gain.exponentialRampToValueAtTime(0.01, t + 1.5);
+                noise.start(t);
+            } else if (type === 'stamp') {
+                const osc = sfxCtx.createOscillator(); osc.type = 'square'; osc.connect(gainNode);
+                osc.frequency.setValueAtTime(150, t); osc.frequency.exponentialRampToValueAtTime(20, t + 0.2);
+                gainNode.gain.setValueAtTime(1, t); gainNode.gain.exponentialRampToValueAtTime(0.01, t + 0.2);
+                osc.start(t); osc.stop(t + 0.2);
+            } else if (type === 'splash') {
+                const osc = sfxCtx.createOscillator(); osc.type = 'sine'; osc.connect(gainNode);
+                osc.frequency.setValueAtTime(300, t); osc.frequency.exponentialRampToValueAtTime(600, t + 0.1); osc.frequency.exponentialRampToValueAtTime(200, t + 1);
+                gainNode.gain.setValueAtTime(0, t); gainNode.gain.linearRampToValueAtTime(0.4, t + 0.1); gainNode.gain.exponentialRampToValueAtTime(0.01, t + 1);
+                osc.start(t); osc.stop(t + 1);
+            } else if (type === 'magic') {
+                const osc = sfxCtx.createOscillator(); osc.type = 'triangle'; osc.connect(gainNode);
+                osc.frequency.setValueAtTime(400, t); osc.frequency.linearRampToValueAtTime(800, t + 0.1); osc.frequency.linearRampToValueAtTime(1200, t + 0.3);
+                gainNode.gain.setValueAtTime(0, t); gainNode.gain.linearRampToValueAtTime(0.3, t + 0.1); gainNode.gain.exponentialRampToValueAtTime(0.01, t + 1);
+                osc.start(t); osc.stop(t + 1);
+            } else if (type === 'rumble') {
+                const osc = sfxCtx.createOscillator(); osc.type = 'sawtooth'; osc.connect(gainNode);
+                osc.frequency.setValueAtTime(80, t); osc.frequency.exponentialRampToValueAtTime(20, t + 1);
+                gainNode.gain.setValueAtTime(0.8, t); gainNode.gain.exponentialRampToValueAtTime(0.01, t + 1);
+                osc.start(t); osc.stop(t + 1);
+            }
+        }
+
+        document.addEventListener('keydown', function(event) { if (event.key === "Escape") { panicHide(); } });
+        function panicHide() { window.location.replace("https://zh.wikipedia.org/wiki/%E5%BF%83%E7%90%86%E5%AD%B8"); }
+
+        let isDarkMode = false;
+        function toggleDarkMode() {
+            isDarkMode = !isDarkMode; document.body.classList.toggle('dark-mode', isDarkMode);
+            const icon = document.getElementById('dark-mode-icon');
+            if (isDarkMode) { icon.className = "fa-solid fa-sun text-amber-400 text-lg"; setPetEmotion("sleep"); } 
+            else { icon.className = "fa-solid fa-moon text-lg"; setPetEmotion("normal"); }
+        }
+
+        function setPetEmotion(emotion) {
+            const petEmoji = document.getElementById('pet-emoji'); const bubble = document.getElementById('pet-bubble');
+            let emoji = "🦉", text = "我在這裡陪你喔";
+            if(emotion === 'sad' || emotion === 'cry') { emoji = "🥺"; text = "不哭不哭，我在聽"; }
+            else if(emotion === 'happy') { emoji = "🥰"; text = "為你感到開心！"; }
+            else if(emotion === 'think' || emotion === 'search') { emoji = "🧐"; text = "小樹洞正在幫你想辦法..."; }
+            else if(emotion === 'sleep') { emoji = "😴"; text = "夜深了，辛苦了"; }
+            else { emoji = "🦉"; text = "隨時可以跟我聊聊"; }
+            petEmoji.innerText = emoji; bubble.innerText = text;
+            bubble.classList.remove('opacity-0'); setTimeout(() => bubble.classList.add('opacity-0'), 3000);
+        }
+        function pokePet() { setPetEmotion('happy'); }
+
+        function loadDiaryHistory() {
+            const historyContainer = document.getElementById('diary-history');
+            const savedDiary = JSON.parse(localStorage.getItem('treehole_diary') || '[]');
+            if (savedDiary.length === 0) { historyContainer.innerHTML = '<p class="text-sm text-slate-400 italic">目前還沒有紀錄喔，寫下你的第一篇日記吧！</p>'; return; }
+            historyContainer.innerHTML = '';
+            savedDiary.reverse().forEach(entry => {
+                let moodEmoji = "😐";
+                if(entry.mood === 1) moodEmoji = "😭"; else if(entry.mood === 2) moodEmoji = "😢";
+                else if(entry.mood === 3) moodEmoji = "😮‍💨"; else if(entry.mood === 5) moodEmoji = "😊";
+                historyContainer.innerHTML += `<div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-left mb-3"><div class="flex justify-between items-center mb-2"><span class="text-sm font-bold text-slate-500">${entry.date}</span><span class="text-2xl">${moodEmoji}</span></div><p class="text-base text-slate-700 truncate font-medium">${entry.text || "沒有留下文字"}</p></div>`;
+            });
+        }
+
+        let currentSessionMood = 4; 
+        function saveDiary() {
+            const text = document.getElementById('diary-input').value.trim(); if (!text) return;
+            const savedDiary = JSON.parse(localStorage.getItem('treehole_diary') || '[]');
+            const today = new Date().toLocaleDateString('zh-HK');
+            savedDiary.push({ date: today, mood: currentSessionMood, text: text });
+            localStorage.setItem('treehole_diary', JSON.stringify(savedDiary));
+            document.getElementById('diary-input').value = ''; loadDiaryHistory();
+            const btn = document.querySelector('button[onclick="saveDiary()"]'); const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i>已安全儲存'; btn.classList.replace('bg-indigo-500', 'bg-emerald-500'); playSound('chime');
+            setTimeout(() => { btn.innerHTML = originalHTML; btn.classList.replace('bg-emerald-500', 'bg-indigo-500'); }, 2000);
+        }
+
+        function closeConsent() { document.getElementById('consent-modal').classList.add('hidden'); }
+
+        function renderDefaultQuickReplies() {
+            const qrContainer = document.getElementById('quick-replies-container');
+            qrContainer.innerHTML = '<span class="text-sm md:text-base text-slate-400 self-center mr-2 font-medium">你可以試試點擊：</span>';
+            const defaults = ["讀書壓力很大，想放棄", "朋友在背後講我壞話", "對未來感到迷惘", "幫我找升學資料"];
+            defaults.forEach(qr => {
+                const btn = document.createElement('button');
+                btn.className = "bg-white border border-slate-200 text-slate-600 hover:bg-sage-50 hover:text-sage-700 hover:border-sage-200 text-sm md:text-base px-4 py-2 rounded-full transition font-medium shadow-sm slide-up hover:-translate-y-0.5";
+                btn.innerText = qr; btn.onclick = () => { document.getElementById('chat-input').value = qr; handleChatSubmit(new Event('submit')); };
+                qrContainer.appendChild(btn);
+            });
+        }
+
+        function startNewCase() {
+            currentStudentId = "Std-" + Math.floor(Math.random() * 9000 + 1000); document.getElementById('header-student-id').innerText = currentStudentId;
+            conversationHistory = []; setCategory('自由傾談'); document.getElementById('emergency-banner').classList.add('hidden'); document.getElementById('chat-input').value = '';
+            renderDefaultQuickReplies(); setInputLock(false); setPetEmotion('normal');
+            document.getElementById('chat-box').innerHTML = `
+                <div id="onboarding-scale" class="max-w-3xl mx-auto mt-6 mb-10 fade-in">
+                    <div class="bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-sky-100 text-center">
+                        <h3 class="font-bold text-slate-800 text-2xl md:text-3xl mb-4">嗨！今天的心情怎麼樣呢？</h3>
+                        <p class="text-base md:text-lg text-slate-500 mb-8">點擊一個表情，我們從這裡開始聊聊：</p>
+                        <div class="flex justify-center gap-4 md:gap-6">
+                            <button onclick="sendMood('非常痛苦，快撐不下去了', 1)" class="w-14 h-14 md:w-20 md:h-20 text-4xl md:text-5xl hover:scale-125 transition filter grayscale hover:grayscale-0">😭</button>
+                            <button onclick="sendMood('覺得很難過、委屈', 2)" class="w-14 h-14 md:w-20 md:h-20 text-4xl md:text-5xl hover:scale-125 transition filter grayscale hover:grayscale-0">😢</button>
+                            <button onclick="sendMood('有點煩悶、焦慮', 3)" class="w-14 h-14 md:w-20 md:h-20 text-4xl md:text-5xl hover:scale-125 transition filter grayscale hover:grayscale-0">😮‍💨</button>
+                            <button onclick="sendMood('平靜，沒什麼特別的', 4)" class="w-14 h-14 md:w-20 md:h-20 text-4xl md:text-5xl hover:scale-125 transition filter grayscale hover:grayscale-0">😐</button>
+                            <button onclick="sendMood('心情不錯！', 5)" class="w-14 h-14 md:w-20 md:h-20 text-4xl md:text-5xl hover:scale-125 transition filter grayscale hover:grayscale-0">😊</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function switchToolkitPage(pageNum) {
+            const page1 = document.getElementById('toolkit-page-1'); const page2 = document.getElementById('toolkit-page-2');
+            const dot1 = document.getElementById('dot-page-1'); const dot2 = document.getElementById('dot-page-2');
+            if(pageNum === 1) {
+                page1.classList.remove('hidden'); page2.classList.add('hidden');
+                dot1.className = "w-2.5 h-2.5 rounded-full bg-sage-500 hover:scale-125 transition-all shadow-sm";
+                dot2.className = "w-2.5 h-2.5 rounded-full bg-slate-200 hover:bg-sage-300 hover:scale-125 transition-all shadow-sm";
+            } else {
+                page2.classList.remove('hidden'); page1.classList.add('hidden');
+                dot2.className = "w-2.5 h-2.5 rounded-full bg-sage-500 hover:scale-125 transition-all shadow-sm";
+                dot1.className = "w-2.5 h-2.5 rounded-full bg-slate-200 hover:bg-sage-300 hover:scale-125 transition-all shadow-sm";
+            }
+        }
+
+        function openToolOverlay(toolType) {
+            const overlay = document.getElementById(`overlay-${toolType}`);
+            initAudio(); // 確保使用者互動後解鎖音效
+            if (overlay) {
+                overlay.classList.remove('hidden'); setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                if (toolType === 'grounding') initGroundingTool(); if (toolType === 'shredder') resetShredder();
+                if (toolType === 'card') resetAffirmationCard(); if (toolType === 'breathe') initBreatheOverlay();
+                if (toolType === 'fakenews') resetFakeNews(); if (toolType === 'wallpush') resetWallPush();
+                if (toolType === 'quiz') initQuiz(); if (toolType === 'bubble') initBubbleWrap();
+                if (toolType === 'diary') loadDiaryHistory(); if (toolType === 'scribble') setTimeout(() => initScribbleCanvas('fullscreen-scribble'), 50);
+                if (toolType === 'butterfly') initButterflyHug();
+            }
+        }
+        function closeToolOverlay(toolType) {
+            const overlay = document.getElementById(`overlay-${toolType}`);
+            if (overlay) {
+                overlay.classList.add('opacity-0'); setTimeout(() => overlay.classList.add('hidden'), 300);
+                if (toolType === 'breathe') clearInterval(breathInterval); if (toolType === 'wallpush') clearInterval(wallInterval);
+                if (toolType === 'butterfly') stopButterflyHug();
+            }
+        }
+
+        let quizScores = { S: 0, A: 0, R: 0, I: 0, E: 0, C: 0 };
+        function initQuiz() { quizScores = { S:0, A:0, R:0, I:0, E:0, C:0 }; document.getElementById('quiz-result').classList.add('hidden'); showQuizStep(1); }
+        function answerQuiz(type) { quizScores[type]++; let step = document.querySelector('.quiz-step:not(.hidden)').id.replace('quiz-step-', ''); step = parseInt(step) + 1; if(step <= 10) showQuizStep(step); else showQuizResult(); }
+        function showQuizStep(step) { document.querySelectorAll('.quiz-step').forEach(el => el.classList.add('hidden')); document.getElementById(`quiz-step-${step}`).classList.remove('hidden'); }
+        function showQuizResult() {
+            document.querySelectorAll('.quiz-step').forEach(el => el.classList.add('hidden')); document.getElementById('quiz-result').classList.remove('hidden'); playSound('chime');
+            let highest = Object.keys(quizScores).reduce((a, b) => quizScores[a] > quizScores[b] ? a : b);
+            const results = {
+                'R': { t: "實用型 (Realistic)", d: "你喜歡動手實作，注重實踐與解決具體問題，擁有優秀的機械或操作天賦。適合領域：工程、IT維修、工藝、運動等。" },
+                'I': { t: "研究型 (Investigative)", d: "你具備強大的邏輯思考與觀察力，喜歡探索事物背後的原理。適合領域：科學研究、數據分析、醫學、程式開發等。" },
+                'A': { t: "藝術型 (Artistic)", d: "你擁有豐富的想像力與敏銳的美感，喜歡用獨特的方式表達自我。適合領域：設計、多媒體、音樂、寫作、影視創作等。" },
+                'S': { t: "社會型 (Social)", d: "你善於傾聽與溝通，對人的感受極具同理心，樂於幫助與陪伴他人。適合領域：教育、心理輔導、社工、醫療護理等。" },
+                'E': { t: "企業型 (Enterprising)", d: "你充滿自信與說服力，喜歡帶領團隊達成目標，不怕面對挑戰。適合領域：商業管理、市場行銷、創業、公關等。" },
+                'C': { t: "事務型 (Conventional)", d: "你做事井然有序、注重細節，喜歡規律且有明確標準的任務。適合領域：會計、行政、金融、資料管理等。" }
+            };
+            document.getElementById('quiz-result-title').innerText = results[highest].t; 
+            document.getElementById('quiz-result-desc').innerText = results[highest].d; 
+        }
+        function sendQuizResultToChat() { closeToolOverlay('quiz'); const title = document.getElementById('quiz-result-title').innerText; document.getElementById('chat-input').value = `我做了性格測驗，結果是「${title}」，可給我一些未來的升學建議嗎？`; handleChatSubmit(new Event('submit')); }
+
+        function initBubbleWrap() {
+            const container = document.getElementById('bubble-container'); container.innerHTML = '';
+            for(let i=0; i<24; i++) { 
+                const b = document.createElement('div'); b.className = 'bubble'; 
+                b.onclick = function() { 
+                    if(!this.classList.contains('popped')) { this.classList.add('popped'); playSound('pop'); } 
+                }; 
+                container.appendChild(b); 
+            }
+        }
+        function pressStressBall() { document.getElementById('stress-ball').style.transform = 'scale(0.8)'; document.getElementById('stress-ball-text').innerText = "慢 慢 吸 氣 ... 🧘"; }
+        function releaseStressBall() { document.getElementById('stress-ball').style.transform = 'scale(1)'; document.getElementById('stress-ball-text').innerText = "慢 慢 呼 氣 ... 🍃"; }
+
+        let breathInterval;
+        function initBreatheOverlay() { const textEl = document.getElementById('breathe-text'); textEl.innerText = "吸氣..."; let step = 0; breathInterval = setInterval(() => { step = (step + 1) % 3; if (step === 0) textEl.innerText = "吸氣..."; else if (step === 1) textEl.innerText = "保持..."; else textEl.innerText = "慢吐氣..."; }, 4000); }
+
+        let groundingStep = 1;
+        const groundingData = [
+            { icon: "👀", label: "步驟 1 / 5", text: "在周圍找出 5 件你眼睛「看得見」的東西。" },
+            { icon: "🖐️", label: "步驟 2 / 5", text: "輕撫周圍，找出 4 件你能「觸摸感受」到的物品。" },
+            { icon: "👂", label: "步驟 3 / 5", text: "閉上眼，靜心聽出 3 種「耳邊傳來」的聲音。" },
+            { icon: "👃", label: "步驟 4 / 5", text: "深呼吸，感受 2 種此時「鼻子能聞到」的氣味。" },
+            { icon: "👅", label: "步驟 5 / 5", text: "最後，感受 1 種你的舌頭「能品嚐到」的滋味。" }
+        ];
+        function initGroundingTool() { groundingStep = 1; updateGroundingUI(); }
+        function updateGroundingUI() {
+            const data = groundingData[groundingStep - 1];
+            const iconEl = document.getElementById('grounding-icon'); const titleEl = document.getElementById('grounding-step-title'); const instEl = document.getElementById('grounding-instruction');
+            iconEl.classList.remove('animate-bounce'); titleEl.classList.remove('fade-in'); instEl.classList.remove('fade-in'); void iconEl.offsetWidth; 
+            iconEl.innerText = data.icon; titleEl.innerText = data.label; instEl.innerText = data.text;
+            iconEl.classList.add('animate-bounce'); titleEl.classList.add('fade-in'); instEl.classList.add('fade-in');
+        }
+        function nextGroundingStep() {
+            playSound('pop');
+            if (groundingStep < 5) { groundingStep++; updateGroundingUI(); } 
+            else { playSound('chime'); closeToolOverlay('grounding'); document.getElementById('chat-input').value = "我剛剛完成了五感著陸放鬆，心情稍微平復了些。"; handleChatSubmit(new Event('submit')); }
+        }
+
+        function resetShredder() { document.getElementById('shredder-input').value = ''; document.getElementById('shredder-box').classList.add('hidden'); }
+        function shredThought() {
+            const inputVal = document.getElementById('shredder-input').value.trim(); if (!inputVal) return;
+            document.getElementById('shredder-box').classList.remove('hidden'); document.getElementById('shred-text-container').innerHTML = '';
+            playSound('shred');
+            for(let i=0; i<5; i++) { const strip = document.createElement('div'); strip.className = "shred-strip absolute top-0 text-gray-400 font-bold truncate bg-white/10 text-center"; strip.style.width = `20%`; strip.style.left = `${i * 20}%`; strip.style.fontSize = '30px'; strip.style.lineHeight = '50px'; strip.style.animationDelay = `${i * 0.1}s`; strip.innerText = inputVal; document.getElementById('shred-text-container').appendChild(strip); }
+            setTimeout(() => { closeToolOverlay('shredder'); document.getElementById('chat-input').value = `用碎紙機粉碎了：「${inputVal}」。`; handleChatSubmit(new Event('submit')); }, 2000);
+        }
+
+        let butterflyInterval;
+        function initButterflyHug() { 
+            document.getElementById('wing-left').classList.add('wing-left-active'); 
+            document.getElementById('wing-right').classList.add('wing-right-active'); 
+            let isLeft = true; playSound('tap');
+            butterflyInterval = setInterval(() => { playSound('tap'); isLeft = !isLeft; }, 750);
+        }
+        function stopButterflyHug() { 
+            document.getElementById('wing-left').classList.remove('wing-left-active'); 
+            document.getElementById('wing-right').classList.remove('wing-right-active'); 
+            clearInterval(butterflyInterval);
+        }
+
+        function resetAffirmationCard() { document.getElementById('card-inner').classList.remove('card-flipped'); }
+        function flipAffirmationCard() { 
+            const cardInner = document.getElementById('card-inner'); 
+            if (!cardInner.classList.contains('card-flipped')) { 
+                playSound('chime');
+                document.getElementById('card-quote').innerText = affirmationQuotes[Math.floor(Math.random() * affirmationQuotes.length)]; cardInner.classList.add('card-flipped'); 
+            } else { cardInner.classList.remove('card-flipped'); } 
+        }
+
+        function putWorryOnLeaf() {
+            const inputVal = document.getElementById('stream-input').value.trim(); if(!inputVal) return;
+            playSound('splash');
+            document.getElementById('stream-input').value = ''; const river = document.getElementById('river-container'); const leaf = document.createElement('div'); leaf.className = "leaf-float absolute top-10 right-0 flex items-center justify-center px-6 py-4 md:px-8 md:py-5 bg-teal-500/20 text-teal-200 border-2 border-teal-500/40 rounded-full font-bold shadow-2xl backdrop-blur-sm text-xl md:text-2xl"; leaf.innerHTML = `<i class="fa-solid fa-leaf mr-2"></i> ${inputVal}`; river.appendChild(leaf);
+            setTimeout(() => { if(river.contains(leaf)) river.removeChild(leaf); }, 12000);
+        }
+
+        function resetFakeNews() { document.getElementById('fakenews-input').value = ''; document.getElementById('fakenews-stamp').classList.add('hidden'); document.getElementById('fakenews-stamp').classList.remove('stamp-drop'); }
+        function stampFakeNews() {
+            const inputVal = document.getElementById('fakenews-input').value.trim(); if(!inputVal) return;
+            const stamp = document.getElementById('fakenews-stamp'); stamp.classList.remove('hidden'); void stamp.offsetWidth; stamp.classList.add('stamp-drop');
+            playSound('stamp');
+            setTimeout(() => { closeToolOverlay('fakenews'); document.getElementById('chat-input').value = `查核了大腦假新聞：「${inputVal}」。這不是真的。`; handleChatSubmit(new Event('submit')); }, 2500);
+        }
+
+        let wallInterval;
+        function resetWallPush() { document.getElementById('wall-timer').innerText = '15'; document.getElementById('wall-btn').classList.remove('hidden'); document.getElementById('wall-circle').classList.remove('shake-hard', 'pulse-ring'); }
+        function startWallPush() {
+            document.getElementById('wall-btn').classList.add('hidden'); let timeLeft = 15; document.getElementById('wall-timer').innerText = timeLeft;
+            document.getElementById('wall-circle').classList.add('shake-hard', 'pulse-ring');
+            wallInterval = setInterval(() => { 
+                timeLeft--; document.getElementById('wall-timer').innerText = timeLeft; 
+                if(timeLeft <= 0) { 
+                    clearInterval(wallInterval); document.getElementById('wall-timer').innerText = "完成！"; document.getElementById('wall-circle').classList.remove('shake-hard', 'pulse-ring'); 
+                    playSound('rumble');
+                    setTimeout(() => { closeToolOverlay('wallpush'); document.getElementById('chat-input').value = "用力推牆15秒，壓力釋放出來了。"; handleChatSubmit(new Event('submit')); }, 1500); 
+                } 
+            }, 1000);
+        }
+        
+        function drinkPotion() {
+            playSound('magic');
+            document.getElementById('rpg-hp-bar').style.width = '100%'; document.getElementById('rpg-mp-bar').style.width = '100%';
+            document.getElementById('rpg-hp-text').innerText = '100/100'; document.getElementById('rpg-mp-text').innerText = '100/100';
+            setTimeout(() => { closeToolOverlay('rpg'); document.getElementById('chat-input').value = "我剛剛喝下了休息藥水，HP 和 MP 恢復了！"; handleChatSubmit(new Event('submit')); }, 1500);
+        }
+
+        let noisePlaying = false; let audioCtx; let noiseSource;
+        function toggleWhiteNoise() {
+            const btn = document.getElementById('btn-noise'); const icon = document.getElementById('icon-noise'); const txt = document.getElementById('text-noise'); noisePlaying = !noisePlaying;
+            if (noisePlaying) {
+                if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); if(audioCtx.state === 'suspended') audioCtx.resume();
+                const bufferSize = audioCtx.sampleRate * 2; const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate); const output = buffer.getChannelData(0); for (let i = 0; i < bufferSize; i++) output[i] = Math.random() * 2 - 1;
+                noiseSource = audioCtx.createBufferSource(); noiseSource.buffer = buffer; noiseSource.loop = true; const filter = audioCtx.createBiquadFilter(); filter.type = 'lowpass'; filter.frequency.value = 600; noiseSource.connect(filter); filter.connect(audioCtx.destination); noiseSource.start();
+                if(btn) btn.classList.add('border-sage-300', 'bg-sage-50'); if(icon) { icon.classList.add('text-sage-500', 'animate-pulse'); icon.className = 'fa-solid fa-volume-high mb-1 text-xl text-sage-500 animate-pulse'; } if(txt) txt.innerText = "已開風雨聲";
+            } else {
+                if(noiseSource) { noiseSource.stop(); noiseSource.disconnect(); }
+                if(btn) btn.classList.remove('border-sage-300', 'bg-sage-50'); if(icon) { icon.classList.remove('text-sage-500', 'animate-pulse'); icon.className = 'fa-solid fa-headphones mb-1 text-xl text-slate-500'; } if(txt) txt.innerText = "風雨聲";
+            }
+        }
+
+        function sendMood(text, moodScore) {
+            currentSessionMood = moodScore; document.getElementById('onboarding-scale').classList.add('hidden'); document.getElementById('chat-input').value = `[心情打卡: ${moodScore}/5] ${text}`; handleChatSubmit(new Event('submit'));
+        }
+
+        function setCategory(cat) { currentCategory = cat; document.getElementById('current-category-label').innerText = cat; }
+
+        function setInputLock(locked, isSearching = false) {
+            const inputEl = document.getElementById('chat-input'); const sendBtn = document.getElementById('send-btn');
+            inputEl.disabled = locked; sendBtn.disabled = locked;
+            if (locked) {
+                inputEl.classList.add('opacity-50', 'cursor-not-allowed'); sendBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                inputEl.placeholder = isSearching ? "AI 正在調用在地數據庫，請稍候..." : "AI 正在用心回覆中，請稍候...";
+                setPetEmotion("search");
+            } else {
+                inputEl.classList.remove('opacity-50', 'cursor-not-allowed'); sendBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                inputEl.placeholder = "寫下你的真實想法...";
+            }
+        }
+
+        // --- 本地規則引擎 (Local Rule-based Engine) ---
+        function checkLocalRules(text) {
+            const lowerText = text.toLowerCase();
+            
+            // 1. 緊急危機字眼 (最高優先級)
+            const crisisKeywords = ['死', '不想活', '自殺', '跳樓', '割脈', '絕望', '沒有意義', '結束生命', '唔想做人'];
+            if (crisisKeywords.some(kw => lowerText.includes(kw))) {
+                return {
+                    level: "red",
+                    aiReply: "我聽到你咁講，真係好擔心你。你而家承受緊好大嘅痛苦，但請你相信，你絕對唔需要一個人獨自面對。請立刻聯絡身邊信任嘅大人，或者打畀撒瑪利亞會（2896 0000），佢哋一定會陪住你！",
+                    animationType: "breathe",
+                    quickReplies: ["我會打電話", "我想冷靜一下"]
+                };
+            }
+
+            // 2. 工具與動作連動 (攔截 Quick Replies)
+            if (lowerText.includes('碎紙機')) {
+                return { level: "green", aiReply: "好呀！已經為你準備好煩惱碎紙機，將所有唔開心嘅事寫低，然後狠狠地碎走佢啦！", animationType: "shredder", quickReplies: ["謝謝"] };
+            }
+            if (lowerText.includes('溪水') || lowerText.includes('落葉')) {
+                return { level: "green", aiReply: "冇問題，溪水已經準備好。將唔開心嘅說話寫喺落葉度，望住佢哋慢慢飄走啦。", animationType: "stream", quickReplies: ["謝謝"] };
+            }
+            if (lowerText.includes('測驗') || lowerText.includes('性格')) {
+                return { level: "green", aiReply: "好呀！依家就為你開啟 10 題專業生涯測驗，慢慢做，發掘下你嘅潛藏天賦！", animationType: "quiz", quickReplies: ["做完啦"] };
+            }
+            if (lowerText.includes('急救') || lowerText.includes('寶盒')) {
+                return { level: "green", aiReply: "好呀，我為你打開咗安撫寶盒，入面有呼吸釋壓球同白噪音，你可以慢慢放鬆下。", animationType: "hopebox", quickReplies: ["好攰"] };
+            }
+            if (lowerText.includes('打電話') || lowerText.includes('求助')) {
+                return { level: "green", aiReply: "肯踏出求助呢一步已經好勇敢。撒瑪利亞會嘅熱線係 2896 0000，或者你可以去 Open噏 網上輔導搵人傾下。", animationType: "resource", resourceName: "Open噏 網上情緒支援", resourceUrl: "https://www.openup.hk/", quickReplies: ["謝謝"] };
+            }
+            if (lowerText.includes('冷靜') || lowerText.includes('好攰') || lowerText.includes('辛苦')) {
+                return { level: "green", aiReply: "辛苦晒你啦。我哋一齊停落嚟，跟住螢幕個圈圈做幾次深呼吸，俾個腦休息下啦。", animationType: "breathe", quickReplies: ["好啲啦"] };
+            }
+            if (lowerText.includes('塗鴉') || lowerText.includes('畫')) {
+                return { level: "green", aiReply: "好呀，為你打開宣洩塗鴉畫板，隨意畫低你嘅感受啦！", animationType: "scribble", quickReplies: ["謝謝"] };
+            }
+
+            // 3. 預設提示詞回覆：讀書壓力大
+            if (lowerText.includes('讀書壓力') || lowerText.includes('想放棄') || lowerText.includes('溫書') || lowerText.includes('好大壓力')) {
+                return {
+                    level: "yellow",
+                    aiReply: "聽到你咁講，我都覺得好心痛。讀書壓力真係好大，覺得攰、想放棄係好正常嘅反應。唔好勉強自己逼得太緊，不如試下用「煩惱碎紙機」將依家嘅壓力碎走，俾個腦休息下啦！",
+                    animationType: "shredder",
+                    quickReplies: ["我想試下碎紙機", "真係好辛苦"]
+                };
+            }
+
+            // 4. 預設提示詞回覆：人際關係與朋友
+            if (lowerText.includes('朋友') || lowerText.includes('壞話') || lowerText.includes('排擠') || lowerText.includes('孤立') || lowerText.includes('人際')) {
+                return {
+                    level: "yellow",
+                    aiReply: "俾信任嘅朋友背叛或者喺背後講壞話，真係會令人覺得好難受、好委屈。你嘅感受我完全明白。不如我哋試下用「溪水落葉法」，將呢啲唔開心嘅說話寫落樹葉度，等水流帶走佢哋？",
+                    animationType: "stream",
+                    quickReplies: ["我想試下溪水落葉", "覺得好唔甘心"]
+                };
+            }
+
+            // 5. 預設提示詞回覆：對未來迷惘
+            if (lowerText.includes('迷惘') || lowerText.includes('未來') || lowerText.includes('前途') || lowerText.includes('唔知想點')) {
+                return {
+                    level: "green",
+                    aiReply: "青春期對未來感到迷惘係好普遍嘅事，好多人都同你一樣經歷緊㗎！慢慢嚟，唔需要急住搵標準答案。不如試下做左邊嘅「10題專業生涯測驗」，一齊發掘下你嘅潛藏天賦？",
+                    animationType: "quiz",
+                    quickReplies: ["我想做測驗", "幫我找升學資料"]
+                };
+            }
+
+            // 6. 預設提示詞回覆：升學與資源索取
+            if (lowerText.includes('升學資料') || lowerText.includes('jupas') || lowerText.includes('vtc') || lowerText.includes('出路')) {
+                return {
+                    level: "green",
+                    aiReply: "冇問題！小樹洞已經幫你整理好香港官方嘅升學與出路資訊。你可以點擊下方連結慢慢睇，如果有邊一科特別有興趣，都可以再同我傾㗎。",
+                    animationType: "resource",
+                    resourceName: "自資專上教育資訊平台 (Concourse)",
+                    resourceUrl: "https://www.concourse.org.hk/",
+                    quickReplies: ["多謝你", "我對設計有興趣"]
+                };
+            }
+
+            // 7. 簡單問候
+            if (/^(hi|hello|你好|早晨|早安|午安|晚安|嗨|喂)$/.test(lowerText) || lowerText === 'hi' || lowerText === 'hello') {
+                return {
+                    level: "green",
+                    aiReply: "你好呀！今日過得點呀？無論係開心定係煩惱，都可以喺度同小樹洞講㗎。",
+                    animationType: "none",
+                    quickReplies: ["今日好攰", "有啲嘢想傾", "冇咩特別"]
+                };
+            }
+
+            // 8. 道謝
+            if (lowerText.includes('謝謝') || lowerText.includes('多謝') || lowerText.includes('唔該') || lowerText.includes('thank')) {
+                return {
+                    level: "green",
+                    aiReply: "唔使客氣！小樹洞一直都會喺度陪住你，有需要隨時再嚟搵我啦！",
+                    animationType: "none",
+                    quickReplies: ["好呀", "再見"]
+                };
+            }
+
+            // 9. 測試指令
+            if (lowerText.includes('測試') || lowerText.includes('test')) {
+                return {
+                    level: "green",
+                    aiReply: "收到測試訊息！系統的「內置規則引擎」運作正常。如果你要問複雜的問題或升學資訊，我就會嘗試連線到雲端 AI 囉！",
+                    animationType: "none",
+                    quickReplies: ["明白"]
+                };
+            }
+
+            return null; // 找不到匹配的規則，交給外部 API 處理
+        }
+
+        async function handleChatSubmit(event) {
+            event?.preventDefault(); const inputEl = document.getElementById('chat-input'); const text = inputEl.value.trim(); if (!text) return;
+            const onboardingScale = document.getElementById('onboarding-scale'); if (onboardingScale) onboardingScale.classList.add('hidden');
+
+            const searchKeywords = ['資料', '課程', '升學', '出路', '大學', 'VTC', 'HKDI', 'SPACE', '找', '學校', '科', 'IVE', 'JUPAS', '設計', '評估', 'IQ', '測驗', 'SEN', '障礙', '欺凌', '輔導', '支援', '機構', '熱線'];
+            const isCareerPath = searchKeywords.some(kw => text.toUpperCase().includes(kw.toUpperCase()));
+
+            // --- 攔截器：優先使用本地規則引擎 ---
+            const localMatch = checkLocalRules(text);
+            if (localMatch) {
+                setInputLock(true, false); 
+                appendMessage('student', text); 
+                inputEl.value = '';
+                document.getElementById('typing-indicator').classList.remove('hidden');
+                const chatBox = document.getElementById('chat-box'); chatBox.scrollTop = chatBox.scrollHeight;
+                conversationHistory.push(`User: ${text}`);
+
+                // 模擬 1 秒 AI 打字延遲，然後顯示本地答案
+                setTimeout(() => {
+                    document.getElementById('typing-indicator').classList.add('hidden');
+                    conversationHistory.push(`Model: ${localMatch.aiReply}`);
+                    renderAiResponse(localMatch);
+                    setInputLock(false);
+                }, 1000);
+                return; // 終止函式，不去呼叫外部 API
+            }
+            // ------------------------------------
+
+            setInputLock(true, isCareerPath); appendMessage('student', text); inputEl.value = '';
+            document.getElementById('typing-indicator').classList.remove('hidden');
+            const chatBox = document.getElementById('chat-box'); chatBox.scrollTop = chatBox.scrollHeight;
+            conversationHistory.push(`User: ${text}`);
+
+            try {
+                const payload = {
+                    contents: [{ parts: [{ text: conversationHistory.join("\n") }] }],
+                    systemInstruction: { parts: [{ text: systemInstructionText }] },
+                    generationConfig: {
+                        temperature: 0.6, responseMimeType: "application/json",
+                        responseSchema: {
+                            type: "OBJECT", properties: { level: { type: "STRING" }, aiReply: { type: "STRING" }, animationType: { type: "STRING" }, resourceName: { type: "STRING" }, resourceUrl: { type: "STRING" }, quickReplies: { type: "ARRAY", items: { type: "STRING" } } }, required: ["level", "aiReply", "animationType"]
+                        }
+                    }
+                };
+
+                const activeApiKey = apiKey;
+                const activeModelToUse = "gemini-1.5-flash"; // 預設為廣泛相容的 1.5 版本
+
+                let result = null; const delays = [1000, 2000, 4000, 8000]; let lastError = null;
+                for (let i = 0; i <= 4; i++) {
+                    const controller = new AbortController(); const timeoutId = setTimeout(() => controller.abort(), 12000);
+                    try {
+                        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${activeModelToUse}:generateContent?key=${activeApiKey}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload), signal: controller.signal });
+                        clearTimeout(timeoutId);
+                        if (!response.ok) { if (response.status >= 400 && response.status < 500) { throw new Error(`FATAL_ERROR: HTTP ${response.status}`); } throw new Error("HTTP " + response.status); }
+                        result = await response.json(); break;
+                    } catch(e) {
+                        clearTimeout(timeoutId); lastError = e;
+                        if (e.message && e.message.includes("FATAL_ERROR")) break; 
+                        if (i < 4) await new Promise(r => setTimeout(r, delays[i]));
+                    }
+                }
+
+                if (!result || !result.candidates || result.candidates.length === 0) throw lastError || new Error("無法獲取有效的 AI 回應");
+
+                document.getElementById('typing-indicator').classList.add('hidden');
+                let cleanText = result.candidates[0].content.parts[0].text.trim();
+                const firstBrace = cleanText.indexOf('{'); const lastBrace = cleanText.lastIndexOf('}');
+                if (firstBrace !== -1 && lastBrace !== -1) cleanText = cleanText.substring(firstBrace, lastBrace + 1);
+
+                const analysis = JSON.parse(cleanText); conversationHistory.push(`Model: ${analysis.aiReply}`); renderAiResponse(analysis);
+
+            } catch (error) {
+                console.error("AI 錯誤:", error); document.getElementById('typing-indicator').classList.add('hidden');
+                let errorMsg = "樹洞剛才有一點點累了，或是網路不穩，我們繼續聊聊吧？";
+                if (error.message && error.message.includes('FATAL_ERROR')) errorMsg = "⚠️ 系統連線失敗。請確保您已於程式碼頂部填入正確的 API 金鑰！";
+                else if (error.name === 'AbortError' || (error.message && error.message.includes('abort'))) errorMsg = "連線花費了太長時間，我們先換個方式聊聊好嗎？";
+                renderAiResponse({ level: "yellow", aiReply: errorMsg, animationType: "none", quickReplies: ["好啊", "沒事"] });
+            } finally { setInputLock(false); }
+        }
+
+        function initScribbleCanvas(canvasId) {
+            const canvas = document.getElementById(canvasId); if (!canvas) return; const ctx = canvas.getContext('2d'); let drawing = false;
+            canvas.width = canvas.parentElement.clientWidth; canvas.height = canvas.parentElement.clientHeight;
+            ctx.strokeStyle = '#e89e75'; ctx.lineWidth = 6; ctx.lineCap = 'round';
+
+            function getPos(e) { const rect = canvas.getBoundingClientRect(); const clientX = e.touches ? e.touches[0].clientX : e.clientX; const clientY = e.touches ? e.touches[0].clientY : e.clientY; return { x: clientX - rect.left, y: clientY - rect.top }; }
+            function startDraw(e) { e.preventDefault(); drawing = true; const pos = getPos(e); ctx.beginPath(); ctx.moveTo(pos.x, pos.y); }
+            function draw(e) { if (!drawing) return; e.preventDefault(); const pos = getPos(e); ctx.lineTo(pos.x, pos.y); ctx.stroke(); }
+            function stopDraw() { drawing = false; }
+
+            canvas.addEventListener('mousedown', startDraw); canvas.addEventListener('mousemove', draw); window.addEventListener('mouseup', stopDraw);
+            canvas.addEventListener('touchstart', startDraw); canvas.addEventListener('touchmove', draw); window.addEventListener('touchend', stopDraw);
+        }
+
+        function clearScribbleCanvas(canvasId) { const canvas = document.getElementById(canvasId); if (canvas) { const ctx = canvas.getContext('2d'); ctx.clearRect(0, 0, canvas.width, canvas.height); } }
+
+        function renderAiResponse(analysis) {
+            let extraClass = "border-l-4 border-l-sage-400";
+            if (analysis.level === 'red') { extraClass = "border-l-4 border-l-rose-500 bg-rose-50/50"; document.getElementById('emergency-banner').classList.remove('hidden'); setPetEmotion("sad"); } 
+            else if (analysis.level === 'yellow') { extraClass = "border-l-4 border-l-amber-400 bg-amber-50/30"; setPetEmotion("sad"); }
+            else { setPetEmotion("normal"); }
+
+            let htmlContent = `<div class="mb-3 text-lg md:text-xl font-medium ${isDarkMode ? 'text-slate-200' : 'text-slate-700'} leading-relaxed">${analysis.aiReply}</div>`;
+            const resName = analysis.resourceName || "官方支援網站"; const resUrl = analysis.resourceUrl || "https://shallwetalk.hk/";
+
+            const animationTemplates = {
+                breathe: `<div class="mt-4 bg-sky-50 p-6 rounded-3xl border border-sky-100 flex flex-col items-center text-center"><p class="text-lg text-sky-600 font-bold mb-4"><i class="fa-solid fa-wind animate-pulse mr-2"></i> 4-4-4 深呼吸引導</p><div class="w-24 h-24 rounded-full breathe-circle flex items-center justify-center text-sky-700 font-bold">深呼吸</div></div>`,
+                resource: `<div class="mt-4 bg-blue-50 p-6 rounded-3xl border border-blue-100 flex flex-col items-center text-center"><p class="text-lg text-blue-600 font-bold mb-3"><i class="fa-solid fa-circle-info mr-2"></i> 相關資源整理</p><button onclick="window.open('${resUrl}', '_blank')" class="bg-blue-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-blue-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-link"></i> 前往 ${resName}</button></div>`,
+                scribble: `<div class="mt-4 bg-orange-50/80 p-6 rounded-3xl border border-orange-100 flex flex-col items-center text-center"><p class="text-lg text-orange-600 font-bold mb-3"><i class="fa-solid fa-palette mr-2"></i> 塗鴉畫板已準備好</p><button onclick="openToolOverlay('scribble')" class="bg-orange-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-orange-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 開啟全螢幕畫板</button></div>`,
+                wallpush: `<div class="mt-4 bg-red-50 p-6 rounded-3xl border border-red-100 flex flex-col items-center text-center"><p class="text-lg text-red-600 font-bold mb-3"><i class="fa-solid fa-person-walking-arrow-right mr-2"></i> 推牆釋放法已就緒</p><button onclick="openToolOverlay('wallpush')" class="bg-red-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-red-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 站起來釋放壓力</button></div>`,
+                shredder: `<div class="mt-4 bg-orange-50 p-6 rounded-3xl border border-orange-100 flex flex-col items-center text-center"><p class="text-lg text-orange-600 font-bold mb-3"><i class="fa-solid fa-file-prescription mr-2"></i> 煩惱碎紙機</p><button onclick="openToolOverlay('shredder')" class="bg-orange-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-orange-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 開啟碎紙機</button></div>`,
+                stream: `<div class="mt-4 bg-teal-50 p-6 rounded-3xl border border-teal-100 flex flex-col items-center text-center"><p class="text-lg text-teal-600 font-bold mb-3"><i class="fa-solid fa-leaf mr-2"></i> 溪水落葉</p><button onclick="openToolOverlay('stream')" class="bg-teal-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-teal-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 去溪流放走煩惱</button></div>`,
+                quiz: `<div class="mt-4 bg-violet-50 p-6 rounded-3xl border border-violet-100 flex flex-col items-center text-center"><p class="text-lg text-violet-600 font-bold mb-3"><i class="fa-solid fa-clipboard-question mr-2"></i> 生涯性格測驗</p><button onclick="openToolOverlay('quiz')" class="bg-violet-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-violet-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 開始測驗</button></div>`,
+                hopebox: `<div class="mt-4 bg-teal-50 p-6 rounded-3xl border border-teal-100 flex flex-col items-center text-center"><p class="text-lg text-teal-600 font-bold mb-3"><i class="fa-solid fa-box-open mr-2"></i> 虛擬安撫寶盒</p><button onclick="openToolOverlay('hopebox')" class="bg-teal-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-teal-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 打開寶盒</button></div>`
+            };
+            if (animationTemplates[analysis.animationType]) htmlContent += animationTemplates[analysis.animationType];
+            
+            appendMessage('ai', htmlContent, extraClass);
+            const qrContainer = document.getElementById('quick-replies-container'); qrContainer.innerHTML = '';
+            if (analysis.quickReplies && analysis.quickReplies.length > 0) {
+                const label = document.createElement('span'); label.className = "text-sm md:text-base text-slate-400 self-center mr-2 font-medium"; label.innerText = "你可以試試點擊："; qrContainer.appendChild(label);
+                analysis.quickReplies.forEach(qr => {
+                    const btn = document.createElement('button'); btn.className = "bg-white border border-slate-200 text-slate-600 hover:bg-sage-50 hover:text-sage-700 hover:border-sage-200 text-sm md:text-base px-5 py-2.5 rounded-full transition font-medium shadow-sm slide-up hover:-translate-y-0.5"; btn.innerText = qr;
+                    btn.onclick = () => { document.getElementById('chat-input').value = qr; handleChatSubmit(); }; qrContainer.appendChild(btn);
+                });
+            }
+        }
+
+        function appendMessage(role, htmlContent, extraClass = "") {
+            const chatBox = document.getElementById('chat-box'); const div = document.createElement('div');
+            if (role === 'student') {
+                div.className = "flex gap-3 md:gap-4 flex-row-reverse items-start slide-up mt-4";
+                div.innerHTML = `<div class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 shadow-sm border border-white"><i class="fa-solid fa-user text-base md:text-lg"></i></div><div class="bg-indigo-500 text-white p-5 md:p-6 rounded-3xl rounded-tr-none shadow-sm text-lg md:text-xl leading-relaxed max-w-[85%] break-words">${htmlContent}</div>`;
+            } else {
+                div.className = "flex gap-3 md:gap-4 items-start slide-up w-full mt-4";
+                div.innerHTML = `<div class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-sage-400 to-emerald-500 flex items-center justify-center text-white shadow-sm border border-white"><i class="fa-solid fa-robot text-base md:text-xl"></i></div><div class="bg-white p-6 md:p-7 rounded-3xl rounded-tl-none shadow-sm border border-slate-100 text-lg md:text-xl leading-relaxed max-w-[95%] md:max-w-[85%] ${extraClass}">${htmlContent}</div>`;
+            }
+            chatBox.appendChild(div); setTimeout(() => { chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: 'smooth' }); }, 100);
+        }
+
+        window.onload = function() { startNewCase(); };
+    </script>
+</body>
+</html>
