@@ -1,27 +1,27 @@
 export default async function handler(req, res) {
-  // 從 Vercel 安全取得的 OpenAI 金鑰
-  const apiKey = process.env.OPENAI_API_KEY; 
+  // 🔒 已經直接嵌入你的專屬 API Key，鎖在後端伺服器中
+  const apiKey = "AQ.Ab8RN6LkigftuX2I89apftuPurWfAh_P0AU8UItbSsusMx90JQ"; 
+  
+  // 接收前端網頁傳來的對話紀錄
+  const { contents } = req.body || { contents: [] };
 
-  // 如果前端傳來了聊天訊息，我們把它拿出來
-  const { messages } = req.body || { messages: [] };
+  // Google Gemini 官方的 API 傳輸網址
+  const apiUrl = `https://googleapis.com{apiKey}`; 
 
   try {
-    // 呼叫 OpenAI 官方的 API 網址
-    const response = await fetch('https://openai.com', {
+    const response = await fetch(apiUrl, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}` // 金鑰藏在這裡，別人看不到
+      headers: { 
+        'Content-Type': 'application/json' 
       },
-      body: JSON.stringify({
-        model: 'gpt-4o-mini', // 或是你原本設定的模型
-        messages: messages
-      })
+      body: JSON.stringify({ contents: contents })
     });
-
+    
     const data = await response.json();
-    res.status(200).json(data); // 把 AI 的回答傳回給你的 HTML
+    
+    // 將 AI 的回答安全地傳回給你的 HTML 網頁
+    res.status(200).json(data);
   } catch (error) {
-    res.status(500).json({ error: 'AI 暫時無法連線' });
+    res.status(500).json({ error: '無法連接到 Gemini AI' });
   }
 }
