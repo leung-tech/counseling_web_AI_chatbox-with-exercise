@@ -23,7 +23,7 @@ export default async function handler(req, res) {
         const { contents, systemInstruction, generationConfig } = req.body;
         
         // 使用目前對外公開、最快且最穩定的正式生產版模型
-        const model = "gemini-2.5-flash"; 
+        const model = "gemini-2.0-flash"; 
         
         // 乾淨的 API 網址（不把金鑰暴露在網址參數中）
         const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
