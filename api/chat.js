@@ -2,7 +2,7 @@
  * 樹洞安全代理後端 (Vercel Serverless Function)
  * * 作用：
  * 1. 隱藏您的 API 金鑰，瀏覽器（前端）完全碰不到
- * 2. 智慧偵測 AIzaSy 或 AQ. 金鑰格式，動態切換傳遞標頭，徹底解決 401 授權與跨網域 (CORS) 阻擋錯誤
+ * 2. 使用標準 x-goog-api-key 標頭，完美相容所有格式 (包含 AQ. 開頭的新版金鑰)
  */
 
 export default async function handler(req, res) {
@@ -11,11 +11,11 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: '只允許 POST 安全請求。' });
     }
     
-    // 從 Vercel 系統環境變數中安全地讀取金鑰
+    // 從 Vercel 系統環境變數中安全地讀取金鑰，並去除可能不小心複製到的空白
     const apiKey = process.env.GEMINI_API_KEY ? process.env.GEMINI_API_KEY.trim() : "";
     if (!apiKey) {
         return res.status(500).json({ 
-            error: '系統未偵測到環境變數 GEMINI_API_KEY。請至 Vercel 專案 Settings -> Environment Variables 設定金鑰，並重新部署 (Redeploy)。' 
+            error: '系統未偵測到環境變數 GEMINI_API_KEY。請至 Vercel 專案設定中添加。' 
         });
     }
 
@@ -24,27 +24,21 @@ export default async function handler(req, res) {
         
         // 使用目前對外公開、最快且最穩定的正式生產版模型
         const model = "gemini-2.5-flash"; 
-        let url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
         
-        const headers = { 'Content-Type': 'application/json' };
-
-        // 🧠 智慧雙通道授權驗證
-        if (apiKey.startsWith('AIzaSy')) {
-            // 傳統金鑰：放在網址參數傳遞
-            url += `?key=${apiKey}`;
-        } else {
-            // 新版安全憑證 (AQ.) 或服務帳戶 Token：必須使用標準安全標頭 Bearer 傳遞，避免 401 錯誤
-            headers['Authorization'] = `Bearer ${apiKey}`;
-        }
-
-        // 在伺服器端背後發送請求給 Google
+        // 乾淨的 API 網址（不把金鑰暴露在網址參數中）
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+        
+        // 🧠 終極修復：統一使用 Google 官方標準的 API Key 專屬標頭 (x-goog-api-key)
         const response = await fetch(url, {
             method: 'POST',
-            headers: headers,
+            headers: { 
+                'Content-Type': 'application/json',
+                'x-goog-api-key': apiKey 
+            },
             body: JSON.stringify({ contents, systemInstruction, generationConfig })
         });
 
-        // 如果 Google 回傳錯誤，將錯誤狀態和原因安全地轉發
+        // 錯誤處理：如果 Google 回傳錯誤，將錯誤狀態和原因安全地轉發
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({}));
             console.error("Google API 錯誤詳情:", errorData);
@@ -54,7 +48,7 @@ export default async function handler(req, res) {
             });
         }
 
-        // 成功取得資料，將 AI 的回覆傳回給前端 index.html
+        // 成功取得資料，將 AI 的回覆傳回給前端
         const data = await response.json();
         return res.status(200).json(data);
 
