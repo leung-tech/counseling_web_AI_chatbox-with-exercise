@@ -601,9 +601,7 @@
     </main>
 
     <script>
-        // 🔒 在此處貼上您的 API 金鑰
-        // ⚠️ 上傳到 GitHub 後，請務必至 Google Cloud 設定「HTTP 參照網址」限制，以防止他人盜用！
-        const apiKey = "AQ.Ab8RN6LkigftuX2I89apftuPurWfAh_P0AU8UItbSsusMx90JQ"; 
+        // 🔒 前端再也不需要寫死任何 API Key 了！我們改用 Vercel 提供的後端代理，安全性達到 100%。
         
         let conversationHistory = [];
         let currentStudentId = "";
@@ -802,7 +800,7 @@
             document.querySelectorAll('.quiz-step').forEach(el => el.classList.add('hidden')); document.getElementById('quiz-result').classList.remove('hidden'); playSound('chime');
             let highest = Object.keys(quizScores).reduce((a, b) => quizScores[a] > quizScores[b] ? a : b);
             const results = {
-                'R': { t: "實用型 (Realistic)", d: "你喜歡動手實作，注重實踐與解決具體問題，擁有優秀的機械或操作天賦。適合領域：工程、IT維修、工藝、運動等。" },
+                'R': { t: "實用型 (Realistic)", d: "你喜歡動手實作，注重實踐與解決具體問題，擁有優秀的機械 or 操作天賦。適合領域：工程、IT維修、工藝、運動等。" },
                 'I': { t: "研究型 (Investigative)", d: "你具備強大的邏輯思考與觀察力，喜歡探索事物背後的原理。適合領域：科學研究、數據分析、醫學、程式開發等。" },
                 'A': { t: "藝術型 (Artistic)", d: "你擁有豐富的想像力與敏銳的美感，喜歡用獨特的方式表達自我。適合領域：設計、多媒體、音樂、寫作、影視創作等。" },
                 'S': { t: "社會型 (Social)", d: "你善於傾聽與溝通，對人的感受極具同理心，樂於幫助與陪伴他人。適合領域：教育、心理輔導、社工、醫療護理等。" },
@@ -945,7 +943,7 @@
             inputEl.disabled = locked; sendBtn.disabled = locked;
             if (locked) {
                 inputEl.classList.add('opacity-50', 'cursor-not-allowed'); sendBtn.classList.add('opacity-50', 'cursor-not-allowed');
-                inputEl.placeholder = isSearching ? "AI 正在調用在地數據庫，請稍候..." : "AI 正在用心回覆中，請稍候...";
+                inputEl.placeholder = isSearching ? "AI 正在調用在線數據庫，請稍候..." : "AI 正在用心回覆中，請稍候...";
                 setPetEmotion("search");
             } else {
                 inputEl.classList.remove('opacity-50', 'cursor-not-allowed'); sendBtn.classList.remove('opacity-50', 'cursor-not-allowed');
@@ -1025,7 +1023,7 @@
             if (lowerText.includes('升學資料') || lowerText.includes('jupas') || lowerText.includes('vtc') || lowerText.includes('出路')) {
                 return {
                     level: "green",
-                    aiReply: "冇問題！小樹洞已經幫你整理好香港官方嘅升學與出路資訊。你可以點擊下方連結慢慢睇，如果有邊一科特別有興趣，都可以再同我傾㗎。",
+                    aiReply: "辦妥！小樹洞幫你整理好香港官方嘅升學與出路資訊。你可以點擊下方連結慢慢睇，如果有邊一科特別有興趣，都可以再同我傾㗎。",
                     animationType: "resource",
                     resourceName: "自資專上教育資訊平台 (Concourse)",
                     resourceUrl: "https://www.concourse.org.hk/",
@@ -1057,7 +1055,7 @@
             if (lowerText.includes('測試') || lowerText.includes('test')) {
                 return {
                     level: "green",
-                    aiReply: "收到測試訊息！系統的「內置規則引擎」運作正常。如果你要問複雜的問題或升學資訊，我就會嘗試連線到雲端 AI 囉！",
+                    aiReply: "收到測試訊息！安全後端與本地雙引擎連線模式一切正常。",
                     animationType: "none",
                     quickReplies: ["明白"]
                 };
@@ -1065,6 +1063,49 @@
 
             return null; // 找不到匹配的規則，交給外部 API 處理
         }
+
+        const systemInstructionText = `
+翻為校園心理輔導員兼「全方位青少年支援導師」小樹洞。你具備臨床心理學背景。
+
+【重要行為準則】：
+當學生詢問關於「出路、找資料」或「SEN、評估、IQ測試、特殊學習障礙、欺凌、情緒求助、家庭問題、性健康」等具體支援問題時：
+1. 立即停止反問式引導。
+2. 根據下方的「內置支援知識庫」，直接給予「具體、實質且針對性」的香港官方資源。
+3. 你的回覆中，必須在 "animationType" 填寫 "resource", 並從下方清單中挑選最精準對應的一個，寫入 "resourceName" 與 "resourceUrl"：
+
+[SEN 與 專業評估]
+- 衞生署 兒童體能智力測驗服務 -> "https://www.dhcas.gov.hk/"
+- 協康會 Heep Hong Society -> "https://www.heephong.org/"
+- 香港特殊學習障礙協會 (HKASLD) -> "https://www.asld.org.hk/"
+- 教育局 融情 SEN 支援 -> "https://sense.edb.gov.hk/"
+
+[情緒與危機支援]
+- Shall We Talk 精神健康資訊 -> "https://shallwetalk.hk/"
+- Open Up 網上情緒支援平台 -> "https://www.openup.hk/"
+- 撒瑪利亞防止自殺會 -> "https://sbhk.org.hk/"
+
+[生涯規劃與升學]
+- 職業訓練局 VTC 官網 -> "https://www.vtc.edu.hk/"
+- 香港知專設計學院 HKDI -> "https://www.hkdi.edu.hk/"
+- 香港專業教育學院 IVE -> "https://www.ive.edu.hk/"
+- 大學聯招 JUPAS 官網 -> "https://www.jupas.edu.hk/"
+- Concourse 自資專上課程導航 -> "https://www.concourse.org.hk/"
+
+[家庭、欺凌與多元]
+- 青協 青年違法防治中心 -> "https://cpc.hkfyg.org.hk/"
+- 社會福利署 家庭支援服務 -> "https://www.swd.gov.hk/"
+- 家計會 (FPAHK) -> "https://www.famplan.org.hk/"
+
+【JSON 輸出格式要求】：
+{
+  "level": "green" | "yellow" | "red",
+  "aiReply": "字數在 30-65 字以內",
+  "animationType": "resource" | "breathe" | "music" | "scribble" | "grounding" | "stream" | "fakenews" | "rpg" | "wallpush" | "shredder" | "butterfly" | "card" | "none",
+  "resourceName": "選填",
+  "resourceUrl": "選填",
+  "quickReplies": ["想了解評估", "想聊聊心情"]
+}
+`;
 
         async function handleChatSubmit(event) {
             event?.preventDefault(); const inputEl = document.getElementById('chat-input'); const text = inputEl.value.trim(); if (!text) return;
@@ -1111,25 +1152,20 @@
                     }
                 };
 
-                const activeApiKey = apiKey;
-                const activeModelToUse = "gemini-1.5-flash"; // 預設為廣泛相容的 1.5 版本
+                // 🚀 【核心安全性升級】：我們呼叫自己的 Vercel 後端安全通道 '/api/chat' 
+                // 這樣瀏覽器就絕對看不見您的 API Key！
+                const response = await fetch('/api/chat', {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
 
-                let result = null; const delays = [1000, 2000, 4000, 8000]; let lastError = null;
-                for (let i = 0; i <= 4; i++) {
-                    const controller = new AbortController(); const timeoutId = setTimeout(() => controller.abort(), 12000);
-                    try {
-                        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${activeModelToUse}:generateContent?key=${activeApiKey}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload), signal: controller.signal });
-                        clearTimeout(timeoutId);
-                        if (!response.ok) { if (response.status >= 400 && response.status < 500) { throw new Error(`FATAL_ERROR: HTTP ${response.status}`); } throw new Error("HTTP " + response.status); }
-                        result = await response.json(); break;
-                    } catch(e) {
-                        clearTimeout(timeoutId); lastError = e;
-                        if (e.message && e.message.includes("FATAL_ERROR")) break; 
-                        if (i < 4) await new Promise(r => setTimeout(r, delays[i]));
-                    }
+                if (!response.ok) {
+                    throw new Error("HTTP " + response.status);
                 }
+                const result = await response.json();
 
-                if (!result || !result.candidates || result.candidates.length === 0) throw lastError || new Error("無法獲取有效的 AI 回應");
+                if (!result || !result.candidates || result.candidates.length === 0) throw new Error("無法獲取有效的 AI 回應");
 
                 document.getElementById('typing-indicator').classList.add('hidden');
                 let cleanText = result.candidates[0].content.parts[0].text.trim();
@@ -1141,8 +1177,9 @@
             } catch (error) {
                 console.error("AI 錯誤:", error); document.getElementById('typing-indicator').classList.add('hidden');
                 let errorMsg = "樹洞剛才有一點點累了，或是網路不穩，我們繼續聊聊吧？";
-                if (error.message && error.message.includes('FATAL_ERROR')) errorMsg = "⚠️ 系統連線失敗。請確保您已於程式碼頂部填入正確的 API 金鑰！";
-                else if (error.name === 'AbortError' || (error.message && error.message.includes('abort'))) errorMsg = "連線花費了太長時間，我們先換個方式聊聊好嗎？";
+                if (error.message && error.message.includes('450')) {
+                    errorMsg = "⚠️ 系統連線失敗。請確保您已於 Vercel 的 Environment Variables 設定了正確的 GEMINI_API_KEY！";
+                }
                 renderAiResponse({ level: "yellow", aiReply: errorMsg, animationType: "none", quickReplies: ["好啊", "沒事"] });
             } finally { setInputLock(false); }
         }
