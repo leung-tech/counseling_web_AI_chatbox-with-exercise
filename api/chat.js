@@ -2,7 +2,7 @@
  * 樹洞安全代理後端 (Vercel Serverless Function)
  * * 作用：
  * 1. 隱藏您的 API 金鑰，瀏覽器（前端）完全碰不到
- * 2. 在伺服器端（後端）代為呼叫 Google Gemini API，杜絕 401 與跨網域 (CORS) 阻擋錯誤
+ * 2. 智慧偵測 AIzaSy 或 AQ. 金鑰格式，動態切換傳遞標頭，徹底解決 401 授權與跨網域 (CORS) 阻擋錯誤
  */
 
 export default async function handler(req, res) {
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     }
     
     // 從 Vercel 系統環境變數中安全地讀取金鑰
-    const apiKey = process.env.GEMINI_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY ? process.env.GEMINI_API_KEY.trim() : "";
     if (!apiKey) {
         return res.status(500).json({ 
             error: '系統未偵測到環境變數 GEMINI_API_KEY。請至 Vercel 專案 Settings -> Environment Variables 設定金鑰，並重新部署 (Redeploy)。' 
@@ -24,12 +24,23 @@ export default async function handler(req, res) {
         
         // 使用目前對外公開、最快且最穩定的正式生產版模型
         const model = "gemini-2.5-flash"; 
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+        let url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+        
+        const headers = { 'Content-Type': 'application/json' };
+
+        // 🧠 智慧雙通道授權驗證
+        if (apiKey.startsWith('AIzaSy')) {
+            // 傳統金鑰：放在網址參數傳遞
+            url += `?key=${apiKey}`;
+        } else {
+            // 新版安全憑證 (AQ.) 或服務帳戶 Token：必須使用標準安全標頭 Bearer 傳遞，避免 401 錯誤
+            headers['Authorization'] = `Bearer ${apiKey}`;
+        }
 
         // 在伺服器端背後發送請求給 Google
         const response = await fetch(url, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: headers,
             body: JSON.stringify({ contents, systemInstruction, generationConfig })
         });
 
