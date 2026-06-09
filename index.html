@@ -20,7 +20,7 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght=300;400;500;700;900&display=swap');
         body { font-family: 'Noto Sans TC', sans-serif; background-color: #f8fafc; overflow-x: hidden; transition: background-color 0.4s, color 0.4s; }
         .fade-in { animation: fadeIn 0.4s ease-out forwards; }
         .slide-up { animation: slideUp 0.3s ease-out forwards; }
@@ -602,7 +602,6 @@
     </main>
 
     <script>
-        // 完全移除了 API Key 需求，轉型為純前端全方位規則引擎
         let conversationHistory = [];
         let currentStudentId = "";
         let currentCategory = '自由傾談';
@@ -796,6 +795,7 @@
         function initQuiz() { quizScores = { S:0, A:0, R:0, I:0, E:0, C:0 }; document.getElementById('quiz-result').classList.add('hidden'); showQuizStep(1); }
         function answerQuiz(type) { quizScores[type]++; let step = document.querySelector('.quiz-step:not(.hidden)').id.replace('quiz-step-', ''); step = parseInt(step) + 1; if(step <= 10) showQuizStep(step); else showQuizResult(); }
         function showQuizStep(step) { document.querySelectorAll('.quiz-step').forEach(el => el.classList.add('hidden')); document.getElementById(`quiz-step-${step}`).classList.remove('hidden'); }
+        
         function showQuizResult() {
             document.querySelectorAll('.quiz-step').forEach(el => el.classList.add('hidden')); document.getElementById('quiz-result').classList.remove('hidden'); playSound('chime');
             let highest = Object.keys(quizScores).reduce((a, b) => quizScores[a] > quizScores[b] ? a : b);
@@ -837,6 +837,7 @@
             { icon: "👅", label: "步驟 5 / 5", text: "最後，感受 1 種你的舌頭「能品嚐到」的滋味。" }
         ];
         function initGroundingTool() { groundingStep = 1; updateGroundingUI(); }
+        
         function updateGroundingUI() {
             const data = groundingData[groundingStep - 1];
             const iconEl = document.getElementById('grounding-icon'); const titleEl = document.getElementById('grounding-step-title'); const instEl = document.getElementById('grounding-instruction');
@@ -951,11 +952,11 @@
             }
         }
 
-      // ==========================================
-// 🧠 全方位本地輔導引擎 (Local AI Brain) V7.0 終極無敵版
-// 結合：15大核心情境 + 12種情緒急救工具 + 5大心理治療流派 (CBT, ACT, DBT, SFBT, 敘事)
-// ==========================================
-function getCounselorResponse(text) {
+        // =========================================================================
+        // 🧠 全方位本地輔導引擎 (Local AI Brain) V5.0 終極升級版
+        // 結合：15大核心情境 + 12種情緒急救工具 + 5大心理治療流派 (CBT, ACT, DBT, SFBT, 敘事)
+        // =========================================================================
+        function getCounselorResponse(text) {
     const lowerText = text.toLowerCase();
     const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
@@ -987,7 +988,8 @@ function getCounselorResponse(text) {
         };
     }
 
-    // 1. 【最高優先級】緊急危機與自我傷害 (Red)
+
+            // 1. 【最高優先級】緊急危機與自我傷害 (Red)
     // 心理學策略：DBT 危機生存技巧、無條件積極關注
     // 修復：排除「你死開」、「煩死」、「激死」等非自我傷害語境
     const crisisKeywords = ['不想活', '自殺', '跳樓', '割脈', '𠝹手', '絕望', '沒有意義', '結束生命', '唔想做人', '想消失', '安眠藥', '殺咗自己', '想死'];
@@ -1005,18 +1007,6 @@ function getCounselorResponse(text) {
             ]),
             animationType: "none", // 停止任何動畫/工具，避免激怒用戶
             quickReplies: ["真係覺得你好廢", "我淨係想有人聽", "其實我係嬲緊其他嘢"]
-        };
-    }
-
-    // 1. 【最高優先級】緊急危機與自我傷害 (Red)
-    // 心理學策略：DBT 危機生存技巧、無條件積極關注
-    const crisisKeywords = ['死', '不想活', '自殺', '跳樓', '割脈', '𠝹手', '絕望', '沒有意義', '結束生命', '唔想做人', '想消失', '安眠藥', '殺咗自己', '想死'];
-    if (crisisKeywords.some(kw => lowerText.includes(kw))) {
-        return {
-            level: "red",
-            aiReply: "我聽到你咁講，心入面真係好沉重、好擔心你。你而家一定係承受緊極大嘅痛苦同無助。請你記住，你有呢啲感受絕對唔係你嘅錯。呢一刻，我哋咩都唔好諗住，淨係專注喺呼吸上。請你跟我一齊做，然後立刻打畀撒瑪利亞會（2896 0000），俾個機會我哋陪住你撐過去好嗎？",
-            animationType: "breathe", // 工具 1: 4-4-4 呼吸
-            quickReplies: ["我會打電話", "陪我唞下氣", "打開安撫寶盒"]
         };
     }
 
@@ -1315,6 +1305,7 @@ function getCounselorResponse(text) {
         quickReplies: ["我試下拆解", "情緒大概有8分", "其實我仲係好亂", "我想用畫板"]
     };
 }
+
         function handleChatSubmit(event) {
             event?.preventDefault(); 
             const inputEl = document.getElementById('chat-input'); 
@@ -1338,9 +1329,7 @@ function getCounselorResponse(text) {
 
             setTimeout(() => {
                 try {
-                    // 直接調用終極本地輔導引擎
                     const analysis = getCounselorResponse(text);
-                    
                     document.getElementById('typing-indicator').classList.add('hidden');
                     conversationHistory.push(`Model: ${analysis.aiReply}`); 
                     renderAiResponse(analysis);
@@ -1382,24 +1371,24 @@ function getCounselorResponse(text) {
             else { setPetEmotion("normal"); }
 
             let htmlContent = `<div class="mb-3 text-lg md:text-xl font-medium ${isDarkMode ? 'text-slate-200' : 'text-slate-700'} leading-relaxed">${analysis.aiReply}</div>`;
-            const resName = analysis.resourceName || "官方支援網站"; const resUrl = analysis.resourceUrl || "https://shallwetalk.hk/";
+            const resName = "Open噏 24小時網上情緒支援"; const resUrl = "https://www.openup.hk/";
 
             const animationTemplates = {
-                breathe: `<div class="mt-4 bg-sky-50 p-6 rounded-3xl border border-sky-100 flex flex-col items-center text-center"><p class="text-lg text-sky-600 font-bold mb-4"><i class="fa-solid fa-wind animate-pulse mr-2"></i> 4-4-4 深呼吸引導</p><div class="w-24 h-24 rounded-full breathe-circle flex items-center justify-center text-sky-700 font-bold">深呼吸</div></div>`,
+                breathe: `<div class="mt-4 bg-sky-50 p-6 rounded-3xl border border-sky-100 flex flex-col items-center text-center"><p class="text-lg text-sky-600 font-bold mb-4"><i class="fa-solid fa-wind animate-pulse mr-2"></i> 4-4-4 深呼吸引導</p><button onclick="openToolOverlay('breathe')" class="bg-sky-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-sky-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 立即開始呼吸</button></div>`,
                 resource: `<div class="mt-4 bg-blue-50 p-6 rounded-3xl border border-blue-100 flex flex-col items-center text-center"><p class="text-lg text-blue-600 font-bold mb-3"><i class="fa-solid fa-circle-info mr-2"></i> 相關資源整理</p><button onclick="window.open('${resUrl}', '_blank')" class="bg-blue-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-blue-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-link"></i> 前往 ${resName}</button></div>`,
                 scribble: `<div class="mt-4 bg-orange-50/80 p-6 rounded-3xl border border-orange-100 flex flex-col items-center text-center"><p class="text-lg text-orange-600 font-bold mb-3"><i class="fa-solid fa-palette mr-2"></i> 塗鴉畫板已準備好</p><button onclick="openToolOverlay('scribble')" class="bg-orange-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-orange-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 開啟全螢幕畫板</button></div>`,
                 wallpush: `<div class="mt-4 bg-red-50 p-6 rounded-3xl border border-red-100 flex flex-col items-center text-center"><p class="text-lg text-red-600 font-bold mb-3"><i class="fa-solid fa-person-walking-arrow-right mr-2"></i> 推牆釋放法已就緒</p><button onclick="openToolOverlay('wallpush')" class="bg-red-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-red-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 站起來釋放壓力</button></div>`,
                 shredder: `<div class="mt-4 bg-orange-50 p-6 rounded-3xl border border-orange-100 flex flex-col items-center text-center"><p class="text-lg text-orange-600 font-bold mb-3"><i class="fa-solid fa-file-prescription mr-2"></i> 煩惱碎紙機</p><button onclick="openToolOverlay('shredder')" class="bg-orange-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-orange-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 開啟碎紙機</button></div>`,
                 stream: `<div class="mt-4 bg-teal-50 p-6 rounded-3xl border border-teal-100 flex flex-col items-center text-center"><p class="text-lg text-teal-600 font-bold mb-3"><i class="fa-solid fa-leaf mr-2"></i> 溪水落葉</p><button onclick="openToolOverlay('stream')" class="bg-teal-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-teal-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 去溪流放走煩惱</button></div>`,
-                quiz: `<div class="mt-4 bg-violet-50 p-6 rounded-3xl border border-violet-100 flex flex-col items-center text-center"><p class="text-lg text-violet-600 font-bold mb-3"><i class="fa-solid fa-clipboard-question mr-2"></i> 生涯性格測驗</p><button onclick="openToolOverlay('quiz')" class="bg-violet-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-violet-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 開始測驗</button></div>`,
                 hopebox: `<div class="mt-4 bg-teal-50 p-6 rounded-3xl border border-teal-100 flex flex-col items-center text-center"><p class="text-lg text-teal-600 font-bold mb-3"><i class="fa-solid fa-box-open mr-2"></i> 虛擬安撫寶盒</p><button onclick="openToolOverlay('hopebox')" class="bg-teal-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-teal-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 打開寶盒</button></div>`,
                 fakenews: `<div class="mt-4 bg-yellow-50 p-6 rounded-3xl border border-yellow-100 flex flex-col items-center text-center"><p class="text-lg text-yellow-600 font-bold mb-3"><i class="fa-solid fa-newspaper mr-2"></i> 大腦假新聞查核</p><button onclick="openToolOverlay('fakenews')" class="bg-yellow-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-yellow-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 粉碎負面想法</button></div>`,
                 bubble: `<div class="mt-4 bg-blue-50 p-6 rounded-3xl border border-blue-100 flex flex-col items-center text-center"><p class="text-lg text-blue-600 font-bold mb-3"><i class="fa-solid fa-circle-dot mr-2"></i> 紓壓泡泡紙</p><button onclick="openToolOverlay('bubble')" class="bg-blue-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-blue-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 篤破壓力</button></div>`,
                 butterfly: `<div class="mt-4 bg-indigo-50 p-6 rounded-3xl border border-indigo-100 flex flex-col items-center text-center"><p class="text-lg text-indigo-600 font-bold mb-3"><i class="fa-solid fa-hands-holding mr-2"></i> 蝴蝶安全擁抱</p><button onclick="openToolOverlay('butterfly')" class="bg-indigo-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-indigo-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 穩定情緒</button></div>`,
                 grounding: `<div class="mt-4 bg-emerald-50 p-6 rounded-3xl border border-emerald-100 flex flex-col items-center text-center"><p class="text-lg text-emerald-600 font-bold mb-3"><i class="fa-solid fa-shoe-prints mr-2"></i> 五感著陸遊戲</p><button onclick="openToolOverlay('grounding')" class="bg-emerald-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-emerald-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 返回當下</button></div>`,
-                card: `<div class="mt-4 bg-amber-50 p-6 rounded-3xl border border-amber-100 flex flex-col items-center text-center"><p class="text-lg text-amber-600 font-bold mb-3"><i class="fa-solid fa-sun mr-2"></i> 心靈御守抽籤</p><button onclick="openToolOverlay('card')" class="bg-amber-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-amber-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 抽取力量卡</button></div>`
+                card: `<div class="mt-4 bg-amber-50 p-6 rounded-3xl border border-amber-100 flex flex-col items-center text-center"><p class="text-lg text-amber-600 font-bold mb-3"><i class="fa-solid fa-sun mr-2"></i> 心靈御守抽籤</p><button onclick="openToolOverlay('card')" class="bg-amber-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-amber-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 抽取力量卡</button></div>`,
+                panic: `<div class="mt-4 bg-rose-50 p-6 rounded-3xl border border-rose-100 flex flex-col items-center text-center"><p class="text-lg text-rose-600 font-bold mb-3"><i class="fa-solid fa-eye-slash mr-2"></i> 緊急應急隱蔽</p><button onclick="panicHide()" class="bg-rose-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-rose-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-eye-slash"></i> 立即隱蔽畫面 (Esc)</button></div>`
             };
-            if (animationTemplates[analysis.animationType]) htmlContent += animationTemplates[analysis.animationType];
+            if (analysis.animationType && animationTemplates[analysis.animationType]) htmlContent += animationTemplates[analysis.animationType];
             
             appendMessage('ai', htmlContent, extraClass);
             const qrContainer = document.getElementById('quick-replies-container'); qrContainer.innerHTML = '';
@@ -1416,10 +1405,10 @@ function getCounselorResponse(text) {
             const chatBox = document.getElementById('chat-box'); const div = document.createElement('div');
             if (role === 'student') {
                 div.className = "flex gap-3 md:gap-4 flex-row-reverse items-start slide-up mt-4";
-                div.innerHTML = `<div class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 shadow-sm border border-white"><i class="fa-solid fa-user text-base md:text-lg"></i></div><div class="bg-indigo-500 text-white p-5 md:p-6 rounded-3xl rounded-tr-none shadow-sm text-lg md:text-xl leading-relaxed max-w-[85%] break-words">${htmlContent}</div>`;
+                div.innerHTML = `<div class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 shadow-sm border border-white flex-shrink-0"><i class="fa-solid fa-user text-base md:text-lg"></i></div><div class="bg-indigo-500 text-white p-5 md:p-6 rounded-3xl rounded-tr-none shadow-sm text-lg md:text-xl leading-relaxed max-w-[85%] break-words">${htmlContent}</div>`;
             } else {
                 div.className = "flex gap-3 md:gap-4 items-start slide-up w-full mt-4";
-                div.innerHTML = `<div class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-sage-400 to-emerald-500 flex items-center justify-center text-white shadow-sm border border-white"><i class="fa-solid fa-robot text-base md:text-xl"></i></div><div class="bg-white p-6 md:p-7 rounded-3xl rounded-tl-none shadow-sm border border-slate-100 text-lg md:text-xl leading-relaxed max-w-[95%] md:max-w-[85%] ${extraClass}">${htmlContent}</div>`;
+                div.innerHTML = `<div class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-sage-400 to-emerald-500 flex items-center justify-center text-white shadow-sm border border-white flex-shrink-0"><i class="fa-solid fa-robot text-base md:text-xl"></i></div><div class="bg-white p-6 md:p-7 rounded-3xl rounded-tl-none shadow-sm border border-slate-100 text-lg md:text-xl leading-relaxed max-w-[95%] md:max-w-[85%] ${extraClass}">${htmlContent}</div>`;
             }
             chatBox.appendChild(div); setTimeout(() => { chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: 'smooth' }); }, 100);
         }
