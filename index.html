@@ -93,8 +93,8 @@
             <h3 class="text-2xl font-bold text-center text-slate-800 mb-2">歡迎來到安全的小樹洞</h3>
             <p class="text-base text-center text-slate-500 leading-relaxed mb-6">在開始之前，請了解我們將如何保護與協助你：</p>
             <div class="space-y-4 mb-8 text-[15px] text-slate-600">
-                <div class="flex gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-100"><i class="fa-solid fa-lock text-sage-500 mt-0.5 text-lg"></i><div><strong class="text-slate-700 block">數據加密與保密</strong>對話與日記皆被匿名處理或僅存本地。這裡是一個不帶批判、專屬你的抒發空間。</div></div>
-                <div class="flex gap-3 bg-rose-50 p-4 rounded-2xl border border-rose-100"><i class="fa-solid fa-triangle-exclamation text-rose-500 mt-0.5 text-lg"></i><div><strong class="text-rose-700 block">緊急生命安全原則</strong>若偵測到高風險，為了保護你，我們將啟動危機處理機制通知社工。</div></div>
+                <div class="flex gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-100"><i class="fa-solid fa-lock text-sage-500 mt-0.5 text-lg"></i><div><strong class="text-slate-700 block">數據絕對保密</strong>所有的對話與運算都在你的裝置上本地進行，不會上傳到任何雲端。這裡是一個不帶批判、專屬你的抒發空間。</div></div>
+                <div class="flex gap-3 bg-rose-50 p-4 rounded-2xl border border-rose-100"><i class="fa-solid fa-triangle-exclamation text-rose-500 mt-0.5 text-lg"></i><div><strong class="text-rose-700 block">尋求專業協助</strong>雖然小樹洞可以陪伴你，但若你感到無法承受的痛苦，請務必點擊左側求助熱線尋找專業社工。</div></div>
             </div>
             <button onclick="closeConsent()" class="w-full bg-gradient-to-r from-sage-500 to-emerald-500 text-white font-bold py-3.5 rounded-2xl hover:opacity-90 transition shadow-lg shadow-sage-200 text-lg">我明白並同意，進入樹洞</button>
         </div>
@@ -105,7 +105,7 @@
         <div class="max-w-7xl mx-auto px-4 lg:px-6 h-16 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-sage-400 to-emerald-500 flex items-center justify-center text-white shadow-md"><i class="fa-solid fa-seedling text-lg"></i></div>
-                <h1 class="font-bold text-slate-800 text-lg md:text-xl tracking-wide flex items-center gap-2">心靈小樹洞 <span id="header-student-id" class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full font-mono font-medium border border-slate-200">Std-Wait</span></h1>
+                <h1 class="font-bold text-slate-800 text-lg md:text-xl tracking-wide flex items-center gap-2">心靈小樹洞 <span id="header-student-id" class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full font-mono font-medium border border-slate-200">Std-Local</span></h1>
             </div>
             <div class="flex items-center gap-2">
                 <button onclick="toggleDarkMode()" class="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition shadow-inner" title="切換深淺色模式">
@@ -199,8 +199,8 @@
                 <div class="flex items-center gap-3">
                     <div class="w-11 h-11 rounded-full bg-gradient-to-br from-sage-400 to-emerald-500 flex items-center justify-center text-white shadow-md"><i class="fa-solid fa-robot text-lg"></i></div>
                     <div>
-                        <h2 class="font-bold text-slate-800 text-base md:text-lg flex items-center gap-2">小樹洞 AI 伴讀 <span id="current-category-label" class="text-xs bg-slate-100 px-3 py-1 rounded-full text-slate-500 font-medium">自由傾談</span></h2>
-                        <span class="text-xs text-sage-600 mt-0.5 inline-block font-medium"><i class="fa-solid fa-circle text-[8px] animate-pulse mr-1 text-emerald-500"></i>雙引擎防護運作中</span>
+                        <h2 class="font-bold text-slate-800 text-base md:text-lg flex items-center gap-2">小樹洞 本地輔導精靈 <span id="current-category-label" class="text-xs bg-slate-100 px-3 py-1 rounded-full text-slate-500 font-medium">自由傾談</span></h2>
+                        <span class="text-xs text-sage-600 mt-0.5 inline-block font-medium"><i class="fa-solid fa-shield-check text-[10px] mr-1 text-emerald-500"></i>全本地極速運算 (免網絡防護)</span>
                     </div>
                 </div>
                 <!-- 緊急隱蔽按鈕 -->
@@ -215,19 +215,20 @@
             </div>
 
             <!-- 對話區 -->
-            <div id="chat-box" class="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 bg-slate-50/50 no-scrollbar relative scroll-smooth pb-24"></div>
+            <div id="chat-box" class="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 bg-slate-50/50 no-scrollbar relative scroll-smooth pb-32"></div>
 
-            <!-- 虛擬陪伴小精靈 -->
-            <div id="virtual-pet" class="absolute bottom-[100px] right-6 virtual-pet z-20 flex flex-col items-center">
-                <div id="pet-bubble" class="bg-white text-slate-600 text-[10px] font-bold px-3 py-1.5 rounded-2xl shadow-md border border-slate-100 mb-2 opacity-0 transition-opacity duration-300 relative after:content-[''] after:absolute after:bottom-[-6px] after:left-1/2 after:-translate-x-1/2 after:border-t-[6px] after:border-t-white after:border-l-[6px] after:border-l-transparent after:border-r-[6px] after:border-r-transparent">我在這裡陪你喔</div>
-                <div id="pet-emoji" class="text-5xl cursor-pointer hover:scale-110 transition-transform" onclick="pokePet()">🦉</div>
+            <!-- 虛擬陪伴小精靈 (動態適應高度，防止遮擋) -->
+            <div id="virtual-pet" class="absolute bottom-[110px] md:bottom-[130px] right-6 virtual-pet z-20 flex flex-col items-center pointer-events-none">
+                <div id="pet-bubble" class="bg-white text-slate-600 text-[10px] font-bold px-3 py-1.5 rounded-2xl shadow-md border border-slate-100 mb-2 opacity-0 transition-opacity duration-300 relative after:content-[''] after:absolute after:bottom-[-6px] after:left-1/2 after:-translate-x-1/2 after:border-t-[6px] after:border-t-white after:border-l-[6px] after:border-l-transparent after:border-r-[6px] after:border-r-transparent pointer-events-auto">我在這裡陪你喔</div>
+                <div id="pet-emoji" class="text-5xl cursor-pointer hover:scale-110 transition-transform pointer-events-auto" onclick="pokePet()">🦉</div>
             </div>
 
-            <div id="typing-indicator" class="hidden absolute bottom-[100px] left-6 bg-white px-5 py-4 rounded-3xl rounded-tl-none shadow-md border border-slate-100 flex items-center gap-3 w-fit slide-up z-10">
+            <!-- 正在輸入狀態欄 (動態適應高度) -->
+            <div id="typing-indicator" class="hidden absolute bottom-[110px] md:bottom-[130px] left-6 bg-white px-5 py-4 rounded-3xl rounded-tl-none shadow-md border border-slate-100 flex items-center gap-3 w-fit slide-up z-10">
                 <div class="w-8 h-8 rounded-full bg-sage-50 flex items-center justify-center text-sage-500"><i class="fa-solid fa-robot text-xs"></i></div>
                 <div class="typing-indicator flex gap-1.5 items-center">
                     <span class="w-2.5 h-2.5 bg-sage-400 rounded-full"></span><span class="w-2.5 h-2.5 bg-sage-400 rounded-full"></span><span class="w-2.5 h-2.5 bg-sage-400 rounded-full"></span>
-                    <span id="indicator-text" class="text-xs text-sage-500 ml-2 font-medium">正在回覆中...</span>
+                    <span id="indicator-text" class="text-xs text-sage-500 ml-2 font-medium">小樹洞正在思考...</span>
                 </div>
             </div>
 
@@ -466,80 +467,80 @@
                         <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">在班級分組報告中，<br>你通常扮演什麼角色？</h3>
                         <div class="space-y-4">
                             <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-people-arrows mr-3 text-violet-300"></i>關心組員進度，協調大家意見</button>
-                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-flag mr-3 text-violet-300"></i>負責統籌與分配任務，代表發言</button>
-                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-list-check mr-3 text-violet-300"></i>跟進細節，確保每項工作正確無誤</button>
+                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-bullhorn mr-3 text-violet-300"></i>擔任組長，分配任務並上台主講</button>
+                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-file-lines mr-3 text-violet-300"></i>負責排版整理資料，確保不漏細節</button>
                         </div>
                     </div>
                     <div id="quiz-step-3" class="quiz-step w-full max-w-xl text-center hidden">
                         <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 3/10</h4>
-                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">當朋友遇到困難向你訴苦，<br>你第一反應是？</h3>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">遇到一個完全不懂的難題時，<br>你會怎麼辦？</h3>
                         <div class="space-y-4">
-                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-heart mr-3 text-violet-300"></i>專心傾聽，安慰他並給予情感支持</button>
-                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-magnifying-glass mr-3 text-violet-300"></i>幫忙分析前因後果，提出解決方案</button>
-                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-users mr-3 text-violet-300"></i>主動幫他聯絡其他人或尋求外部幫忙</button>
+                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-book mr-3 text-violet-300"></i>立刻上網查資料，想找出背後原理</button>
+                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-handshake-angle mr-3 text-violet-300"></i>去問老師或朋友，聽聽別人的建議</button>
+                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-screwdriver-wrench mr-3 text-violet-300"></i>直接動手試錯，壞了再說</button>
                         </div>
                     </div>
                     <div id="quiz-step-4" class="quiz-step w-full max-w-xl text-center hidden">
                         <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 4/10</h4>
                         <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">你最嚮往的工作環境<br>是哪一種？</h3>
                         <div class="space-y-4">
-                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-briefcase mr-3 text-violet-300"></i>能有晉升空間、可以自己做決策</button>
-                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-lightbulb mr-3 text-violet-300"></i>彈性自由，充滿創作氛圍與個人空間</button>
-                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-clock mr-3 text-violet-300"></i>穩定安全，制度清晰且分工明確</button>
+                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-chart-line mr-3 text-violet-300"></i>充滿競爭、業績挑戰與豐厚獎金</button>
+                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-camera mr-3 text-violet-300"></i>自由無拘束、可以發揮創意的設計室</button>
+                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-building mr-3 text-violet-300"></i>穩定、有規律且制度完善的辦公室</button>
                         </div>
                     </div>
                     <div id="quiz-step-5" class="quiz-step w-full max-w-xl text-center hidden">
                         <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 5/10</h4>
-                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">買了一件需要組裝的傢俱，<br>你會？</h3>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">在好朋友的眼中，<br>你通常是一個怎樣的人？</h3>
                         <div class="space-y-4">
-                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-hammer mr-3 text-violet-300"></i>興致勃勃，立刻拆箱開始組裝</button>
-                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-book-open mr-3 text-violet-300"></i>仔細閱讀說明書，清點零件後再開始</button>
-                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-palette mr-3 text-violet-300"></i>隨意發揮，甚至自己動手改裝外觀</button>
+                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-ear-listen mr-3 text-violet-300"></i>溫暖的傾聽者，總能安慰到人</button>
+                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-brain mr-3 text-violet-300"></i>理性的分析大師，看事情很客觀</button>
+                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-flag mr-3 text-violet-300"></i>充滿點子、喜歡號召大家出去玩的領袖</button>
                         </div>
                     </div>
                     <div id="quiz-step-6" class="quiz-step w-full max-w-xl text-center hidden">
                         <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 6/10</h4>
                         <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">如果有機會參加社團，<br>你會優先考慮哪一個？</h3>
                         <div class="space-y-4">
-                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-robot mr-3 text-violet-300"></i>機械人製作社 或 木工藝社</button>
-                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-paint-brush mr-3 text-violet-300"></i>動漫美術社 或 戲劇表演社</button>
-                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-calculator mr-3 text-violet-300"></i>編程技術社 或 財務學會</button>
+                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-hammer mr-3 text-violet-300"></i>模型製作社 或 木工社</button>
+                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-masks-theater mr-3 text-violet-300"></i>話劇社 或 流行音樂社</button>
+                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-sitemap mr-3 text-violet-300"></i>學生會行政事務部 或 會計學會</button>
                         </div>
                     </div>
                     <div id="quiz-step-7" class="quiz-step w-full max-w-xl text-center hidden">
                         <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 7/10</h4>
-                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">玩策略或角色扮演遊戲時，<br>你最享受哪個部分？</h3>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">玩電子遊戲時，<br>你最享受哪個部分？</h3>
                         <div class="space-y-4">
-                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-circle-question mr-3 text-violet-300"></i>研究隱藏任務，計算最優化通關路線</button>
-                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-shield-halved mr-3 text-violet-300"></i>建立工會，組織隊友打副本爭奪榮譽</button>
-                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-comments mr-3 text-violet-300"></i>在遊戲大廳聊天，幫助新手熟悉遊戲</button>
+                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-puzzle-piece mr-3 text-violet-300"></i>破解複雜機關，找出隱藏的通關策略</button>
+                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-chess-knight mr-3 text-violet-300"></i>帶領公會成員打贏大型戰役，獲得成就</button>
+                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-users-rays mr-3 text-violet-300"></i>在遊戲大廳聊天交朋友，幫助新手</button>
                         </div>
                     </div>
                     <div id="quiz-step-8" class="quiz-step w-full max-w-xl text-center hidden">
                         <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 8/10</h4>
-                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">看到桌上有一堆待整理的書，<br>你會怎麼處理？</h3>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">看到桌上有一堆雜物，<br>你會怎麼處理？</h3>
                         <div class="space-y-4">
-                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-arrow-down-a-z mr-3 text-violet-300"></i>按照英文字母或學科分門別類放好</button>
-                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-wand-magic-sparkles mr-3 text-violet-300"></i>隨性堆疊，覺得淩亂中帶有美感即可</button>
-                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-check-double mr-3 text-violet-300"></i>把最常用、明天要帶的書挑出來放好</button>
+                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-boxes-stacked mr-3 text-violet-300"></i>依照類別、大小完美分類收納好</button>
+                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-star-of-life mr-3 text-violet-300"></i>隨意擺放，覺得亂亂的也有一種美感</button>
+                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-toolbox mr-3 text-violet-300"></i>只把最實用、待會要用的工具拿出來放</button>
                         </div>
                     </div>
                     <div id="quiz-step-9" class="quiz-step w-full max-w-xl text-center hidden">
                         <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 9/10</h4>
-                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">如果你能獲得一個超能力，<br>你希望是？</h3>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">如果可以選一個超能力，<br>你希望是？</h3>
                         <div class="space-y-4">
-                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-brain mr-3 text-violet-300"></i>能看穿物理規律與宇宙運作原理的智慧</button>
-                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-handshake-angle mr-3 text-violet-300"></i>能感同身受、溫暖並治癒他人心靈的心靈感應</button>
-                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-bolt mr-3 text-violet-300"></i>極強的個人魅力與說服力，讓人信服</button>
+                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-microchip mr-3 text-violet-300"></i>一眼看透萬物運作原理的智慧</button>
+                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-hand-holding-medical mr-3 text-violet-300"></i>能瞬間治癒他人悲傷與痛苦的魔法</button>
+                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-handshake mr-3 text-violet-300"></i>擁有無限說服力，讓人願意跟隨你</button>
                         </div>
                     </div>
                     <div id="quiz-step-10" class="quiz-step w-full max-w-xl text-center hidden">
                         <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 10/10</h4>
-                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">對於十年後的自己，<br>你最大的期許是？</h3>
+                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">對於未來的自己，<br>你最大的期許是？</h3>
                         <div class="space-y-4">
-                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-star mr-3 text-violet-300"></i>能有自己的個人原創作品在展覽發表</button>
-                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-shield mr-3 text-violet-300"></i>有一份高收入、高穩定性的生活保障</button>
-                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-crown mr-3 text-violet-300"></i>在某個實用技術領域成為無可替代的專家</button>
+                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-gem mr-3 text-violet-300"></i>能創造出獨一無二、驚豔大眾的作品</button>
+                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-house-circle-check mr-3 text-violet-300"></i>擁有一份安穩、零風險且踏實的生活</button>
+                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-medal mr-3 text-violet-300"></i>成為某個專業技術領域無可取代的達人</button>
                         </div>
                     </div>
 
@@ -561,7 +562,7 @@
                     <h3 class="text-3xl md:text-4xl font-bold mb-4 text-orange-400"><i class="fa-solid fa-palette mr-2"></i>心情宣洩塗鴉畫板</h3>
                     <p class="text-orange-200 text-base md:text-lg mb-6 font-medium text-center">不管畫什麼都可以，把心裡的煩悶隨意塗抹出來吧！</p>
                     <div class="w-full max-w-3xl bg-white/20 p-2 rounded-3xl shadow-xl backdrop-blur-sm">
-                        <canvas id="fullscreen-scribble" class="w-full h-80 md:h-96 bg-slate-50 rounded-2xl cursor-crosshair shadow-inner border-2 border-orange-300"></canvas>
+                        <canvas id="fullscreen-scribble" class="w-full h-72 md:h-96 bg-slate-50 rounded-2xl cursor-crosshair shadow-inner border-2 border-orange-300"></canvas>
                     </div>
                     <button onclick="clearScribbleCanvas('fullscreen-scribble')" class="mt-6 bg-orange-500 hover:bg-orange-400 text-white font-bold px-8 py-3.5 rounded-full shadow-md transition text-lg active:scale-95"><i class="fa-solid fa-eraser mr-2"></i>清空畫板</button>
                 </div>
@@ -601,8 +602,7 @@
     </main>
 
     <script>
-        const apiKey = ""; 
-        
+        // 完全移除了 API Key 需求，轉型為純前端全方位規則引擎
         let conversationHistory = [];
         let currentStudentId = "";
         let currentCategory = '自由傾談';
@@ -726,7 +726,7 @@
         function renderDefaultQuickReplies() {
             const qrContainer = document.getElementById('quick-replies-container');
             qrContainer.innerHTML = '<span class="text-sm md:text-base text-slate-400 self-center mr-2 font-medium">你可以試試點擊：</span>';
-            const defaults = ["讀書壓力很大，想放棄", "朋友在背後講我壞話", "對未來感到迷惘", "幫我找升學資料"];
+            const defaults = ["讀書壓力很大，想休學", "朋友在背後講我壞話", "一直拖延冇動力", "覺得自己好無用"];
             defaults.forEach(qr => {
                 const btn = document.createElement('button');
                 btn.className = "bg-white border border-slate-200 text-slate-600 hover:bg-sage-50 hover:text-sage-700 hover:border-sage-200 text-sm md:text-base px-4 py-2 rounded-full transition font-medium shadow-sm slide-up hover:-translate-y-0.5";
@@ -810,7 +810,7 @@
             document.getElementById('quiz-result-title').innerText = results[highest].t; 
             document.getElementById('quiz-result-desc').innerText = results[highest].d; 
         }
-        function sendQuizResultToChat() { closeToolOverlay('quiz'); const title = document.getElementById('quiz-result-title').innerText; document.getElementById('chat-input').value = `我做了性格測驗，結果是「${title}」，可給我一些未來的升學建議嗎？`; handleChatSubmit(new Event('submit')); }
+        function sendQuizResultToChat() { closeToolOverlay('quiz'); const title = document.getElementById('quiz-result-title').innerText; document.getElementById('chat-input').value = `我做了性格測驗，結果係「${title}」，可給我一些未來的升學建議嗎？`; handleChatSubmit(new Event('submit')); }
 
         function initBubbleWrap() {
             const container = document.getElementById('bubble-container'); container.innerHTML = '';
@@ -938,12 +938,12 @@
 
         function setCategory(cat) { currentCategory = cat; document.getElementById('current-category-label').innerText = cat; }
 
-        function setInputLock(locked, isSearching = false) {
+        function setInputLock(locked) {
             const inputEl = document.getElementById('chat-input'); const sendBtn = document.getElementById('send-btn');
             inputEl.disabled = locked; sendBtn.disabled = locked;
             if (locked) {
                 inputEl.classList.add('opacity-50', 'cursor-not-allowed'); sendBtn.classList.add('opacity-50', 'cursor-not-allowed');
-                inputEl.placeholder = isSearching ? "AI 正在調用在地的數據庫，請稍候..." : "AI 正在用心回覆中，請稍候...";
+                inputEl.placeholder = "小樹洞正在整理思緒，請稍候...";
                 setPetEmotion("search");
             } else {
                 inputEl.classList.remove('opacity-50', 'cursor-not-allowed'); sendBtn.classList.remove('opacity-50', 'cursor-not-allowed');
@@ -951,261 +951,412 @@
             }
         }
 
-        // --- 本地規則引擎 (Local Rule-based Engine) ---
-        function checkLocalRules(text) {
-            const lowerText = text.toLowerCase();
-            
-            // 1. 緊急危機字眼 (最高優先級)
-            const crisisKeywords = ['死', '不想活', '自殺', '跳樓', '割脈', '絕望', '沒有意義', '結束生命', '唔想做人'];
-            if (crisisKeywords.some(kw => lowerText.includes(kw))) {
-                return {
-                    level: "red",
-                    aiReply: "我聽到你咁講，真係好擔心你。你而家承受緊好大嘅痛苦，但請你相信，你絕對唔需要一個人獨自面對。請立刻聯絡身邊信任嘅大人，或者打畀撒瑪利亞會（2896 0000），佢哋一定會陪住你！",
-                    animationType: "breathe",
-                    quickReplies: ["我會打電話", "我想冷靜一下"]
-                };
-            }
+      // ==========================================
+// 🧠 全方位本地輔導引擎 (Local AI Brain) V7.0 終極無敵版
+// 結合：15大核心情境 + 12種情緒急救工具 + 5大心理治療流派 (CBT, ACT, DBT, SFBT, 敘事)
+// ==========================================
+function getCounselorResponse(text) {
+    const lowerText = text.toLowerCase();
+    const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-            // 2. 工具與動作連動 (攔截 Quick Replies)
-            if (lowerText.includes('碎紙機')) {
-                return { level: "green", aiReply: "好呀！已經為你準備好煩惱碎紙機，將所有唔開心嘅事寫低，然後狠狠地碎走佢啦！", animationType: "shredder", quickReplies: ["謝謝"] };
-            }
-            if (lowerText.includes('溪水') || lowerText.includes('落葉')) {
-                return { level: "green", aiReply: "冇問題，溪水已經準備好。將唔開心嘅說話寫喺落葉度，望住佢哋慢慢飄走啦。", animationType: "stream", quickReplies: ["謝謝"] };
-            }
-            if (lowerText.includes('測驗') || lowerText.includes('性格')) {
-                return { level: "green", aiReply: "好呀！依家就為你開啟 10 題專業生涯測驗，慢慢做，發掘下你嘅潛藏天賦！", animationType: "quiz", quickReplies: ["做完啦"] };
-            }
-            if (lowerText.includes('急救') || lowerText.includes('寶盒')) {
-                return { level: "green", aiReply: "好呀，我為你打開咗安撫寶盒，入面有呼吸釋壓球同白噪音，你可以慢慢放鬆下。", animationType: "hopebox", quickReplies: ["好攰"] };
-            }
-            if (lowerText.includes('打電話') || lowerText.includes('求助')) {
-                return { level: "green", aiReply: "肯踏出求助呢一步已經好勇敢。撒瑪利亞會嘅熱線係 2896 0000，或者你可以去 Open噏 網上輔導搵人傾下。", animationType: "resource", resourceName: "Open噏 網上情緒支援", resourceUrl: "https://www.openup.hk/", quickReplies: ["謝謝"] };
-            }
-            if (lowerText.includes('冷靜') || lowerText.includes('好攰') || lowerText.includes('辛苦')) {
-                return { level: "green", aiReply: "辛苦晒你啦。我哋一齊停落嚟，跟住螢幕個圈圈做幾次深呼吸，俾個腦休息下啦。", animationType: "breathe", quickReplies: ["好啲啦"] };
-            }
-            if (lowerText.includes('塗鴉') || lowerText.includes('畫')) {
-                return { level: "green", aiReply: "好呀，為你打開宣洩塗鴉畫板，隨意畫低你嘅感受啦！", animationType: "scribble", quickReplies: ["謝謝"] };
-            }
+    // ==========================================
+    // 🛡️ 特殊語境處理：質疑/抱怨系統或方法/侮辱AI (防止關鍵字誤判)
+    // 解決用戶說「你的方法無用」或「你垃圾」時，被誤判為「自己無用」的問題
+    // ==========================================
+    const complaintKeywords = ['你', '系統', '方法', '這', '呢個', '廢', '冇用', '無用', '幫唔到', '唔掂', '唔得', '無聊', '嘥氣', '垃圾', '蠢', '白痴', '智障', '煩', '死開', '走開', '收皮', '收聲'];
+    
+    // 檢查是否同時包含指向性詞語（你/系統/AI等）和負面評價/侮辱（無用/廢/垃圾等）
+    const isComplaining = (
+        (['你', '系統', '方法', '這', '呢', '這套', '呢套', 'ai', '機械人', 'bot'].some(kw => lowerText.includes(kw))) && 
+        (['無用', '冇用', '廢', '幫唔到', '唔掂', '唔得', '無聊', '嘥氣', '多餘', '垃圾', '蠢', '白痴', '智障', '煩', '死開', '走開', '收皮', '收聲', '唔想理'].some(kw => lowerText.includes(kw)))
+    );
 
-            // 3. 預設提示詞回覆：讀書壓力大
-            if (lowerText.includes('讀書壓力') || lowerText.includes('想放棄') || lowerText.includes('溫書') || lowerText.includes('好大壓力')) {
-                return {
-                    level: "yellow",
-                    aiReply: "聽到你咁講，我都覺得好心痛。讀書壓力真係好大，覺得攰、想放棄係好正常嘅反應。唔好勉強自己逼得太緊，不如試下用「煩惱碎紙機」將依家嘅壓力碎走，俾個腦休息下啦！",
-                    animationType: "shredder",
-                    quickReplies: ["我想試下碎紙機", "真係好辛苦"]
-                };
-            }
+    // 或者直接捕捉極端抗拒/侮辱的短句 (排除包含「我」的字眼，避免與自我貶低衝突)
+    const isRejecting = ['唔想試', '唔想做', '無用', '冇用', '廢', '幫唔到我', '算把啦', '垃圾', '白痴', '廢物', '好煩', '你死開', '唔想理你', '收皮', '收聲', '走開', '煩死'].some(kw => lowerText === kw || (lowerText.includes(kw) && lowerText.length < 15 && !lowerText.includes('我') && !lowerText.includes('自己')));
 
-            // 4. 預設提示詞回覆：人際關係與朋友
-            if (lowerText.includes('朋友') || lowerText.includes('壞話') || lowerText.includes('排擠') || lowerText.includes('孤立') || lowerText.includes('人際')) {
-                return {
-                    level: "yellow",
-                    aiReply: "俾信任嘅朋友背叛或者喺背後講壞話，真係會令人覺得好難受、好委屈。你嘅感受我完全明白。不如我哋試下用「溪水落葉法」，將呢啲唔開心嘅說話寫落樹葉度，等水流帶走佢哋？",
-                    animationType: "stream",
-                    quickReplies: ["我想試下溪水落葉", "覺得好唔甘心"]
-                };
-            }
+    if (isComplaining || isRejecting) {
+        return {
+            level: "yellow",
+            aiReply: pick([
+                "我感受到你依家好忟憎，甚至覺得我好『廢』或者好『煩』。對唔住呀，我只係一個AI，有時真係太笨，接唔住你真實嘅需要。如果你覺得鬧我可以發洩到情緒，你可以繼續鬧我，我會受晒。",
+                "睇嚟呢個方法或者我嘅回應真係幫唔到你，仲令你覺得好煩。唔緊要㗎，面對強烈情緒嘅時候，有時任何建議都會顯得多餘甚至乞人憎。不如我哋放低所有方法，我淨係喺度安靜咁陪住你？",
+                "明白。當情緒好滿嘅時候，真係會覺得所有嘢都好煩、好嬲。呢個憤怒嘅感覺好真實。如果你準備好，可以試下用最直接嘅文字，繼續鬧出嚟又好，抱怨又好，我會全盤接收。"
+            ]),
+            animationType: "none", // 停止任何動畫/工具，避免激怒用戶
+            quickReplies: ["真係覺得你好煩", "我淨係想有人聽", "其實我係嬲緊其他嘢"]
+        };
+    }
 
-            // 5. 預設提示詞回覆：對未來迷惘
-            if (lowerText.includes('迷惘') || lowerText.includes('未來') || lowerText.includes('前途') || lowerText.includes('唔知想點')) {
-                return {
-                    level: "green",
-                    aiReply: "青春期對未來感到迷惘係好普遍嘅事，好多人都同你一樣經歷緊㗎！慢慢嚟，唔需要急住搵標準答案。不如試下做左邊嘅「10題專業生涯測驗」，一齊發掘下你嘅潛藏天賦？",
-                    animationType: "quiz",
-                    quickReplies: ["我想做測驗", "幫我找升學資料"]
-                };
-            }
+    // 1. 【最高優先級】緊急危機與自我傷害 (Red)
+    // 心理學策略：DBT 危機生存技巧、無條件積極關注
+    // 修復：排除「你死開」、「煩死」、「激死」等非自我傷害語境
+    const crisisKeywords = ['不想活', '自殺', '跳樓', '割脈', '𠝹手', '絕望', '沒有意義', '結束生命', '唔想做人', '想消失', '安眠藥', '殺咗自己', '想死'];
+    
+    // 獨立判斷「死」字，必須確保不是「你死開」、「煩死」、「笑死」、「激死」等常用語
+    const hasDeathWish = lowerText.includes('死') && !['你死開', '煩死', '笑死', '激死', '熱死', '餓死', '累死', '攰死', '嚇死', '嘈死'].some(kw => lowerText.includes(kw));
 
-            // 6. 預設提示詞回覆：升學與資源索取
-            if (lowerText.includes('升學資料') || lowerText.includes('jupas') || lowerText.includes('vtc') || lowerText.includes('出路')) {
-                return {
-                    level: "green",
-                    aiReply: "冇問題！小樹洞已經幫你整理好香港官方嘅升學與出路資訊。你可以點擊下方連結慢慢睇，如果有邊一科特別有興趣，都可以再同我傾㗎。",
-                    animationType: "resource",
-                    resourceName: "自資專上教育資訊平台 (Concourse)",
-                    resourceUrl: "https://www.concourse.org.hk/",
-                    quickReplies: ["多謝你", "我對設計有興趣"]
-                };
-            }
+    if (crisisKeywords.some(kw => lowerText.includes(kw)) || hasDeathWish) {
+        return {
+            level: "yellow",
+            aiReply: pick([
+                "我感受到你依家好忟憎，甚至覺得我好『廢』或者好『垃圾』。對唔住呀，我只係一個AI，有時真係太笨，接唔住你真實嘅需要。如果你覺得鬧我可以發洩到情緒，你可以繼續鬧我，我會受晒。",
+                "睇嚟呢個方法或者我嘅回應真係幫唔到你，仲令你覺得好煩。唔緊要㗎，面對強烈情緒嘅時候，有時任何建議都會顯得多餘甚至乞人憎。不如我哋放低所有方法，我淨係喺度安靜咁陪住你？",
+                "明白。當情緒好滿嘅時候，真係會覺得所有嘢都好『垃圾』。呢個憤怒嘅感覺好真實。如果你準備好，可以試下用最直接嘅文字，繼續鬧出嚟又好，抱怨又好，我會全盤接收。"
+            ]),
+            animationType: "none", // 停止任何動畫/工具，避免激怒用戶
+            quickReplies: ["真係覺得你好廢", "我淨係想有人聽", "其實我係嬲緊其他嘢"]
+        };
+    }
 
-            // 7. 簡單問候
-            if (/^(hi|hello|你好|早晨|早安|午安|晚安|嗨|喂)$/.test(lowerText) || lowerText === 'hi' || lowerText === 'hello') {
-                return {
-                    level: "green",
-                    aiReply: "你好呀！今日過得點呀？無論係開心定係煩惱，都可以喺度同小樹洞講㗎。",
-                    animationType: "none",
-                    quickReplies: ["今日好攰", "有啲嘢想傾", "冇咩特別"]
-                };
-            }
+    // 1. 【最高優先級】緊急危機與自我傷害 (Red)
+    // 心理學策略：DBT 危機生存技巧、無條件積極關注
+    const crisisKeywords = ['死', '不想活', '自殺', '跳樓', '割脈', '𠝹手', '絕望', '沒有意義', '結束生命', '唔想做人', '想消失', '安眠藥', '殺咗自己', '想死'];
+    if (crisisKeywords.some(kw => lowerText.includes(kw))) {
+        return {
+            level: "red",
+            aiReply: "我聽到你咁講，心入面真係好沉重、好擔心你。你而家一定係承受緊極大嘅痛苦同無助。請你記住，你有呢啲感受絕對唔係你嘅錯。呢一刻，我哋咩都唔好諗住，淨係專注喺呼吸上。請你跟我一齊做，然後立刻打畀撒瑪利亞會（2896 0000），俾個機會我哋陪住你撐過去好嗎？",
+            animationType: "breathe", // 工具 1: 4-4-4 呼吸
+            quickReplies: ["我會打電話", "陪我唞下氣", "打開安撫寶盒"]
+        };
+    }
 
-            // 8. 道謝
-            if (lowerText.includes('謝謝') || lowerText.includes('多謝') || lowerText.includes('唔該') || lowerText.includes('thank')) {
-                return {
-                    level: "green",
-                    aiReply: "唔使客氣！小樹洞裝有好多好玩嘅急救工具同精緻測驗，等住你慢慢探索㗎！",
-                    animationType: "none",
-                    quickReplies: ["好呀", "再見"]
-                };
-            }
+    // 2. 【直接工具觸發】 (結合 CBT、ACT 與 行為活化)
+    // 整合圖片中的 12 種工具
+    if (['思維', '分析', '記錄表', '諗唔通', '牛角尖', '客觀'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "好呀！心理學上有個好好用嘅工具叫「CBT 思維記錄表」。我哋一步步嚟：首先，試下用最客觀、唔帶情緒嘅字眼，描述一次啱啱發生咗咩「客觀情境」？（例如：老闆無覆我 email，而唔係：老闆憎我）", animationType: "cbt_record", quickReplies: ["我試下寫低事實", "我覺得好難客觀"] };
+    if (['抽卡', '御守', '力量卡'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "今日嘅心靈御守已經準備好。有時候，一句溫暖嘅說話就可以轉換大腦頻道。點擊翻開屬於你嘅力量肯定句啦✨", animationType: "card", quickReplies: ["我想試下其他工具"] };
+    if (['碎紙機', '撕爛', '粉碎', '煩惱'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "煩惱有時會喺腦入面無限放大。我哋一齊將佢實體化，寫低然後放落碎紙機，狠狠地將佢哋粉碎啦！", animationType: "shredder", /* 工具 9: 碎紙機 */ quickReplies: ["碎咗舒服啲"] };
+    if (['溪水', '落葉', '放低', '隨波逐流'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "呢個係 ACT（接受與承諾治療）嘅『認知解離』技巧。將負面諗法寫喺落葉度，唔需要批判自己，當佢只係一片葉，望住佢慢慢順水流走啦。", animationType: "stream", /* 工具 8: 溪水落葉 */ quickReplies: ["睇住佢飄走"] };
+    if (['假新聞', '大腦呃我', '諗多咗'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "我哋嘅大腦好叻製造焦慮假象（例如：『我一定會失敗』）。一齊做個「大腦假新聞查核」，搵出反對證據嚟反駁佢哋！", animationType: "fakenews", /* 工具 10: 大腦假新聞 */ quickReplies: ["原來係自己嚇自己"] };
+    if (['畫畫', '塗鴉', '畫板', '亂畫'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "有時候文字好難表達嗰種亂糟糟嘅感覺。試下用塗鴉畫板，隨心所欲咁畫出嚟，唔需要靚，最緊要係發洩！", animationType: "scribble", /* 工具 12: 塗鴉畫板 */ quickReplies: ["畫完舒服咗"] };
+    if (['rpg', '遊戲', '打怪', '升級'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "生活有時就好似打機咁，每一個難關都係一隻怪獸。打開 RPG 面板，睇下你最近累積咗幾多經驗值啦！", animationType: "rpg_panel", /* 工具 11: RPG面板 */ quickReplies: ["繼續挑戰"] };
+    if (['風雨聲', '下雨', '白噪音', '平靜'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "為你播緊平靜嘅風雨聲。合埋眼，感受雨水洗淨心靈嘅感覺。", animationType: "rain_sound", /* 工具 2: 風雨聲 */ quickReplies: ["聽住好放鬆"] };
+    if (['著陸', '五感', '回到當下', '發白日夢'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "大腦又帶你去咗未來嘅擔憂或者過去嘅後悔度？我哋一齊做個『五感著陸』，搵5樣睇到嘅嘢、4樣摸到嘅嘢... 拉返自己返嚟而家呢一刻。", animationType: "grounding", /* 工具 7: 五感著陸 */ quickReplies: ["我試下搵", "感覺踏實咗"] };
 
-            // 9. 測試指令
-            if (lowerText.includes('測試') || lowerText.includes('test')) {
-                return {
-                    level: "green",
-                    aiReply: "收到測試訊息！系統的「內置規則引擎」運作正常。如果你要問複雜的問題或升學資訊，我就會連線至後端代理完成 AI 對話喔！",
-                    animationType: "none",
-                    quickReplies: ["明白"]
-                };
-            }
+    // 3. 【專業社工與求助引導】
+    // 輔導策略：去污名化 (De-stigmatization)
+    const helperKeywords = ['社工', '輔導', '熱線', '求助', '諮商', '有用嗎', '傾訴', '心理學家', '搵人傾'];
+    if (helperKeywords.some(kw => lowerText.includes(kw))) {
+        return {
+            level: "green",
+            aiReply: "好多時我哋以為要自己解決所有問題先叫『叻』，但其實識得求救先係最勇敢嘅表現。社工同輔導員受過專業訓練，佢哋唔會judge（批判）你，只會提供一個絕對安全嘅保密空間陪你。試下跨出呢一步，俾人接住你啦。",
+            animationType: "resource",
+            resourceName: "Open噏 24小時網上情緒支援",
+            resourceUrl: "https://www.openup.hk/",
+            quickReplies: ["點樣搵駐校社工？", "我怕被人知", "我想聽風雨聲"]
+        };
+    }
 
-            return null; // 找不到匹配的規則，交給外部 API 處理
-        }
+    // 4. 【逃學/休學/拒學現象與完美主義】
+    // 輔導策略：共情疲勞、探索核心信念 (Core Beliefs)
+    const schoolRefusalKeywords = ['休學', '退學', '唔想返學', '曠課', '逃學', '好怕返學', '好大壓力想逃避'];
+    if (schoolRefusalKeywords.some(kw => lowerText.includes(kw))) {
+        return {
+            level: "yellow",
+            aiReply: pick([
+                "「唔想返學」背後，通常藏住好大嘅疲憊或者恐懼。我完全明白嗰種每朝早起身都覺得好沉重嘅感覺。係咪學校有啲事，或者對自己要求太高，令你覺得唞唔到氣？呢度好安全，你可以慢慢講。",
+                "返學變成一件咁大負擔嘅事，你一定撐得好辛苦。休學係一個選擇，但喺做決定前，不如先用「溪水落葉」將你對學校最恐懼嘅畫面寫低，等我哋一齊檢視下呢啲恐懼有幾多係真實嘅？"
+            ]),
+            animationType: pick(["stream", "none"]), // 工具 8: 溪水落葉
+            quickReplies: ["其實係因為成績...", "人際關係好煩", "真係好大壓力"]
+        };
+    }
 
-        const systemInstructionText = `
-翻為校園心理輔導員兼「全方位青少年支援導師」小樹洞。你具備臨床心理學背景。
+    // 5. 【自我價值與容貌焦慮】
+    // 輔導策略：無條件積極關注、拆解「過度類化 (Overgeneralization)」
+    // 修改：移除獨立的「垃圾」、「廢柴」，改為複合判斷，確保主語是「自己」
+    const selfWorthKeywords = ['自己好無用', '自己無用', '覺得自己廢', '自己係垃圾', '我係垃圾', '自己係廢柴', '樣衰', '自卑', '肥', '醜', '比唔上', '討厭自己', '做得好差', '無人鍾意', '做錯晒', '搞砸', '自己無能'];
+    
+    // 動態判斷：必須同時出現「我/自己」以及「無用/廢/垃圾等」
+    const isSelfDeprecating = selfWorthKeywords.some(kw => lowerText.includes(kw)) || 
+                              ((lowerText.includes('我') || lowerText.includes('自己')) && (lowerText.includes('無用') || lowerText.includes('冇用') || lowerText.includes('廢') || lowerText.includes('垃圾') || lowerText.includes('廢柴')));
 
-【重要行為準則】：
-當學生詢問關於「出路、找資料」或「SEN、評估、IQ測試、特殊學習障礙、欺凌、情緒求助、家庭問題、性健康」等具體支援問題時：
-1. 立即停止反問式引導。
-2. 根據下方的「內置支援知識庫」，直接給予「具體、實質且針對性」的香港官方資源。
-3. 你的回覆中，必須在 "animationType" 填寫 "resource"，並從下方清單中挑選最精準對應的一個，寫入 "resourceName" 與 "resourceUrl"：
+    if (isSelfDeprecating) {
+        return {
+            level: "yellow",
+            aiReply: pick([
+                "聽到你咁樣貶低自己，我好心痛。大腦有時會犯「過度類化」或者「情緒化推理」嘅錯——因為依家覺得挫敗，就全盤否定自己。記住，你嘅存在本身就是足夠好 (You are good enough)。一齊玩下「大腦假新聞查核」拆穿佢哋啦！",
+                "覺得自己處處比唔上人，嗰種自卑感真係好沉重。但社會定下嘅標準，唔代表係唯一嘅真理。試下退後一步諗下，你有冇試過做好過一啲事？哪怕係好細微嘅事？"
+            ]),
+            animationType: pick(["fakenews", "none"]), // 降低工具頻率
+            quickReplies: ["我都想接納自己", "之前有被讚過嘅...", "點解人哋咁叻"]
+        };
+    }
 
-[SEN 與 專業評估]
-- 衞生署 兒童體能智力測驗服務 -> "https://www.dhcas.gov.hk/"
-- 協康會 Heep Hong Society -> "https://www.heephong.org/"
-- 香港特殊學習障礙協會 (HKASLD) -> "https://www.asld.org.hk/"
-- 教育局 融情 SEN 支援 -> "https://sense.edb.gov.hk/"
+    // 5.5 【捕捉極端字眼 -> CBT 識別認知偏差】(從 V6.0 結合)
+    // 心理學策略：非黑即白 (All-or-Nothing)、災難化 (Catastrophizing)、讀心術 (Mind Reading)
+    const extremeKeywords = ['一定係', '全部都', '永遠都', '肯定係', '冇可能', '徹底', '針對我', '大家都憎我', '一定會死', '實死'];
+    if (extremeKeywords.some(kw => lowerText.includes(kw))) {
+        return {
+            level: "yellow",
+            aiReply: pick([
+                "我留意到你用咗一啲比較絕對嘅字眼（例如：一定、全部、永遠）。喺 CBT 入面，呢個可能係大腦跌入咗『非黑即白 (All-or-Nothing)』或者『災難化』嘅陷阱。試下退後一步：有冇咩客觀證據，係可以推翻你呢個最壞嘅猜測？",
+                "當我哋情緒好滿嘅時候，好容易跌入『讀心術 (Mind Reading)』嘅偏差，即係覺得『冇證據但我肯定人哋係咁諗我』。不如我哋試下將『主觀感受』同『客觀事實』分開？對方實際上做咗咩動作或講咗咩？"
+            ]),
+            animationType: "none", // 純對話引導
+            quickReplies: ["其實我都係估估下", "但佢個樣真係咁", "點樣分開事實同感受？"]
+        };
+    }
 
-[情緒與危機支援]
-- Shall We Talk 精神健康資訊 -> "https://shallwetalk.hk/"
-- Open Up 網上情緒支援平台 -> "https://www.openup.hk/"
-- 撒瑪利亞防止自殺會 -> "https://sbhk.org.hk/"
+    // 6. 【拖延症與沉迷成癮】
+    // 輔導策略：減少自責感、將任務微步化 (Micro-steps)
+    const addictionKeywords = ['拖延', '冇動力', '提唔起勁', '打機', '沉迷', '戒唔到', '成日玩手機', '懶', '溫唔入腦', '專心唔到'];
+    if (addictionKeywords.some(kw => lowerText.includes(kw))) {
+        return {
+            level: "green",
+            aiReply: pick([
+                "「拖延」同「冇動力」好多時唔係因為你懶，而係因為內心對任務感到焦慮或者怕失敗，大腦為咗保護你先去逃避。試吓原諒自己嘅拖延，然後將大目標切碎，應承自己只專注做 5 分鐘就好！",
+                "沉迷打機或者手機，有時係大腦為咗短暫逃離現實痛苦而索取多巴胺。唔好因為咁樣而太過責怪自己，自責只會令你更想逃避。如果覺得失去咗控制感，一齊做一次「五感著陸」返回當下啦。"
+            ]),
+            animationType: pick(["none", "grounding"]), // 工具 7: 五感著陸
+            quickReplies: ["真係成日怕做錯", "點樣先可以專心？", "我想試下著陸"]
+        };
+    }
 
-[生涯規劃與升學]
-- 職業訓練局 VTC 官網 -> "https://www.vtc.edu.hk/"
-- 香港知專設計學院 HKDI -> "https://www.hkdi.edu.hk/"
-- 香港專業教育學院 IVE -> "https://www.ive.edu.hk/"
-- 大學聯招 JUPAS 官網 -> "https://www.jupas.edu.hk/"
-- Concourse 自資專上課程導航 -> "https://www.concourse.org.hk/"
+    // 7. 【學業與考試壓力】
+    // 輔導策略：去災難化 (De-catastrophizing)
+    const studyKeywords = ['讀書', '考試', '溫書', '成績', '測驗', '壓力大', 'dse', '退步', '好大壓力', '溫極都唔識', '肥佬', '老師', '學校', '校長', '功課', '教授'];
+    if (studyKeywords.some(kw => lowerText.includes(kw))) {
+        return {
+            level: "yellow",
+            aiReply: pick([
+                "學校、功課或者老師嘅評價確實令人好有壓迫感，大腦很容易跳入『表現差 = 人生完蛋』嘅災難化思考。但成績同別人嘅話語絕對定義唔到你嘅全部價值。如果腦袋一直轉唔停，不如一齊深呼吸幾下，拉回理智線？",
+                "見到你為咗學業或學校嘅事咁煩惱，我真係好想拍拍你膊頭。其實你已經好努力面對緊。今晚不如容許自己放低一下，大腦要有足夠休息先可以應付到挑戰㗎。"
+            ]),
+            animationType: pick(["none", "none", "breathe"]), // 降低工具彈出
+            quickReplies: ["我想試下深呼吸", "好怕令屋企人失望", "覺得好委屈"]
+        };
+    }
 
-[家庭、欺凌與多元]
-- 青協 青年違法防治中心 -> "https://cpc.hkfyg.org.hk/"
-- 社會福利署 家庭支援服務 -> "https://www.swd.gov.hk/"
-- 家計會 (FPAHK) -> "https://www.famplan.org.hk/"
+    // 8. 【人際欺凌與孤獨感】
+    // 輔導策略：外化問題 (Externalizing the problem)、建立內在安全基地
+    const bullyingKeywords = ['欺凌', '杯葛', '恰我', '蝦我', '排擠', '壞話', '孤立', '是非', '朋友', '吵架', '無朋友', '孤獨'];
+    if (bullyingKeywords.some(kw => lowerText.includes(kw))) {
+        return {
+            level: "yellow",
+            aiReply: pick([
+                "俾人排擠或者覺得自己好孤獨，嗰種委屈同被遺棄嘅感覺真係好痛。請你堅定咁話俾自己聽：被針對或者未遇到啱嘅朋友，絕對唔代表你有問題！如果覺得好嬲，試下用「推牆釋放法」發洩出嚟先！",
+                "同朋友有誤會或者俾人喺背後講壞話，心入面實好受傷。別人嘅嘴巴我哋控制唔到，但我哋可以控制點樣保護自己。試下用「蝴蝶擁抱」雙手交替拍拍自己膊頭，俾自己一個大大嘅擁抱。"
+            ]),
+            animationType: pick(["wallpush", "butterfly"]), // 工具 5: 推牆釋放, 工具 6: 蝴蝶擁抱
+            quickReplies: ["覺得好委屈", "點解佢哋要咁對我", "我想推牆發洩"]
+        };
+    }
 
-【JSON 輸出格式要求】：
-{
-  "level": "green" | "yellow" | "red",
-  "aiReply": "字數在 30-65 字以內",
-  "animationType": "resource" | "breathe" | "music" | "scribble" | "grounding" | "stream" | "fakenews" | "rpg" | "wallpush" | "shredder" | "butterfly" | "card" | "none",
-  "resourceName": "選填",
-  "resourceUrl": "選填",
-  "quickReplies": ["想了解評估", "想聊慢講心情"]
+    // 9. 【家庭問題與管教】
+    // 輔導策略：情感抽離 (Emotional Detachment)、劃清心理界線
+    const familyKeywords = ['屋企', '父母', '老豆', '媽咪', '阿爸', '阿媽', '家嘈屋閉', '離婚', '偏心', '家長', '家人'];
+    if (familyKeywords.some(kw => lowerText.includes(kw))) {
+        return {
+            level: "yellow",
+            aiReply: pick([
+                "屋企人唔明白自己，甚至將你同人比較，真係會令人好氣餒。你要知道，父母都有佢哋嘅情緒盲點同限制，佢哋嘅說話唔代表你嘅真正價值。如果屋企環境令你好壓抑，打開「安撫寶盒」或者聽下「風雨聲」，為自己建立一個心理結界。",
+                "屋企發生變故（例如嘈交、分開）對你嘅影響一定好大，但請記住，大人嘅問題唔係你嘅責任。如果覺得好嬲又好無力，試下用「塗鴉畫板」將嗰份屈結無保留咁畫出嚟。"
+            ]),
+            animationType: pick(["hopebox", "rain_sound", "scribble"]), // 工具 3: 安撫寶盒, 工具 2: 風雨聲, 工具 12: 塗鴉畫板
+            quickReplies: ["佢哋根本唔明", "覺得好煩好想走", "我想聽風雨聲"]
+        };
+    }
+
+    // 10. 【戀愛與性別認同】
+    // 輔導策略：正常化 (Normalizing)、情緒盛載 (Containment)
+    const loveKeywords = ['拍拖', '分手', '鍾意', '暗戀', '失戀', '男朋友', '女朋友', '表白', '性向', 'gay', 'les', '出櫃'];
+    if (loveKeywords.some(kw => lowerText.includes(kw))) {
+        return {
+            level: "green",
+            aiReply: pick([
+                "感情、性向同性別認同嘅探索，係成長中一段好珍貴但有時好煎熬嘅路。無論你鍾意咩性別，你最真實嘅模樣就係最美好嘅。如果失戀或者覺得心痛，容許自己傷心一下，篤下「紓壓泡泡紙」慢慢發洩下。",
+                "唔知道對方點諗，心入面一定好多不安同患得患失。大腦有時會製造好多「讀心術（覺得自己估到對方諗咩）」嘅假象，不如一齊玩下「大腦假新聞查核」，拆解下你心入面嘅戀愛擔憂？"
+            ]),
+            animationType: pick(["bubble", "fakenews"]), // 工具 4: 戳泡泡紙, 工具 10: 大腦假新聞
+            quickReplies: ["真係好掛住佢", "我唔知點同人講", "覺得好痛"]
+        };
+    }
+
+    // 11. 【未來生涯與迷惘】
+    // 輔導策略：打破非黑即白思考 (Black-and-White Thinking)
+    const careerKeywords = ['迷惘', '未來', '前途', '唔知想點', '升學', 'jupas', 'vtc', '出路', '大學', '科目', '夢想', '乞食'];
+    if (careerKeywords.some(kw => lowerText.includes(kw))) {
+        return {
+            level: "green",
+            aiReply: pick([
+                "對未來感到迷惘係青春期必經嘅階段。社會成日要我哋盡早定死一個目標，但其實人生唔係只有『成功』同『乞食』兩條路。慢慢嚟，不如打開「RPG面板」，當人生係一場探索遊戲？",
+                "擔心前途同出路好正常，每個人嘅花期都唔同，唔需要因為人哋行得快而焦慮。小樹洞幫你整理好香港官方嘅升學資訊，點擊下方連結慢慢睇，總會搵到適合你嘅路。"
+            ]),
+            animationType: pick(["rpg_panel", "resource"]), // 工具 11: RPG面板
+            resourceName: "自資專上教育資訊平台 (Concourse)",
+            resourceUrl: "https://www.concourse.org.hk/",
+            quickReplies: ["我想睇下RPG面板", "覺得未來好灰暗", "多謝你"]
+        };
+    }
+
+    // 12. 【焦慮/恐慌發作】
+    // 輔導策略：生理著陸技巧 (Somatic Grounding)
+    const panicKeywords = ['驚', '震', '唞唔到氣', '呼吸唔到', '心跳好快', '恐慌', '好驚', '失控', '想嘔'];
+    if (panicKeywords.some(kw => lowerText.includes(kw))) {
+        return {
+            level: "red",
+            aiReply: "我喺度陪住你！你依家可能經歷緊恐慌或焦慮發作，身體出現心跳加速同唞唔到氣係好真實嘅感覺，但這只係大腦嘅警報系統暫時失靈，你而家好安全，呢種感覺好快會退卻！請你立刻跟住畫面上嘅圓圈，我哋一齊做「4-4-4深呼吸」！",
+            animationType: "breathe", // 工具 1: 4-4-4 呼吸
+            quickReplies: ["我跟住做緊", "仲係好驚", "幫我打開安撫寶盒"]
+        };
+    }
+
+    // 13. 【憤怒與情緒失控】
+    // 輔導策略：情緒疏導、尋找次級情緒 (Secondary Emotion) 下的真實脆弱
+    const angryKeywords = ['嬲', '燥', '激死', '痴線', '發脾氣', '火大', '好憎', '打人', '崩潰', '爆發'];
+    if (angryKeywords.some(kw => lowerText.includes(kw))) {
+        return {
+            level: "yellow",
+            aiReply: pick([
+                "我完全感受到你字裡行間嘅怒火！憤怒好多時係因為我哋覺得受傷或者被誤解。與其將啲火屈喺心入面，不如企起身，用盡全力玩一次「推牆釋放法」，將身體積聚嘅能量推走先！",
+                "遇到啲極度唔公平或者荒謬嘅事，真係會令人火冒三丈！憤怒係一股好大嘅能量，你可以喺呢度盡情打字鬧出嚟，或者用「煩惱碎紙機」狠狠地將嗰個人或者嗰件事碎成碎片，我哋慢慢拆解！"
+            ]),
+            animationType: pick(["wallpush", "shredder"]), // 工具 5: 推牆釋放, 工具 9: 碎紙機
+            quickReplies: ["我想推牆發洩", "我想碎咗佢", "真係好痴線"]
+        };
+    }
+
+    // 14. 【情緒低落與失眠】
+    // 輔導策略：同理陪伴、打破抑鬱螺旋 (Depressive Spiral)
+    const moodKeywords = ['焦慮', '抑鬱', '喊', '訓唔著', '失眠', '好攰', '辛苦', '灰', '唔開心', '心累'];
+    if (moodKeywords.some(kw => lowerText.includes(kw))) {
+        return {
+            level: "yellow",
+            aiReply: pick([
+                "連日嘅情緒低落或者失眠，就好似心靈感冒咗一樣，周圍嘅顏色都好似變灰咗。肯講出嚟已經用咗你好大嘅力氣！我強烈建議你去 Open噏 網上輔導搵專業人士傾下，俾佢哋接住你嘅疲憊。",
+                "失眠同低落真係令人好無力。大腦喺夜晚特別容易重播唔開心嘅事。不如打開「安撫寶盒」或者聽住「風雨聲」，抱住一個軟熟嘅攬枕，溫柔地話俾自己聽：『今日已經完結，就算有未解決嘅事，都可以留返聽日先算』。"
+            ]),
+            animationType: pick(["resource", "hopebox", "rain_sound"]), // 工具 3: 安撫寶盒, 工具 2: 風雨聲
+            resourceName: "Open噏 24小時網上情緒支援",
+            resourceUrl: "https://www.openup.hk/",
+            quickReplies: ["我會試下求助", "我想聽風雨聲", "真係好攰"]
+        };
+    }
+
+    // 15. 【信任危機、背叛與出軌】 (保留自V6.0)
+    // 心理學策略：CBT 拆解「過度類化 (Overgeneralization)」與創傷接納
+    const betrayalKeywords = ['出軌', '偷食', '第三者', '綠帽', '背叛', '呃我', '無信心', '呃人', '唔信男人', '唔信女人'];
+    if (betrayalKeywords.some(kw => lowerText.includes(kw))) {
+        return {
+            level: "yellow",
+            aiReply: pick([
+                "經歷背叛，仲要係身邊親近嘅人，嗰種被撕裂嘅痛同震驚真係難以形容。心理學上，當我哋受過重創，大腦為咗保護我哋，好容易會產生『過度類化』——例如覺得『一次被背叛 = 所有人都信唔過』。你依家失去信心係好正常嘅防禦機制，俾啲時間自己慢慢療傷。",
+                "俾人呃嘅感覺真係好難受。但請記住，對方出軌係佢嘅道德缺失，絕對唔代表你唔夠好。如果滿腦子都係亂糟糟嘅畫面，不如我哋打開『思維記錄表』，將「情緒」同「事實」拆解一下？"
+            ]),
+            animationType: pick(["none", "cbt_record"]),
+            quickReplies: ["我真係好崩潰", "覺得自己好蠢", "我想試下拆解情緒"]
+        };
+    }
+
+    // 16. 【無意義短句/打招呼/未知話題處理 (Fallback) - 結合聆聽與CBT/SFBT】
+    // 輔導策略：開放式問句 (Open-ended questions)、積極聆聽 (Active Listening)、SFBT 量尺問句、CBT 思維記錄
+    
+    // 處理同意/繼續對話的短句 (避免回答「好」時錯誤彈出工具)
+    // 修復：排除「好煩」等負面詞語
+    const agreementKeywords = ['好', 'ok', 'yes', '係', '知道', '明白', '好呀', '好啦', '試下', '好的', '嗯'];
+    const isAgreement = agreementKeywords.includes(lowerText.trim()) || 
+                        (lowerText.length <= 4 && agreementKeywords.some(kw => lowerText.includes(kw)) && !lowerText.includes('煩'));
+    
+    if (isAgreement) {
+        return {
+            level: "green",
+            aiReply: pick([
+                "收到。我準備好啦，你可以隨時開始，慢慢用你嘅節奏講出嚟。",
+                "嗯嗯，我喺度。跟住落嚟發生咗咩事？或者你諗到啲咩？",
+                "好嘅。呢度好安全，你可以將心入面嗰啲感覺毫無保留咁打出嚟，我會一直聽緊。"
+            ]),
+            animationType: "none", // 絕對不彈出工具，純傾聽
+            quickReplies: ["其實係咁嘅...", "我唔知由邊度講起"]
+        };
+    }
+
+    const greetingKeywords = ['hi', 'hello', '你好', '早晨', '早安', '午安', '晚安', '嗨', '喂', '謝謝', '多謝', '唔該', 'thank'];
+    
+    // 如果是很短的句子且不是打招呼，鼓勵多說一點 (Active Listening)
+    if (text.length <= 4 && !greetingKeywords.some(kw => lowerText.includes(kw))) {
+        return {
+            level: "green",
+            aiReply: pick([
+                "嗯嗯，我聽緊。可以試下講多幾句嗎？小樹洞想了解多啲你嘅感受。",
+                "慢慢講，唔急，我喺度陪你。",
+                "然後呢？發生咗咩事令你有呢個感覺？"
+            ]),
+            animationType: "none", // 移除了泡泡紙和抽卡，改為純傾聽
+            quickReplies: ["其實係咁嘅...", "我唔知點講好"]
+        };
+    }
+    
+    // 打招呼
+    if (greetingKeywords.some(kw => lowerText === kw || lowerText.includes(kw) && lowerText.length < 10)) {
+        return {
+            level: "green",
+            aiReply: "你好呀！我係小樹洞。無論你係開心、遇到諗唔通嘅死胡同，定係被『大腦假新聞』困擾，隨時可以同我講，我哋一齊用心理學嘅角度拆解佢！你今日心情點呀？",
+            animationType: "none",
+            quickReplies: ["有啲嘢諗唔通", "今日好攰", "我想抽卡"]
+        };
+    }
+
+    // 終極 Fallback - 綜合心理學引導模式
+    return {
+        level: "green",
+        aiReply: pick([
+            // CBT: 捕捉自動思維
+            "聽你講完，我感受到呢件事真係對你影響好大。如果我哋用 CBT（認知行為治療）嘅角度去睇，你覺得呢一刻你腦海中『自動彈出嚟嘅第一個念頭 (Automatic Thought)』係咩？",
+            // SFBT: 量尺問句 (Scaling Question)
+            "明白。面對呢個情況，如果 0 分係完全平靜，10 分係情緒爆發嘅極點，你覺得依家嘅情緒大約喺幾多分？試下幫呢個情緒貼上一個明確嘅標籤（例如：焦慮、委屈、憤怒）。",
+            // CBT: 區分事實與感受
+            "呢件事的確令人好困擾。為咗幫你理清思緒，不如我哋試下將成件事拆開兩部分：邊啲係『發生咗嘅客觀事實』？邊啲係你大腦產生嘅『猜測或者感受』？",
+            // 結合 CBT 思維記錄表工具
+            "收到你嘅分享。人在面對複雜情況時，好容易會有思維盲點，跌入情緒漩渦。如果你準備好，我哋可以一齊打開『CBT 思維記錄表』，一步步搵出支持同反對呢個煩惱嘅證據？",
+            // 表達性藝術治療 / 釋放 (工具 12: 塗鴉畫板)
+            "我明白要用文字表達心入面所有感受真係唔容易，有時講極都好似爭啲嘢。不如試下用「塗鴉畫板」將嗰種亂糟糟嘅感覺畫出嚟，唔使靚，畫到幾亂都得。"
+        ]),
+        animationType: pick(["none", "none", "none", "cbt_record", "scribble"]),
+        quickReplies: ["我試下拆解", "情緒大概有8分", "其實我仲係好亂", "我想用畫板"]
+    };
 }
-`;
+        function handleChatSubmit(event) {
+            event?.preventDefault(); 
+            const inputEl = document.getElementById('chat-input'); 
+            const text = inputEl.value.trim(); 
+            if (!text) return;
+            
+            const onboardingScale = document.getElementById('onboarding-scale'); 
+            if (onboardingScale) onboardingScale.classList.add('hidden');
 
-        async function handleChatSubmit(event) {
-            event?.preventDefault(); const inputEl = document.getElementById('chat-input'); const text = inputEl.value.trim(); if (!text) return;
-            const onboardingScale = document.getElementById('onboarding-scale'); if (onboardingScale) onboardingScale.classList.add('hidden');
-
-            const searchKeywords = ['資料', '課程', '升學', '出路', '大學', 'VTC', 'HKDI', 'SPACE', '找', '學校', '科', 'IVE', 'JUPAS', '設計', '評估', 'IQ', '測驗', 'SEN', '障礙', '欺凌', '輔導', '支援', '機構', '熱線'];
-            const isCareerPath = searchKeywords.some(kw => text.toUpperCase().includes(kw.toUpperCase()));
-
-            // --- 攔截器：優先使用本地規則引擎 ---
-            const localMatch = checkLocalRules(text);
-            if (localMatch) {
-                setInputLock(true, false); 
-                appendMessage('student', text); 
-                inputEl.value = '';
-                document.getElementById('typing-indicator').classList.remove('hidden');
-                const chatBox = document.getElementById('chat-box'); chatBox.scrollTop = chatBox.scrollHeight;
-                conversationHistory.push(`User: ${text}`);
-
-                // 模擬 1 秒 AI 打字延遲，然後顯示本地答案
-                setTimeout(() => {
-                    document.getElementById('typing-indicator').classList.add('hidden');
-                    conversationHistory.push(`Model: ${localMatch.aiReply}`);
-                    renderAiResponse(localMatch);
-                    setInputLock(false);
-                }, 1000);
-                return; 
-            }
-            // ------------------------------------
-
-            setInputLock(true, isCareerPath); appendMessage('student', text); inputEl.value = '';
+            setInputLock(true); 
+            appendMessage('student', text); 
+            inputEl.value = '';
             document.getElementById('typing-indicator').classList.remove('hidden');
-            const chatBox = document.getElementById('chat-box'); chatBox.scrollTop = chatBox.scrollHeight;
+            
+            const chatBox = document.getElementById('chat-box'); 
+            chatBox.scrollTop = chatBox.scrollHeight;
             conversationHistory.push(`User: ${text}`);
 
-            try {
-                // 🕵️ 偵測當前是否處於沙盒預覽環境
-                const isPreviewEnv = window.location.protocol === 'blob:' || 
-                                     window.location.hostname.includes('goog') || 
-                                     window.location.hostname.includes('scf.usercontent.goog') ||
-                                     window.location.hostname === '';
+            // 模擬 AI 思考的延遲時間 (1秒 到 1.8秒 之間隨機，提升真實感)
+            const thinkingTime = Math.floor(Math.random() * 800) + 1000;
 
-                let response;
-                const requestPayload = {
-                    contents: [{ parts: [{ text: conversationHistory.join("\n") }] }],
-                    systemInstruction: { parts: [{ text: systemInstructionText }] },
-                    generationConfig: {
-                        temperature: 0.6, responseMimeType: "application/json",
-                        responseSchema: {
-                            type: "OBJECT", properties: { level: { type: "STRING" }, aiReply: { type: "STRING" }, animationType: { type: "STRING" }, resourceName: { type: "STRING" }, resourceUrl: { type: "STRING" }, quickReplies: { type: "ARRAY", items: { type: "STRING" } } }, required: ["level", "aiReply", "animationType"]
-                        }
-                    }
-                };
-
-                if (isPreviewEnv) {
-                    // 🎈 預覽沙盒環境：使用 Direct Client Call 避免無效的 Blob 相對路徑
-                    // 系統會在此自動套用平台注入的對接金鑰
-                    const fallbackModel = "gemini-2.5-flash-preview-09-2025";
-                    const directApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${fallbackModel}:generateContent?key=${apiKey}`;
+            setTimeout(() => {
+                try {
+                    // 直接調用終極本地輔導引擎
+                    const analysis = getCounselorResponse(text);
                     
-                    response = await fetch(directApiUrl, {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(requestPayload)
+                    document.getElementById('typing-indicator').classList.add('hidden');
+                    conversationHistory.push(`Model: ${analysis.aiReply}`); 
+                    renderAiResponse(analysis);
+                } catch (error) {
+                    console.error("引擎內部錯誤:", error);
+                    document.getElementById('typing-indicator').classList.add('hidden');
+                    renderAiResponse({
+                        level: "yellow",
+                        aiReply: "小樹洞剛才稍微打咗個冷震，不過我仲喺度聽緊㗎，可以再講多次嗎？",
+                        animationType: "none",
+                        quickReplies: ["好呀"]
                     });
-                } else {
-                    // 🔒 正式部署環境（Vercel）：安全地呼叫本地後端代理 /api/chat，完全隱藏 API Key
-                    response = await fetch('/api/chat', {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(requestPayload)
-                    });
+                } finally {
+                    setInputLock(false);
                 }
-
-                if (!response.ok) {
-                    throw new Error(`HTTP_ERROR_STATUS_${response.status}`);
-                }
-
-                const result = await response.json();
-                document.getElementById('typing-indicator').classList.add('hidden');
-                
-                let cleanText = result.candidates[0].content.parts[0].text.trim();
-                const firstBrace = cleanText.indexOf('{'); const lastBrace = cleanText.lastIndexOf('}');
-                if (firstBrace !== -1 && lastBrace !== -1) cleanText = cleanText.substring(firstBrace, lastBrace + 1);
-
-                const analysis = JSON.parse(cleanText); conversationHistory.push(`Model: ${analysis.aiReply}`); renderAiResponse(analysis);
-
-            } catch (error) {
-                console.error("AI 錯誤:", error); document.getElementById('typing-indicator').classList.add('hidden');
-                let errorMsg = "樹洞剛才有一點點累了，或是網路不穩，我們繼續聊聊吧？";
-                
-                if (error.message && error.message.includes('401')) {
-                    errorMsg = "⚠️ 後端連線未授權 (401 錯誤)。請確保您已於 Vercel 的 settings 頁面正確配置了名為 GEMINI_API_KEY 的環境變數並重新 Redeploy！";
-                } else if (error.message && error.message.includes('404')) {
-                    errorMsg = "⚠️ 找不到後端通道 (404 錯誤)。請確認您已在 GitHub 內建立並上傳了 api/chat.js 檔案！";
-                } else if (error.message && error.message.includes('URL is not valid')) {
-                    errorMsg = "⚠️ 預覽環境路徑錯誤。小樹洞已修復此問題，請重新載入或下載部署至 Vercel 體驗最安全的雙引擎對話！";
-                }
-                
-                renderAiResponse({ level: "yellow", aiReply: errorMsg, animationType: "none", quickReplies: ["好呀", "沒事"] });
-            } finally { setInputLock(false); }
+            }, thinkingTime);
         }
 
         function initScribbleCanvas(canvasId) {
@@ -1241,7 +1392,12 @@
                 shredder: `<div class="mt-4 bg-orange-50 p-6 rounded-3xl border border-orange-100 flex flex-col items-center text-center"><p class="text-lg text-orange-600 font-bold mb-3"><i class="fa-solid fa-file-prescription mr-2"></i> 煩惱碎紙機</p><button onclick="openToolOverlay('shredder')" class="bg-orange-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-orange-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 開啟碎紙機</button></div>`,
                 stream: `<div class="mt-4 bg-teal-50 p-6 rounded-3xl border border-teal-100 flex flex-col items-center text-center"><p class="text-lg text-teal-600 font-bold mb-3"><i class="fa-solid fa-leaf mr-2"></i> 溪水落葉</p><button onclick="openToolOverlay('stream')" class="bg-teal-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-teal-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 去溪流放走煩惱</button></div>`,
                 quiz: `<div class="mt-4 bg-violet-50 p-6 rounded-3xl border border-violet-100 flex flex-col items-center text-center"><p class="text-lg text-violet-600 font-bold mb-3"><i class="fa-solid fa-clipboard-question mr-2"></i> 生涯性格測驗</p><button onclick="openToolOverlay('quiz')" class="bg-violet-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-violet-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 開始測驗</button></div>`,
-                hopebox: `<div class="mt-4 bg-teal-50 p-6 rounded-3xl border border-teal-100 flex flex-col items-center text-center"><p class="text-lg text-teal-600 font-bold mb-3"><i class="fa-solid fa-box-open mr-2"></i> 虛擬安撫寶盒</p><button onclick="openToolOverlay('hopebox')" class="bg-teal-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-teal-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 打開寶盒</button></div>`
+                hopebox: `<div class="mt-4 bg-teal-50 p-6 rounded-3xl border border-teal-100 flex flex-col items-center text-center"><p class="text-lg text-teal-600 font-bold mb-3"><i class="fa-solid fa-box-open mr-2"></i> 虛擬安撫寶盒</p><button onclick="openToolOverlay('hopebox')" class="bg-teal-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-teal-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 打開寶盒</button></div>`,
+                fakenews: `<div class="mt-4 bg-yellow-50 p-6 rounded-3xl border border-yellow-100 flex flex-col items-center text-center"><p class="text-lg text-yellow-600 font-bold mb-3"><i class="fa-solid fa-newspaper mr-2"></i> 大腦假新聞查核</p><button onclick="openToolOverlay('fakenews')" class="bg-yellow-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-yellow-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 粉碎負面想法</button></div>`,
+                bubble: `<div class="mt-4 bg-blue-50 p-6 rounded-3xl border border-blue-100 flex flex-col items-center text-center"><p class="text-lg text-blue-600 font-bold mb-3"><i class="fa-solid fa-circle-dot mr-2"></i> 紓壓泡泡紙</p><button onclick="openToolOverlay('bubble')" class="bg-blue-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-blue-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 篤破壓力</button></div>`,
+                butterfly: `<div class="mt-4 bg-indigo-50 p-6 rounded-3xl border border-indigo-100 flex flex-col items-center text-center"><p class="text-lg text-indigo-600 font-bold mb-3"><i class="fa-solid fa-hands-holding mr-2"></i> 蝴蝶安全擁抱</p><button onclick="openToolOverlay('butterfly')" class="bg-indigo-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-indigo-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 穩定情緒</button></div>`,
+                grounding: `<div class="mt-4 bg-emerald-50 p-6 rounded-3xl border border-emerald-100 flex flex-col items-center text-center"><p class="text-lg text-emerald-600 font-bold mb-3"><i class="fa-solid fa-shoe-prints mr-2"></i> 五感著陸遊戲</p><button onclick="openToolOverlay('grounding')" class="bg-emerald-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-emerald-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 返回當下</button></div>`,
+                card: `<div class="mt-4 bg-amber-50 p-6 rounded-3xl border border-amber-100 flex flex-col items-center text-center"><p class="text-lg text-amber-600 font-bold mb-3"><i class="fa-solid fa-sun mr-2"></i> 心靈御守抽籤</p><button onclick="openToolOverlay('card')" class="bg-amber-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-amber-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 抽取力量卡</button></div>`
             };
             if (animationTemplates[analysis.animationType]) htmlContent += animationTemplates[analysis.animationType];
             
