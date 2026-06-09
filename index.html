@@ -2,7 +2,7 @@
 <html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>心靈小樹洞 - 學生專屬空間</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -14,18 +14,29 @@
                         warm: { 50: '#fdf8f5', 100: '#fbece1', 200: '#f7d8c4', 300: '#f3c1a3', 400: '#eea77e', 500: '#e89e75', 600: '#d97d4b' },
                         sage: { 50: '#f4fbf7', 100: '#e6f7ed', 200: '#c2edd3', 300: '#86d4a5', 400: '#68c48d', 500: '#5ab27f', 600: '#469b6a' },
                         sky: { 50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc', 400: '#38bdf8', 500: '#0ea5e9' }
+                    },
+                    screens: {
+                        'xs': '480px'
                     }
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght=300;400;500;700;900&display=swap');
-        body { font-family: 'Noto Sans TC', sans-serif; background-color: #f8fafc; overflow-x: hidden; transition: background-color 0.4s, color 0.4s; }
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+        body { 
+            font-family: 'Noto Sans TC', sans-serif; 
+            background-color: #f8fafc; 
+            overflow-x: hidden; 
+            transition: background-color 0.4s, color 0.4s;
+            -webkit-tap-highlight-color: transparent;
+        }
         .fade-in { animation: fadeIn 0.4s ease-out forwards; }
         .slide-up { animation: slideUp 0.3s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* 隱藏滾動條但保持滾動能力 */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
@@ -88,104 +99,108 @@
 
     <!-- 隱私保密免責聲明 -->
     <div id="consent-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-[100] flex items-center justify-center p-4 fade-in">
-        <div class="bg-white max-w-lg w-full rounded-3xl p-8 shadow-2xl border border-slate-100 slide-up">
-            <div class="w-16 h-16 bg-sage-50 rounded-full flex items-center justify-center text-sage-500 mb-6 text-2xl mx-auto shadow-inner"><i class="fa-solid fa-shield-heart"></i></div>
-            <h3 class="text-2xl font-bold text-center text-slate-800 mb-2">歡迎來到安全的小樹洞</h3>
-            <p class="text-base text-center text-slate-500 leading-relaxed mb-6">在開始之前，請了解我們將如何保護與協助你：</p>
-            <div class="space-y-4 mb-8 text-[15px] text-slate-600">
-                <div class="flex gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-100"><i class="fa-solid fa-lock text-sage-500 mt-0.5 text-lg"></i><div><strong class="text-slate-700 block">數據絕對保密</strong>所有的對話與運算都在你的裝置上本地進行，不會上傳到任何雲端。這裡是一個不帶批判、專屬你的抒發空間。</div></div>
-                <div class="flex gap-3 bg-rose-50 p-4 rounded-2xl border border-rose-100"><i class="fa-solid fa-triangle-exclamation text-rose-500 mt-0.5 text-lg"></i><div><strong class="text-rose-700 block">尋求專業協助</strong>雖然小樹洞可以陪伴你，但若你感到無法承受的痛苦，請務必點擊左側求助熱線尋找專業社工。</div></div>
+        <div class="bg-white max-w-lg w-full rounded-3xl p-6 md:p-8 shadow-2xl border border-slate-100 slide-up m-2">
+            <div class="w-14 h-14 bg-sage-50 rounded-full flex items-center justify-center text-sage-500 mb-5 text-2xl mx-auto shadow-inner"><i class="fa-solid fa-shield-heart"></i></div>
+            <h3 class="text-xl md:text-2xl font-bold text-center text-slate-800 mb-2">歡迎來到安全的小樹洞</h3>
+            <p class="text-sm text-center text-slate-500 leading-relaxed mb-5">在開始之前，請了解我們將如何保護與協助你：</p>
+            <div class="space-y-3.5 mb-6 text-[14px] text-slate-600">
+                <div class="flex gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-100"><i class="fa-solid fa-lock text-sage-500 mt-0.5 text-base flex-shrink-0"></i><div><strong class="text-slate-700 block">數據絕對保密</strong>所有的對話與運算都在你的裝置上本地進行，不會上傳到任何雲端。這裡是一個不帶批判、專屬你的抒發空間。</div></div>
+                <div class="flex gap-3 bg-rose-50 p-4 rounded-2xl border border-rose-100"><i class="fa-solid fa-triangle-exclamation text-rose-500 mt-0.5 text-base flex-shrink-0"></i><div><strong class="text-rose-700 block">尋求專業協助</strong>雖然小樹洞可以陪伴你，但若你感到無法承受的痛苦，請務必點擊下方求助熱線尋找專業社工。</div></div>
             </div>
-            <button onclick="closeConsent()" class="w-full bg-gradient-to-r from-sage-500 to-emerald-500 text-white font-bold py-3.5 rounded-2xl hover:opacity-90 transition shadow-lg shadow-sage-200 text-lg">我明白並同意，進入樹洞</button>
+            <button onclick="closeConsent()" class="w-full bg-gradient-to-r from-sage-500 to-emerald-500 text-white font-bold py-3.5 rounded-2xl hover:opacity-90 transition shadow-lg shadow-sage-200 text-base md:text-lg active:scale-[0.98]">我明白並同意，進入樹洞</button>
         </div>
     </div>
 
     <!-- 頂部導航 -->
-    <header class="bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-200 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 lg:px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-sage-400 to-emerald-500 flex items-center justify-center text-white shadow-md"><i class="fa-solid fa-seedling text-lg"></i></div>
-                <h1 class="font-bold text-slate-800 text-lg md:text-xl tracking-wide flex items-center gap-2">心靈小樹洞 <span id="header-student-id" class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full font-mono font-medium border border-slate-200">Std-Local</span></h1>
+    <header class="bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-200 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 md:h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-gradient-to-tr from-sage-400 to-emerald-500 flex items-center justify-center text-white shadow-md"><i class="fa-solid fa-seedling text-base"></i></div>
+                <h1 class="font-bold text-slate-800 text-base md:text-xl tracking-wide flex items-center gap-1.5">心靈小樹洞 <span id="header-student-id" class="text-[10px] md:text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full font-mono font-medium border border-slate-200">Std-Local</span></h1>
             </div>
             <div class="flex items-center gap-2">
-                <button onclick="toggleDarkMode()" class="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition shadow-inner" title="切換深淺色模式">
-                    <i id="dark-mode-icon" class="fa-solid fa-moon text-lg"></i>
+                <button onclick="toggleDarkMode()" class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition shadow-inner" title="切換深淺色模式">
+                    <i id="dark-mode-icon" class="fa-solid fa-moon text-base"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- 主體區域 -->
-    <main class="flex-1 max-w-7xl w-full mx-auto p-4 lg:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
+    <!-- 主體區域（結合行動端優先順序： md:grid-cols-12 高度完全自適應） -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-3 md:p-6 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 relative overflow-hidden">
         
-        <!-- 左側：多功能工具與導航 -->
-        <aside class="lg:col-span-4 space-y-5">
+        <!-- 左側工具包（在手機端小螢幕排在 chatroom 之後，或自適應折疊，md 以上固定在左側） -->
+        <aside class="col-span-1 md:col-span-4 lg:col-span-3.5 xl:col-span-3 space-y-4 md:space-y-5 order-2 md:order-1 overflow-y-auto max-h-[45vh] md:max-h-[calc(100vh-10rem)] pr-1 md:pr-2 no-scrollbar">
+            
             <!-- 1. 每日心靈抽籤 -->
-            <div class="bg-gradient-to-r from-amber-100 to-orange-100 p-5 rounded-3xl shadow-sm border border-amber-200 flex items-center justify-between cursor-pointer hover:shadow-md transition group" onclick="openToolOverlay('card')">
-                <div><h3 class="font-bold text-amber-800 text-base"><i class="fa-solid fa-sun mr-2 animate-spin-slow"></i>今日心靈御守</h3><p class="text-xs text-amber-700 mt-1 font-medium">點擊翻開你的專屬力量肯定句</p></div>
-                <div class="w-12 h-12 bg-white/60 rounded-full flex items-center justify-center text-amber-500 text-2xl shadow-inner group-hover:scale-110 transition-transform"><i class="fa-solid fa-hand-sparkles"></i></div>
+            <div class="bg-gradient-to-r from-amber-100 to-orange-100 p-4 rounded-2xl shadow-sm border border-amber-200 flex items-center justify-between cursor-pointer hover:shadow-md transition group" onclick="openToolOverlay('card')">
+                <div>
+                    <h3 class="font-bold text-amber-800 text-sm md:text-base"><i class="fa-solid fa-sun mr-2 animate-spin-slow"></i>今日心靈御守</h3>
+                    <p class="text-[11px] md:text-xs text-amber-700 mt-0.5 font-medium">點擊翻開你的專屬力量肯定句</p>
+                </div>
+                <div class="w-10 h-10 bg-white/60 rounded-full flex items-center justify-center text-amber-500 text-lg shadow-inner group-hover:scale-110 transition-transform"><i class="fa-solid fa-hand-sparkles"></i></div>
             </div>
 
             <!-- 2. 自我了解與紀錄 -->
-            <div class="bg-white p-5 lg:p-6 rounded-3xl shadow-sm border border-slate-200">
-                <h2 class="text-base font-bold text-slate-800 mb-3"><i class="fa-solid fa-seedling text-emerald-500 mr-2"></i>自我了解與紀錄</h2>
-                <div class="grid grid-cols-2 gap-3">
-                    <button onclick="openToolOverlay('diary')" class="p-3.5 rounded-2xl bg-indigo-50 text-indigo-700 hover:bg-indigo-100 text-[13px] font-bold border border-indigo-100 shadow-sm transition flex flex-col items-center"><i class="fa-solid fa-book-journal-whills mb-2 text-2xl text-indigo-500"></i>心情日記本</button>
-                    <button onclick="openToolOverlay('psychoedu')" class="p-3.5 rounded-2xl bg-amber-50 text-amber-700 hover:bg-amber-100 text-[13px] font-bold border border-amber-100 shadow-sm transition flex flex-col items-center"><i class="fa-solid fa-book-open-reader mb-2 text-2xl text-amber-500"></i>心靈充電站</button>
+            <div class="bg-white p-4 md:p-5 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-sm md:text-base font-bold text-slate-800 mb-3"><i class="fa-solid fa-seedling text-emerald-500 mr-2"></i>自我了解與紀錄</h2>
+                <div class="grid grid-cols-2 gap-2.5">
+                    <button onclick="openToolOverlay('diary')" class="p-3 rounded-xl bg-indigo-50 text-indigo-700 hover:bg-indigo-100 text-xs font-bold border border-indigo-100 shadow-sm transition flex flex-col items-center gap-1.5"><i class="fa-solid fa-book-journal-whills text-xl text-indigo-500"></i>心情日記本</button>
+                    <button onclick="openToolOverlay('psychoedu')" class="p-3 rounded-xl bg-amber-50 text-amber-700 hover:bg-amber-100 text-xs font-bold border border-amber-100 shadow-sm transition flex flex-col items-center gap-1.5"><i class="fa-solid fa-book-open-reader text-xl text-amber-500"></i>心靈充電站</button>
                 </div>
             </div>
 
             <!-- 3. 探索與連結區 -->
-            <div class="bg-white p-5 lg:p-6 rounded-3xl shadow-sm border border-slate-200">
+            <div class="bg-white p-4 md:p-5 rounded-2xl shadow-sm border border-slate-200">
                 <div class="grid grid-cols-1 gap-3">
-                    <button onclick="openToolOverlay('quiz')" class="p-3.5 rounded-2xl bg-violet-50 text-violet-700 hover:bg-violet-100 text-[13px] font-bold border border-violet-100 shadow-sm transition flex flex-col items-center"><i class="fa-solid fa-clipboard-question mb-2 text-2xl text-violet-500"></i>10題專業生涯測驗</button>
+                    <button onclick="openToolOverlay('quiz')" class="p-3.5 rounded-xl bg-violet-50 text-violet-700 hover:bg-violet-100 text-xs font-bold border border-violet-100 shadow-sm transition flex flex-col items-center gap-1.5 w-full"><i class="fa-solid fa-clipboard-question text-xl text-violet-500"></i>10題專業生涯測驗</button>
                 </div>
             </div>
 
             <!-- 4. 快速情緒急救包 -->
-            <div class="bg-white p-5 lg:p-6 rounded-3xl shadow-sm border border-slate-200">
-                <h2 class="text-base font-bold text-slate-800 mb-3 flex items-center gap-2"><i class="fa-solid fa-toolbox text-sage-500"></i> 快速情緒急救包</h2>
+            <div class="bg-white p-4 md:p-5 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-sm md:text-base font-bold text-slate-800 mb-3 flex items-center gap-2"><i class="fa-solid fa-toolbox text-sage-500"></i> 快速情緒急救包</h2>
                 <div class="relative min-h-[140px]">
-                    <div id="toolkit-page-1" class="grid grid-cols-3 gap-2.5 transition-all duration-300 fade-in">
-                        <button onclick="openToolOverlay('breathe')" class="py-2.5 rounded-xl bg-sky-50 text-sky-700 hover:bg-sky-100 hover:-translate-y-0.5 text-xs font-bold border border-sky-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-wind mb-1 text-xl text-sky-500"></i>4-4-4 呼吸</button>
-                        <button onclick="toggleWhiteNoise()" id="btn-noise" class="py-2.5 rounded-xl bg-slate-50 text-slate-700 hover:bg-slate-100 hover:-translate-y-0.5 text-xs font-bold border border-slate-200 transition flex flex-col items-center justify-center"><i id="icon-noise" class="fa-solid fa-headphones mb-1 text-xl text-slate-500"></i><span id="text-noise">風雨聲</span></button>
-                        <button onclick="openToolOverlay('hopebox')" class="py-2.5 rounded-xl bg-teal-50 text-teal-700 hover:bg-teal-100 hover:-translate-y-0.5 text-xs font-bold border border-teal-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-box-open mb-1 text-xl text-teal-500"></i>安撫寶盒</button>
-                        <button onclick="openToolOverlay('bubble')" class="py-2.5 rounded-xl bg-blue-50 text-blue-700 hover:bg-blue-100 hover:-translate-y-0.5 text-xs font-bold border border-blue-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-circle-dot mb-1 text-xl text-blue-500"></i>戳泡泡紙</button>
-                        <button onclick="openToolOverlay('wallpush')" class="py-2.5 rounded-xl bg-red-50 text-red-700 hover:bg-red-100 hover:-translate-y-0.5 text-xs font-bold border border-red-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-person-walking-arrow-right mb-1 text-xl text-red-500"></i>推牆釋放</button>
-                        <button onclick="openToolOverlay('butterfly')" class="py-2.5 rounded-xl bg-indigo-50 text-indigo-700 hover:bg-indigo-100 hover:-translate-y-0.5 text-xs font-bold border border-indigo-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-hands-holding mb-1 text-xl text-indigo-500"></i>蝴蝶擁抱</button>
+                    <div id="toolkit-page-1" class="grid grid-cols-3 gap-2 transition-all duration-300 fade-in">
+                        <button onclick="openToolOverlay('breathe')" class="py-2.5 rounded-xl bg-sky-50 text-sky-700 hover:bg-sky-100 hover:-translate-y-0.5 text-xs font-bold border border-sky-100 transition flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-wind text-lg text-sky-500"></i>4-4-4 呼吸</button>
+                        <button onclick="toggleWhiteNoise()" id="btn-noise" class="py-2.5 rounded-xl bg-slate-50 text-slate-700 hover:bg-slate-100 hover:-translate-y-0.5 text-xs font-bold border border-slate-200 transition flex flex-col items-center justify-center gap-1"><i id="icon-noise" class="fa-solid fa-headphones text-lg text-slate-500"></i><span id="text-noise" class="text-[10px] md:text-[11px]">風雨聲</span></button>
+                        <button onclick="openToolOverlay('hopebox')" class="py-2.5 rounded-xl bg-teal-50 text-teal-700 hover:bg-teal-100 hover:-translate-y-0.5 text-xs font-bold border border-teal-100 transition flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-box-open text-lg text-teal-500"></i>安撫寶盒</button>
+                        <button onclick="openToolOverlay('bubble')" class="py-2.5 rounded-xl bg-blue-50 text-blue-700 hover:bg-blue-100 hover:-translate-y-0.5 text-xs font-bold border border-blue-100 transition flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-circle-dot text-lg text-blue-500"></i>戳泡泡紙</button>
+                        <button onclick="openToolOverlay('wallpush')" class="py-2.5 rounded-xl bg-red-50 text-red-700 hover:bg-red-100 hover:-translate-y-0.5 text-xs font-bold border border-red-100 transition flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-person-walking-arrow-right text-lg text-red-500"></i>推牆釋放</button>
+                        <button onclick="openToolOverlay('butterfly')" class="py-2.5 rounded-xl bg-indigo-50 text-indigo-700 hover:bg-indigo-100 hover:-translate-y-0.5 text-xs font-bold border border-indigo-100 transition flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-hands-holding text-lg text-indigo-500"></i>蝴蝶擁抱</button>
                     </div>
-                    <div id="toolkit-page-2" class="grid grid-cols-3 gap-2.5 transition-all duration-300 fade-in hidden">
-                        <button onclick="openToolOverlay('grounding')" class="py-2.5 rounded-xl bg-emerald-50 text-emerald-700 hover:bg-emerald-100 hover:-translate-y-0.5 text-xs font-bold border border-emerald-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-shoe-prints mb-1 text-xl text-emerald-500"></i>五感著陸</button>
-                        <button onclick="openToolOverlay('stream')" class="py-2.5 rounded-xl bg-cyan-50 text-cyan-700 hover:bg-cyan-100 hover:-translate-y-0.5 text-xs font-bold border border-cyan-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-leaf mb-1 text-xl text-cyan-500"></i>溪水落葉</button>
-                        <button onclick="openToolOverlay('shredder')" class="py-2.5 rounded-xl bg-orange-50 text-orange-700 hover:bg-orange-100 hover:-translate-y-0.5 text-xs font-bold border border-orange-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-file-prescription mb-1 text-xl text-orange-500"></i>碎紙機</button>
-                        <button onclick="openToolOverlay('fakenews')" class="py-2.5 rounded-xl bg-yellow-50 text-yellow-700 hover:bg-yellow-100 hover:-translate-y-0.5 text-xs font-bold border border-yellow-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-newspaper mb-1 text-xl text-yellow-500"></i>大腦假新聞</button>
-                        <button onclick="openToolOverlay('rpg')" class="py-2.5 rounded-xl bg-purple-50 text-purple-700 hover:bg-purple-100 hover:-translate-y-0.5 text-xs font-bold border border-purple-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-gamepad mb-1 text-xl text-purple-500"></i>RPG面板</button>
-                        <button onclick="openToolOverlay('scribble')" class="py-2.5 rounded-xl bg-rose-50 text-rose-700 hover:bg-rose-100 hover:-translate-y-0.5 text-xs font-bold border border-rose-100 transition flex flex-col items-center justify-center"><i class="fa-solid fa-palette mb-1 text-xl text-rose-500"></i>塗鴉畫板</button>
+                    <div id="toolkit-page-2" class="grid grid-cols-3 gap-2 transition-all duration-300 fade-in hidden">
+                        <button onclick="openToolOverlay('grounding')" class="py-2.5 rounded-xl bg-emerald-50 text-emerald-700 hover:bg-emerald-100 hover:-translate-y-0.5 text-xs font-bold border border-emerald-100 transition flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-shoe-prints text-lg text-emerald-500"></i>五感著陸</button>
+                        <button onclick="openToolOverlay('stream')" class="py-2.5 rounded-xl bg-cyan-50 text-cyan-700 hover:bg-cyan-100 hover:-translate-y-0.5 text-xs font-bold border border-cyan-100 transition flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-leaf text-lg text-cyan-500"></i>溪水落葉</button>
+                        <button onclick="openToolOverlay('shredder')" class="py-2.5 rounded-xl bg-orange-50 text-orange-700 hover:bg-orange-100 hover:-translate-y-0.5 text-xs font-bold border border-orange-100 transition flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-file-prescription text-lg text-orange-500"></i>碎紙機</button>
+                        <button onclick="openToolOverlay('fakenews')" class="py-2.5 rounded-xl bg-yellow-50 text-yellow-700 hover:bg-yellow-100 hover:-translate-y-0.5 text-xs font-bold border border-yellow-100 transition flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-newspaper text-lg text-yellow-500"></i>大腦假新聞</button>
+                        <button onclick="openToolOverlay('rpg')" class="py-2.5 rounded-xl bg-purple-50 text-purple-700 hover:bg-purple-100 hover:-translate-y-0.5 text-xs font-bold border border-purple-100 transition flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-gamepad text-lg text-purple-500"></i>RPG面板</button>
+                        <button onclick="openToolOverlay('scribble')" class="py-2.5 rounded-xl bg-rose-50 text-rose-700 hover:bg-rose-100 hover:-translate-y-0.5 text-xs font-bold border border-rose-100 transition flex flex-col items-center justify-center gap-1"><i class="fa-solid fa-palette text-lg text-rose-500"></i>塗鴉畫板</button>
                     </div>
                 </div>
-                <div class="flex justify-center items-center gap-2 mt-4 pt-3 border-t border-slate-100">
+                <div class="flex justify-center items-center gap-2 mt-3 pt-3 border-t border-slate-100">
                     <button id="dot-page-1" onclick="switchToolkitPage(1)" class="w-2.5 h-2.5 rounded-full bg-sage-500 hover:scale-125 transition-all shadow-sm"></button>
                     <button id="dot-page-2" onclick="switchToolkitPage(2)" class="w-2.5 h-2.5 rounded-full bg-slate-200 hover:bg-sage-300 hover:scale-125 transition-all shadow-sm"></button>
                 </div>
             </div>
 
             <!-- 傾訴範疇 -->
-            <div class="bg-white p-5 lg:p-6 rounded-3xl shadow-sm border border-slate-200">
+            <div class="bg-white p-4 md:p-5 rounded-2xl shadow-sm border border-slate-200">
                 <div class="flex items-center justify-between mb-3">
-                    <h2 class="text-base font-bold text-slate-800">選擇傾訴範疇</h2>
-                    <button onclick="startNewCase()" class="text-[11px] text-indigo-600 hover:bg-indigo-50 px-2.5 py-1.5 rounded-lg transition font-bold"><i class="fa-solid fa-arrows-rotate mr-1"></i>新個案</button>
+                    <h2 class="text-sm md:text-base font-bold text-slate-800">選擇傾訴範疇</h2>
+                    <button onclick="startNewCase()" class="text-[10px] md:text-[11px] text-indigo-600 hover:bg-indigo-50 px-2 py-1 rounded-lg transition font-bold"><i class="fa-solid fa-arrows-rotate mr-1"></i>新個案</button>
                 </div>
                 <div class="grid grid-cols-4 gap-1.5">
-                    <button onclick="setCategory('家庭')" class="py-2 rounded-xl bg-warm-50 text-warm-700 hover:bg-warm-100 text-[10px] font-bold transition"><i class="fa-solid fa-house-chimney mb-1 block"></i>家庭</button>
-                    <button onclick="setCategory('朋輩')" class="py-2 rounded-xl bg-sky-50 text-sky-700 hover:bg-sky-100 text-[10px] font-bold transition"><i class="fa-solid fa-users mb-1 block"></i>朋輩</button>
-                    <button onclick="setCategory('生涯')" class="py-2 rounded-xl bg-indigo-50 text-indigo-700 hover:bg-indigo-100 text-[10px] font-bold transition"><i class="fa-solid fa-road mb-1 block"></i>生涯</button>
-                    <button onclick="setCategory('情緒')" class="py-2 rounded-xl bg-rose-50 text-rose-700 hover:bg-rose-100 text-[10px] font-bold transition"><i class="fa-solid fa-cloud-rain mb-1 block"></i>情緒</button>
+                    <button onclick="setCategory('家庭')" class="py-2 rounded-xl bg-warm-50 text-warm-700 hover:bg-warm-100 text-[10px] md:text-xs font-bold transition flex flex-col items-center"><i class="fa-solid fa-house-chimney mb-1"></i>家庭</button>
+                    <button onclick="setCategory('朋輩')" class="py-2 rounded-xl bg-sky-50 text-sky-700 hover:bg-sky-100 text-[10px] md:text-xs font-bold transition flex flex-col items-center"><i class="fa-solid fa-users mb-1"></i>朋輩</button>
+                    <button onclick="setCategory('生涯')" class="py-2 rounded-xl bg-indigo-50 text-indigo-700 hover:bg-indigo-100 text-[10px] md:text-xs font-bold transition flex flex-col items-center"><i class="fa-solid fa-road mb-1"></i>生涯</button>
+                    <button onclick="setCategory('情緒')" class="py-2 rounded-xl bg-rose-50 text-rose-700 hover:bg-rose-100 text-[10px] md:text-xs font-bold transition flex flex-col items-center"><i class="fa-solid fa-cloud-rain mb-1"></i>情緒</button>
                 </div>
             </div>
 
             <!-- 求助熱線 -->
-            <div class="bg-white p-5 rounded-3xl shadow-sm border border-slate-200">
-                <h3 class="font-bold text-slate-800 text-sm mb-2"><i class="fa-solid fa-phone-volume text-rose-500 mr-2"></i>專業求助與預約社工</h3>
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+                <h3 class="font-bold text-slate-800 text-xs md:text-sm mb-2"><i class="fa-solid fa-phone-volume text-rose-500 mr-2"></i>專業求助與預約社工</h3>
                 <div class="space-y-1.5">
                     <a href="https://www.openup.hk/" target="_blank" class="block w-full py-2 px-3 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-xl text-xs font-bold transition text-center border border-rose-100"><i class="fa-solid fa-comment-dots mr-1.5"></i>Open噏 24小時網上輔導</a>
                     <a href="tel:28960000" class="block w-full py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition text-center border border-slate-200"><i class="fa-solid fa-phone mr-1.5"></i>撒瑪利亞會熱線：2896 0000</a>
@@ -193,75 +208,83 @@
             </div>
         </aside>
 
-        <!-- 右側：聊天室主體 -->
-        <section class="lg:col-span-8 flex flex-col h-[calc(100vh-8rem)] bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden relative">
-            <div class="px-6 py-4 bg-white flex items-center justify-between border-b border-slate-100 shadow-sm z-10 relative">
-                <div class="flex items-center gap-3">
-                    <div class="w-11 h-11 rounded-full bg-gradient-to-br from-sage-400 to-emerald-500 flex items-center justify-center text-white shadow-md"><i class="fa-solid fa-robot text-lg"></i></div>
+        <!-- 右側：聊天室主體（手機端高度優先分配，平板及 PC 固定佔據主視口） -->
+        <section class="col-span-1 md:col-span-8 lg:col-span-8.5 xl:col-span-9 flex flex-col h-[65vh] md:h-[calc(100vh-8rem)] bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden relative order-1 md:order-2">
+            
+            <!-- 聊天室頭部 -->
+            <div class="px-4 md:px-6 py-3 md:py-4 bg-white flex items-center justify-between border-b border-slate-100 shadow-sm z-10 relative">
+                <div class="flex items-center gap-2.5 md:gap-3">
+                    <div class="w-9 h-9 md:w-11 md:h-11 rounded-full bg-gradient-to-br from-sage-400 to-emerald-500 flex items-center justify-center text-white shadow-md"><i class="fa-solid fa-robot text-base"></i></div>
                     <div>
-                        <h2 class="font-bold text-slate-800 text-base md:text-lg flex items-center gap-2">小樹洞 本地輔導精靈 <span id="current-category-label" class="text-xs bg-slate-100 px-3 py-1 rounded-full text-slate-500 font-medium">自由傾談</span></h2>
-                        <span class="text-xs text-sage-600 mt-0.5 inline-block font-medium"><i class="fa-solid fa-shield-check text-[10px] mr-1 text-emerald-500"></i>全本地極速運算 (免網絡防護)</span>
+                        <h2 class="font-bold text-slate-800 text-sm md:text-lg flex flex-wrap items-center gap-1.5">小樹洞 本地輔導精靈 <span id="current-category-label" class="text-[10px] bg-slate-100 px-2 py-0.5 rounded-full text-slate-500 font-medium">自由傾談</span></h2>
+                        <span class="text-[10px] md:text-xs text-sage-600 mt-0.5 block font-medium"><i class="fa-solid fa-shield-check text-[9px] mr-1 text-emerald-500"></i>全本地極速運算 (免網絡防護)</span>
                     </div>
                 </div>
-                <!-- 緊急隱蔽按鈕 -->
-                <button onclick="panicHide()" class="absolute right-6 top-1/2 -translate-y-1/2 bg-slate-100 hover:bg-slate-200 text-slate-500 px-3 py-1.5 rounded-lg text-xs font-bold transition shadow-inner border border-slate-200 flex items-center gap-1.5" title="有人來了！一鍵偽裝成 Google">
+                <!-- 緊急隱蔽按鈕（PC、Pad、手機均可一鍵自適應安全隱蔽） -->
+                <button onclick="panicHide()" class="bg-slate-100 hover:bg-slate-200 text-slate-500 px-2.5 py-1.5 rounded-lg text-[10px] md:text-xs font-bold transition shadow-inner border border-slate-200 flex items-center gap-1" title="有人來了！一鍵偽裝成 Google">
                     <i class="fa-solid fa-eye-slash"></i> <span class="hidden sm:inline">緊急隱蔽 (Esc)</span>
                 </button>
             </div>
 
-            <div id="emergency-banner" class="hidden bg-rose-500 text-white p-3 text-center text-sm md:text-base font-bold shadow-md z-10 flex flex-col sm:flex-row items-center justify-center gap-3 w-full">
-                <div class="flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation animate-pulse text-xl"></i> 生命珍貴，請給我們陪伴你的機會。</div>
-                <a href="tel:28960000" class="bg-white text-rose-600 px-5 py-2 rounded-full text-sm hover:bg-rose-50 shadow-sm font-bold transition">撥打 2896 0000</a>
+            <!-- 生命緊急警報 -->
+            <div id="emergency-banner" class="hidden bg-rose-500 text-white p-2.5 text-center text-xs md:text-sm font-bold shadow-md z-10 flex flex-col sm:flex-row items-center justify-center gap-2 w-full">
+                <div class="flex items-center gap-1.5"><i class="fa-solid fa-triangle-exclamation animate-pulse text-lg"></i> 生命珍貴，請給我們陪伴你的機會。</div>
+                <a href="tel:28960000" class="bg-white text-rose-600 px-4 py-1.5 rounded-full text-xs hover:bg-rose-50 shadow-sm font-bold transition">撥打 2896 0000</a>
             </div>
 
             <!-- 對話區 -->
-            <div id="chat-box" class="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 bg-slate-50/50 no-scrollbar relative scroll-smooth pb-32"></div>
+            <div id="chat-box" class="flex-1 overflow-y-auto p-4 md:p-6 space-y-5 bg-slate-50/50 no-scrollbar relative scroll-smooth pb-32"></div>
 
-            <!-- 虛擬陪伴小精靈 (動態適應高度，防止遮擋) -->
-            <div id="virtual-pet" class="absolute bottom-[110px] md:bottom-[130px] right-6 virtual-pet z-20 flex flex-col items-center pointer-events-none">
-                <div id="pet-bubble" class="bg-white text-slate-600 text-[10px] font-bold px-3 py-1.5 rounded-2xl shadow-md border border-slate-100 mb-2 opacity-0 transition-opacity duration-300 relative after:content-[''] after:absolute after:bottom-[-6px] after:left-1/2 after:-translate-x-1/2 after:border-t-[6px] after:border-t-white after:border-l-[6px] after:border-l-transparent after:border-r-[6px] after:border-r-transparent pointer-events-auto">我在這裡陪你喔</div>
-                <div id="pet-emoji" class="text-5xl cursor-pointer hover:scale-110 transition-transform pointer-events-auto" onclick="pokePet()">🦉</div>
+            <!-- 虛擬陪伴小精靈 (極佳微調！保證不與底部滾動快捷回覆衝突) -->
+            <div id="virtual-pet" class="absolute bottom-[105px] md:bottom-[125px] right-4 virtual-pet z-20 flex flex-col items-center pointer-events-none">
+                <div id="pet-bubble" class="bg-white text-slate-600 text-[9px] md:text-[10px] font-bold px-2.5 py-1.5 rounded-2xl shadow-md border border-slate-100 mb-1.5 opacity-0 transition-opacity duration-300 relative after:content-[''] after:absolute after:bottom-[-6px] after:left-1/2 after:-translate-x-1/2 after:border-t-[6px] after:border-t-white after:border-l-[6px] after:border-l-transparent after:border-r-[6px] after:border-r-transparent pointer-events-auto">我在這裡陪你喔</div>
+                <div id="pet-emoji" class="text-4xl md:text-5xl cursor-pointer hover:scale-110 transition-transform pointer-events-auto" onclick="pokePet()">🦉</div>
             </div>
 
-            <!-- 正在輸入狀態欄 (動態適應高度) -->
-            <div id="typing-indicator" class="hidden absolute bottom-[110px] md:bottom-[130px] left-6 bg-white px-5 py-4 rounded-3xl rounded-tl-none shadow-md border border-slate-100 flex items-center gap-3 w-fit slide-up z-10">
-                <div class="w-8 h-8 rounded-full bg-sage-50 flex items-center justify-center text-sage-500"><i class="fa-solid fa-robot text-xs"></i></div>
-                <div class="typing-indicator flex gap-1.5 items-center">
-                    <span class="w-2.5 h-2.5 bg-sage-400 rounded-full"></span><span class="w-2.5 h-2.5 bg-sage-400 rounded-full"></span><span class="w-2.5 h-2.5 bg-sage-400 rounded-full"></span>
-                    <span id="indicator-text" class="text-xs text-sage-500 ml-2 font-medium">小樹洞正在思考...</span>
+            <!-- 正在輸入狀態欄 (自適應高度) -->
+            <div id="typing-indicator" class="hidden absolute bottom-[105px] md:bottom-[125px] left-4 bg-white px-4 py-3 rounded-2xl rounded-tl-none shadow-md border border-slate-100 flex items-center gap-2.5 w-fit slide-up z-10">
+                <div class="w-7 h-7 rounded-full bg-sage-50 flex items-center justify-center text-sage-500"><i class="fa-solid fa-robot text-[10px]"></i></div>
+                <div class="typing-indicator flex gap-1 items-center">
+                    <span class="w-2 h-2 bg-sage-400 rounded-full"></span><span class="w-2 h-2 bg-sage-400 rounded-full"></span><span class="w-2 h-2 bg-sage-400 rounded-full"></span>
+                    <span id="indicator-text" class="text-[11px] text-sage-500 ml-1 font-medium">小樹洞正在思考...</span>
                 </div>
             </div>
 
-            <div id="quick-replies-container" class="px-5 pb-3 bg-white flex flex-wrap gap-2.5 pt-3 border-t border-slate-100 min-h-[48px] items-center"></div>
+            <!-- 快捷回覆（升級！改為橫向橫滑單排，徹底防止擠壓與高度錯落） -->
+            <div class="bg-white border-t border-slate-100 min-h-[46px] flex items-center px-4 py-1 z-10 relative">
+                <span class="text-[11px] md:text-xs text-slate-400 font-medium flex-shrink-0 mr-2"><i class="fa-regular fa-lightbulb"></i> 試試：</span>
+                <div id="quick-replies-container" class="flex-1 flex gap-2 overflow-x-auto whitespace-nowrap no-scrollbar py-1"></div>
+            </div>
 
-            <form id="chat-form" onsubmit="handleChatSubmit(event)" class="px-4 pb-4 pt-2 bg-white flex gap-3 items-center z-10 relative">
-                <input id="chat-input" type="text" autocomplete="off" placeholder="寫下你的真實想法..." class="flex-1 bg-slate-50 border border-slate-200 focus:border-sage-400 focus:ring-2 focus:ring-sage-100 rounded-full px-6 py-3.5 text-base md:text-lg focus:outline-none transition shadow-inner text-slate-700">
-                <button id="send-btn" type="submit" class="bg-sage-500 text-white font-medium px-6 py-3.5 rounded-full hover:bg-sage-600 transition flex items-center justify-center gap-2 shadow-md shadow-sage-200 flex-shrink-0">
-                    <i class="fa-solid fa-paper-plane text-base"></i> <span class="hidden md:inline text-lg font-bold">送出</span>
+            <!-- 送出表單 -->
+            <form id="chat-form" onsubmit="handleChatSubmit(event)" class="px-3 md:px-4 pb-3 md:pb-4 pt-1.5 bg-white flex gap-2 md:gap-3 items-center z-10 relative border-t border-slate-50">
+                <input id="chat-input" type="text" autocomplete="off" placeholder="寫下你的真實想法..." class="flex-1 bg-slate-50 border border-slate-200 focus:border-sage-400 focus:ring-2 focus:ring-sage-100 rounded-full px-4 md:px-6 py-2.5 md:py-3.5 text-sm md:text-base focus:outline-none transition shadow-inner text-slate-700">
+                <button id="send-btn" type="submit" class="bg-sage-500 text-white font-medium px-5 md:px-6 py-2.5 md:py-3.5 rounded-full hover:bg-sage-600 transition flex items-center justify-center gap-1.5 shadow-md shadow-sage-200 flex-shrink-0 active:scale-[0.96]">
+                    <i class="fa-solid fa-paper-plane text-xs md:text-sm"></i> <span class="hidden md:inline text-sm md:text-base font-bold">送出</span>
                 </button>
             </form>
 
-            <!-- ==================== Overlays (急救包與工具) ==================== -->
+            <!-- ==================== Overlays (急救包與工具模態層) ==================== -->
 
             <!-- 2. 心情日記本 -->
             <div id="overlay-diary" class="absolute inset-0 bg-slate-100/95 backdrop-blur-md z-50 flex flex-col hidden opacity-0 transition-opacity duration-300">
                 <div class="p-4 md:p-6 flex justify-between items-center border-b border-slate-200/50 bg-white/50">
-                    <h3 class="text-2xl md:text-3xl font-bold text-indigo-500"><i class="fa-solid fa-book-journal-whills mr-2"></i>專屬心情日記本</h3>
-                    <button onclick="closeToolOverlay('diary')" class="text-slate-400 hover:text-slate-600 text-3xl md:text-4xl"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-lg md:text-2xl font-bold text-indigo-500"><i class="fa-solid fa-book-journal-whills mr-2"></i>專屬心情日記本</h3>
+                    <button onclick="closeToolOverlay('diary')" class="text-slate-400 hover:text-slate-600 text-2xl md:text-3xl"><i class="fa-solid fa-xmark"></i></button>
                 </div>
-                <div class="flex-1 overflow-y-auto p-4 md:p-6 flex flex-col lg:flex-row gap-4 md:gap-6">
-                    <div class="w-full lg:w-1/3 bg-white p-5 rounded-2xl shadow-sm border border-slate-200 h-fit">
-                        <h4 class="font-bold text-slate-700 mb-4 text-base md:text-lg"><i class="fa-solid fa-calendar-days mr-2"></i>最近的心情軌跡</h4>
-                        <div id="diary-history" class="space-y-3 max-h-[400px] overflow-y-auto no-scrollbar"><p class="text-sm text-slate-400 italic">目前還沒有紀錄喔，寫下你的第一篇日記吧！</p></div>
+                <div class="flex-1 overflow-y-auto p-4 flex flex-col lg:flex-row gap-4">
+                    <div class="w-full lg:w-1/3 bg-white p-4 rounded-2xl shadow-sm border border-slate-200 h-fit">
+                        <h4 class="font-bold text-slate-700 mb-3 text-sm md:text-base"><i class="fa-solid fa-calendar-days mr-2"></i>最近的心情軌跡</h4>
+                        <div id="diary-history" class="space-y-2.5 max-h-[250px] lg:max-h-[400px] overflow-y-auto no-scrollbar"><p class="text-xs text-slate-400 italic">目前還沒有紀錄喔，寫下你的第一篇日記吧！</p></div>
                     </div>
-                    <div class="w-full lg:w-2/3 bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
-                        <div class="flex items-center justify-between mb-4">
-                            <h4 class="font-bold text-slate-700 text-lg md:text-xl"><i class="fa-solid fa-pen mr-2"></i>今日私密樹洞 (不上傳)</h4>
-                            <span class="text-xs md:text-sm bg-indigo-50 text-indigo-600 px-3 py-1.5 rounded-lg font-bold"><i class="fa-solid fa-lock mr-1"></i>僅存本地設備</span>
+                    <div class="w-full lg:w-2/3 bg-white p-4 md:p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="font-bold text-slate-700 text-sm md:text-base"><i class="fa-solid fa-pen mr-2"></i>今日私密樹洞 (不上傳)</h4>
+                            <span class="text-[10px] md:text-xs bg-indigo-50 text-indigo-600 px-2.5 py-1 rounded-lg font-bold"><i class="fa-solid fa-lock mr-1"></i>僅存本地設備</span>
                         </div>
-                        <textarea id="diary-input" class="flex-1 w-full bg-slate-50 border border-slate-200 rounded-3xl p-6 text-slate-700 focus:outline-none focus:border-indigo-400 resize-none text-base md:text-lg min-h-[250px]" placeholder="把今天開心、難過或煩悶的事情都寫下來吧..."></textarea>
-                        <div class="mt-4 md:mt-6 flex justify-end">
-                            <button onclick="saveDiary()" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold px-8 py-3 rounded-full shadow-md transition text-base md:text-lg active:scale-95"><i class="fa-solid fa-save mr-2"></i>安全儲存日記</button>
+                        <textarea id="diary-input" class="flex-1 w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 text-slate-700 focus:outline-none focus:border-indigo-400 resize-none text-sm md:text-base min-h-[180px]" placeholder="把今天開心、難過或煩悶的事情都寫下來吧..."></textarea>
+                        <div class="mt-3.5 flex justify-end">
+                            <button onclick="saveDiary()" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold px-6 py-2.5 rounded-full shadow-md transition text-sm active:scale-95"><i class="fa-solid fa-save mr-1.5"></i>安全儲存日記</button>
                         </div>
                     </div>
                 </div>
@@ -270,21 +293,21 @@
             <!-- 3. 心靈充電站 -->
             <div id="overlay-psychoedu" class="absolute inset-0 bg-amber-50/95 backdrop-blur-md z-50 flex flex-col hidden opacity-0 transition-opacity duration-300">
                 <div class="p-4 md:p-6 flex justify-between items-center border-b border-amber-200/50 bg-white/50">
-                    <h3 class="text-2xl md:text-3xl font-bold text-amber-600"><i class="fa-solid fa-book-open-reader mr-2"></i>心靈充電站</h3>
-                    <button onclick="closeToolOverlay('psychoedu')" class="text-slate-400 hover:text-slate-600 text-3xl md:text-4xl"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-lg md:text-2xl font-bold text-amber-600"><i class="fa-solid fa-book-open-reader mr-2"></i>心靈充電站</h3>
+                    <button onclick="closeToolOverlay('psychoedu')" class="text-slate-400 hover:text-slate-600 text-2xl md:text-3xl"><i class="fa-solid fa-xmark"></i></button>
                 </div>
-                <div class="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 max-w-4xl mx-auto w-full">
-                    <details class="bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-amber-100 group cursor-pointer">
-                        <summary class="font-bold text-lg md:text-xl text-slate-800 focus:outline-none list-none flex justify-between items-center"><span><i class="fa-solid fa-pen-nib text-amber-500 mr-3"></i>如何面對考試與選科的極度焦慮？</span><i class="fa-solid fa-chevron-down text-slate-400 group-open:rotate-180 transition-transform"></i></summary>
-                        <div class="mt-4 md:mt-6 text-slate-600 leading-relaxed space-y-2 border-t border-slate-100 pt-4 text-base"><p>焦慮是因為我們在乎結果。當心跳加速時，請告訴自己：「這份緊張，是因為我想做好。」</p><p><strong>實用小技巧：</strong></p><ul class="list-disc list-inside ml-4 space-y-1"><li>把大目標切碎：不要想「我要考滿分」，而是想「我今晚只專心看這 5 頁」。</li><li>允許不完美：DSE 或考試只是人生無數分岔路口的其中一個，它絕對無法定義你的全部價值。</li></ul></div>
+                <div class="flex-1 overflow-y-auto p-4 space-y-3.5 max-w-4xl mx-auto w-full">
+                    <details class="bg-white p-4 md:p-5 rounded-xl shadow-sm border border-amber-100 group cursor-pointer">
+                        <summary class="font-bold text-sm md:text-base text-slate-800 focus:outline-none list-none flex justify-between items-center"><span><i class="fa-solid fa-pen-nib text-amber-500 mr-2.5"></i>如何面對考試與選科的極度焦慮？</span><i class="fa-solid fa-chevron-down text-slate-400 group-open:rotate-180 transition-transform text-xs"></i></summary>
+                        <div class="mt-3 text-xs md:text-sm text-slate-600 leading-relaxed space-y-1.5 border-t border-slate-100 pt-3"><p>焦慮是因為我們在乎結果。當心跳加速時，請告訴自己：「這份緊張，是因為我想做好。」</p><p><strong>實用小技巧：</strong></p><ul class="list-disc list-inside ml-2 space-y-1"><li>把大目標切碎：不要想「我要考滿分」，而是想「我今晚只專心看這 5 頁」。</li><li>允許不完美：DSE 或考試只是人生無數分岔路口的其中一個，它絕對無法定義你的全部價值。</li></ul></div>
                     </details>
-                    <details class="bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-amber-100 group cursor-pointer">
-                        <summary class="font-bold text-lg md:text-xl text-slate-800 focus:outline-none list-none flex justify-between items-center"><span><i class="fa-solid fa-cloud-showers-heavy text-blue-500 mr-3"></i>我好像生病了？認識憂鬱與情緒低谷</span><i class="fa-solid fa-chevron-down text-slate-400 group-open:rotate-180 transition-transform"></i></summary>
-                        <div class="mt-4 md:mt-6 text-slate-600 leading-relaxed space-y-2 border-t border-slate-100 pt-4 text-base"><p>情緒就像天氣，有時連日暴雨，有時陰天。如果你連續兩週以上感到「對任何事都提不起勁」、「持續失眠」或「覺得自己毫無價值」，這可能是大腦感冒了。</p><p>憂鬱不是因為你軟弱，而是因為你堅強了太久。這時請記得：<strong>你不必一個人硬撐。</strong> 尋求社工、輔導老師或 Shall We Talk 專線的協助，是勇敢且明智的選擇。</p></div>
+                    <details class="bg-white p-4 md:p-5 rounded-xl shadow-sm border border-amber-100 group cursor-pointer">
+                        <summary class="font-bold text-sm md:text-base text-slate-800 focus:outline-none list-none flex justify-between items-center"><span><i class="fa-solid fa-cloud-showers-heavy text-blue-500 mr-2.5"></i>我好像生病了？認識憂鬱與情緒低谷</span><i class="fa-solid fa-chevron-down text-slate-400 group-open:rotate-180 transition-transform text-xs"></i></summary>
+                        <div class="mt-3 text-xs md:text-sm text-slate-600 leading-relaxed space-y-1.5 border-t border-slate-100 pt-3"><p>情緒就像天氣，有時連日暴雨，有時陰天。如果你連續兩週以上感到「對任何事都提不起勁」、「持續失眠」或「覺得自己毫無價值」，這可能是大腦感冒了。</p><p>憂鬱不是因為你軟弱，而是因為你堅強了太久。這時請記得：<strong>你不必一個人硬撐。</strong> 尋求社工、輔導老師或 Shall We Talk 專線的協助，是勇敢且明智的選擇。</p></div>
                     </details>
-                    <details class="bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-amber-100 group cursor-pointer">
-                        <summary class="font-bold text-lg md:text-xl text-slate-800 focus:outline-none list-none flex justify-between items-center"><span><i class="fa-solid fa-bed text-indigo-500 mr-3"></i>腦袋一直轉，晚上睡不著怎麼辦？</span><i class="fa-solid fa-chevron-down text-slate-400 group-open:rotate-180 transition-transform"></i></summary>
-                        <div class="mt-4 md:mt-6 text-slate-600 leading-relaxed space-y-2 border-t border-slate-100 pt-4 text-base"><p>失眠往往伴隨著焦慮。不要強迫自己「立刻睡著」，這反而會讓你更清醒。</p><ul class="list-disc list-inside ml-4 space-y-1"><li><strong>離開床舖：</strong>如果躺了 20 分鐘還睡不著，起身去昏暗的地方坐著，做點無聊的事，有睡意再回床。</li><li><strong>大腦清倉：</strong>把腦中一直轉的擔憂寫在紙上，告訴大腦「我已經記下來了，明天再處理」。</li><li>使用我們慢速工具箱的「白噪音」與「4-4-4呼吸法」來幫助放鬆。</li></ul></div>
+                    <details class="bg-white p-4 md:p-5 rounded-xl shadow-sm border border-amber-100 group cursor-pointer">
+                        <summary class="font-bold text-sm md:text-base text-slate-800 focus:outline-none list-none flex justify-between items-center"><span><i class="fa-solid fa-bed text-indigo-500 mr-2.5"></i>腦袋一直轉，晚上睡不著怎麼辦？</span><i class="fa-solid fa-chevron-down text-slate-400 group-open:rotate-180 transition-transform text-xs"></i></summary>
+                        <div class="mt-3 text-xs md:text-sm text-slate-600 leading-relaxed space-y-1.5 border-t border-slate-100 pt-3"><p>失眠往往伴隨著焦慮。不要強迫自己「立刻睡著」，這反而會讓你更清醒。</p><ul class="list-disc list-inside ml-2 space-y-1"><li><strong>離開床舖：</strong>如果躺了 20 分鐘還睡不著，起身去昏暗的地方坐著，做點無聊的事，有睡意再回床。</li><li><strong>大腦清倉：</strong>把腦中一直轉的擔憂寫在紙上，告訴大腦「我已經記下來了，明天再處理」。</li><li>使用我們慢速工具箱的「白噪音」與「4-4-4呼吸法」來幫助放鬆。</li></ul></div>
                     </details>
                 </div>
             </div>
@@ -292,13 +315,13 @@
             <!-- 5. 呼吸放大版 -->
             <div id="overlay-breathe" class="absolute inset-0 bg-sky-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white overflow-y-auto">
                 <div class="my-auto flex flex-col items-center justify-center p-6 w-full min-h-full">
-                    <button onclick="closeToolOverlay('breathe')" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl"><i class="fa-solid fa-xmark"></i></button>
-                    <h3 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg text-sky-100">4-4-4 呼吸放鬆</h3>
-                    <p class="text-sky-200 text-lg md:text-xl mb-16 tracking-wide font-medium">專注在圓圈的變化，跟著節奏呼吸...</p>
-                    <div class="relative w-56 h-56 md:w-64 md:h-64 flex items-center justify-center mb-16 mt-6">
+                    <button onclick="closeToolOverlay('breathe')" class="absolute top-4 right-4 text-white/50 hover:text-white text-3xl"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-2xl md:text-4xl font-bold mb-2 drop-shadow-lg text-sky-100">4-4-4 呼吸放鬆</h3>
+                    <p class="text-sky-200 text-sm md:text-base mb-10 md:mb-16 tracking-wide font-medium">專注在圓圈的變化，跟著節奏呼吸...</p>
+                    <div class="relative w-44 h-44 md:w-56 md:h-56 flex items-center justify-center mb-10 md:mb-16">
                         <div class="absolute w-full h-full rounded-full border-2 border-sky-300/30"></div>
-                        <div class="breathe-circle w-28 h-28 md:w-32 md:h-32 rounded-full"></div>
-                        <div id="breathe-text" class="absolute font-bold text-sky-900 text-3xl md:text-4xl tracking-widest drop-shadow-md">吸氣</div>
+                        <div class="breathe-circle w-20 h-20 md:w-28 md:h-28 rounded-full"></div>
+                        <div id="breathe-text" class="absolute font-bold text-sky-900 text-xl md:text-2xl tracking-widest drop-shadow-md">吸氣</div>
                     </div>
                 </div>
             </div>
@@ -306,27 +329,27 @@
             <!-- 6. 推牆放大版 -->
             <div id="overlay-wallpush" class="absolute inset-0 bg-red-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 text-center overflow-y-auto">
                 <div class="my-auto flex flex-col items-center justify-center w-full min-h-full">
-                    <button onclick="closeToolOverlay('wallpush')" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl"><i class="fa-solid fa-xmark"></i></button>
-                    <h3 class="text-4xl md:text-5xl font-bold mb-4 text-red-400 drop-shadow-lg">推牆釋放法</h3>
-                    <p class="text-red-200 text-lg md:text-xl max-w-lg mx-auto mb-10 leading-relaxed font-medium">站起來，雙手用力推著實體的牆壁！<br>把體內所有的壓力、憤怒全部推出去！</p>
-                    <div id="wall-circle" class="w-56 h-56 md:w-64 md:h-64 rounded-full border-8 border-red-500 flex items-center justify-center mb-10 shadow-[0_0_40px_rgba(239,68,68,0.5)] transition-all">
-                        <span id="wall-timer" class="text-[6rem] md:text-[8rem] font-bold text-white drop-shadow-xl">15</span>
+                    <button onclick="closeToolOverlay('wallpush')" class="absolute top-4 right-4 text-white/50 hover:text-white text-3xl"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-2xl md:text-4xl font-bold mb-2 text-red-400 drop-shadow-lg">推牆釋放法</h3>
+                    <p class="text-red-200 text-sm md:text-base max-w-lg mx-auto mb-8 leading-relaxed font-medium">站起來，雙手用力推著實體的牆壁！<br>把體內所有的壓力、憤怒全部推出去！</p>
+                    <div id="wall-circle" class="w-40 h-40 md:w-48 md:h-48 rounded-full border-4 md:border-8 border-red-500 flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(239,68,68,0.5)] transition-all">
+                        <span id="wall-timer" class="text-4xl md:text-6xl font-bold text-white drop-shadow-xl">15</span>
                     </div>
-                    <button id="wall-btn" onclick="startWallPush()" class="bg-red-600 hover:bg-red-500 text-white font-bold px-10 py-4 md:px-12 md:py-5 rounded-full shadow-lg transition text-2xl active:scale-95">開始全力推牆！</button>
+                    <button id="wall-btn" onclick="startWallPush()" class="bg-red-600 hover:bg-red-500 text-white font-bold px-8 py-3 rounded-full shadow-lg transition text-base md:text-lg active:scale-95">開始全力推牆！</button>
                 </div>
             </div>
 
             <!-- 7. 五感著陸放大版 -->
-            <div id="overlay-grounding" class="absolute inset-0 bg-emerald-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 overflow-y-auto">
+            <div id="overlay-grounding" class="absolute inset-0 bg-emerald-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-4 md:p-6 overflow-y-auto">
                 <div class="my-auto flex flex-col items-center justify-center w-full min-h-full">
-                    <button onclick="closeToolOverlay('grounding')" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl"><i class="fa-solid fa-xmark"></i></button>
-                    <h3 class="text-3xl md:text-4xl font-bold mb-4 text-emerald-300 drop-shadow-md">五感著陸尋寶遊戲</h3>
-                    <p class="text-emerald-100 text-lg md:text-xl text-center mb-8 font-medium">專注於你身邊的真實世界，跟著提示找出事物：</p>
-                    <div class="bg-white/10 p-6 md:p-8 rounded-3xl border border-white/20 w-full max-w-lg text-center shadow-xl backdrop-blur-lg">
-                        <div class="w-24 h-24 md:w-32 md:h-32 bg-emerald-500/30 rounded-full flex items-center justify-center text-[4rem] md:text-[5rem] mx-auto mb-6 animate-bounce shadow-inner border border-emerald-400/30" id="grounding-icon">👀</div>
-                        <h4 class="font-bold text-xl md:text-2xl mb-4 text-emerald-400 tracking-widest fade-in" id="grounding-step-title">步驟 1 / 5</h4>
-                        <p class="text-xl md:text-2xl text-emerald-50 mb-8 leading-relaxed font-bold min-h-[60px] fade-in" id="grounding-instruction">在周圍找出 5 件你眼睛「看得見」的東西。</p>
-                        <button onclick="nextGroundingStep()" class="bg-emerald-500 hover:bg-emerald-400 text-white font-bold px-10 py-4 rounded-full shadow-lg transition text-xl active:scale-95">我找到了！</button>
+                    <button onclick="closeToolOverlay('grounding')" class="absolute top-4 right-4 text-white/50 hover:text-white text-3xl"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-xl md:text-3xl font-bold mb-2 text-emerald-300 drop-shadow-md">五感著陸尋寶遊戲</h3>
+                    <p class="text-emerald-100 text-sm md:text-base text-center mb-6 font-medium">專注於你身邊的真實世界，跟著提示找出事物：</p>
+                    <div class="bg-white/10 p-5 md:p-8 rounded-2xl border border-white/20 w-full max-w-md text-center shadow-xl backdrop-blur-lg">
+                        <div class="w-20 h-20 bg-emerald-500/30 rounded-full flex items-center justify-center text-[3.5rem] mx-auto mb-4 animate-bounce shadow-inner border border-emerald-400/30" id="grounding-icon">👀</div>
+                        <h4 class="font-bold text-base md:text-lg mb-2 text-emerald-400 tracking-widest fade-in" id="grounding-step-title">步驟 1 / 5</h4>
+                        <p class="text-base md:text-lg text-emerald-50 mb-6 leading-relaxed font-bold min-h-[40px] fade-in" id="grounding-instruction">在周圍找出 5 件你眼睛「看得見」的東西。</p>
+                        <button onclick="nextGroundingStep()" class="bg-emerald-500 hover:bg-emerald-400 text-white font-bold px-8 py-3 rounded-full shadow-lg transition text-sm md:text-base active:scale-95">我找到了！</button>
                     </div>
                 </div>
             </div>
@@ -334,14 +357,14 @@
             <!-- 8. 碎紙機放大版 -->
             <div id="overlay-shredder" class="absolute inset-0 bg-orange-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 overflow-y-auto">
                 <div class="my-auto flex flex-col items-center justify-center w-full min-h-full">
-                    <button onclick="closeToolOverlay('shredder')" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl"><i class="fa-solid fa-xmark"></i></button>
-                    <h3 class="text-3xl md:text-4xl font-bold mb-4 text-orange-400 drop-shadow-md"><i class="fa-solid fa-file-prescription mr-2"></i>情緒煩惱碎紙機</h3>
-                    <p class="text-orange-100 text-lg md:text-xl text-center mb-8 font-medium">把讓你生氣、難過的負面想法寫下，讓我們把它徹底粉碎：</p>
-                    <div class="w-full max-w-xl space-y-6">
-                        <input id="shredder-input" type="text" placeholder="例如：我真的做得很差..." class="w-full bg-white/10 border-2 border-orange-500/50 rounded-2xl px-6 py-4 md:py-5 text-white focus:outline-none focus:border-orange-400 text-lg md:text-xl font-bold shadow-inner">
-                        <button onclick="shredThought()" class="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-400 hover:to-red-400 text-white font-bold py-4 rounded-2xl shadow-lg transition text-xl active:scale-95">放入碎紙機粉碎它！</button>
-                        <div id="shredder-box" class="h-48 md:h-56 w-full bg-black/60 border border-white/20 rounded-2xl relative overflow-hidden hidden flex flex-col items-center justify-start pt-4 shadow-xl">
-                            <div class="h-2.5 w-full bg-gray-600 mb-4 shadow-inner rounded-full"></div>
+                    <button onclick="closeToolOverlay('shredder')" class="absolute top-4 right-4 text-white/50 hover:text-white text-3xl"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-xl md:text-2xl font-bold mb-2 text-orange-400 drop-shadow-md"><i class="fa-solid fa-file-prescription mr-2"></i>情緒煩惱碎紙機</h3>
+                    <p class="text-orange-100 text-sm md:text-base text-center mb-6 font-medium">把讓你生氣、難過的負面想法寫下，讓我們把它徹底粉碎：</p>
+                    <div class="w-full max-w-md space-y-4">
+                        <input id="shredder-input" type="text" placeholder="例如：我真的做得很差..." class="w-full bg-white/10 border border-orange-500/50 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-400 text-base font-bold shadow-inner">
+                        <button onclick="shredThought()" class="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-400 hover:to-red-400 text-white font-bold py-3 rounded-xl shadow-lg transition text-sm md:text-base active:scale-95">放入碎紙機粉碎它！</button>
+                        <div id="shredder-box" class="h-36 w-full bg-black/60 border border-white/20 rounded-xl relative overflow-hidden hidden flex flex-col items-center justify-start pt-3 shadow-xl">
+                            <div class="h-1.5 w-full bg-gray-600 mb-3 shadow-inner rounded-full"></div>
                             <div id="shred-text-container" class="relative w-full text-center h-full"></div>
                         </div>
                     </div>
@@ -351,35 +374,34 @@
             <!-- 9. 蝴蝶安全擁抱 -->
             <div id="overlay-butterfly" class="absolute inset-0 bg-indigo-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 overflow-y-auto">
                 <div class="my-auto flex flex-col items-center justify-center w-full min-h-full">
-                    <button onclick="closeToolOverlay('butterfly')" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl"><i class="fa-solid fa-xmark"></i></button>
-                    <h3 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-md">蝴蝶安全擁抱</h3>
-                    <p class="text-indigo-200 text-lg md:text-xl text-center mb-10 font-medium max-w-lg">雙手在胸前交叉抱肩。看著左右閃爍的節奏，輕拍自己左右肩：</p>
-                    <div class="flex flex-col sm:flex-row gap-6 sm:gap-12 items-center justify-center">
-                        <div id="wing-left" class="w-32 h-32 md:w-40 md:h-40 rounded-[2rem] border-4 border-orange-400 flex flex-col items-center justify-center font-bold text-orange-200 text-xl md:text-2xl shadow-[0_0_20px_rgba(251,146,60,0.3)]">
-                            <i class="fa-solid fa-hand text-[3.5rem] md:text-[4.5rem] mb-2"></i>拍左肩
+                    <button onclick="closeToolOverlay('butterfly')" class="absolute top-4 right-4 text-white/50 hover:text-white text-3xl"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-2xl md:text-4xl font-bold mb-2 drop-shadow-md">蝴蝶安全擁抱</h3>
+                    <p class="text-indigo-200 text-sm md:text-base text-center mb-8 font-medium max-w-md">雙手在胸前交叉抱肩。看著左右閃爍的節奏，輕拍自己左右肩：</p>
+                    <div class="flex flex-row gap-4 md:gap-8 items-center justify-center">
+                        <div id="wing-left" class="w-24 h-24 md:w-32 md:h-32 rounded-2xl border-2 border-orange-400 flex flex-col items-center justify-center font-bold text-orange-200 text-xs md:text-sm shadow-[0_0_15px_rgba(251,146,60,0.2)]">
+                            <i class="fa-solid fa-hand text-2xl md:text-3xl mb-1"></i>拍左肩
                         </div>
-                        <div id="wing-right" class="w-32 h-32 md:w-40 md:h-40 rounded-[2rem] border-4 border-sky-400 flex flex-col items-center justify-center font-bold text-sky-200 text-xl md:text-2xl shadow-[0_0_20px_rgba(56,189,248,0.3)]">
-                            <i class="fa-solid fa-hand text-[3.5rem] md:text-[4.5rem] mb-2"></i>拍右肩
+                        <div id="wing-right" class="w-24 h-24 md:w-32 md:h-32 rounded-2xl border-2 border-sky-400 flex flex-col items-center justify-center font-bold text-sky-200 text-xs md:text-sm shadow-[0_0_15px_rgba(56,189,248,0.2)]">
+                            <i class="fa-solid fa-hand text-2xl md:text-3xl mb-1"></i>拍右肩
                         </div>
                     </div>
-                    <p class="text-indigo-300 text-sm md:text-base font-medium mt-10">(建議開啟聲音體驗沉浸療癒)</p>
                 </div>
             </div>
 
             <!-- 10. 力量卡 -->
             <div id="overlay-card" class="absolute inset-0 bg-amber-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 overflow-y-auto">
                 <div class="my-auto flex flex-col items-center justify-center w-full min-h-full">
-                    <button onclick="closeToolOverlay('card')" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl"><i class="fa-solid fa-xmark"></i></button>
-                    <h3 class="text-4xl md:text-5xl font-bold mb-6 drop-shadow-md">今日力量抽卡</h3>
-                    <div class="card-perspective w-64 h-[24rem] md:w-72 md:h-[28rem] cursor-pointer hover:scale-105 transition-transform" onclick="flipAffirmationCard()">
+                    <button onclick="closeToolOverlay('card')" class="absolute top-4 right-4 text-white/50 hover:text-white text-3xl"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-2xl md:text-4xl font-bold mb-4 drop-shadow-md">今日力量抽卡</h3>
+                    <div class="card-perspective w-56 h-80 md:w-64 md:h-[26rem] cursor-pointer hover:scale-105 transition-transform" onclick="flipAffirmationCard()">
                         <div id="card-inner" class="card-inner w-full h-full relative">
-                            <div class="card-front bg-gradient-to-tr from-amber-500 to-amber-700 rounded-[2rem] p-6 border-4 border-amber-300 shadow-xl flex flex-col items-center justify-center">
-                                <div class="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center text-white text-[4rem] mb-6 shadow-inner"><i class="fa-solid fa-star"></i></div>
-                                <span class="font-bold tracking-widest text-2xl md:text-3xl">開啟力量</span>
+                            <div class="card-front bg-gradient-to-tr from-amber-500 to-amber-700 rounded-3xl p-5 border-2 border-amber-300 shadow-xl flex flex-col items-center justify-center">
+                                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center text-white text-3xl mb-4 shadow-inner"><i class="fa-solid fa-star"></i></div>
+                                <span class="font-bold tracking-widest text-lg md:text-xl">開啟力量</span>
                             </div>
-                            <div class="card-back bg-white text-slate-800 rounded-[2rem] p-6 border-4 border-amber-400 shadow-xl flex flex-col justify-between">
-                                <span class="text-amber-500 font-bold text-lg md:text-xl text-center mt-3">✨ 心靈肯定句 ✨</span>
-                                <p id="card-quote" class="text-slate-700 text-xl md:text-2xl font-bold leading-relaxed text-center my-4 md:my-6">你的努力，值得被自己好好看見。</p>
+                            <div class="card-back bg-white text-slate-800 rounded-3xl p-5 border-2 border-amber-400 shadow-xl flex flex-col justify-between">
+                                <span class="text-amber-500 font-bold text-sm md:text-base text-center mt-2">✨ 心靈肯定句 ✨</span>
+                                <p id="card-quote" class="text-slate-700 text-base md:text-lg font-bold leading-relaxed text-center my-4">你的努力，值得被自己好好看見。</p>
                             </div>
                         </div>
                     </div>
@@ -387,17 +409,17 @@
             </div>
 
             <!-- 11. 溪水落葉 -->
-            <div id="overlay-stream" class="absolute inset-0 bg-teal-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 overflow-hidden">
-                <button onclick="closeToolOverlay('stream')" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl z-20"><i class="fa-solid fa-xmark"></i></button>
-                <div class="relative z-10 flex flex-col items-center w-full max-w-xl mt-8">
-                    <h3 class="text-4xl md:text-5xl font-bold mb-4 text-teal-300 drop-shadow-md">溪水落葉法</h3>
-                    <p class="text-teal-100 text-lg md:text-xl text-center mb-8 font-medium">想像腦中的煩惱只是一片落葉。寫下它，看著它隨水流走：</p>
-                    <div class="w-full space-y-6">
-                        <input id="stream-input" type="text" placeholder="我現在腦中一直盤旋的想法是..." class="w-full bg-white/10 border-2 border-teal-500/50 rounded-2xl px-6 py-4 md:py-5 text-white focus:outline-none focus:border-teal-400 text-lg md:text-xl font-medium shadow-inner">
-                        <button onclick="putWorryOnLeaf()" class="w-full bg-teal-500 hover:bg-teal-400 text-white font-bold py-4 rounded-2xl shadow-[0_8px_20px_rgba(20,184,166,0.3)] transition text-xl md:text-2xl active:scale-95">放到落葉上飄走 🍃</button>
+            <div id="overlay-stream" class="absolute inset-0 bg-teal-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-4 overflow-hidden">
+                <button onclick="closeToolOverlay('stream')" class="absolute top-4 right-4 text-white/50 hover:text-white text-3xl z-20"><i class="fa-solid fa-xmark"></i></button>
+                <div class="relative z-10 flex flex-col items-center w-full max-w-md mt-6">
+                    <h3 class="text-xl md:text-3xl font-bold mb-2 text-teal-300 drop-shadow-md">溪水落葉法</h3>
+                    <p class="text-teal-100 text-xs md:text-sm text-center mb-6 font-medium">想像腦中的煩惱只是一片落葉。寫下它，看著它隨水流走：</p>
+                    <div class="w-full space-y-4">
+                        <input id="stream-input" type="text" placeholder="我現在腦中一直盤旋的想法是..." class="w-full bg-white/10 border border-teal-500/50 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400 text-sm md:text-base shadow-inner">
+                        <button onclick="putWorryOnLeaf()" class="w-full bg-teal-500 hover:bg-teal-400 text-white font-bold py-2.5 rounded-xl shadow-md transition text-sm md:text-base active:scale-95">放到落葉上飄走 🍃</button>
                     </div>
                 </div>
-                <div class="absolute bottom-0 w-full h-[45%] bg-gradient-to-t from-teal-900 to-transparent border-t border-teal-800/50">
+                <div class="absolute bottom-0 w-full h-[35%] bg-gradient-to-t from-teal-900 to-transparent border-t border-teal-800/50">
                     <div id="river-container" class="relative w-full h-full overflow-hidden"></div>
                 </div>
             </div>
@@ -405,12 +427,12 @@
             <!-- 12. 大腦假新聞 -->
             <div id="overlay-fakenews" class="absolute inset-0 bg-slate-900/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 overflow-y-auto">
                 <div class="my-auto flex flex-col items-center justify-center w-full min-h-full">
-                    <button onclick="closeToolOverlay('fakenews')" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl"><i class="fa-solid fa-xmark"></i></button>
-                    <h3 class="text-3xl md:text-4xl font-bold mb-4 text-yellow-400 drop-shadow-md"><i class="fa-solid fa-newspaper mr-2"></i>大腦假新聞查核</h3>
-                    <div class="bg-white text-slate-800 p-6 md:p-8 rounded-3xl w-full max-w-xl shadow-xl relative mt-4">
-                        <textarea id="fakenews-input" rows="3" placeholder="輸入腦海中一直盤旋的負面聲音..." class="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-5 py-4 md:px-6 text-slate-700 focus:outline-none focus:border-yellow-500 text-lg md:text-xl font-bold resize-none mb-6"></textarea>
-                        <button onclick="stampFakeNews()" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-4 rounded-xl shadow-md transition text-xl md:text-2xl active:scale-95">進行事實查核</button>
-                        <div id="fakenews-stamp" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-4 md:border-8 border-red-600 text-red-600 font-black text-3xl md:text-5xl px-6 py-3 rounded-2xl hidden z-10 bg-white/90 backdrop-blur-md pointer-events-none text-center shadow-xl">FAKE NEWS<br><span class="text-2xl md:text-4xl">大腦假新聞</span></div>
+                    <button onclick="closeToolOverlay('fakenews')" class="absolute top-4 right-4 text-white/50 hover:text-white text-3xl"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-xl md:text-3xl font-bold mb-2 text-yellow-400 drop-shadow-md"><i class="fa-solid fa-newspaper mr-2"></i>大腦假新聞查核</h3>
+                    <div class="bg-white text-slate-800 p-5 rounded-2xl w-full max-w-md shadow-xl relative mt-4">
+                        <textarea id="fakenews-input" rows="2" placeholder="輸入腦海中一直盤旋的負面聲音..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-700 focus:outline-none focus:border-yellow-500 text-sm md:text-base font-bold resize-none mb-4"></textarea>
+                        <button onclick="stampFakeNews()" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 rounded-xl shadow-md transition text-sm md:text-base active:scale-95">進行事實查核</button>
+                        <div id="fakenews-stamp" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-4 border-red-600 text-red-600 font-black text-2xl px-4 py-2 rounded-xl hidden z-10 bg-white/90 backdrop-blur-md pointer-events-none text-center shadow-xl">FAKE NEWS<br><span class="text-sm md:text-base">大腦假新聞</span></div>
                     </div>
                 </div>
             </div>
@@ -418,180 +440,180 @@
             <!-- 13. RPG 面板 -->
             <div id="overlay-rpg" class="absolute inset-0 bg-purple-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 overflow-y-auto">
                 <div class="my-auto flex flex-col items-center justify-center w-full min-h-full">
-                    <button onclick="closeToolOverlay('rpg')" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl"><i class="fa-solid fa-xmark"></i></button>
-                    <h3 class="text-4xl md:text-5xl font-bold mb-4 text-purple-300 drop-shadow-md"><i class="fa-solid fa-gamepad mr-2"></i>玩家狀態面板</h3>
-                    <div class="bg-black/40 border-2 border-purple-500/50 p-6 md:p-8 rounded-3xl w-full max-w-xl shadow-xl font-mono mt-4">
-                        <div class="mb-8">
-                            <div class="flex justify-between text-red-400 font-bold mb-2 text-lg md:text-xl"><span>HP (生命值)</span> <span id="rpg-hp-text">30/100</span></div>
-                            <div class="w-full bg-gray-800 rounded-full h-6 border-2 border-gray-700"><div id="rpg-hp-bar" class="bg-red-500 h-full rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(239,68,68,0.8)]" style="width: 30%"></div></div>
+                    <button onclick="closeToolOverlay('rpg')" class="absolute top-4 right-4 text-white/50 hover:text-white text-3xl"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-2xl md:text-4xl font-bold mb-2 text-purple-300 drop-shadow-md"><i class="fa-solid fa-gamepad mr-2"></i>玩家狀態面板</h3>
+                    <div class="bg-black/40 border-2 border-purple-500/50 p-5 md:p-6 rounded-2xl w-full max-w-md shadow-xl font-mono mt-4">
+                        <div class="mb-5">
+                            <div class="flex justify-between text-red-400 font-bold mb-1 text-sm md:text-base"><span>HP (生命值)</span> <span id="rpg-hp-text">30/100</span></div>
+                            <div class="w-full bg-gray-800 rounded-full h-4 border border-gray-700"><div id="rpg-hp-bar" class="bg-red-500 h-full rounded-full transition-all duration-1000" style="width: 30%"></div></div>
                         </div>
-                        <div class="mb-10">
-                            <div class="flex justify-between text-blue-400 font-bold mb-2 text-lg md:text-xl"><span>MP (精力)</span> <span id="rpg-mp-text">15/100</span></div>
-                            <div class="w-full bg-gray-800 rounded-full h-6 border-2 border-gray-700"><div id="rpg-mp-bar" class="bg-blue-500 h-full rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(59,130,246,0.8)]" style="width: 15%"></div></div>
+                        <div class="mb-6">
+                            <div class="flex justify-between text-blue-400 font-bold mb-1 text-sm md:text-base"><span>MP (精力)</span> <span id="rpg-mp-text">15/100</span></div>
+                            <div class="w-full bg-gray-800 rounded-full h-4 border border-gray-700"><div id="rpg-mp-bar" class="bg-blue-500 h-full rounded-full transition-all duration-1000" style="width: 15%"></div></div>
                         </div>
-                        <button onclick="drinkPotion()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-4 rounded-xl shadow-[0_0_20px_rgba(168,85,247,0.5)] transition text-xl md:text-2xl active:scale-95"><i class="fa-solid fa-flask mr-2"></i>喝下恢復藥水</button>
+                        <button onclick="drinkPotion()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-3 rounded-xl shadow-md transition text-sm md:text-base active:scale-95"><i class="fa-solid fa-flask mr-1.5"></i>喝下恢復藥水</button>
                     </div>
                 </div>
             </div>
 
             <!-- 14. 泡泡紙 -->
-            <div id="overlay-bubble" class="absolute inset-0 bg-blue-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 overflow-y-auto">
+            <div id="overlay-bubble" class="absolute inset-0 bg-blue-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-4 overflow-y-auto">
                 <div class="my-auto flex flex-col items-center justify-center w-full min-h-full">
-                    <button onclick="closeToolOverlay('bubble')" class="absolute top-6 right-6 text-white/50 hover:text-white text-5xl"><i class="fa-solid fa-xmark"></i></button>
-                    <h3 class="text-4xl md:text-5xl font-bold mb-4 text-blue-300 drop-shadow-md"><i class="fa-solid fa-circle-dot mr-2"></i>紓壓泡泡紙</h3>
-                    <p class="text-blue-100 text-lg md:text-xl text-center mb-8 font-medium max-w-xl">當你覺得焦慮或靜不下來時，隨意戳破這些泡泡吧！</p>
-                    <div class="bg-white/10 p-6 md:p-8 rounded-3xl shadow-inner border border-white/20 backdrop-blur-md">
-                        <div id="bubble-container" class="grid grid-cols-4 sm:grid-cols-6 gap-3 md:gap-4 justify-items-center"></div>
+                    <button onclick="closeToolOverlay('bubble')" class="absolute top-4 right-4 text-white/50 hover:text-white text-3xl"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-2xl md:text-4xl font-bold mb-2 text-blue-300 drop-shadow-md"><i class="fa-solid fa-circle-dot mr-2"></i>紓壓泡泡紙</h3>
+                    <p class="text-blue-100 text-xs md:text-sm text-center mb-6 font-medium max-w-md">當你覺得焦慮或靜不下來時，隨意戳破這些泡泡吧！</p>
+                    <div class="bg-white/10 p-4 md:p-6 rounded-2xl shadow-inner border border-white/20 backdrop-blur-md">
+                        <div id="bubble-container" class="grid grid-cols-4 xs:grid-cols-6 gap-2 md:gap-3 justify-items-center"></div>
                     </div>
-                    <button onclick="initBubbleWrap()" class="mt-8 text-blue-200 hover:text-white text-xl md:text-2xl font-bold transition flex items-center active:scale-95"><i class="fa-solid fa-rotate-right mr-2"></i>換一張全新的</button>
+                    <button onclick="initBubbleWrap()" class="mt-6 text-blue-200 hover:text-white text-sm md:text-base font-bold transition flex items-center active:scale-95"><i class="fa-solid fa-rotate-right mr-1.5"></i>換一張全新的</button>
                 </div>
             </div>
 
             <!-- 15. 10題 專業趣味心理測驗 -->
-            <div id="overlay-quiz" class="absolute inset-0 bg-violet-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 overflow-y-auto">
+            <div id="overlay-quiz" class="absolute inset-0 bg-violet-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-4 overflow-y-auto">
                 <div class="my-auto flex flex-col items-center justify-center w-full min-h-full relative">
-                    <button onclick="closeToolOverlay('quiz')" class="absolute top-0 right-0 text-white/50 hover:text-white text-5xl z-20"><i class="fa-solid fa-xmark"></i></button>
+                    <button onclick="closeToolOverlay('quiz')" class="absolute top-0 right-0 text-white/50 hover:text-white text-3xl z-20"><i class="fa-solid fa-xmark"></i></button>
                     
                     <!-- Q1 -->
-                    <div id="quiz-step-1" class="quiz-step w-full max-w-xl text-center">
-                        <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 1/10</h4>
-                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">週末終於有空閒了，<br>你最想做什麼？</h3>
-                        <div class="space-y-4">
-                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-wrench mr-3 text-violet-300"></i>動手拆修東西或做手工藝</button>
-                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-magnifying-glass mr-3 text-violet-300"></i>看科普影片或玩解謎遊戲</button>
-                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-palette mr-3 text-violet-300"></i>聽音樂、畫畫或看電影</button>
+                    <div id="quiz-step-1" class="quiz-step w-full max-w-md text-center">
+                        <h4 class="text-violet-300 font-bold mb-2 text-xs md:text-sm">心理測驗 1/10</h4>
+                        <h3 class="text-xl md:text-2xl font-bold mb-6 leading-relaxed">週末終於有空閒了，<br>你最想做什麼？</h3>
+                        <div class="space-y-3">
+                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-wrench mr-2.5 text-violet-300"></i>動手拆修東西或做手工藝</button>
+                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-magnifying-glass mr-2.5 text-violet-300"></i>看科普影片或玩解謎遊戲</button>
+                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-palette mr-2.5 text-violet-300"></i>聽音樂、畫畫 or 電影</button>
                         </div>
                     </div>
-                    <div id="quiz-step-2" class="quiz-step w-full max-w-xl text-center hidden">
-                        <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 2/10</h4>
-                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">在班級分組報告中，<br>你通常扮演什麼角色？</h3>
-                        <div class="space-y-4">
-                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-people-arrows mr-3 text-violet-300"></i>關心組員進度，協調大家意見</button>
-                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-bullhorn mr-3 text-violet-300"></i>擔任組長，分配任務並上台主講</button>
-                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-file-lines mr-3 text-violet-300"></i>負責排版整理資料，確保不漏細節</button>
+                    <div id="quiz-step-2" class="quiz-step w-full max-w-md text-center hidden">
+                        <h4 class="text-violet-300 font-bold mb-2 text-xs md:text-sm">心理測驗 2/10</h4>
+                        <h3 class="text-xl md:text-2xl font-bold mb-6 leading-relaxed">在班級分組報告中，<br>你通常扮演什麼角色？</h3>
+                        <div class="space-y-3">
+                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-people-arrows mr-2.5 text-violet-300"></i>關心組員進度，協調大家意見</button>
+                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-bullhorn mr-2.5 text-violet-300"></i>擔任組長，分配任務並上台主講</button>
+                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-file-lines mr-2.5 text-violet-300"></i>負責排版整理資料，確保不漏細節</button>
                         </div>
                     </div>
-                    <div id="quiz-step-3" class="quiz-step w-full max-w-xl text-center hidden">
-                        <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 3/10</h4>
-                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">遇到一個完全不懂的難題時，<br>你會怎麼辦？</h3>
-                        <div class="space-y-4">
-                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-book mr-3 text-violet-300"></i>立刻上網查資料，想找出背後原理</button>
-                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-handshake-angle mr-3 text-violet-300"></i>去問老師或朋友，聽聽別人的建議</button>
-                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-screwdriver-wrench mr-3 text-violet-300"></i>直接動手試錯，壞了再說</button>
+                    <div id="quiz-step-3" class="quiz-step w-full max-w-md text-center hidden">
+                        <h4 class="text-violet-300 font-bold mb-2 text-xs md:text-sm">心理測驗 3/10</h4>
+                        <h3 class="text-xl md:text-2xl font-bold mb-6 leading-relaxed">遇到一個完全不懂的難題時，<br>你會怎麼辦？</h3>
+                        <div class="space-y-3">
+                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-book mr-2.5 text-violet-300"></i>立刻上網查資料，想找出背後原理</button>
+                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-handshake-angle mr-2.5 text-violet-300"></i>去問老師或朋友，聽聽別人的建議</button>
+                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-screwdriver-wrench mr-2.5 text-violet-300"></i>直接動手試錯，壞了再說</button>
                         </div>
                     </div>
-                    <div id="quiz-step-4" class="quiz-step w-full max-w-xl text-center hidden">
-                        <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 4/10</h4>
-                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">你最嚮往的工作環境<br>是哪一種？</h3>
-                        <div class="space-y-4">
-                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-chart-line mr-3 text-violet-300"></i>充滿競爭、業績挑戰與豐厚獎金</button>
-                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-camera mr-3 text-violet-300"></i>自由無拘束、可以發揮創意的設計室</button>
-                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-building mr-3 text-violet-300"></i>穩定、有規律且制度完善的辦公室</button>
+                    <div id="quiz-step-4" class="quiz-step w-full max-w-md text-center hidden">
+                        <h4 class="text-violet-300 font-bold mb-2 text-xs md:text-sm">心理測驗 4/10</h4>
+                        <h3 class="text-xl md:text-2xl font-bold mb-6 leading-relaxed">你最嚮往的工作環境<br>是哪一種？</h3>
+                        <div class="space-y-3">
+                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-chart-line mr-2.5 text-violet-300"></i>充滿競爭、業績挑戰與豐厚獎金</button>
+                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-camera mr-2.5 text-violet-300"></i>自由無拘束、可以發揮創意的設計室</button>
+                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-building mr-2.5 text-violet-300"></i>穩定、有規律且制度完善的辦公室</button>
                         </div>
                     </div>
-                    <div id="quiz-step-5" class="quiz-step w-full max-w-xl text-center hidden">
-                        <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 5/10</h4>
-                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">在好朋友的眼中，<br>你通常是一個怎樣的人？</h3>
-                        <div class="space-y-4">
-                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-ear-listen mr-3 text-violet-300"></i>溫暖的傾聽者，總能安慰到人</button>
-                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-brain mr-3 text-violet-300"></i>理性的分析大師，看事情很客觀</button>
-                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-flag mr-3 text-violet-300"></i>充滿點子、喜歡號召大家出去玩的領袖</button>
+                    <div id="quiz-step-5" class="quiz-step w-full max-w-md text-center hidden">
+                        <h4 class="text-violet-300 font-bold mb-2 text-xs md:text-sm">心理測驗 5/10</h4>
+                        <h3 class="text-xl md:text-2xl font-bold mb-6 leading-relaxed">在好朋友的眼中，<br>你通常是一個怎樣的人？</h3>
+                        <div class="space-y-3">
+                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-ear-listen mr-2.5 text-violet-300"></i>溫暖的傾聽者，總能安慰到人</button>
+                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-brain mr-2.5 text-violet-300"></i>理性的分析大師，看事情很客觀</button>
+                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-flag mr-2.5 text-violet-300"></i>充滿點子、喜歡號召大家出去玩的領袖</button>
                         </div>
                     </div>
-                    <div id="quiz-step-6" class="quiz-step w-full max-w-xl text-center hidden">
-                        <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 6/10</h4>
-                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">如果有機會參加社團，<br>你會優先考慮哪一個？</h3>
-                        <div class="space-y-4">
-                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-hammer mr-3 text-violet-300"></i>模型製作社 或 木工社</button>
-                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-masks-theater mr-3 text-violet-300"></i>話劇社 或 流行音樂社</button>
-                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-sitemap mr-3 text-violet-300"></i>學生會行政事務部 或 會計學會</button>
+                    <div id="quiz-step-6" class="quiz-step w-full max-w-md text-center hidden">
+                        <h4 class="text-violet-300 font-bold mb-2 text-xs md:text-sm">心理測驗 6/10</h4>
+                        <h3 class="text-xl md:text-2xl font-bold mb-6 leading-relaxed">如果有機會參加社團，<br>你會優先考慮哪一個？</h3>
+                        <div class="space-y-3">
+                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-hammer mr-2.5 text-violet-300"></i>模型製作社 或 木工社</button>
+                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-masks-theater mr-2.5 text-violet-300"></i>話劇社 或 流行音樂社</button>
+                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-sitemap mr-2.5 text-violet-300"></i>學生會行政事務部 或 會計學會</button>
                         </div>
                     </div>
-                    <div id="quiz-step-7" class="quiz-step w-full max-w-xl text-center hidden">
-                        <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 7/10</h4>
-                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">玩電子遊戲時，<br>你最享受哪個部分？</h3>
-                        <div class="space-y-4">
-                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-puzzle-piece mr-3 text-violet-300"></i>破解複雜機關，找出隱藏的通關策略</button>
-                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-chess-knight mr-3 text-violet-300"></i>帶領公會成員打贏大型戰役，獲得成就</button>
-                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-users-rays mr-3 text-violet-300"></i>在遊戲大廳聊天交朋友，幫助新手</button>
+                    <div id="quiz-step-7" class="quiz-step w-full max-w-md text-center hidden">
+                        <h4 class="text-violet-300 font-bold mb-2 text-xs md:text-sm">心理測驗 7/10</h4>
+                        <h3 class="text-xl md:text-2xl font-bold mb-6 leading-relaxed">玩電子遊戲時，<br>你最享受哪個部分？</h3>
+                        <div class="space-y-3">
+                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-puzzle-piece mr-2.5 text-violet-300"></i>破解複雜機關，找出隱藏的通關策略</button>
+                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-chess-knight mr-2.5 text-violet-300"></i>帶領公會成員打贏大型戰役，獲得成就</button>
+                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-users-rays mr-2.5 text-violet-300"></i>在遊戲大廳聊天交朋友，幫助新手</button>
                         </div>
                     </div>
-                    <div id="quiz-step-8" class="quiz-step w-full max-w-xl text-center hidden">
-                        <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 8/10</h4>
-                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">看到桌上有一堆雜物，<br>你會怎麼處理？</h3>
-                        <div class="space-y-4">
-                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-boxes-stacked mr-3 text-violet-300"></i>依照類別、大小完美分類收納好</button>
-                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-star-of-life mr-3 text-violet-300"></i>隨意擺放，覺得亂亂的也有一種美感</button>
-                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-toolbox mr-3 text-violet-300"></i>只把最實用、待會要用的工具拿出來放</button>
+                    <div id="quiz-step-8" class="quiz-step w-full max-w-md text-center hidden">
+                        <h4 class="text-violet-300 font-bold mb-2 text-xs md:text-sm">心理測驗 8/10</h4>
+                        <h3 class="text-xl md:text-2xl font-bold mb-6 leading-relaxed">看到桌上有一堆雜物，<br>你會怎麼處理？</h3>
+                        <div class="space-y-3">
+                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-boxes-stacked mr-2.5 text-violet-300"></i>依照類別、大小完美分類收納好</button>
+                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-star-of-life mr-2.5 text-violet-300"></i>隨意擺放，覺得亂亂的也有一種美感</button>
+                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-toolbox mr-2.5 text-violet-300"></i>只把最實用、待會要用的工具拿出來放</button>
                         </div>
                     </div>
-                    <div id="quiz-step-9" class="quiz-step w-full max-w-xl text-center hidden">
-                        <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 9/10</h4>
-                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">如果可以選一個超能力，<br>你希望是？</h3>
-                        <div class="space-y-4">
-                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-microchip mr-3 text-violet-300"></i>一眼看透萬物運作原理的智慧</button>
-                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-hand-holding-medical mr-3 text-violet-300"></i>能瞬間治癒他人悲傷與痛苦的魔法</button>
-                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-handshake mr-3 text-violet-300"></i>擁有無限說服力，讓人願意跟隨你</button>
+                    <div id="quiz-step-9" class="quiz-step w-full max-w-md text-center hidden">
+                        <h4 class="text-violet-300 font-bold mb-2 text-xs md:text-sm">心理測驗 9/10</h4>
+                        <h3 class="text-xl md:text-2xl font-bold mb-6 leading-relaxed">如果可以選一個超能力，<br>你希望是？</h3>
+                        <div class="space-y-3">
+                            <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-microchip mr-2.5 text-violet-300"></i>一眼看透萬物運作原理的智慧</button>
+                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-hand-holding-medical mr-2.5 text-violet-300"></i>能瞬間治癒他人悲傷與痛苦的魔法</button>
+                            <button onclick="answerQuiz('E')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-handshake mr-2.5 text-violet-300"></i>擁有無限說服力，讓人願意跟隨你</button>
                         </div>
                     </div>
-                    <div id="quiz-step-10" class="quiz-step w-full max-w-xl text-center hidden">
-                        <h4 class="text-violet-300 font-bold mb-3 text-lg md:text-xl">心理測驗 10/10</h4>
-                        <h3 class="text-3xl md:text-4xl font-bold mb-8 leading-relaxed">對於未來的自己，<br>你最大的期許是？</h3>
-                        <div class="space-y-4">
-                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-gem mr-3 text-violet-300"></i>能創造出獨一無二、驚豔大眾的作品</button>
-                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-house-circle-check mr-3 text-violet-300"></i>擁有一份安穩、零風險且踏實的生活</button>
-                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/20 p-4 rounded-2xl text-lg font-medium transition text-left active:scale-95"><i class="fa-solid fa-medal mr-3 text-violet-300"></i>成為某個專業技術領域無可取代的達人</button>
+                    <div id="quiz-step-10" class="quiz-step w-full max-w-md text-center hidden">
+                        <h4 class="text-violet-300 font-bold mb-2 text-xs md:text-sm">心理測驗 10/10</h4>
+                        <h3 class="text-xl md:text-2xl font-bold mb-6 leading-relaxed">對於未來的自己，<br>你最大的期許是？</h3>
+                        <div class="space-y-3">
+                            <button onclick="answerQuiz('A')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-gem mr-2.5 text-violet-300"></i>能創造出獨一無二、驚豔大眾的作品</button>
+                            <button onclick="answerQuiz('C')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-house-circle-check mr-2.5 text-violet-300"></i>擁有一份安穩、零風險且踏實的生活</button>
+                            <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-medal mr-2.5 text-violet-300"></i>成為某個專業技術領域無可取代的達人</button>
                         </div>
                     </div>
 
                     <!-- 測驗結果 -->
-                    <div id="quiz-result" class="quiz-step w-full max-w-xl text-center hidden bg-white/10 p-6 md:p-8 rounded-3xl border border-white/20 backdrop-blur-md shadow-xl mt-12">
-                        <div class="w-20 h-20 md:w-24 md:h-24 bg-violet-500/30 rounded-full flex items-center justify-center text-4xl md:text-5xl mx-auto mb-6"><i class="fa-solid fa-star"></i></div>
-                        <p class="text-violet-300 font-bold mb-3 text-lg md:text-xl">測驗結果分析</p>
-                        <h3 id="quiz-result-title" class="text-3xl md:text-4xl font-bold mb-4 text-white drop-shadow-md">結果運算中...</h3>
-                        <p id="quiz-result-desc" class="text-lg md:text-xl text-violet-100 mb-6 leading-relaxed font-medium"></p>
-                        <button onclick="sendQuizResultToChat()" class="bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:from-violet-400 hover:to-fuchsia-400 text-white font-bold w-full py-4 rounded-xl shadow-lg transition text-xl md:text-2xl active:scale-95">告訴小樹洞，獲取專屬建議</button>
+                    <div id="quiz-result" class="quiz-step w-full max-w-md text-center hidden bg-white/10 p-5 md:p-6 rounded-2xl border border-white/20 backdrop-blur-md shadow-xl mt-6">
+                        <div class="w-16 h-16 bg-violet-500/30 rounded-full flex items-center justify-center text-3xl mx-auto mb-4"><i class="fa-solid fa-star"></i></div>
+                        <p class="text-violet-300 font-bold mb-2 text-sm md:text-base">測驗結果分析</p>
+                        <h3 id="quiz-result-title" class="text-xl md:text-2xl font-bold mb-3 text-white drop-shadow-md">結果運算中...</h3>
+                        <p id="quiz-result-desc" class="text-sm md:text-base text-violet-100 mb-5 leading-relaxed font-medium"></p>
+                        <button onclick="sendQuizResultToChat()" class="bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:from-violet-400 hover:to-fuchsia-400 text-white font-bold w-full py-3 rounded-xl shadow-lg transition text-sm md:text-base active:scale-95">告訴小樹洞，獲取專屬建議</button>
                     </div>
                 </div>
             </div>
 
             <!-- 16. 塗鴉畫布 -->
-            <div id="overlay-scribble" class="absolute inset-0 bg-orange-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-6 overflow-y-auto">
+            <div id="overlay-scribble" class="absolute inset-0 bg-orange-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-white p-4 overflow-y-auto">
                 <div class="my-auto flex flex-col items-center justify-center w-full min-h-full relative">
-                    <button onclick="closeToolOverlay('scribble')" class="absolute top-0 right-0 text-white/50 hover:text-white text-5xl z-20"><i class="fa-solid fa-xmark"></i></button>
-                    <h3 class="text-3xl md:text-4xl font-bold mb-4 text-orange-400"><i class="fa-solid fa-palette mr-2"></i>心情宣洩塗鴉畫板</h3>
-                    <p class="text-orange-200 text-base md:text-lg mb-6 font-medium text-center">不管畫什麼都可以，把心裡的煩悶隨意塗抹出來吧！</p>
-                    <div class="w-full max-w-3xl bg-white/20 p-2 rounded-3xl shadow-xl backdrop-blur-sm">
-                        <canvas id="fullscreen-scribble" class="w-full h-72 md:h-96 bg-slate-50 rounded-2xl cursor-crosshair shadow-inner border-2 border-orange-300"></canvas>
+                    <button onclick="closeToolOverlay('scribble')" class="absolute top-0 right-0 text-white/50 hover:text-white text-3xl z-20"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="text-xl md:text-2xl font-bold mb-2 text-orange-400"><i class="fa-solid fa-palette mr-2"></i>心情宣洩塗鴉畫板</h3>
+                    <p class="text-orange-200 text-xs md:text-sm mb-4 font-medium text-center">不管畫什麼都可以，把心裡的煩悶隨意塗抹出來吧！</p>
+                    <div class="w-full max-w-2xl bg-white/20 p-2 rounded-2xl shadow-xl backdrop-blur-sm">
+                        <canvas id="fullscreen-scribble" class="w-full h-64 md:h-80 bg-slate-50 rounded-xl cursor-crosshair shadow-inner border-2 border-orange-300"></canvas>
                     </div>
-                    <button onclick="clearScribbleCanvas('fullscreen-scribble')" class="mt-6 bg-orange-500 hover:bg-orange-400 text-white font-bold px-8 py-3.5 rounded-full shadow-md transition text-lg active:scale-95"><i class="fa-solid fa-eraser mr-2"></i>清空畫板</button>
+                    <button onclick="clearScribbleCanvas('fullscreen-scribble')" class="mt-4 bg-orange-500 hover:bg-orange-400 text-white font-bold px-6 py-2.5 rounded-full shadow-md transition text-sm active:scale-95"><i class="fa-solid fa-eraser mr-1.5"></i>清空畫板</button>
                 </div>
             </div>
 
             <!-- 安撫寶盒 -->
-            <div id="overlay-hopebox" class="absolute inset-0 calm-bg z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-slate-800 p-6 overflow-y-auto">
+            <div id="overlay-hopebox" class="absolute inset-0 bg-slate-100/95 z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 text-slate-800 p-4 overflow-y-auto">
                 <div class="my-auto flex flex-col items-center justify-center w-full min-h-full relative">
-                    <button onclick="closeToolOverlay('hopebox')" class="absolute top-0 right-0 text-slate-600 hover:text-slate-800 text-5xl"><i class="fa-solid fa-xmark"></i></button>
-                    <div class="bg-white/60 backdrop-blur-xl p-6 md:p-8 rounded-3xl w-full max-w-xl shadow-xl border border-white/50 text-center mt-12">
-                        <h3 class="text-3xl md:text-4xl font-bold mb-3 text-teal-800"><i class="fa-solid fa-box-open mr-2"></i>虛擬安撫寶盒</h3>
-                        <div class="space-y-4 mt-6">
-                            <div class="bg-white/80 p-5 rounded-2xl shadow-sm flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
-                                <div class="w-16 h-16 bg-blue-100 rounded-full flex justify-center items-center text-blue-500 text-3xl flex-shrink-0"><i class="fa-solid fa-eye"></i></div>
+                    <button onclick="closeToolOverlay('hopebox')" class="absolute top-0 right-0 text-slate-600 hover:text-slate-800 text-3xl"><i class="fa-solid fa-xmark"></i></button>
+                    <div class="bg-white/60 backdrop-blur-xl p-5 md:p-6 rounded-2xl w-full max-w-md shadow-xl border border-white/50 text-center mt-6">
+                        <h3 class="text-xl md:text-2xl font-bold mb-2 text-teal-800"><i class="fa-solid fa-box-open mr-2"></i>虛擬安撫寶盒</h3>
+                        <div class="space-y-3.5 mt-4">
+                            <div class="bg-white/80 p-4 rounded-xl shadow-sm flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+                                <div class="w-12 h-12 bg-blue-100 rounded-full flex justify-center items-center text-blue-500 text-xl flex-shrink-0"><i class="fa-solid fa-eye"></i></div>
                                 <div>
-                                    <strong class="text-xl block text-slate-800 font-bold">呼吸釋壓球</strong>
-                                    <div class="mt-3 flex flex-col sm:flex-row items-center gap-3">
-                                        <button onmousedown="pressStressBall()" onmouseup="releaseStressBall()" ontouchstart="pressStressBall()" ontouchend="releaseStressBall()" id="stress-ball" class="px-5 py-2 bg-teal-500 hover:bg-teal-400 text-white rounded-xl text-base font-bold transition active:scale-90 shadow-sm">按住釋壓</button>
-                                        <span id="stress-ball-text" class="text-base text-teal-700 font-medium">按住深呼吸</span>
+                                    <strong class="text-sm md:text-base block text-slate-800 font-bold">呼吸釋壓球</strong>
+                                    <div class="mt-2 flex flex-col sm:flex-row items-center gap-2">
+                                        <button onmousedown="pressStressBall()" onmouseup="releaseStressBall()" ontouchstart="pressStressBall()" ontouchend="releaseStressBall()" id="stress-ball" class="px-4 py-1.5 bg-teal-500 hover:bg-teal-400 text-white rounded-lg text-xs font-bold transition active:scale-90 shadow-sm">按住釋壓</button>
+                                        <span id="stress-ball-text" class="text-xs text-teal-700 font-medium">按住深呼吸</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="bg-white/80 p-5 rounded-2xl shadow-sm flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left cursor-pointer hover:bg-white transition" onclick="toggleWhiteNoise()">
-                                <div class="w-16 h-16 bg-emerald-100 rounded-full flex justify-center items-center text-emerald-500 text-3xl flex-shrink-0"><i class="fa-solid fa-music"></i></div>
-                                <div><strong class="text-xl block text-slate-800 font-bold">聽覺安撫</strong><p class="text-sm text-slate-500 mt-1">點擊我，播放輕柔的風雨白噪音。</p></div>
+                            <div class="bg-white/80 p-4 rounded-xl shadow-sm flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left cursor-pointer hover:bg-white transition" onclick="toggleWhiteNoise()">
+                                <div class="w-12 h-12 bg-emerald-100 rounded-full flex justify-center items-center text-emerald-500 text-xl flex-shrink-0"><i class="fa-solid fa-music"></i></div>
+                                <div><strong class="text-sm md:text-base block text-slate-800 font-bold">聽覺安撫</strong><p class="text-xs text-slate-500 mt-0.5">點擊我，播放輕柔的風雨白噪音。</p></div>
                             </div>
-                            <div class="bg-white/80 p-5 rounded-2xl shadow-sm flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
-                                <div class="w-16 h-16 bg-orange-100 rounded-full flex justify-center items-center text-orange-500 text-3xl flex-shrink-0"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                <div><strong class="text-xl block text-slate-800 font-bold">觸覺安撫</strong><p class="text-sm text-slate-500 mt-1">現在拿一件外套或抱枕，緊緊抱住它 10 秒鐘。</p></div>
+                            <div class="bg-white/80 p-4 rounded-xl shadow-sm flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+                                <div class="w-12 h-12 bg-orange-100 rounded-full flex justify-center items-center text-orange-500 text-xl flex-shrink-0"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                                <div><strong class="text-sm md:text-base block text-slate-800 font-bold">觸覺安撫</strong><p class="text-xs text-slate-500 mt-0.5">現在拿一件外套或抱枕，緊緊抱住它 10 秒鐘。</p></div>
                             </div>
                         </div>
                     </div>
@@ -671,7 +693,7 @@
         }
 
         document.addEventListener('keydown', function(event) { if (event.key === "Escape") { panicHide(); } });
-        function panicHide() { window.location.replace("https://zh.wikipedia.org/wiki/%E5%BF%83%E7%90%86%E5%AD%B8"); }
+        function panicHide() { window.location.replace("https://www.google.com"); }
 
         let isDarkMode = false;
         function toggleDarkMode() {
@@ -697,13 +719,13 @@
         function loadDiaryHistory() {
             const historyContainer = document.getElementById('diary-history');
             const savedDiary = JSON.parse(localStorage.getItem('treehole_diary') || '[]');
-            if (savedDiary.length === 0) { historyContainer.innerHTML = '<p class="text-sm text-slate-400 italic">目前還沒有紀錄喔，寫下你的第一篇日記吧！</p>'; return; }
+            if (savedDiary.length === 0) { historyContainer.innerHTML = '<p class="text-xs text-slate-400 italic">目前還沒有紀錄喔，寫下你的第一篇日記吧！</p>'; return; }
             historyContainer.innerHTML = '';
             savedDiary.reverse().forEach(entry => {
                 let moodEmoji = "😐";
                 if(entry.mood === 1) moodEmoji = "😭"; else if(entry.mood === 2) moodEmoji = "😢";
                 else if(entry.mood === 3) moodEmoji = "😮‍💨"; else if(entry.mood === 5) moodEmoji = "😊";
-                historyContainer.innerHTML += `<div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-left mb-3"><div class="flex justify-between items-center mb-2"><span class="text-sm font-bold text-slate-500">${entry.date}</span><span class="text-2xl">${moodEmoji}</span></div><p class="text-base text-slate-700 truncate font-medium">${entry.text || "沒有留下文字"}</p></div>`;
+                historyContainer.innerHTML += `<div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-left mb-3"><div class="flex justify-between items-center mb-2"><span class="text-xs font-bold text-slate-500">${entry.date}</span><span class="text-xl">${moodEmoji}</span></div><p class="text-sm text-slate-700 truncate font-medium">${entry.text || "沒有留下文字"}</p></div>`;
             });
         }
 
@@ -722,13 +744,14 @@
 
         function closeConsent() { document.getElementById('consent-modal').classList.add('hidden'); }
 
+        // --- 橫向滾動快捷回覆渲染器 ---
         function renderDefaultQuickReplies() {
             const qrContainer = document.getElementById('quick-replies-container');
-            qrContainer.innerHTML = '<span class="text-sm md:text-base text-slate-400 self-center mr-2 font-medium">你可以試試點擊：</span>';
-            const defaults = ["讀書壓力很大，想休學", "朋友在背後講我壞話", "一直拖延冇動力", "覺得自己好無用"];
+            qrContainer.innerHTML = '';
+            const defaults = ["讀書壓力很大，想休學", "朋友在背後講我壞話", "一直拖延冇動力", "覺得自己好無用", "我驚被屋企人知道"];
             defaults.forEach(qr => {
                 const btn = document.createElement('button');
-                btn.className = "bg-white border border-slate-200 text-slate-600 hover:bg-sage-50 hover:text-sage-700 hover:border-sage-200 text-sm md:text-base px-4 py-2 rounded-full transition font-medium shadow-sm slide-up hover:-translate-y-0.5";
+                btn.className = "inline-block flex-shrink-0 bg-slate-100 border border-slate-200 text-slate-600 hover:bg-sage-50 hover:text-sage-700 hover:border-sage-200 text-xs px-3.5 py-1.5 rounded-full transition font-medium shadow-sm slide-up";
                 btn.innerText = qr; btn.onclick = () => { document.getElementById('chat-input').value = qr; handleChatSubmit(new Event('submit')); };
                 qrContainer.appendChild(btn);
             });
@@ -739,16 +762,16 @@
             conversationHistory = []; setCategory('自由傾談'); document.getElementById('emergency-banner').classList.add('hidden'); document.getElementById('chat-input').value = '';
             renderDefaultQuickReplies(); setInputLock(false); setPetEmotion('normal');
             document.getElementById('chat-box').innerHTML = `
-                <div id="onboarding-scale" class="max-w-3xl mx-auto mt-6 mb-10 fade-in">
-                    <div class="bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-sky-100 text-center">
-                        <h3 class="font-bold text-slate-800 text-2xl md:text-3xl mb-4">嗨！今天的心情怎麼樣呢？</h3>
-                        <p class="text-base md:text-lg text-slate-500 mb-8">點擊一個表情，我們從這裡開始聊聊：</p>
-                        <div class="flex justify-center gap-4 md:gap-6">
-                            <button onclick="sendMood('非常痛苦，快撐不下去了', 1)" class="w-14 h-14 md:w-20 md:h-20 text-4xl md:text-5xl hover:scale-125 transition filter grayscale hover:grayscale-0">😭</button>
-                            <button onclick="sendMood('覺得很難過、委屈', 2)" class="w-14 h-14 md:w-20 md:h-20 text-4xl md:text-5xl hover:scale-125 transition filter grayscale hover:grayscale-0">😢</button>
-                            <button onclick="sendMood('有點煩悶、焦慮', 3)" class="w-14 h-14 md:w-20 md:h-20 text-4xl md:text-5xl hover:scale-125 transition filter grayscale hover:grayscale-0">😮‍💨</button>
-                            <button onclick="sendMood('平靜，沒什麼特別的', 4)" class="w-14 h-14 md:w-20 md:h-20 text-4xl md:text-5xl hover:scale-125 transition filter grayscale hover:grayscale-0">😐</button>
-                            <button onclick="sendMood('心情不錯！', 5)" class="w-14 h-14 md:w-20 md:h-20 text-4xl md:text-5xl hover:scale-125 transition filter grayscale hover:grayscale-0">😊</button>
+                <div id="onboarding-scale" class="max-w-xl mx-auto mt-6 mb-10 fade-in">
+                    <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-sky-100 text-center">
+                        <h3 class="font-bold text-slate-800 text-lg md:text-2xl mb-2">嗨！今天的心情怎麼樣呢？</h3>
+                        <p class="text-xs md:text-sm text-slate-500 mb-6">點擊一個表情，我們從這裡開始聊聊：</p>
+                        <div class="flex justify-center gap-3 md:gap-5">
+                            <button onclick="sendMood('非常痛苦，快撐不下去了', 1)" class="w-12 h-12 md:w-16 md:h-16 text-3xl md:text-4xl hover:scale-125 transition filter grayscale hover:grayscale-0">😭</button>
+                            <button onclick="sendMood('覺得很難過、委屈', 2)" class="w-12 h-12 md:w-16 md:h-16 text-3xl md:text-4xl hover:scale-125 transition filter grayscale hover:grayscale-0">😢</button>
+                            <button onclick="sendMood('有點煩悶、焦慮', 3)" class="w-12 h-12 md:w-16 md:h-16 text-3xl md:text-4xl hover:scale-125 transition filter grayscale hover:grayscale-0">😮‍💨</button>
+                            <button onclick="sendMood('平靜，沒什麼特別的', 4)" class="w-12 h-12 md:w-16 md:h-16 text-3xl md:text-4xl hover:scale-125 transition filter grayscale hover:grayscale-0">😐</button>
+                            <button onclick="sendMood('心情不錯！', 5)" class="w-12 h-12 md:w-16 md:h-16 text-3xl md:text-4xl hover:scale-125 transition filter grayscale hover:grayscale-0">😊</button>
                         </div>
                     </div>
                 </div>
@@ -769,9 +792,10 @@
             }
         }
 
+        // --- OVERLAYS 管理員 ---
         function openToolOverlay(toolType) {
             const overlay = document.getElementById(`overlay-${toolType}`);
-            initAudio(); // 確保使用者互動後解鎖音效
+            initAudio(); 
             if (overlay) {
                 overlay.classList.remove('hidden'); setTimeout(() => overlay.classList.remove('opacity-0'), 10);
                 if (toolType === 'grounding') initGroundingTool(); if (toolType === 'shredder') resetShredder();
@@ -802,7 +826,7 @@
             const results = {
                 'R': { t: "實用型 (Realistic)", d: "你喜歡動手實作，注重實踐與解決具體問題，擁有優秀的機械或操作天賦。適合領域：工程、IT維修、工藝、運動等。" },
                 'I': { t: "研究型 (Investigative)", d: "你具備強大的邏輯思考與觀察力，喜歡探索事物背後的原理。適合領域：科學研究、數據分析、醫學、程式開發等。" },
-                'A': { t: "藝術型 (Artistic)", d: "你擁有豐富的想像力與敏銳的美感，喜歡用獨特的方式表達自我。適合領域：設計、多媒體、音樂、寫作、影視創作等。" },
+                'A': { t: "藝術型 (Artistic)", d: "你擁有豐富的想像力與敏閱的美感，喜歡用獨特的方式表達自我。適合領域：設計、多媒體、音樂、寫作、影視創作等。" },
                 'S': { t: "社會型 (Social)", d: "你善於傾聽與溝通，對人的感受極具同理心，樂於幫助與陪伴他人。適合領域：教育、心理輔導、社工、醫療護理等。" },
                 'E': { t: "企業型 (Enterprising)", d: "你充滿自信與說服力，喜歡帶領團隊達成目標，不怕面對挑戰。適合領域：商業管理、市場行銷、創業、公關等。" },
                 'C': { t: "事務型 (Conventional)", d: "你做事井然有序、注重細節，喜歡規律且有明確標準的任務。適合領域：會計、行政、金融、資料管理等。" }
@@ -856,7 +880,7 @@
             const inputVal = document.getElementById('shredder-input').value.trim(); if (!inputVal) return;
             document.getElementById('shredder-box').classList.remove('hidden'); document.getElementById('shred-text-container').innerHTML = '';
             playSound('shred');
-            for(let i=0; i<5; i++) { const strip = document.createElement('div'); strip.className = "shred-strip absolute top-0 text-gray-400 font-bold truncate bg-white/10 text-center"; strip.style.width = `20%`; strip.style.left = `${i * 20}%`; strip.style.fontSize = '30px'; strip.style.lineHeight = '50px'; strip.style.animationDelay = `${i * 0.1}s`; strip.innerText = inputVal; document.getElementById('shred-text-container').appendChild(strip); }
+            for(let i=0; i<5; i++) { const strip = document.createElement('div'); strip.className = "shred-strip absolute top-0 text-gray-400 font-bold truncate bg-white/10 text-center"; strip.style.width = `20%`; strip.style.left = `${i * 20}%`; strip.style.fontSize = '24px'; strip.style.lineHeight = '40px'; strip.style.animationDelay = `${i * 0.1}s`; strip.innerText = inputVal; document.getElementById('shred-text-container').appendChild(strip); }
             setTimeout(() => { closeToolOverlay('shredder'); document.getElementById('chat-input').value = `用碎紙機粉碎了：「${inputVal}」。`; handleChatSubmit(new Event('submit')); }, 2000);
         }
 
@@ -885,7 +909,7 @@
         function putWorryOnLeaf() {
             const inputVal = document.getElementById('stream-input').value.trim(); if(!inputVal) return;
             playSound('splash');
-            document.getElementById('stream-input').value = ''; const river = document.getElementById('river-container'); const leaf = document.createElement('div'); leaf.className = "leaf-float absolute top-10 right-0 flex items-center justify-center px-6 py-4 md:px-8 md:py-5 bg-teal-500/20 text-teal-200 border-2 border-teal-500/40 rounded-full font-bold shadow-2xl backdrop-blur-sm text-xl md:text-2xl"; leaf.innerHTML = `<i class="fa-solid fa-leaf mr-2"></i> ${inputVal}`; river.appendChild(leaf);
+            document.getElementById('stream-input').value = ''; const river = document.getElementById('river-container'); const leaf = document.createElement('div'); leaf.className = "leaf-float absolute top-10 right-0 flex items-center justify-center px-4 py-2.5 bg-teal-500/20 text-teal-200 border-2 border-teal-500/40 rounded-full font-bold shadow-xl backdrop-blur-sm text-sm"; leaf.innerHTML = `<i class="fa-solid fa-leaf mr-1.5"></i> ${inputVal}`; river.appendChild(leaf);
             setTimeout(() => { if(river.contains(leaf)) river.removeChild(leaf); }, 12000);
         }
 
@@ -926,10 +950,10 @@
                 if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); if(audioCtx.state === 'suspended') audioCtx.resume();
                 const bufferSize = audioCtx.sampleRate * 2; const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate); const output = buffer.getChannelData(0); for (let i = 0; i < bufferSize; i++) output[i] = Math.random() * 2 - 1;
                 noiseSource = audioCtx.createBufferSource(); noiseSource.buffer = buffer; noiseSource.loop = true; const filter = audioCtx.createBiquadFilter(); filter.type = 'lowpass'; filter.frequency.value = 600; noiseSource.connect(filter); filter.connect(audioCtx.destination); noiseSource.start();
-                if(btn) btn.classList.add('border-sage-300', 'bg-sage-50'); if(icon) { icon.classList.add('text-sage-500', 'animate-pulse'); icon.className = 'fa-solid fa-volume-high mb-1 text-xl text-sage-500 animate-pulse'; } if(txt) txt.innerText = "已開風雨聲";
+                if(btn) btn.classList.add('border-sage-300', 'bg-sage-50'); if(icon) { icon.classList.add('text-sage-500', 'animate-pulse'); icon.className = 'fa-solid fa-volume-high text-lg text-sage-500 animate-pulse'; } if(txt) txt.innerText = "已開風雨聲";
             } else {
                 if(noiseSource) { noiseSource.stop(); noiseSource.disconnect(); }
-                if(btn) btn.classList.remove('border-sage-300', 'bg-sage-50'); if(icon) { icon.classList.remove('text-sage-500', 'animate-pulse'); icon.className = 'fa-solid fa-headphones mb-1 text-xl text-slate-500'; } if(txt) txt.innerText = "風雨聲";
+                if(btn) btn.classList.remove('border-sage-300', 'bg-sage-50'); if(icon) { icon.classList.remove('text-sage-500', 'animate-pulse'); icon.className = 'fa-solid fa-headphones text-lg text-slate-500'; } if(txt) txt.innerText = "風雨聲";
             }
         }
 
@@ -952,11 +976,13 @@
             }
         }
 
-        // =========================================================================
-        // 🧠 全方位本地輔導引擎 (Local AI Brain) V5.0 終極升級版
-        // 結合：15大核心情境 + 12種情緒急救工具 + 5大心理治療流派 (CBT, ACT, DBT, SFBT, 敘事)
-        // =========================================================================
-        function getCounselorResponse(text) {
+        // ==========================================
+// 🧠 全方位本地輔導引擎 (Local AI Brain) V7.1 終極全功能修復版
+// 結合：15大核心情境 + 12種情緒急救工具 + 5大心理治療流派 (CBT, ACT, DBT, SFBT, 敘事)
+// 徹底修復：文字與動畫不匹配漏洞、廣東話學業詞庫遺漏、高頻誤判
+// ==========================================
+
+function getCounselorResponse(text) {
     const lowerText = text.toLowerCase();
     const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
@@ -988,8 +1014,7 @@
         };
     }
 
-
-            // 1. 【最高優先級】緊急危機與自我傷害 (Red)
+    // 1. 【最高優先級】緊急危機與自我傷害 (Red)
     // 心理學策略：DBT 危機生存技巧、無條件積極關注
     // 修復：排除「你死開」、「煩死」、「激死」等非自我傷害語境
     const crisisKeywords = ['不想活', '自殺', '跳樓', '割脈', '𠝹手', '絕望', '沒有意義', '結束生命', '唔想做人', '想消失', '安眠藥', '殺咗自己', '想死'];
@@ -999,20 +1024,16 @@
 
     if (crisisKeywords.some(kw => lowerText.includes(kw)) || hasDeathWish) {
         return {
-            level: "yellow",
-            aiReply: pick([
-                "我感受到你依家好忟憎，甚至覺得我好『廢』或者好『垃圾』。對唔住呀，我只係一個AI，有時真係太笨，接唔住你真實嘅需要。如果你覺得鬧我可以發洩到情緒，你可以繼續鬧我，我會受晒。",
-                "睇嚟呢個方法或者我嘅回應真係幫唔到你，仲令你覺得好煩。唔緊要㗎，面對強烈情緒嘅時候，有時任何建議都會顯得多餘甚至乞人憎。不如我哋放低所有方法，我淨係喺度安靜咁陪住你？",
-                "明白。當情緒好滿嘅時候，真係會覺得所有嘢都好『垃圾』。呢個憤怒嘅感覺好真實。如果你準備好，可以試下用最直接嘅文字，繼續鬧出嚟又好，抱怨又好，我會全盤接收。"
-            ]),
-            animationType: "none", // 停止任何動畫/工具，避免激怒用戶
-            quickReplies: ["真係覺得你好廢", "我淨係想有人聽", "其實我係嬲緊其他嘢"]
+            level: "red",
+            aiReply: "我聽到你咁講，心入面真係好沉重、好擔心你。你而家一定係承受緊極大嘅痛苦同無助。請你記住，你有呢啲感受絕對唔係你嘅錯。呢一刻，我哋咩都唔好諗住，淨係專注喺呼吸上。請你跟我一齊做，然後立刻打畀撒瑪利亞會（2896 0000），俾個機會我哋陪住你撐過去好嗎？",
+            animationType: "breathe", // 工具 1: 4-4-4 呼吸
+            quickReplies: ["我會打電話", "陪我唞下氣", "打開安撫寶盒"]
         };
     }
 
     // 2. 【直接工具觸發】 (結合 CBT、ACT 與 行為活化)
-    // 整合圖片中的 12 種工具
-    if (['思維', '分析', '記錄表', '諗唔通', '牛角尖', '客觀'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "好呀！心理學上有個好好用嘅工具叫「CBT 思維記錄表」。我哋一步步嚟：首先，試下用最客觀、唔帶情緒嘅字眼，描述一次啱啱發生咗咩「客觀情境」？（例如：老闆無覆我 email，而唔係：老闆憎我）", animationType: "cbt_record", quickReplies: ["我試下寫低事實", "我覺得好難客觀"] };
+    // 整合圖片中的 12 種工具，非必要不彈出，只有在直接提及時才精準召喚
+    if (['思維', '分析', '記錄表', '諗唔通', '牛角尖', '客觀'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "好呀！心理學上有個好好用嘅工具叫「CBT 思維記錄表」。我哋一步步嚟：首先，試下用最客觀、唔帶情緒嘅字眼，描述一次啱啱發生咗咩「客觀情境」？（例如：老闆無覆我 email，而唔係：老闆憎我）", animationType: "fakenews", quickReplies: ["我試下寫低事實", "我覺得好難客觀"] };
     if (['抽卡', '御守', '力量卡'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "今日嘅心靈御守已經準備好。有時候，一句溫暖嘅說話就可以轉換大腦頻道。點擊翻開屬於你嘅力量肯定句啦✨", animationType: "card", quickReplies: ["我想試下其他工具"] };
     if (['碎紙機', '撕爛', '粉碎', '煩惱'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "煩惱有時會喺腦入面無限放大。我哋一齊將佢實體化，寫低然後放落碎紙機，狠狠地將佢哋粉碎啦！", animationType: "shredder", /* 工具 9: 碎紙機 */ quickReplies: ["碎咗舒服啲"] };
     if (['溪水', '落葉', '放低', '隨波逐流'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "呢個係 ACT（接受與承諾治療）嘅『認知解離』技巧。將負面諗法寫喺落葉度，唔需要批判自己，當佢只係一片葉，望住佢慢慢順水流走啦。", animationType: "stream", /* 工具 8: 溪水落葉 */ quickReplies: ["睇住佢飄走"] };
@@ -1054,7 +1075,7 @@
     // 5. 【自我價值與容貌焦慮】
     // 輔導策略：無條件積極關注、拆解「過度類化 (Overgeneralization)」
     // 修改：移除獨立的「垃圾」、「廢柴」，改為複合判斷，確保主語是「自己」
-    const selfWorthKeywords = ['自己好無用', '自己無用', '覺得自己廢', '自己係垃圾', '我係垃圾', '自己係廢柴', '樣衰', '自卑', '肥', '醜', '比唔上', '討厭自己', '做得好差', '無人鍾意', '做錯晒', '搞砸', '自己無能'];
+    const selfWorthKeywords = ['自己好無用', '自己無用', '覺得自己廢', '自己係垃圾', '我係垃圾', '自己係廢柴', '樣衰', '自卑', '肥', '醜', '比唔上', '討厭自己', '做得好差', '無人鍾意', '做錯晒', '搞砸', '自己無能', '角色衝突'];
     
     // 動態判斷：必須同時出現「我/自己」以及「無用/廢/垃圾等」
     const isSelfDeprecating = selfWorthKeywords.some(kw => lowerText.includes(kw)) || 
@@ -1065,14 +1086,14 @@
             level: "yellow",
             aiReply: pick([
                 "聽到你咁樣貶低自己，我好心痛。大腦有時會犯「過度類化」或者「情緒化推理」嘅錯——因為依家覺得挫敗，就全盤否定自己。記住，你嘅存在本身就是足夠好 (You are good enough)。一齊玩下「大腦假新聞查核」拆穿佢哋啦！",
-                "覺得自己處處比唔上人，嗰種自卑感真係好沉重。但社會定下嘅標準，唔代表係唯一嘅真理。試下退後一步諗下，你有冇試過做好過一啲事？哪怕係好細微嘅事？"
+                "覺得自己處處比唔上人，或者要扮演太多角色（如學生、仔女、朋友）而感到『角色衝突』與自卑？呢種壓力真係好沉重。但別人定下嘅標準，唔代表係唯一嘅真理。試下退後一步諗下，你有冇試過做好過一啲事？哪怕係好細微嘅事？"
             ]),
-            animationType: pick(["fakenews", "none"]), // 降低工具頻率
+            animationType: pick(["fakenews", "none"]), // 工具 10: 大腦假新聞
             quickReplies: ["我都想接納自己", "之前有被讚過嘅...", "點解人哋咁叻"]
         };
     }
 
-    // 5.5 【捕捉極端字眼 -> CBT 識別認知偏差】(從 V6.0 結合)
+    // 5.5 【捕捉極端字眼 -> CBT 識別認知偏差】
     // 心理學策略：非黑即白 (All-or-Nothing)、災難化 (Catastrophizing)、讀心術 (Mind Reading)
     const extremeKeywords = ['一定係', '全部都', '永遠都', '肯定係', '冇可能', '徹底', '針對我', '大家都憎我', '一定會死', '實死'];
     if (extremeKeywords.some(kw => lowerText.includes(kw))) {
@@ -1082,7 +1103,7 @@
                 "我留意到你用咗一啲比較絕對嘅字眼（例如：一定、全部、永遠）。喺 CBT 入面，呢個可能係大腦跌入咗『非黑即白 (All-or-Nothing)』或者『災難化』嘅陷阱。試下退後一步：有冇咩客觀證據，係可以推翻你呢個最壞嘅猜測？",
                 "當我哋情緒好滿嘅時候，好容易跌入『讀心術 (Mind Reading)』嘅偏差，即係覺得『冇證據但我肯定人哋係咁諗我』。不如我哋試下將『主觀感受』同『客觀事實』分開？對方實際上做咗咩動作或講咗咩？"
             ]),
-            animationType: "none", // 純對話引導
+            animationType: "none", // 純對話引導，不頻繁彈出工具
             quickReplies: ["其實我都係估估下", "但佢個樣真係咁", "點樣分開事實同感受？"]
         };
     }
@@ -1094,7 +1115,7 @@
         return {
             level: "green",
             aiReply: pick([
-                "「拖延」同「冇動力」好多時唔係因為你懶，而係因為內心對任務感到焦慮或者怕失敗，大腦為咗保護你先去逃避。試吓原諒自己嘅拖延，然後將大目標切碎，應承自己只專注做 5 分鐘就好！",
+                "「拖延」同「冇動力」好多時唔係因為你懶，而係因為內心對任務感到焦慮或者怕失敗，大腦為咗保護你先去逃避。試下將大目標切碎，應承自己只專注做 5 分鐘就好！",
                 "沉迷打機或者手機，有時係大腦為咗短暫逃離現實痛苦而索取多巴胺。唔好因為咁樣而太過責怪自己，自責只會令你更想逃避。如果覺得失去咗控制感，一齊做一次「五感著陸」返回當下啦。"
             ]),
             animationType: pick(["none", "grounding"]), // 工具 7: 五感著陸
@@ -1104,16 +1125,32 @@
 
     // 7. 【學業與考試壓力】
     // 輔導策略：去災難化 (De-catastrophizing)
-    const studyKeywords = ['讀書', '考試', '溫書', '成績', '測驗', '壓力大', 'dse', '退步', '好大壓力', '溫極都唔識', '肥佬', '老師', '學校', '校長', '功課', '教授'];
+    // 補齊：補齊香港學生高頻詞彙，如「補習」、「補習老師」、「呈分試」等 (移除了「選科」至專屬模塊)
+    const studyKeywords = ['讀書', '考試', '溫書', '成績', '測驗', '壓力大', 'dse', '退步', '好大壓力', '溫極都唔識', '肥佬', '老師', '學校', '校長', '功課', '教授', '補習', '補習老師', '呈分試', '放榜', '升學壓力'];
     if (studyKeywords.some(kw => lowerText.includes(kw))) {
         return {
             level: "yellow",
             aiReply: pick([
-                "學校、功課或者老師嘅評價確實令人好有壓迫感，大腦很容易跳入『表現差 = 人生完蛋』嘅災難化思考。但成績同別人嘅話語絕對定義唔到你嘅全部價值。如果腦袋一直轉唔停，不如一齊深呼吸幾下，拉回理智線？",
-                "見到你為咗學業或學校嘅事咁煩惱，我真係好想拍拍你膊頭。其實你已經好努力面對緊。今晚不如容許自己放低一下，大腦要有足夠休息先可以應付到挑戰㗎。"
+                "學校、補習、功課或者考試嘅評價確實令人好有壓迫感，大腦很容易跳入『表現差 = 人生完蛋』嘅災難化思考。但成績同別人嘅話語絕對定義唔到你嘅全部價值。如果腦袋一直轉唔停，不如一齊深呼吸幾下，拉回理智線？",
+                "見到你為咗學業、補習或者學校嘅事咁煩惱，我真係好想拍拍你膊頭。其實你已經好努力面對緊。今晚不如容許自己放低一下，大腦要有足夠休息先可以應付到挑戰㗎。"
             ]),
-            animationType: pick(["none", "none", "breathe"]), // 降低工具彈出
+            animationType: pick(["none", "none", "breathe"]), // 降低工具彈出，只適時提供4-4-4呼吸
             quickReplies: ["我想試下深呼吸", "好怕令屋企人失望", "覺得好委屈"]
+        };
+    }
+
+    // 7.5 【中三選科與高中適應】
+    // 輔導策略：釐清價值觀、減低災難化想像
+    const subjectSelectionKeywords = ['中三選科', '揀科', '選科', '選修', '文科', '理科', '商科', '唔知揀咩科', 'drop科', '物理', '化學', '生物', '經濟', '企會財', 'bafs', 'history'];
+    if (subjectSelectionKeywords.some(kw => lowerText.includes(kw))) {
+        return {
+            level: "green",
+            aiReply: pick([
+                "中三選科的確係人生第一個大交叉點，身邊嘅人可能俾咗好多意見，令你覺得好混亂。其實揀科最緊要係了解自己嘅『興趣』同『能力』。唔好因為人哋話邊科有前途就夾硬讀，不如一齊攞張紙，寫低你平時讀得最開心、或者最冇咁抗拒嘅科目？",
+                "面對選科，好多同學都會擔心揀錯會影響一世。大腦好容易跌入『災難化』嘅陷阱。其實將來嘅出路好多元化，就算揀錯咗高中都仲有得 Drop 科或者調整。深呼吸，試下放鬆啲，小樹洞陪你慢慢分析。"
+            ]),
+            animationType: pick(["none", "fakenews"]), // 工具 10: 大腦假新聞 (拆解災難化想像)
+            quickReplies: ["屋企人逼我揀理科", "我文理都唔叻", "好怕揀錯後悔"]
         };
     }
 
@@ -1164,7 +1201,8 @@
 
     // 11. 【未來生涯與迷惘】
     // 輔導策略：打破非黑即白思考 (Black-and-White Thinking)
-    const careerKeywords = ['迷惘', '未來', '前途', '唔知想點', '升學', 'jupas', 'vtc', '出路', '大學', '科目', '夢想', '乞食'];
+    // (移除了 vtc，移至專屬模塊)
+    const careerKeywords = ['迷惘', '未來', '前途', '唔知想點', '升學', 'jupas', '出路', '大學', '科目', '夢想', '乞食'];
     if (careerKeywords.some(kw => lowerText.includes(kw))) {
         return {
             level: "green",
@@ -1176,6 +1214,23 @@
             resourceName: "自資專上教育資訊平台 (Concourse)",
             resourceUrl: "https://www.concourse.org.hk/",
             quickReplies: ["我想睇下RPG面板", "覺得未來好灰暗", "多謝你"]
+        };
+    }
+
+    // 11.5 【VTC/IVE 與多元升學出路】
+    // 輔導策略：擴闊視野 (Broaden Perspectives)、提升自我效能感、去污名化
+    const vtcKeywords = ['vtc', 'ive', '高級文憑', 'hd', 'asso', '副學士', '毅進', '應用教育文憑', '基礎文憑', '職專', '展翅', 'hkdi', 'thei'];
+    if (vtcKeywords.some(kw => lowerText.includes(kw))) {
+        return {
+            level: "green",
+            aiReply: pick([
+                "傳統大學絕對唔係唯一嘅出路！VTC、IVE 或者高級文憑/副學士課程，提供好多實用同職業導向嘅選擇。條條大路通羅馬，最緊要係搵到適合自己學習節奏同興趣嘅路。你對邊方面嘅行業或者科目比較有興趣呀？",
+                "社會成日將目光放喺 DSE 升傳統大學度，令到考慮其他出路嘅同學覺得有壓力或者自我懷疑。其實揀 VTC/IVE 提早學習一技之長，係非常務實同勇敢嘅決定！小樹洞為你準備咗 VTC 嘅入學資訊，你可以參考下。"
+            ]),
+            animationType: "resource",
+            resourceName: "VTC 職業訓練局 課程資訊",
+            resourceUrl: "https://www.vtc.edu.hk/admission/tc/",
+            quickReplies: ["我想了解高級文憑", "屋企人覺得讀IVE唔好", "自己成績唔好"]
         };
     }
 
@@ -1223,7 +1278,7 @@
         };
     }
 
-    // 15. 【信任危機、背叛與出軌】 (保留自V6.0)
+    // 15. 【信任危機、背叛與出軌】
     // 心理學策略：CBT 拆解「過度類化 (Overgeneralization)」與創傷接納
     const betrayalKeywords = ['出軌', '偷食', '第三者', '綠帽', '背叛', '呃我', '無信心', '呃人', '唔信男人', '唔信女人'];
     if (betrayalKeywords.some(kw => lowerText.includes(kw))) {
@@ -1231,9 +1286,9 @@
             level: "yellow",
             aiReply: pick([
                 "經歷背叛，仲要係身邊親近嘅人，嗰種被撕裂嘅痛同震驚真係難以形容。心理學上，當我哋受過重創，大腦為咗保護我哋，好容易會產生『過度類化』——例如覺得『一次被背叛 = 所有人都信唔過』。你依家失去信心係好正常嘅防禦機制，俾啲時間自己慢慢療傷。",
-                "俾人呃嘅感覺真係好難受。但請記住，對方出軌係佢嘅道德缺失，絕對唔代表你唔夠好。如果滿腦子都係亂糟糟嘅畫面，不如我哋打開『思維記錄表』，將「情緒」同「事實」拆解一下？"
+                "俾人呃嘅感覺真係好難受。但請記住，對方出軌係佢嘅道德缺失，絕對唔代表你唔夠好。如果滿腦子都係亂糟糟嘅畫面，不如我哋打開『大腦假新聞查核』，將「情緒」同「事實」拆解一下？"
             ]),
-            animationType: pick(["none", "cbt_record"]),
+            animationType: pick(["none", "fakenews"]), // 工具 10: 大腦假新聞
             quickReplies: ["我真係好崩潰", "覺得自己好蠢", "我想試下拆解情緒"]
         };
     }
@@ -1271,7 +1326,7 @@
                 "慢慢講，唔急，我喺度陪你。",
                 "然後呢？發生咗咩事令你有呢個感覺？"
             ]),
-            animationType: "none", // 移除了泡泡紙和抽卡，改為純傾聽
+            animationType: "none", // 純傾聽，不彈出工具
             quickReplies: ["其實係咁嘅...", "我唔知點講好"]
         };
     }
@@ -1286,26 +1341,53 @@
         };
     }
 
-    // 終極 Fallback - 綜合心理學引導模式
+    // ========================================================
+    // 🛡️ 終極修復防線：強綁定配對式 Fallback（Paired Fallback List）
+    // 完美解決「文字說A，工具彈出B」的致命圖文不符問題！
+    // ========================================================
+    const pairedFallbacks = [
+        {
+            // CBT: 捕捉自動思維
+            aiReply: "聽你講完，我感受到呢件事真係對你影響好大。如果我哋用 CBT（認知行為治療）嘅角度去睇，你覺得呢一刻你腦海中『自動彈出嚟嘅第一個念頭 (Automatic Thought)』係咩？",
+            animationType: "none", // 純傾聽引導
+            quickReplies: ["其實我好驚失敗", "我覺得係自己問題", "我唔知點形容"]
+        },
+        {
+            // SFBT: 量尺問句 (Scaling Question)
+            aiReply: "明白。面對呢個情況，如果 0 分係完全平靜，10 分係情緒爆發嘅極點，你覺得依家嘅情緒大約喺幾多分？試下幫呢個情緒貼上一個明確嘅標籤（例如：焦慮、委屈、憤怒）。",
+            animationType: "none", // 無需急救包，專注於情緒評估
+            quickReplies: ["大約有 7-8 分", "好似有 5 分左右", "我分唔清係邊種情緒"]
+        },
+        {
+            // CBT: 區分事實與感受
+            aiReply: "呢件事的確令人好困擾。為咗幫你理清思緒，不如我哋試下將成件事拆開兩部分：邊啲係『發生咗嘅客觀事實』？邊啲係你大腦產生嘅『猜測或者感受』？",
+            animationType: "none", // 純思維分析
+            quickReplies: ["我想試下拆解", "我覺得感受太真實", "唔知點分事實同感受"]
+        },
+        {
+            // 結合 CBT 大腦假新聞查核工具
+            aiReply: "收到你嘅分享。人在面對複雜情況時，好容易會有思維盲點，跌入情緒漩渦。如果你準備好，我哋一齊做個「大腦假新聞查核」，一步步搵出支持同反對呢個煩惱嘅證據？",
+            animationType: "fakenews", // 完美配對大腦假新聞查核！
+            quickReplies: ["好呀，一齊查下大腦", "我覺得成件事都係事實", "我想用畫板發洩下"]
+        },
+        {
+            // 表達性藝術治療 / 釋放 (工具 12: 塗鴉畫板)
+            aiReply: "我明白要用文字表達心入面所有感受真係唔容易，有時講極都好似爭啲嘢。不如試下用「塗鴉畫板」將嗰種亂糟糟嘅感覺畫出嚟，唔使靚，畫到幾亂都得。",
+            animationType: "scribble", // 完美配對塗鴉畫板！
+            quickReplies: ["好，我想畫畫", "都係用文字講啦", "我想抽卡"]
+        }
+    ];
+
+    // 隨機選中一個一體化的配對組合
+    const chosenFallback = pick(pairedFallbacks);
+
     return {
         level: "green",
-        aiReply: pick([
-            // CBT: 捕捉自動思維
-            "聽你講完，我感受到呢件事真係對你影響好大。如果我哋用 CBT（認知行為治療）嘅角度去睇，你覺得呢一刻你腦海中『自動彈出嚟嘅第一個念頭 (Automatic Thought)』係咩？",
-            // SFBT: 量尺問句 (Scaling Question)
-            "明白。面對呢個情況，如果 0 分係完全平靜，10 分係情緒爆發嘅極點，你覺得依家嘅情緒大約喺幾多分？試下幫呢個情緒貼上一個明確嘅標籤（例如：焦慮、委屈、憤怒）。",
-            // CBT: 區分事實與感受
-            "呢件事的確令人好困擾。為咗幫你理清思緒，不如我哋試下將成件事拆開兩部分：邊啲係『發生咗嘅客觀事實』？邊啲係你大腦產生嘅『猜測或者感受』？",
-            // 結合 CBT 思維記錄表工具
-            "收到你嘅分享。人在面對複雜情況時，好容易會有思維盲點，跌入情緒漩渦。如果你準備好，我哋可以一齊打開『CBT 思維記錄表』，一步步搵出支持同反對呢個煩惱嘅證據？",
-            // 表達性藝術治療 / 釋放 (工具 12: 塗鴉畫板)
-            "我明白要用文字表達心入面所有感受真係唔容易，有時講極都好似爭啲嘢。不如試下用「塗鴉畫板」將嗰種亂糟糟嘅感覺畫出嚟，唔使靚，畫到幾亂都得。"
-        ]),
-        animationType: pick(["none", "none", "none", "cbt_record", "scribble"]),
-        quickReplies: ["我試下拆解", "情緒大概有8分", "其實我仲係好亂", "我想用畫板"]
+        aiReply: chosenFallback.aiReply,
+        animationType: chosenFallback.animationType,
+        quickReplies: chosenFallback.quickReplies
     };
 }
-
         function handleChatSubmit(event) {
             event?.preventDefault(); 
             const inputEl = document.getElementById('chat-input'); 
@@ -1324,8 +1406,7 @@
             chatBox.scrollTop = chatBox.scrollHeight;
             conversationHistory.push(`User: ${text}`);
 
-            // 模擬 AI 思考的延遲時間 (1秒 到 1.8秒 之間隨機，提升真實感)
-            const thinkingTime = Math.floor(Math.random() * 800) + 1000;
+            const thinkingTime = Math.floor(Math.random() * 600) + 800;
 
             setTimeout(() => {
                 try {
@@ -1370,45 +1451,46 @@
             else if (analysis.level === 'yellow') { extraClass = "border-l-4 border-l-amber-400 bg-amber-50/30"; setPetEmotion("sad"); }
             else { setPetEmotion("normal"); }
 
-            let htmlContent = `<div class="mb-3 text-lg md:text-xl font-medium ${isDarkMode ? 'text-slate-200' : 'text-slate-700'} leading-relaxed">${analysis.aiReply}</div>`;
+            let htmlContent = `<div class="mb-3 text-[15px] md:text-base font-medium ${isDarkMode ? 'text-slate-200' : 'text-slate-700'} leading-relaxed">${analysis.aiReply}</div>`;
             const resName = "Open噏 24小時網上情緒支援"; const resUrl = "https://www.openup.hk/";
 
             const animationTemplates = {
-                breathe: `<div class="mt-4 bg-sky-50 p-6 rounded-3xl border border-sky-100 flex flex-col items-center text-center"><p class="text-lg text-sky-600 font-bold mb-4"><i class="fa-solid fa-wind animate-pulse mr-2"></i> 4-4-4 深呼吸引導</p><button onclick="openToolOverlay('breathe')" class="bg-sky-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-sky-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 立即開始呼吸</button></div>`,
-                resource: `<div class="mt-4 bg-blue-50 p-6 rounded-3xl border border-blue-100 flex flex-col items-center text-center"><p class="text-lg text-blue-600 font-bold mb-3"><i class="fa-solid fa-circle-info mr-2"></i> 相關資源整理</p><button onclick="window.open('${resUrl}', '_blank')" class="bg-blue-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-blue-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-link"></i> 前往 ${resName}</button></div>`,
-                scribble: `<div class="mt-4 bg-orange-50/80 p-6 rounded-3xl border border-orange-100 flex flex-col items-center text-center"><p class="text-lg text-orange-600 font-bold mb-3"><i class="fa-solid fa-palette mr-2"></i> 塗鴉畫板已準備好</p><button onclick="openToolOverlay('scribble')" class="bg-orange-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-orange-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 開啟全螢幕畫板</button></div>`,
-                wallpush: `<div class="mt-4 bg-red-50 p-6 rounded-3xl border border-red-100 flex flex-col items-center text-center"><p class="text-lg text-red-600 font-bold mb-3"><i class="fa-solid fa-person-walking-arrow-right mr-2"></i> 推牆釋放法已就緒</p><button onclick="openToolOverlay('wallpush')" class="bg-red-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-red-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 站起來釋放壓力</button></div>`,
-                shredder: `<div class="mt-4 bg-orange-50 p-6 rounded-3xl border border-orange-100 flex flex-col items-center text-center"><p class="text-lg text-orange-600 font-bold mb-3"><i class="fa-solid fa-file-prescription mr-2"></i> 煩惱碎紙機</p><button onclick="openToolOverlay('shredder')" class="bg-orange-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-orange-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 開啟碎紙機</button></div>`,
-                stream: `<div class="mt-4 bg-teal-50 p-6 rounded-3xl border border-teal-100 flex flex-col items-center text-center"><p class="text-lg text-teal-600 font-bold mb-3"><i class="fa-solid fa-leaf mr-2"></i> 溪水落葉</p><button onclick="openToolOverlay('stream')" class="bg-teal-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-teal-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 去溪流放走煩惱</button></div>`,
-                hopebox: `<div class="mt-4 bg-teal-50 p-6 rounded-3xl border border-teal-100 flex flex-col items-center text-center"><p class="text-lg text-teal-600 font-bold mb-3"><i class="fa-solid fa-box-open mr-2"></i> 虛擬安撫寶盒</p><button onclick="openToolOverlay('hopebox')" class="bg-teal-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-teal-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 打開寶盒</button></div>`,
-                fakenews: `<div class="mt-4 bg-yellow-50 p-6 rounded-3xl border border-yellow-100 flex flex-col items-center text-center"><p class="text-lg text-yellow-600 font-bold mb-3"><i class="fa-solid fa-newspaper mr-2"></i> 大腦假新聞查核</p><button onclick="openToolOverlay('fakenews')" class="bg-yellow-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-yellow-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 粉碎負面想法</button></div>`,
-                bubble: `<div class="mt-4 bg-blue-50 p-6 rounded-3xl border border-blue-100 flex flex-col items-center text-center"><p class="text-lg text-blue-600 font-bold mb-3"><i class="fa-solid fa-circle-dot mr-2"></i> 紓壓泡泡紙</p><button onclick="openToolOverlay('bubble')" class="bg-blue-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-blue-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 篤破壓力</button></div>`,
-                butterfly: `<div class="mt-4 bg-indigo-50 p-6 rounded-3xl border border-indigo-100 flex flex-col items-center text-center"><p class="text-lg text-indigo-600 font-bold mb-3"><i class="fa-solid fa-hands-holding mr-2"></i> 蝴蝶安全擁抱</p><button onclick="openToolOverlay('butterfly')" class="bg-indigo-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-indigo-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 穩定情緒</button></div>`,
-                grounding: `<div class="mt-4 bg-emerald-50 p-6 rounded-3xl border border-emerald-100 flex flex-col items-center text-center"><p class="text-lg text-emerald-600 font-bold mb-3"><i class="fa-solid fa-shoe-prints mr-2"></i> 五感著陸遊戲</p><button onclick="openToolOverlay('grounding')" class="bg-emerald-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-emerald-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 返回當下</button></div>`,
-                card: `<div class="mt-4 bg-amber-50 p-6 rounded-3xl border border-amber-100 flex flex-col items-center text-center"><p class="text-lg text-amber-600 font-bold mb-3"><i class="fa-solid fa-sun mr-2"></i> 心靈御守抽籤</p><button onclick="openToolOverlay('card')" class="bg-amber-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-amber-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-circle-play"></i> 抽取力量卡</button></div>`,
-                panic: `<div class="mt-4 bg-rose-50 p-6 rounded-3xl border border-rose-100 flex flex-col items-center text-center"><p class="text-lg text-rose-600 font-bold mb-3"><i class="fa-solid fa-eye-slash mr-2"></i> 緊急應急隱蔽</p><button onclick="panicHide()" class="bg-rose-500 text-white font-bold px-7 py-3 rounded-full text-lg hover:bg-rose-600 shadow-md transition flex items-center gap-2"><i class="fa-solid fa-eye-slash"></i> 立即隱蔽畫面 (Esc)</button></div>`
+                breathe: `<div class="mt-3 bg-sky-50 p-4 rounded-2xl border border-sky-100 flex flex-col items-center text-center"><p class="text-sm text-sky-600 font-bold mb-3"><i class="fa-solid fa-wind animate-pulse mr-1.5"></i> 4-4-4 深呼吸引導</p><button onclick="openToolOverlay('breathe')" class="bg-sky-500 text-white font-bold px-5 py-2 rounded-full text-xs hover:bg-sky-600 shadow-md transition flex items-center gap-1.5 active:scale-95"><i class="fa-solid fa-circle-play"></i> 立即開始呼吸</button></div>`,
+                hotline: `<div class="mt-3 bg-rose-50 p-4 rounded-2xl border border-rose-100 flex flex-col items-center text-center"><p class="text-sm text-rose-600 font-bold mb-2.5"><i class="fa-solid fa-phone-volume animate-pulse mr-1.5"></i> 24小時專業熱線</p><button onclick="window.open('tel:28960000')" class="bg-rose-500 text-white font-bold px-5 py-2 rounded-full text-xs hover:bg-rose-600 shadow-md transition flex items-center gap-1.5 active:scale-95"><i class="fa-solid fa-phone"></i> 撥打撒瑪利亞會</button></div>`,
+                scribble: `<div class="mt-3 bg-orange-50/80 p-4 rounded-2xl border border-orange-100 flex flex-col items-center text-center"><p class="text-sm text-orange-600 font-bold mb-3"><i class="fa-solid fa-palette mr-1.5"></i> 塗鴉畫板已準備好</p><button onclick="openToolOverlay('scribble')" class="bg-orange-500 text-white font-bold px-5 py-2 rounded-full text-xs hover:bg-orange-600 shadow-md transition flex items-center gap-1.5 active:scale-95"><i class="fa-solid fa-circle-play"></i> 開啟全螢幕畫板</button></div>`,
+                wallpush: `<div class="mt-3 bg-red-50 p-4 rounded-2xl border border-red-100 flex flex-col items-center text-center"><p class="text-sm text-red-600 font-bold mb-3"><i class="fa-solid fa-person-walking-arrow-right mr-1.5"></i> 推牆釋放法已就緒</p><button onclick="openToolOverlay('wallpush')" class="bg-red-500 text-white font-bold px-5 py-2 rounded-full text-xs hover:bg-red-600 shadow-md transition flex items-center gap-1.5 active:scale-95"><i class="fa-solid fa-circle-play"></i> 站起來釋放壓力</button></div>`,
+                shredder: `<div class="mt-3 bg-orange-50 p-4 rounded-2xl border border-orange-100 flex flex-col items-center text-center"><p class="text-sm text-orange-600 font-bold mb-3"><i class="fa-solid fa-file-prescription mr-1.5"></i> 煩惱碎紙機</p><button onclick="openToolOverlay('shredder')" class="bg-orange-500 text-white font-bold px-5 py-2 rounded-full text-xs hover:bg-orange-600 shadow-md transition flex items-center gap-1.5 active:scale-95"><i class="fa-solid fa-circle-play"></i> 開啟碎紙機</button></div>`,
+                stream: `<div class="mt-3 bg-teal-50 p-4 rounded-2xl border border-teal-100 flex flex-col items-center text-center"><p class="text-sm text-teal-600 font-bold mb-3"><i class="fa-solid fa-leaf mr-1.5"></i> 溪水落葉</p><button onclick="openToolOverlay('stream')" class="bg-teal-500 text-white font-bold px-5 py-2 rounded-full text-xs hover:bg-teal-600 shadow-md transition flex items-center gap-1.5 active:scale-95"><i class="fa-solid fa-circle-play"></i> 去溪流放走煩惱</button></div>`,
+                hopebox: `<div class="mt-3 bg-teal-50 p-4 rounded-2xl border border-teal-100 flex flex-col items-center text-center"><p class="text-sm text-teal-600 font-bold mb-3"><i class="fa-solid fa-box-open mr-1.5"></i> 虛擬安撫寶盒</p><button onclick="openToolOverlay('hopebox')" class="bg-teal-500 text-white font-bold px-5 py-2 rounded-full text-xs hover:bg-teal-600 shadow-md transition flex items-center gap-1.5 active:scale-95"><i class="fa-solid fa-circle-play"></i> 打開寶盒</button></div>`,
+                fakenews: `<div class="mt-3 bg-yellow-50 p-4 rounded-2xl border border-yellow-100 flex flex-col items-center text-center"><p class="text-sm text-yellow-600 font-bold mb-3"><i class="fa-solid fa-newspaper mr-1.5"></i> 大腦假新聞查核</p><button onclick="openToolOverlay('fakenews')" class="bg-yellow-500 text-white font-bold px-5 py-2 rounded-full text-xs hover:bg-yellow-600 shadow-md transition flex items-center gap-1.5 active:scale-95"><i class="fa-solid fa-circle-play"></i> 粉碎負面想法</button></div>`,
+                bubble: `<div class="mt-3 bg-blue-50 p-4 rounded-2xl border border-blue-100 flex flex-col items-center text-center"><p class="text-sm text-blue-600 font-bold mb-3"><i class="fa-solid fa-circle-dot mr-1.5"></i> 紓壓泡泡紙</p><button onclick="openToolOverlay('bubble')" class="bg-blue-500 text-white font-bold px-5 py-2 rounded-full text-xs hover:bg-blue-600 shadow-md transition flex items-center gap-1.5 active:scale-95"><i class="fa-solid fa-circle-play"></i> 篤破壓力</button></div>`,
+                butterfly: `<div class="mt-3 bg-indigo-50 p-4 rounded-2xl border border-indigo-100 flex flex-col items-center text-center"><p class="text-sm text-indigo-600 font-bold mb-3"><i class="fa-solid fa-hands-holding mr-1.5"></i> 蝴蝶安全擁抱</p><button onclick="openToolOverlay('butterfly')" class="bg-indigo-500 text-white font-bold px-5 py-2 rounded-full text-xs hover:bg-indigo-600 shadow-md transition flex items-center gap-1.5 active:scale-95"><i class="fa-solid fa-circle-play"></i> 穩定情緒</button></div>`,
+                grounding: `<div class="mt-3 bg-emerald-50 p-4 rounded-2xl border border-emerald-100 flex flex-col items-center text-center"><p class="text-sm text-emerald-600 font-bold mb-3"><i class="fa-solid fa-shoe-prints mr-1.5"></i> 五感著陸遊戲</p><button onclick="openToolOverlay('grounding')" class="bg-emerald-500 text-white font-bold px-5 py-2 rounded-full text-xs hover:bg-emerald-600 shadow-md transition flex items-center gap-1.5 active:scale-95"><i class="fa-solid fa-circle-play"></i> 返回當下</button></div>`,
+                card: `<div class="mt-3 bg-amber-50 p-4 rounded-2xl border border-amber-100 flex flex-col items-center text-center"><p class="text-sm text-amber-600 font-bold mb-3"><i class="fa-solid fa-sun mr-1.5"></i> 心靈御守抽籤</p><button onclick="openToolOverlay('card')" class="bg-amber-500 text-white font-bold px-5 py-2 rounded-full text-xs hover:bg-amber-600 shadow-md transition flex items-center gap-1.5 active:scale-95"><i class="fa-solid fa-circle-play"></i> 抽取力量卡</button></div>`,
+                panic: `<div class="mt-3 bg-rose-50 p-4 rounded-2xl border border-rose-100 flex flex-col items-center text-center"><p class="text-sm text-rose-600 font-bold mb-3"><i class="fa-solid fa-eye-slash mr-1.5"></i> 安全防偷看設定</p><button onclick="panicHide()" class="bg-rose-500 text-white font-bold px-5 py-2 rounded-full text-xs hover:bg-rose-600 shadow-md transition flex items-center gap-1.5 active:scale-95"><i class="fa-solid fa-eye-slash"></i> 立即一鍵隱蔽 (Esc)</button></div>`
             };
             if (analysis.animationType && animationTemplates[analysis.animationType]) htmlContent += animationTemplates[analysis.animationType];
             
             appendMessage('ai', htmlContent, extraClass);
             const qrContainer = document.getElementById('quick-replies-container'); qrContainer.innerHTML = '';
             if (analysis.quickReplies && analysis.quickReplies.length > 0) {
-                const label = document.createElement('span'); label.className = "text-sm md:text-base text-slate-400 self-center mr-2 font-medium"; label.innerText = "你可以試試點擊："; qrContainer.appendChild(label);
                 analysis.quickReplies.forEach(qr => {
-                    const btn = document.createElement('button'); btn.className = "bg-white border border-slate-200 text-slate-600 hover:bg-sage-50 hover:text-sage-700 hover:border-sage-200 text-sm md:text-base px-5 py-2.5 rounded-full transition font-medium shadow-sm slide-up hover:-translate-y-0.5"; btn.innerText = qr;
+                    const btn = document.createElement('button'); btn.className = "inline-block flex-shrink-0 bg-slate-100 border border-slate-200 text-slate-600 hover:bg-sage-50 hover:text-sage-700 hover:border-sage-200 text-xs px-3.5 py-1.5 rounded-full transition font-medium shadow-sm slide-up"; btn.innerText = qr;
                     btn.onclick = () => { document.getElementById('chat-input').value = qr; handleChatSubmit(); }; qrContainer.appendChild(btn);
                 });
+            } else {
+                renderDefaultQuickReplies();
             }
         }
 
         function appendMessage(role, htmlContent, extraClass = "") {
             const chatBox = document.getElementById('chat-box'); const div = document.createElement('div');
             if (role === 'student') {
-                div.className = "flex gap-3 md:gap-4 flex-row-reverse items-start slide-up mt-4";
-                div.innerHTML = `<div class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 shadow-sm border border-white flex-shrink-0"><i class="fa-solid fa-user text-base md:text-lg"></i></div><div class="bg-indigo-500 text-white p-5 md:p-6 rounded-3xl rounded-tr-none shadow-sm text-lg md:text-xl leading-relaxed max-w-[85%] break-words">${htmlContent}</div>`;
+                div.className = "flex gap-2.5 md:gap-4 flex-row-reverse items-start slide-up mt-3";
+                div.innerHTML = `<div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 shadow-sm border border-white flex-shrink-0"><i class="fa-solid fa-user text-xs md:text-sm"></i></div><div class="bg-indigo-500 text-white p-4 md:p-5 rounded-3xl rounded-tr-none shadow-sm text-sm md:text-base leading-relaxed max-w-[85%] break-words">${htmlContent}</div>`;
             } else {
-                div.className = "flex gap-3 md:gap-4 items-start slide-up w-full mt-4";
-                div.innerHTML = `<div class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-sage-400 to-emerald-500 flex items-center justify-center text-white shadow-sm border border-white flex-shrink-0"><i class="fa-solid fa-robot text-base md:text-xl"></i></div><div class="bg-white p-6 md:p-7 rounded-3xl rounded-tl-none shadow-sm border border-slate-100 text-lg md:text-xl leading-relaxed max-w-[95%] md:max-w-[85%] ${extraClass}">${htmlContent}</div>`;
+                div.className = "flex gap-2.5 md:gap-4 items-start slide-up w-full mt-3";
+                div.innerHTML = `<div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-sage-400 to-emerald-500 flex items-center justify-center text-white shadow-sm border border-white flex-shrink-0"><i class="fa-solid fa-robot text-xs md:text-sm"></i></div><div class="bg-white p-4 md:p-5 rounded-3xl rounded-tl-none shadow-sm border border-slate-100 text-sm md:text-base leading-relaxed max-w-[90%] md:max-w-[85%] ${extraClass}">${htmlContent}</div>`;
             }
             chatBox.appendChild(div); setTimeout(() => { chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: 'smooth' }); }, 100);
         }
