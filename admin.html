@@ -85,7 +85,7 @@
                 </button>
             </form>
 
-            <!-- 安全的登入指引提示（替代原本會曝露密碼的快捷鍵） -->
+            <!-- 安全的登入指引提示 -->
             <div class="mt-8 pt-6 border-t border-slate-100 relative z-10">
                 <div class="bg-indigo-50/50 rounded-2xl p-4 border border-indigo-100/50 text-left">
                     <h4 class="text-xs font-bold text-indigo-900 mb-2 flex items-center gap-1.5">
@@ -94,11 +94,11 @@
                     <ul class="space-y-1.5 text-[11px] text-slate-600 leading-relaxed">
                         <li class="flex items-start gap-1">
                             <span class="text-indigo-500 font-bold">•</span>
-                            <span><strong>學生：</strong>請直接輸入您的<strong>個人學號</strong>（例如：S105）即可直接跳轉至專屬心靈樹洞。</span>
+                            <span><strong>學生：</strong>請直接輸入您的<strong>個人學號</strong>（例如：S105）即可自動跳轉到學生專屬小樹洞。</span>
                         </li>
                         <li class="flex items-start gap-1">
                             <span class="text-indigo-500 font-bold">•</span>
-                            <span><strong>教職員及社工：</strong>請輸入校方分派的<strong>專屬安全密碼</strong>登入相應權限的監察後台。</span>
+                            <span><strong>教職員及社工：</strong>請輸入校方分派的<strong>安全密碼</strong>登入後台。</span>
                         </li>
                     </ul>
                 </div>
@@ -242,7 +242,7 @@
                     </div>
                 </section>
 
-                <!-- AI 動態介入引導回覆建議欄位 -->
+                <!-- AI 動態介入引導回覆建議 -->
                 <section id="ai-suggestion-section" class="hidden transition-all duration-500">
                     <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl shadow-inner border border-indigo-100/50 p-6 flex flex-col md:flex-row gap-6 items-start">
                         <div class="flex-shrink-0 bg-indigo-500 text-white p-3 rounded-2xl text-2xl"><i class="fa-solid fa-wand-magic-sparkles animate-pulse"></i></div>
@@ -289,7 +289,7 @@
         </main>
     </div>
 
-    <!-- 系統通知 Toast 機制 (防 Alert 阻礙交互) -->
+    <!-- 系統通知 Toast 機制 -->
     <div id="toast-notification" class="fixed top-20 right-4 transform translate-y-[-100px] opacity-0 transition-all duration-500 ease-out z-[110] max-w-sm w-full bg-slate-900 text-white rounded-2xl shadow-2xl p-4 border border-slate-700 flex items-start gap-3 pointer-events-none">
         <div class="text-emerald-400 text-xl" id="toast-icon"><i class="fa-solid fa-circle-check"></i></div>
         <div class="flex-1">
@@ -320,7 +320,7 @@
 
             <!-- Modal 內容 -->
             <div class="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-50 custom-scrollbar" id="modal-chat-history">
-                <!-- 由 JS 依據當前身分動態渲染 -->
+                <!-- 由 JS 渲染 -->
             </div>
 
             <!-- Modal 尾部 -->
@@ -333,19 +333,14 @@
         </div>
     </div>
 
-    <!-- 系統 JavaScript 帳密管理、權限機制、與情緒監控引擎 -->
+    <!-- 系統 JavaScript -->
     <script>
         // 核心個案數據模型
         const rawStudentDatabase = [
             {
-                id: "STU-0942",
-                name: "陳小明",
-                class: "4A",
-                riskLevel: "red",
-                trend: "📉 急速下滑",
+                id: "STU-0942", name: "陳小明", class: "4A", riskLevel: "red", trend: "📉 急速下滑",
                 latestChat: "我真係好攰，覺得生存落去冇咩意義... 尋晚又同阿媽大吵咗一場，好想一了百了。",
-                intentTags: ["自我傷害傾向", "高度絕望感", "家庭功能失調"],
-                status: "緊急介入中",
+                intentTags: ["自我傷害傾向", "高度絕望感", "家庭功能失調"], status: "緊急介入中",
                 history: [
                     { time: "昨日 14:32", role: "student", text: "我一世都做唔好架啦，點解我要黎到呢個世界？" },
                     { time: "昨日 14:34", role: "counselor", text: "聽到你咁講我好心痛。你而家絕對唔係一個人面對，話畀我聽尋晚發生咗咩事好嗎？" },
@@ -358,14 +353,9 @@
                 }
             },
             {
-                id: "STU-1108",
-                name: "李思敏",
-                class: "3B",
-                riskLevel: "yellow",
-                trend: "➡️ 起伏不穩",
+                id: "STU-1108", name: "李思敏", class: "3B", riskLevel: "yellow", trend: "➡️ 起伏不穩",
                 latestChat: "好驚下年揀唔到理科，身邊啲同學全部都好叻，覺得自己溫極都係咁廢，好自卑。",
-                intentTags: ["選科學學業焦慮", "自我價值否定"],
-                status: "持續跟進",
+                intentTags: ["選科學學業焦慮", "自我價值否定"], status: "持續跟進",
                 history: [
                     { time: "兩日前 11:15", role: "student", text: "我真係好驚，DSE好似就係一切咁，如果我讀唔到Chem係咪成世就完咗？" },
                     { time: "兩日前 11:17", role: "counselor", text: "選科的確帶黎好大壓力，但你要記住，理科絕對唔係人生唯一嘅成功道路。我哋一齊分析下你學科興趣好嗎？" },
@@ -378,14 +368,9 @@
                 }
             },
             {
-                id: "STU-0833",
-                name: "張俊傑",
-                class: "1A",
-                riskLevel: "yellow",
-                trend: "📉 逐步下滑",
+                id: "STU-0833", name: "張俊傑", class: "1A", riskLevel: "yellow", trend: "📉 逐步下滑",
                 latestChat: "今日小息嗰陣，佢哋又特登行開唔同我玩，仲喺背後笑我「小毒毒」，好寂寞，唔想返學。",
-                intentTags: ["人際關係排擠", "校園孤立適應"],
-                status: "已聯絡班主任",
+                intentTags: ["人際關係排擠", "校園孤立適應"], status: "已聯絡班主任",
                 history: [
                     { time: "昨日 10:05", role: "student", text: "我到底做錯咗咩？點解佢哋要咁樣恰我，排擠我？" },
                     { time: "昨日 10:07", role: "counselor", text: "俊傑，俾人排擠嘅感覺真係好難受、好委屈。但請你記住，被排擠絕對唔係因為你做錯咗咩，呢個唔係你嘅問題。" },
@@ -398,14 +383,9 @@
                 }
             },
             {
-                id: "STU-0512",
-                name: "王曉琳",
-                class: "5C",
-                riskLevel: "green",
-                trend: "📈 情緒平穩",
+                id: "STU-0512", name: "王曉琳", class: "5C", riskLevel: "green", trend: "📈 情緒平穩",
                 latestChat: "多謝小樹洞陪我傾計，用完呼吸法同戳完泡泡之後，個人平靜咗好多，今晚可以早啲瞓。",
-                intentTags: ["情緒放鬆回穩", "正面行為回饋"],
-                status: "結案觀察",
+                intentTags: ["情緒放鬆回穩", "正面行為回饋"], status: "結案觀察",
                 history: [
                     { time: "三日前 22:30", role: "student", text: "我失眠咗三晚，滿腦子都係考試，個人好煩躁。" },
                     { time: "三日前 22:32", role: "counselor", text: "失眠真係令人心力交瘁。試下放鬆身體，我哋一齊做一次4-4-4深呼吸引導。" },
@@ -426,54 +406,45 @@
         let currentActiveRole = null;
         let activeSuggestionStudentId = "";
 
-        // ==================== 🔐 登入系統邏輯（單一通行證智能分流） ====================
-        
+        // ==================== 🔐 登入安全分流 ====================
         function handleLogin(event) {
             event.preventDefault();
             const passkeyInput = document.getElementById('login-passkey').value.trim();
             const errorMsg = document.getElementById('login-error-msg');
             const errorText = document.getElementById('error-text');
 
-            // 1. 社工安全通行證：social999
+            // 1. 社工專屬：social999
             if (passkeyInput === 'social999') {
                 errorMsg.classList.add('hidden');
                 sessionStorage.setItem("treehole_session_role", "social_worker");
                 sessionStorage.setItem("treehole_session_label", "駐校社工");
                 initApp("social_worker");
             } 
-            // 2. 一般老師安全通行證：teacher123
+            // 2. 一般老師：teacher123
             else if (passkeyInput === 'teacher123') {
                 errorMsg.classList.add('hidden');
                 sessionStorage.setItem("treehole_session_role", "teacher");
                 sessionStorage.setItem("treehole_session_label", "一般老師");
                 initApp("teacher");
             } 
-            // 3. 學生學號分流：開頭為S、s或四位數以上格式，自動帶往 index.html
-            else if (passkeyInput.toUpperCase().startsWith('S') || (passkeyInput.length >= 4 && passkeyInput !== 'social999' && passkeyInput !== 'teacher123')) {
+            // 3. 學生學號：自動跳轉至 student.html?sid=學號
+            else if (passkeyInput.toUpperCase().startsWith('S') || (passkeyInput.length >= 4)) {
                 errorMsg.classList.add('hidden');
                 showToastNotification(
                     "🎒 學生帳號識別中", 
                     `已偵測為學生身分 (${passkeyInput})，正在安全跳轉至前台樹洞中...`, 
                     "fa-solid fa-graduation-cap text-sky-400"
                 );
-                // 1.5秒後帶有學號參數自動跳轉到 index.html
                 setTimeout(() => {
-                    window.location.href = `index.html?sid=${encodeURIComponent(passkeyInput.toUpperCase())}`;
+                    window.location.href = `student.html?sid=${encodeURIComponent(passkeyInput.toUpperCase())}`;
                 }, 1500);
             } 
             else {
-                // 輸入錯誤
                 errorText.innerText = "無法辨識的通行密碼或學號。教職員請輸入您的專屬密碼，學生請輸入您的學號。";
                 errorMsg.classList.remove('hidden');
             }
         }
 
-        // 輔助調試與填入輸入框 (在代碼中保留但介面上不直接露出密碼按鈕)
-        function fillMockCredentials(passkey) {
-            document.getElementById('login-passkey').value = passkey;
-        }
-
-        // 密碼顯隱切換
         function togglePasswordVisibility() {
             const passInput = document.getElementById('login-passkey');
             const icon = document.getElementById('password-toggle-icon');
@@ -481,7 +452,6 @@
                 passInput.type = 'text';
                 icon.className = 'fa-solid fa-eye text-sm';
             } else {
-                passInput.type === 'text';
                 passInput.type = 'password';
                 icon.className = 'fa-solid fa-eye-slash text-sm';
             }
@@ -490,24 +460,16 @@
         // 啟動主系統介面
         function initApp(role) {
             currentActiveRole = role;
-            
-            // 隱藏登入頁面，顯示主畫面
             document.getElementById('login-portal').classList.add('hidden');
             document.getElementById('app-container').classList.remove('hidden');
             
-            // 安全限制：不允許老師動態切換回社工，頂部改為唯讀顯示，移除了 dropdown 的越權風險
             const navRoleText = document.getElementById('nav-role-text');
             const navRoleIcon = document.getElementById('nav-role-icon');
             const roleSelector = document.getElementById('role-selector');
             
             if (roleSelector) {
                 roleSelector.value = role;
-                // 在老師登入時隱藏多餘的下拉選項以加強安全性
-                if (role === 'teacher') {
-                    roleSelector.disabled = true; // 鎖定切換
-                } else {
-                    roleSelector.disabled = false;
-                }
+                roleSelector.disabled = (role === 'teacher'); // 限制老師越權
             }
 
             if (navRoleText) {
@@ -519,8 +481,6 @@
             
             updateRoleBadge(role);
             populateMonitoringTable();
-            
-            // 重置閒置登出計時
             resetInactivityTimer();
 
             showToastNotification(
@@ -530,13 +490,10 @@
             );
         }
 
-        // 安全登出
         function handleLogout() {
             sessionStorage.removeItem("treehole_session_role");
             sessionStorage.removeItem("treehole_session_label");
             currentActiveRole = null;
-            
-            // 顯示登入頁，隱藏主介面
             document.getElementById('login-portal').classList.remove('hidden');
             document.getElementById('app-container').classList.add('hidden');
             document.getElementById('login-passkey').value = '';
@@ -544,25 +501,15 @@
             closeModal();
         }
 
-        // 本地身分安全管理
         function handleRoleSwitch(role) {
-            // 只有當前是社工登入時才允許調低權限為老師查閱，若為老師則鎖死不能切換
             if (sessionStorage.getItem("treehole_session_role") === 'teacher' && role === 'social_worker') {
                 showToastNotification("⚠️ 安全防護攔截", "您沒有足夠的權限切換至社工完整視角！", "fa-solid fa-circle-xmark text-rose-500");
                 document.getElementById('role-selector').value = 'teacher';
                 return;
             }
-
             currentActiveRole = role;
             updateRoleBadge(role);
             populateMonitoringTable();
-
-            if (role === 'teacher') {
-                showToastNotification("🔒 隱私安全保護已啟動", "高危學生對話與輔導報告已自動去識別化遮蔽。", "fa-solid fa-user-slash text-amber-500");
-                closeSuggestionSection();
-            } else {
-                showToastNotification("🔑 輔導完整視角已開啟", "已解鎖完整對話、敏感詞高亮與輔導金句策略。", "fa-solid fa-circle-check text-emerald-400");
-            }
         }
 
         function updateRoleBadge(role) {
@@ -577,8 +524,7 @@
             }
         }
 
-        // ==================== 🛡️ 數據去識別化與表格渲染 ====================
-
+        // ==================== 🛡️ 去識別化與渲染 ====================
         function applyNameMask(name) {
             if (name.length <= 2) return name[0] + "*";
             return name[0] + "*".repeat(name.length - 2) + name[name.length - 1];
@@ -601,15 +547,12 @@
                 const isHighRisk = student.riskLevel === 'red';
                 const isTeacherView = currentActiveRole === 'teacher';
 
-                // 身分限制遮罩核心邏輯
                 let displayName = student.name;
                 let displaySnippet = student.latestChat;
                 let displayTags = student.intentTags.map(tag => `<span class="inline-block bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded font-bold mr-1 mb-1 border border-slate-200">${tag}</span>`).join('');
 
                 if (isTeacherView) {
-                    // 一般老師：名字去識別化 (例如 陳小明 -> 陳*明)
                     displayName = applyNameMask(student.name);
-
                     if (isHighRisk) {
                         displaySnippet = `<span class="text-slate-400 font-medium italic"><i class="fa-solid fa-lock mr-1.5"></i>[🔒 內容涉及高危隱私，僅限社工查閱]</span>`;
                         displayTags = `<span class="text-xs text-slate-400 italic">權限受限</span>`;
@@ -685,8 +628,6 @@
         }
 
         // ==================== 🛠 UI 工具機制 ====================
-
-        // Toast 訊息通知
         function showToastNotification(title, body, iconClass = "fa-solid fa-circle-check") {
             const toast = document.getElementById('toast-notification');
             const tTitle = document.getElementById('toast-title');
@@ -704,23 +645,14 @@
             }, 4000);
         }
 
-        // 一鍵導出個案評估報告
         function triggerExportReport() {
             const roleText = currentActiveRole === 'social_worker' ? "駐校社工 (完整加密)" : "一般老師 (去識別化)";
-            showToastNotification(
-                "📄 安全導出報告中...", 
-                `正在為 [${roleText}] 生成符合教育局與社署指引之安全加密 PDF 報告... 下載已完成！`, 
-                "fa-solid fa-file-pdf text-rose-500"
-            );
+            showToastNotification("📄 安全導出報告中...", `正在為 [${roleText}] 生成安全加密 PDF 報告... 已完成！`, "fa-solid fa-file-pdf text-rose-500");
         }
 
         function triggerPdfDownloadInModal() {
             const sName = document.getElementById('modal-student-name').innerText;
-            showToastNotification(
-                "📄 安全個案報告",
-                `已成功下載「${sName}」之加密輔導評估報告... 已完成！`,
-                "fa-solid fa-download text-indigo-500"
-            );
+            showToastNotification("📄 安全個案報告", `已成功下載「${sName}」之加密輔導評估報告... 已完成！`, "fa-solid fa-download text-indigo-500");
         }
 
         function triggerActionComplete(id) {
@@ -728,7 +660,6 @@
             showToastNotification("個案狀態更新", `已成功登記學號 ${student.id} 案主的今日跟進進度。`, "fa-solid fa-clipboard-check text-emerald-400");
         }
 
-        // 獲取 AI 即時回覆建議
         function requestAiSuggestion(id) {
             const student = rawStudentDatabase.find(s => s.id === id);
             if (!student) return;
@@ -737,11 +668,7 @@
             const isHighRisk = student.riskLevel === 'red';
 
             if (isTeacher && isHighRisk) {
-                showToastNotification(
-                    "🔒 無法提供建議", 
-                    "一般老師視角無法查閱高危自傷傾向個案的敏感輔導建議與金句，請洽詢專業社工。", 
-                    "fa-solid fa-lock text-rose-500"
-                );
+                showToastNotification("🔒 無法提供建議", "一般老師視角無法查閱高危自傷傾向個案的敏感輔導建議與金句，請洽詢專業社工。", "fa-solid fa-lock text-rose-500");
                 return;
             }
 
@@ -777,12 +704,10 @@
             dummy.select();
             document.execCommand("copy");
             document.body.removeChild(dummy);
-            
             showToastNotification("📋 複製成功", "該段輔導金句已儲存至您的剪貼簿中。", "fa-solid fa-copy text-sky-400");
         }
 
-        // ==================== 💬 歷史對話彈出視窗 (Modal) ====================
-
+        // ==================== 💬 歷史對話 (Modal) ====================
         function openHistoryModal(id) {
             const student = rawStudentDatabase.find(s => s.id === id);
             if (!student) return;
@@ -797,7 +722,6 @@
 
             nameEl.innerText = isTeacher ? applyNameMask(student.name) : student.name;
             idEl.innerText = student.id;
-
             historyContainer.innerHTML = '';
             
             if (isTeacher && isHighRisk) {
@@ -807,7 +731,7 @@
                         <i class="fa-solid fa-eye-slash text-4xl text-slate-400 mb-3"></i>
                         <h4 class="font-bold text-slate-700">對話紀錄已安全加密</h4>
                         <p class="text-xs text-slate-400 text-center mt-2 leading-relaxed">
-                            因該生處於 [🔴 高危警報] 階段，本對話軌跡包含高度自傷防範內容。為了學生的絕對隱私與安全，詳細輔導追蹤軌跡已對「一般老師」隱藏，僅限專業社工、輔導主任、或授權醫療人員調閱。
+                            因該生處於 [🔴 高危警報] 階段，本對話軌跡已對「一般老師」隱藏，僅限專業社工、輔導主任、或授權醫療人員調閱。
                         </p>
                     </div>
                 `;
@@ -817,15 +741,12 @@
                     const isStudent = item.role === 'student';
                     const bubble = document.createElement('div');
                     bubble.className = `flex flex-col ${isStudent ? 'items-start' : 'items-end'}`;
-                    
                     const dialogSnippet = isStudent ? highlightSensitiveKeywords(item.text) : item.text;
 
                     bubble.innerHTML = `
                         <span class="text-[10px] text-slate-400 font-bold px-1 mb-1">${isStudent ? '學生' : '輔導室社工'} (於 ${item.time})</span>
                         <div class="max-w-[85%] rounded-2xl p-3.5 text-xs font-medium leading-relaxed shadow-sm ${
-                            isStudent 
-                            ? 'bg-white text-slate-700 rounded-tl-none border border-slate-100' 
-                            : 'bg-indigo-600 text-white rounded-tr-none'
+                            isStudent ? 'bg-white text-slate-700 border border-slate-100' : 'bg-indigo-600 text-white rounded-tr-none'
                         }">
                             ${dialogSnippet}
                         </div>
@@ -837,7 +758,6 @@
             document.getElementById('history-modal').classList.remove('hidden');
         }
 
-        // 關閉視窗
         function closeModal() {
             document.getElementById('history-modal').classList.add('hidden');
         }
@@ -855,17 +775,16 @@
             }
         }
 
-        // ==================== ⏳ 閒置自動登出系統 (Auto-Logout) ====================
-        
+        // ==================== ⏳ 15分鐘閒置自動登出 ====================
         let timeout;
-        const TIMEOUT_DURATION = 900000; // 15 分鐘
+        const TIMEOUT_DURATION = 900000; 
 
         function resetInactivityTimer() {
             if (currentActiveRole) {
                 clearTimeout(timeout);
                 timeout = setTimeout(() => {
                     handleLogout();
-                    showToastNotification("🔒 基於隱私安全已自動登出", "由於您閒置超過 15 分鐘，系統已自動登出以防止他人窺視敏感學生私隱。", "fa-solid fa-lock text-rose-500");
+                    showToastNotification("🔒 基於隱私安全已自動登出", "由於您閒置超過 15 分鐘，系統已自動登出。", "fa-solid fa-lock text-rose-500");
                 }, TIMEOUT_DURATION);
             }
         }
@@ -874,17 +793,15 @@
         document.onkeypress = resetInactivityTimer;
         document.ontouchstart = resetInactivityTimer;
 
-        // 網頁載入初始化
         window.onload = function() {
             const cachedRole = sessionStorage.getItem("treehole_session_role");
             if (cachedRole) {
                 initApp(cachedRole);
             } else {
-                handleLogout(); // 預設顯示登入頁面
+                handleLogout();
             }
         };
 
-        // 點選 Modal 背景關閉
         document.getElementById('history-modal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal();
