@@ -752,7 +752,8 @@
         function renderDiaries() {
             const historyContainer = document.getElementById('diary-history');
             if (!historyContainer) return;
-            const savedDiary = JSON.parse(localStorage.getItem('treehole_diary') || '[]');
+            const storageKey = `treehole_diary_${currentStudentId}`;
+            const savedDiary = JSON.parse(localStorage.getItem(storageKey) || '[]');
             if (savedDiary.length === 0) { historyContainer.innerHTML = '<p class="text-xs text-slate-400 italic">目前還沒有紀錄喔，寫下你的第一篇日記吧！</p>'; return; }
             historyContainer.innerHTML = '';
             savedDiary.slice().reverse().forEach(entry => {
@@ -769,10 +770,11 @@
         let currentSessionMood = 4; 
         function saveDiary() {
             const text = document.getElementById('diary-input').value.trim(); if (!text) return;
-            const savedDiary = JSON.parse(localStorage.getItem('treehole_diary') || '[]');
+            const storageKey = `treehole_diary_${currentStudentId}`;
+            const savedDiary = JSON.parse(localStorage.getItem(storageKey) || '[]');
             const today = new Date().toLocaleDateString('zh-HK');
             savedDiary.push({ date: today, mood: currentSessionMood, text: text });
-            localStorage.setItem('treehole_diary', JSON.stringify(savedDiary));
+            localStorage.setItem(storageKey, JSON.stringify(savedDiary));
             document.getElementById('diary-input').value = ''; loadDiaryHistory();
             const btn = document.querySelector('button[onclick="saveDiary()"]'); 
             const originalHTML = btn.innerHTML;
@@ -813,8 +815,14 @@
             const urlParams = new URLSearchParams(window.location.search);
             const studentId = urlParams.get('sid');
             if (!studentId || studentId.trim() === '') {
-                currentStudentId = "Std-710" + Math.floor(Math.random() * 900 + 100); 
-                document.getElementById('header-student-id').innerText = currentStudentId;
+                // 如果沒有學號，則從 localStorage 嘗試獲取之前的匿名 ID，否則生成一個
+                let anonymousId = localStorage.getItem('treehole_anonymous_id');
+                if (!anonymousId) {
+                    anonymousId = "Guest-" + Math.floor(Math.random() * 9000 + 1000);
+                    localStorage.setItem('treehole_anonymous_id', anonymousId);
+                }
+                currentStudentId = anonymousId;
+                document.getElementById('header-student-id').innerText = "訪客: " + currentStudentId;
             } else {
                 currentStudentId = studentId;
             }
@@ -1675,7 +1683,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, updateDoc, arrayUnion, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // 動態獲取平台注入的雲端安全配置，如在本地/預覽無環境變數則使用 Mock
         const appId = 'school-treehole';
@@ -1711,6 +1719,13 @@
         // 外部呼叫：同步對話數據到雲端，供後台即時查閱
         window.syncCaseToCloud = async function(userText, riskLevel, botReply) {
             if (!db || !auth || !auth.currentUser) return;
+            
+            // 安全防範：防止教職員帳號 (social999, teacher123) 被誤當成學生個案上傳
+            const staffIds = ['SOCIAL999', 'TEACHER123'];
+            if (staffIds.includes(currentStudentId.toUpperCase())) {
+                console.log("[小樹洞] 偵測到教職員帳號，跳過數據同步。");
+                return;
+            }
 
             const nameInput = document.getElementById('student-display-name');
             const chosenName = nameInput && nameInput.value.trim() !== '' ? nameInput.value.trim() : currentStudentId;
@@ -1739,6 +1754,7 @@
                 const now = new Date();
                 const timeString = now.toLocaleTimeString('zh-HK', { hour: '2-digit', minute: '2-digit' });
                 
+                // 獲取當前雲端狀態，避免覆蓋「跟進中」等狀態
                 await setDoc(caseDocRef, {
                     id: currentStudentId,
                     name: chosenName,
@@ -1747,13 +1763,27 @@
                     trend: riskLevel === 'red' ? "📉 急速下滑" : (riskLevel === 'yellow' ? "➡️ 起伏不穩" : "📈 情緒平穩"),
                     latestChat: userText,
                     intentTags: tags,
-                    status: "未處理",
+                    // status: "未處理", // 移除這行，避免每次對話都重置狀態
                     lastUpdated: serverTimestamp(),
                     history: arrayUnion(
                         { time: `今日 ${timeString}`, role: "student", text: userText },
                         { time: `今日 ${timeString}`, role: "counselor", text: botReply }
                     )
                 }, { merge: true });
+                
+                // 如果是新個案，則初始化狀態
+                await updateDoc(caseDocRef, {
+                    status: "未處理"
+                }).catch(() => {
+                    // 如果文件不存在，updateDoc 會失敗，這沒關係，因為 setDoc 已經處理了初始化
+                    // 但我們希望在 setDoc 時只在沒有 status 時才設置
+                });
+                
+                // 修正：更安全的狀態初始化
+                const caseSnap = await getDoc(caseDocRef);
+                if (!caseSnap.exists() || !caseSnap.data().status) {
+                    await updateDoc(caseDocRef, { status: "未處理" });
+                }
                 console.log("[小樹洞] 雲端同步成功！");
             } catch (error) {
                 console.error("雲端數據安全同步失敗:", error);
