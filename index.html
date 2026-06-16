@@ -897,6 +897,7 @@
                 const casesCollectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'cases');
                 
                 onSnapshot(casesCollectionRef, (snapshot) => {
+                    console.log("[小樹洞] 收到雲端數據更新，個案數量:", snapshot.size);
                     const updatedDatabase = [];
                     snapshot.forEach(doc => {
                         updatedDatabase.push(doc.data());
@@ -906,6 +907,10 @@
                     rawStudentDatabase = updatedDatabase;
                     populateMonitoringTable();
                     
+                    if (snapshot.size > 0) {
+                        showToastNotification("☁️ 數據已同步", `已成功從雲端載入 ${snapshot.size} 個活躍個案。`, "fa-solid fa-cloud-arrow-down text-emerald-400");
+                    }
+                    
                     // 如果當前有開著歷史 Modal，則同步更新 Modal 內容
                     const modal = document.getElementById('history-modal');
                     if (modal && !modal.classList.contains('hidden')) {
@@ -914,6 +919,7 @@
                     }
                 }, (error) => {
                     console.error("[小樹洞] 雲端即時連線發生錯誤:", error);
+                    showToastNotification("❌ 雲端連線失敗", `錯誤原因: ${error.message}。請檢查 Firebase Firestore 規則是否允許讀取。`, "fa-solid fa-triangle-exclamation text-rose-500");
                 });
             }
         } catch (e) {

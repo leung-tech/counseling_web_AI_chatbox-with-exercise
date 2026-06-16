@@ -1735,6 +1735,7 @@
             const caseDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'cases', currentStudentId);
 
             try {
+                console.log("[小樹洞] 正在嘗試同步數據到雲端...", currentStudentId);
                 const now = new Date();
                 const timeString = now.toLocaleTimeString('zh-HK', { hour: '2-digit', minute: '2-digit' });
                 
@@ -1753,8 +1754,10 @@
                         { time: `今日 ${timeString}`, role: "counselor", text: botReply }
                     )
                 }, { merge: true });
+                console.log("[小樹洞] 雲端同步成功！");
             } catch (error) {
                 console.error("雲端數據安全同步失敗:", error);
+                alert("數據上傳失敗：" + error.message + "\n請確保 Firebase 已開啟 Anonymous 登入，且 Firestore 規則允許寫入。");
             }
         };
 
