@@ -173,7 +173,7 @@
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200/60 p-5 flex items-center justify-between">
                         <div>
                             <span class="text-xs text-slate-400 font-bold tracking-wider block uppercase">今日監測總量</span>
-                            <span class="text-3xl font-black text-slate-800 mt-1 block">34 <span class="text-xs text-emerald-500 font-medium bg-emerald-50 px-2 py-0.5 rounded-md ml-1">+6</span></span>
+                            <span class="text-3xl font-black text-slate-800 mt-1 block" id="total-monitored-counter">0</span>
                         </div>
                         <div class="bg-indigo-50 text-indigo-500 p-3 rounded-2xl text-xl"><i class="fa-solid fa-users"></i></div>
                     </div>
@@ -189,7 +189,7 @@
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200/60 p-5 flex items-center justify-between">
                         <div>
                             <span class="text-xs text-amber-500 font-bold tracking-wider block uppercase">🟡 持續關注個案</span>
-                            <span class="text-3xl font-black text-amber-600 mt-1 block">8</span>
+                            <span class="text-3xl font-black text-amber-600 mt-1 block" id="follow-up-counter">0</span>
                         </div>
                         <div class="bg-amber-50 text-amber-500 p-3 rounded-2xl text-xl"><i class="fa-solid fa-bolt"></i></div>
                     </div>
@@ -197,7 +197,7 @@
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200/60 p-5 flex items-center justify-between">
                         <div>
                             <span class="text-xs text-emerald-500 font-bold tracking-wider block uppercase">🟢 已回穩個案</span>
-                            <span class="text-3xl font-black text-emerald-600 mt-1 block">24</span>
+                            <span class="text-3xl font-black text-emerald-600 mt-1 block" id="stable-counter">0</span>
                         </div>
                         <div class="bg-emerald-50 text-emerald-500 p-3 rounded-2xl text-xl"><i class="fa-solid fa-circle-check"></i></div>
                     </div>
@@ -517,18 +517,27 @@
             let followUpCount = 0;
             let stableCount = 0;
 
-            rawStudentDatabase.forEach(student => {
+            // 過濾掉教職員測試帳號
+            const staffIds = ['SOCIAL999', 'TEACHER123'];
+            const filteredDatabase = rawStudentDatabase.filter(student => !staffIds.includes(student.id.toUpperCase()));
+            
+            filteredDatabase.forEach(student => {
                 if (student.riskLevel === 'red') emergencyCount++;
                 else if (student.riskLevel === 'yellow') followUpCount++;
                 else stableCount++;
             });
 
             const emergencyCounterEl = document.getElementById('emergency-counter');
-            if (emergencyCounterEl) {
-                emergencyCounterEl.innerText = emergencyCount;
-            }
+            const totalCounterEl = document.getElementById('total-monitored-counter');
+            const followUpCounterEl = document.getElementById('follow-up-counter');
+            const stableCounterEl = document.getElementById('stable-counter');
 
-            if (rawStudentDatabase.length === 0) {
+            if (emergencyCounterEl) emergencyCounterEl.innerText = emergencyCount;
+            if (totalCounterEl) totalCounterEl.innerText = filteredDatabase.length;
+            if (followUpCounterEl) followUpCounterEl.innerText = followUpCount;
+            if (stableCounterEl) stableCounterEl.innerText = stableCount;
+
+            if (filteredDatabase.length === 0) {
                 tableBody.innerHTML = `
                     <tr>
                         <td colspan="6" class="px-6 py-12 text-center text-slate-400">
@@ -543,7 +552,7 @@
                 return;
             }
 
-            rawStudentDatabase.forEach(student => {
+            filteredDatabase.forEach(student => {
                 const isHighRisk = student.riskLevel === 'red';
                 const isTeacherView = currentActiveRole === 'teacher';
 
@@ -941,5 +950,3 @@
     </script>
 </body>
 </html>
- 
-
