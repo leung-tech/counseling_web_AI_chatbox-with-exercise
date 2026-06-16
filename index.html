@@ -88,9 +88,9 @@
             <!-- 安全的登入指引提示（替代原本會曝露密碼的快捷鍵） -->
             <div class="mt-8 pt-6 border-t border-slate-100 relative z-10">
                 <div class="bg-indigo-50/50 rounded-2xl p-4 border border-indigo-100/50 text-left">
-                    <h4 class="text-xs font-bold text-indigo-900 mb-2 flex items-center gap-1.5">
+                    <h3 class="text-xs font-bold text-indigo-900 mb-2 flex items-center gap-1.5">
                         <i class="fa-solid fa-circle-info"></i> 系統登入指引
-                    </h4>
+                    </h3>
                     <ul class="space-y-1.5 text-[11px] text-slate-600 leading-relaxed">
                         <li class="flex items-start gap-1">
                             <span class="text-indigo-500 font-bold">•</span>
@@ -375,9 +375,9 @@
                     `已偵測為學生身分 (${passkeyInput})，正在安全跳轉至前台樹洞中...`, 
                     "fa-solid fa-graduation-cap text-sky-400"
                 );
-                // 1.5秒後帶有學號參數自動跳轉到 index.html
+                // 1.5秒後帶有學號參數自動跳轉到 student.html
                 setTimeout(() => {
-                    window.location.href = `index.html?sid=${encodeURIComponent(passkeyInput.toUpperCase())}`;
+                    window.location.href = `student.html?sid=${encodeURIComponent(passkeyInput.toUpperCase())}`;
                 }, 1500);
             } 
             else {
