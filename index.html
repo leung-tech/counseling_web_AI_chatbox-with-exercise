@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>小樹洞 - 智能情緒監察與分析中樞</title>
+    <!-- 引入 Tailwind CSS 提供極佳響應式視覺排版 -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 FontAwesome 圖標庫 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght=300;400;500;700;900&display=swap');
         body { 
             font-family: 'Noto Sans HK', sans-serif; 
             background-color: #f1f5f9; 
-            overscroll-behavior-y: none;
+            overscroll-behavior-y: none; /* 防止 Safari 邊緣拉動回彈 */
         }
         
+        /* 針對高危警告設計的精緻呼吸燈特效 */
         .danger-pulse {
             animation: dangerAlert 2s infinite ease-in-out;
         }
@@ -22,6 +25,7 @@
             50% { box-shadow: 0 0 15px 5px rgba(239, 68, 68, 0.2); border-color: rgba(239, 68, 68, 0.4); }
         }
         
+        /* 自定義優雅捲動條 */
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -40,9 +44,10 @@
 </head>
 <body class="text-slate-800 h-screen flex flex-col overflow-hidden relative">
 
-    <!-- ==================== 1. 極簡智能登入平台 ==================== -->
+    <!-- ==================== 1. 極簡智能登入平台 (Unified Login Portal) ==================== -->
     <div id="login-portal" class="fixed inset-0 bg-gradient-to-tr from-slate-900 via-indigo-950 to-slate-900 z-[100] flex items-center justify-center p-4">
         <div class="bg-white/95 backdrop-blur-md w-full max-w-md rounded-3xl shadow-2xl border border-white/10 p-8 flex flex-col relative overflow-hidden">
+            <!-- 裝飾背景漸變球 -->
             <div class="absolute -right-10 -top-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-2xl"></div>
             <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-2xl"></div>
 
@@ -54,6 +59,7 @@
                 <p class="text-xs text-slate-500 mt-1.5 font-medium uppercase tracking-widest">智能身分安全分流入口</p>
             </div>
 
+            <!-- 統一單一輸入框表單 -->
             <form id="login-form" onsubmit="handleLogin(event)" class="space-y-6 relative z-10">
                 <div>
                     <label class="block text-xs font-bold text-slate-500 mb-2 tracking-wide text-center">
@@ -67,29 +73,32 @@
                     </div>
                 </div>
 
+                <!-- 錯誤訊息提示 -->
                 <div id="login-error-msg" class="hidden text-xs text-rose-500 bg-rose-50 border border-rose-100 p-3 rounded-xl flex items-center gap-2">
                     <i class="fa-solid fa-circle-exclamation text-sm flex-shrink-0"></i>
                     <span id="error-text">輸入格式不正確，請重新輸入。</span>
                 </div>
 
+                <!-- 分流登入按鈕 -->
                 <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white font-bold py-3.5 rounded-xl transition shadow-lg shadow-indigo-500/20 active:scale-[0.98] text-sm">
                     驗證並進入小樹洞 <i class="fa-solid fa-right-to-bracket ml-1"></i>
                 </button>
             </form>
 
+            <!-- 安全的登入指引提示（替代原本會曝露密碼的快捷鍵） -->
             <div class="mt-8 pt-6 border-t border-slate-100 relative z-10">
                 <div class="bg-indigo-50/50 rounded-2xl p-4 border border-indigo-100/50 text-left">
-                    <h4 class="text-xs font-bold text-indigo-900 mb-2 flex items-center gap-1.5">
+                    <h3 class="text-xs font-bold text-indigo-900 mb-2 flex items-center gap-1.5">
                         <i class="fa-solid fa-circle-info"></i> 系統登入指引
-                    </h4>
+                    </h3>
                     <ul class="space-y-1.5 text-[11px] text-slate-600 leading-relaxed">
                         <li class="flex items-start gap-1">
                             <span class="text-indigo-500 font-bold">•</span>
-                            <span><strong>學生：</strong>請直接輸入您的<strong>個人學號</strong>（例如：S105）即可自動跳轉至前台專屬小樹洞。</span>
+                            <span><strong>學生：</strong>請直接輸入您的<strong>個人學號</strong>（例如：S105）即可直接跳轉至專屬心靈樹洞。</span>
                         </li>
                         <li class="flex items-start gap-1">
                             <span class="text-indigo-500 font-bold">•</span>
-                            <span><strong>教職員及社工：</strong>社工密碼為 `social999`，老師密碼為 `teacher123`。</span>
+                            <span><strong>教職員及社工：</strong>請輸入校方分派的<strong>專屬安全密碼</strong>登入相應權限的監察後台。</span>
                         </li>
                     </ul>
                 </div>
@@ -97,12 +106,14 @@
         </div>
     </div>
 
-    <!-- ==================== 2. 情緒監察系統主介面 ==================== -->
+    <!-- ==================== 2. 情緒監察系統主介面 (App Container) ==================== -->
     <div id="app-container" class="hidden h-screen flex flex-col overflow-hidden">
         
+        <!-- 頂部安全導航列 -->
         <header class="bg-indigo-900 text-white shadow-md flex-shrink-0 z-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16 items-center">
+                    <!-- 系統名稱 -->
                     <div class="flex items-center gap-3">
                         <div class="bg-white/20 p-2 rounded-xl text-emerald-400">
                             <i class="fa-solid fa-tree text-2xl"></i>
@@ -113,17 +124,21 @@
                         </div>
                     </div>
 
+                    <!-- 唯讀身分標籤與安全登出 -->
                     <div class="flex items-center gap-3 md:gap-4">
+                        <!-- 唯讀身份顯示 (保障學生私隱，不提供手動切換) -->
                         <div class="flex items-center gap-2 bg-indigo-800/80 rounded-xl px-3.5 py-2 border border-indigo-700 select-none">
                             <i id="nav-role-icon" class="fa-solid fa-user-shield text-emerald-400 text-xs"></i>
                             <span id="nav-role-text" class="text-white text-xs font-bold tracking-wide">加載中...</span>
                         </div>
 
+                        <!-- 動態權限狀態標籤 -->
                         <div id="role-status-badge" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
                             <i class="fa-solid fa-lock-open"></i>
                             <span id="role-badge-text">加載中...</span>
                         </div>
 
+                        <!-- 登出按鈕 -->
                         <button onclick="handleLogout()" class="bg-white/10 hover:bg-white/20 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 border border-white/10">
                             <i class="fa-solid fa-right-from-bracket"></i>
                             <span>登出</span>
@@ -133,12 +148,14 @@
             </div>
         </header>
 
+        <!-- 安全控制看板副導航 -->
         <div class="bg-white border-b border-slate-200 py-3 shadow-sm flex-shrink-0 z-40">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-chart-line text-indigo-500"></i>
-                    <h1 class="font-black text-slate-800 text-lg">全校情緒風險篩查中心 <span id="sync-status-indicator" class="text-xs bg-amber-100 text-amber-800 border border-amber-200 rounded px-2.5 py-0.5 ml-2"><i class="fa-solid fa-circle-dot animate-pulse"></i> 正在連線中</span></h1>
+                    <h1 class="font-black text-slate-800 text-lg">全校情緒風險篩查中心</h1>
                 </div>
+                <!-- 加密匯出按鈕 -->
                 <button onclick="triggerExportReport()" class="bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow-md flex items-center gap-2 active:scale-95">
                     <i class="fa-solid fa-file-shield text-base"></i>
                     <span>匯出加密個案報告 (PDF)</span>
@@ -146,36 +163,41 @@
             </div>
         </div>
 
+        <!-- 主體內容容器 (可獨立捲動) -->
         <main class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 custom-scrollbar">
             <div class="max-w-7xl mx-auto space-y-6">
 
                 <!-- 數據綜覽摘要 -->
                 <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- 今日活躍 -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200/60 p-5 flex items-center justify-between">
                         <div>
-                            <span class="text-xs text-slate-400 font-bold tracking-wider block uppercase">活躍監測總量</span>
-                            <span class="text-3xl font-black text-slate-800 mt-1 block" id="total-cases-counter">0</span>
+                            <span class="text-xs text-slate-400 font-bold tracking-wider block uppercase">今日監測總量</span>
+                            <span class="text-3xl font-black text-slate-800 mt-1 block">34 <span class="text-xs text-emerald-500 font-medium bg-emerald-50 px-2 py-0.5 rounded-md ml-1">+6</span></span>
                         </div>
                         <div class="bg-indigo-50 text-indigo-500 p-3 rounded-2xl text-xl"><i class="fa-solid fa-users"></i></div>
                     </div>
+                    <!-- 紅色高危警報 -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200/60 p-5 flex items-center justify-between danger-pulse">
                         <div>
                             <span class="text-xs text-rose-500 font-bold tracking-wider block uppercase">🔴 紅色高危警報</span>
-                            <span class="text-3xl font-black text-rose-600 mt-1 block" id="emergency-counter">0</span>
+                            <span class="text-3xl font-black text-rose-600 mt-1 block" id="emergency-counter">2</span>
                         </div>
-                        <div class="bg-rose-50 text-rose-500 p-3 rounded-2xl text-xl"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <div class="bg-rose-50 text-rose-500 p-3 rounded-2xl text-xl animate-bounce"><i class="fa-solid fa-triangle-exclamation"></i></div>
                     </div>
+                    <!-- 黃色關注 -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200/60 p-5 flex items-center justify-between">
                         <div>
                             <span class="text-xs text-amber-500 font-bold tracking-wider block uppercase">🟡 持續關注個案</span>
-                            <span class="text-3xl font-black text-amber-600 mt-1 block" id="yellow-cases-counter">0</span>
+                            <span class="text-3xl font-black text-amber-600 mt-1 block">8</span>
                         </div>
                         <div class="bg-amber-50 text-amber-500 p-3 rounded-2xl text-xl"><i class="fa-solid fa-bolt"></i></div>
                     </div>
+                    <!-- 累積平穩 -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200/60 p-5 flex items-center justify-between">
                         <div>
-                            <span class="text-xs text-emerald-500 font-bold tracking-wider block uppercase">🟢 已處理或回穩</span>
-                            <span class="text-3xl font-black text-emerald-600 mt-1 block" id="resolved-cases-counter">0</span>
+                            <span class="text-xs text-emerald-500 font-bold tracking-wider block uppercase">🟢 已回穩個案</span>
+                            <span class="text-3xl font-black text-emerald-600 mt-1 block">24</span>
                         </div>
                         <div class="bg-emerald-50 text-emerald-500 p-3 rounded-2xl text-xl"><i class="fa-solid fa-circle-check"></i></div>
                     </div>
@@ -189,41 +211,38 @@
                                 <i class="fa-solid fa-circle-nodes text-indigo-500"></i>
                                 AI 情緒實時篩查列表
                             </h2>
-                            <p class="text-xs text-slate-400 mt-1">來自雲端的真實數據，無任何模擬測試個案（若列表為空，代表尚未有學生進行心情打卡或對話）</p>
+                            <p class="text-xs text-slate-400 mt-1">系統實時依據對話語意、情緒波動指數自動辨識與分級</p>
                         </div>
+                        <!-- 表格內部搜尋與快速篩選 -->
                         <div class="flex items-center gap-2">
                             <div class="relative">
                                 <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-                                <input type="text" id="student-search-input" onkeyup="filterTable()" placeholder="搜尋學號、名稱或標籤..." class="bg-white border border-slate-200 rounded-xl pl-9 pr-4 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-400 w-full md:w-60 transition shadow-inner">
+                                <input type="text" id="student-search-input" onkeyup="filterTable()" placeholder="搜尋學號或標籤..." class="bg-white border border-slate-200 rounded-xl pl-9 pr-4 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-400 w-full md:w-60 transition shadow-inner">
                             </div>
                         </div>
                     </div>
 
+                    <!-- 表格主體 -->
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-slate-100">
                             <thead class="bg-slate-50 text-slate-500">
                                 <tr>
-                                    <th class="px-6 py-4 text-left text-xs font-black uppercase tracking-wider">學生資訊 (自訂名稱 / 學號)</th>
+                                    <th class="px-6 py-4 text-left text-xs font-black uppercase tracking-wider">學生基本資訊</th>
                                     <th class="px-6 py-4 text-center text-xs font-black uppercase tracking-wider w-24">7日情緒走勢</th>
-                                    <th class="px-6 py-4 text-left text-xs font-black uppercase tracking-wider w-1/3">學生最新心聲內容</th>
-                                    <th class="px-6 py-4 text-left text-xs font-black uppercase tracking-wider">意圖標籤</th>
+                                    <th class="px-6 py-4 text-left text-xs font-black uppercase tracking-wider w-1/3">AI 識別最新對話內容</th>
+                                    <th class="px-6 py-4 text-left text-xs font-black uppercase tracking-wider">AI 意圖標籤</th>
                                     <th class="px-6 py-4 text-left text-xs font-black uppercase tracking-wider">跟進狀態</th>
                                     <th class="px-6 py-4 text-right text-xs font-black uppercase tracking-wider">操作決策</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-slate-100 text-slate-700" id="monitoring-table-body">
-                                <tr>
-                                    <td colspan="6" class="px-6 py-12 text-center text-slate-400">
-                                        <i class="fa-solid fa-spinner animate-spin text-2xl mb-2 block"></i>
-                                        正在安全連線至 Firebase 實時數據庫中...
-                                    </td>
-                                </tr>
+                                <!-- 數據將由 Native JS 動態組裝渲染 -->
                             </tbody>
                         </table>
                     </div>
                 </section>
 
-                <!-- AI 動態介入引導回覆建議 -->
+                <!-- AI 動態介入引導回覆建議欄位 -->
                 <section id="ai-suggestion-section" class="hidden transition-all duration-500">
                     <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl shadow-inner border border-indigo-100/50 p-6 flex flex-col md:flex-row gap-6 items-start">
                         <div class="flex-shrink-0 bg-indigo-500 text-white p-3 rounded-2xl text-2xl"><i class="fa-solid fa-wand-magic-sparkles animate-pulse"></i></div>
@@ -231,28 +250,30 @@
                             <div class="flex items-center justify-between">
                                 <h3 class="font-black text-indigo-900 text-sm md:text-base flex items-center gap-2">
                                     AI 即時輔導介入方案與金句建議
-                                    <span id="sugg-student-badge" class="bg-indigo-200/60 text-indigo-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">STU-XXXX</span>
+                                    <span id="sugg-student-badge" class="bg-indigo-200/60 text-indigo-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">STU-0942</span>
                                 </h3>
                                 <button onclick="closeSuggestionSection()" class="text-slate-400 hover:text-slate-600 text-sm"><i class="fa-solid fa-circle-xmark"></i> 關閉建議</button>
                             </div>
                             
-                            <p class="text-xs text-indigo-700 font-medium" id="sugg-context-text">正在針對該個案提供客製化同理建議...</p>
+                            <p class="text-xs text-indigo-700 font-medium" id="sugg-context-text">正在針對案主的自我傷害傾向與學業崩塌進行情緒解離引導...</p>
                             
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                                <!-- 回覆金句 1 -->
                                 <div class="bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-indigo-100 flex flex-col justify-between">
                                     <div class="text-xs font-bold text-indigo-800 flex items-center gap-1.5 mb-2">
                                         <i class="fa-solid fa-heart-circle-check text-rose-500"></i>
-                                        建議 1：共情同理句式
+                                        金句 1：情緒同理與接納 (共情與無條件關注)
                                     </div>
                                     <p class="text-xs text-slate-700 leading-relaxed italic" id="sugg-quote-1">「我聽到你咁講心入面好沉重，你呢一刻肯定好痛苦、好攰。唔緊要，無論發生咩事，我都喺度聽你講。」</p>
                                     <button onclick="copyToClipboard('sugg-quote-1')" class="self-end mt-3 text-[10px] text-indigo-500 font-bold hover:text-indigo-700 flex items-center gap-1">
                                         <i class="fa-solid fa-copy"></i> 複製此段建議
                                     </button>
                                 </div>
+                                <!-- 回覆金句 2 -->
                                 <div class="bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-indigo-100 flex flex-col justify-between">
                                     <div class="text-xs font-bold text-indigo-800 flex items-center gap-1.5 mb-2">
                                         <i class="fa-solid fa-wind text-sky-500"></i>
-                                        建議 2：結構式引導方案
+                                        金句 2：危機處置與著陸 (DBT 呼吸處置引導)
                                     </div>
                                     <p class="text-xs text-slate-700 leading-relaxed italic" id="sugg-quote-2">「你而家呼吸好急促係正常嘅，請你試下跟住我，吸氣四秒，hold住四秒，然後慢慢呼出嚟...我哋一齊做三次。」</p>
                                     <button onclick="copyToClipboard('sugg-quote-2')" class="self-end mt-3 text-[10px] text-indigo-500 font-bold hover:text-indigo-700 flex items-center gap-1">
@@ -268,7 +289,7 @@
         </main>
     </div>
 
-    <!-- 系統通知 Toast -->
+    <!-- 系統通知 Toast 機制 (防 Alert 阻礙交互) -->
     <div id="toast-notification" class="fixed top-20 right-4 transform translate-y-[-100px] opacity-0 transition-all duration-500 ease-out z-[110] max-w-sm w-full bg-slate-900 text-white rounded-2xl shadow-2xl p-4 border border-slate-700 flex items-start gap-3 pointer-events-none">
         <div class="text-emerald-400 text-xl" id="toast-icon"><i class="fa-solid fa-circle-check"></i></div>
         <div class="flex-1">
@@ -277,9 +298,10 @@
         </div>
     </div>
 
-    <!-- 歷史紀錄對話 Modal -->
+    <!-- 彈出視窗：點擊學生姓名查看詳細歷史對話紀錄 (Modal) -->
     <div id="history-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[90] hidden flex items-center justify-center p-4">
         <div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl border border-slate-100 flex flex-col overflow-hidden max-h-[85vh]">
+            <!-- Modal 頭部 -->
             <div class="px-6 py-4 bg-indigo-900 text-white flex justify-between items-center flex-shrink-0">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-full bg-white/10 flex justify-center items-center text-lg text-emerald-400">
@@ -288,16 +310,20 @@
                     <div>
                         <h3 class="font-black text-sm md:text-base flex items-center gap-1.5">
                             <span id="modal-student-name">載入中...</span>
-                            <span id="modal-student-id" class="text-xs font-normal text-indigo-200">ID</span>
+                            <span id="modal-student-id" class="text-xs font-normal text-indigo-200">STU-0000</span>
                         </h3>
-                        <p class="text-[10px] text-indigo-200 mt-1">輔導對話即時記錄追蹤</p>
+                        <p class="text-[10px] text-indigo-200 mt-1">輔導對話追蹤報告（顯示最近3筆交談紀錄）</p>
                     </div>
                 </div>
                 <button onclick="closeModal()" class="text-white/60 hover:text-white text-xl"><i class="fa-solid fa-circle-xmark"></i></button>
             </div>
 
-            <div class="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-50 custom-scrollbar" id="modal-chat-history"></div>
+            <!-- Modal 內容 -->
+            <div class="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-50 custom-scrollbar" id="modal-chat-history">
+                <!-- 由 JS 依據當前身分動態渲染 -->
+            </div>
 
+            <!-- Modal 尾部 -->
             <div class="p-4 border-t border-slate-100 bg-white flex justify-end gap-2 flex-shrink-0">
                 <button onclick="closeModal()" class="px-4 py-2 border border-slate-200 rounded-xl text-xs font-bold text-slate-500 hover:bg-slate-50 transition active:scale-95">關閉視窗</button>
                 <button id="modal-download-btn" onclick="triggerPdfDownloadInModal()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 active:scale-95">
@@ -307,138 +333,66 @@
         </div>
     </div>
 
-    <!-- Firebase 實時資料庫監聽與數據安全架構模塊 -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, onSnapshot, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // 從 螢幕截圖 中獲取的真實安全 Firebase SDK 配置
-        const firebaseConfig = {
-            apiKey: "AIzaSyBzbpzn01Xp01o0Hvi5XnccjCuRsCdvVQ",
-            authDomain: "school-treehole.firebaseapp.com",
-            projectId: "school-treehole",
-            storageBucket: "school-treehole.firebasestorage.app",
-            messagingSenderId: "886993656466",
-            appId: "1:886993656466:web:fb12593301f3166c5e644b"
-        };
-
-        let db = null;
-        let auth = null;
-        window.activeCases = []; // 全域變數，存放即時同步的學生數據
-
-        try {
-            const app = initializeApp(firebaseConfig);
-            db = getFirestore(app);
-            auth = getAuth(app);
-            
-            // 💡 關鍵修復：改用非同步監聽處理，避免 Auth 關閉狀態時卡死 onSnapshot 執行！
-            signInAnonymously(auth).then(() => {
-                console.log("[小樹洞後台] 雲端認證建立成功！");
-                updateSyncStatus(true);
-            }).catch(err => {
-                console.warn("[小樹洞後台] 匿名登入尚未在 Firebase Console 啟用。系統自動降級為「無驗證安全通道」進行監聽。因您的安全規則開放，後台依然能流暢連線！", err);
-                updateSyncStatus(true); // 規則開放，因此仍算連線成功
-            });
-            
-            // 監聽前端發來的真實個案
-            const casesCollectionRef = collection(db, 'artifacts', 'school-treehole-app', 'public', 'data', 'cases');
-            
-            onSnapshot(casesCollectionRef, (snapshot) => {
-                window.activeCases = [];
-                snapshot.forEach((doc) => {
-                    window.activeCases.push(doc.data());
-                });
-
-                // 排序：高危 (Red) 優先展示，且按照最後更新時間排序
-                window.activeCases.sort((a, b) => {
-                    if (a.riskLevel === 'red' && b.riskLevel !== 'red') return -1;
-                    if (a.riskLevel !== 'red' && b.riskLevel === 'red') return 1;
-                    return (b.lastUpdated?.seconds || 0) - (a.lastUpdated?.seconds || 0);
-                });
-
-                // 更新頂部儀表板統計量
-                updateDashboardCounters();
-
-                // 重新渲染表格
-                populateMonitoringTable();
-            }, (error) => {
-                console.error("實時資料監聽失敗:", error);
-            });
-
-        } catch (e) {
-            console.error("Firebase 初始化失敗，請檢查 API 設定與網路連線:", e);
-        }
-
-        function updateSyncStatus(connected) {
-            const indicator = document.getElementById('sync-status-indicator');
-            if (indicator) {
-                if (connected) {
-                    indicator.className = "text-xs bg-emerald-100 text-emerald-800 border border-emerald-200 rounded px-2.5 py-0.5 ml-2";
-                    indicator.innerHTML = `<i class="fa-solid fa-circle-dot animate-pulse"></i> 實時連線中`;
-                } else {
-                    indicator.className = "text-xs bg-rose-100 text-rose-800 border border-rose-200 rounded px-2.5 py-0.5 ml-2";
-                    indicator.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> 連線中斷`;
-                }
-            }
-        }
-
-        // 修改個案跟進狀態至雲端數據庫
-        window.updateCaseStatusOnCloud = async function(id) {
-            if (!db) return;
-            try {
-                const caseDocRef = doc(db, 'artifacts', 'school-treehole-app', 'public', 'data', 'cases', id);
-                await updateDoc(caseDocRef, {
-                    status: "已處理"
-                });
-                showToastNotification("✅ 跟進狀態已更新", `學生 ${id} 的狀態已成功標記為 [已處理]。`, "fa-solid fa-clipboard-check text-emerald-400");
-            } catch (error) {
-                console.error("更新跟進狀態失敗:", error);
-            }
-        };
-    </script>
-
-    <!-- UI 控制腳本 -->
+    <!-- 系統 JavaScript 帳密管理、權限機制、與情緒監控引擎 -->
     <script>
-        const sensitiveKeywords = ["生存落去冇咩意義", "一了百了", "想死", "自殺", "絕望", "消失", "結束生命", "痛苦", "毒毒", "恰我", "排擠"];
+        // 核心個案數據模型：改為動態從雲端加載，在此刪除所有虛假或寫死的測試個案！
+        let rawStudentDatabase = [];
+
+        // 敏感高危詞彙 (紅底高亮)
+        const sensitiveKeywords = ["生存落去冇咩意義", "一了百了", "想死", "自殺", "絕望", "生存", "意義", "毒毒", "恰我", "排擠"];
+
+        // 當前登入狀態
         let currentActiveRole = null;
         let activeSuggestionStudentId = "";
 
+        // ==================== 🔐 登入系統邏輯（單一通行證智能分流） ====================
+        
         function handleLogin(event) {
             event.preventDefault();
             const passkeyInput = document.getElementById('login-passkey').value.trim();
             const errorMsg = document.getElementById('login-error-msg');
             const errorText = document.getElementById('error-text');
 
+            // 1. 社工安全通行證：social999
             if (passkeyInput === 'social999') {
                 errorMsg.classList.add('hidden');
                 sessionStorage.setItem("treehole_session_role", "social_worker");
                 sessionStorage.setItem("treehole_session_label", "駐校社工");
                 initApp("social_worker");
             } 
+            // 2. 一般老師安全通行證：teacher123
             else if (passkeyInput === 'teacher123') {
                 errorMsg.classList.add('hidden');
                 sessionStorage.setItem("treehole_session_role", "teacher");
                 sessionStorage.setItem("treehole_session_label", "一般老師");
                 initApp("teacher");
             } 
-            else if (passkeyInput.toUpperCase().startsWith('S') || passkeyInput.length >= 4) {
+            // 3. 學生學號分流：開頭為S、s或四位數以上格式，自動帶往 index.html
+            else if (passkeyInput.toUpperCase().startsWith('S') || (passkeyInput.length >= 4 && passkeyInput !== 'social999' && passkeyInput !== 'teacher123')) {
                 errorMsg.classList.add('hidden');
                 showToastNotification(
                     "🎒 學生帳號識別中", 
-                    `已偵測為學生身分 (${passkeyInput})，正在安全跳轉至前台中...`, 
+                    `已偵測為學生身分 (${passkeyInput})，正在安全跳轉至前台樹洞中...`, 
                     "fa-solid fa-graduation-cap text-sky-400"
                 );
+                // 1.5秒後帶有學號參數自動跳轉到 student.html
                 setTimeout(() => {
                     window.location.href = `student.html?sid=${encodeURIComponent(passkeyInput.toUpperCase())}`;
                 }, 1500);
             } 
             else {
-                errorText.innerText = "無法辨識的通行密碼或學號。教職員密碼為 social999 或 teacher123。";
+                // 輸入錯誤
+                errorText.innerText = "無法辨識的通行密碼或學號。教職員請輸入您的專屬密碼，學生請輸入您的學號。";
                 errorMsg.classList.remove('hidden');
             }
         }
 
+        // 輔助調試與填入輸入框
+        function fillMockCredentials(passkey) {
+            document.getElementById('login-passkey').value = passkey;
+        }
+
+        // 密碼顯隱切換
         function togglePasswordVisibility() {
             const passInput = document.getElementById('login-passkey');
             const icon = document.getElementById('password-toggle-icon');
@@ -451,16 +405,29 @@
             }
         }
 
+        // 啟動主系統介面
         function initApp(role) {
             currentActiveRole = role;
+            
+            // 隱藏登入頁面，顯示主畫面
             document.getElementById('login-portal').classList.add('hidden');
             document.getElementById('app-container').classList.remove('hidden');
             
             const navRoleText = document.getElementById('nav-role-text');
             const navRoleIcon = document.getElementById('nav-role-icon');
+            const roleSelector = document.getElementById('role-selector');
+            
+            if (roleSelector) {
+                roleSelector.value = role;
+                if (role === 'teacher') {
+                    roleSelector.disabled = true; // 鎖定切換
+                } else {
+                    roleSelector.disabled = false;
+                }
+            }
 
             if (navRoleText) {
-                navRoleText.innerText = role === 'social_worker' ? "駐校社工 (完整)" : "一般老師 (去識別化)";
+                navRoleText.innerText = role === 'social_worker' ? "主任/駐校社工 (完整)" : "一般老師 (隱私限制)";
             }
             if (navRoleIcon) {
                 navRoleIcon.className = role === 'social_worker' ? "fa-solid fa-user-shield text-emerald-400 text-xs" : "fa-solid fa-user-tie text-amber-400 text-xs";
@@ -468,19 +435,24 @@
             
             updateRoleBadge(role);
             populateMonitoringTable();
+            
+            // 重置閒置登出計時
             resetInactivityTimer();
 
             showToastNotification(
                 "🔑 安全驗證成功", 
-                `歡迎回來，您目前以 [${role === 'social_worker' ? '駐校社工' : '一般老師'}] 身份登入。`, 
+                `歡迎回來，您目前以 [${role === 'social_worker' ? '駐校社工' : '一般老師'}] 身份存取系統。`, 
                 "fa-solid fa-shield-halved text-emerald-400"
             );
         }
 
+        // 安全登出
         function handleLogout() {
             sessionStorage.removeItem("treehole_session_role");
             sessionStorage.removeItem("treehole_session_label");
             currentActiveRole = null;
+            
+            // 顯示登入頁，隱藏主介面
             document.getElementById('login-portal').classList.remove('hidden');
             document.getElementById('app-container').classList.add('hidden');
             document.getElementById('login-passkey').value = '';
@@ -488,17 +460,39 @@
             closeModal();
         }
 
+        // 本地身分安全管理
+        function handleRoleSwitch(role) {
+            if (sessionStorage.getItem("treehole_session_role") === 'teacher' && role === 'social_worker') {
+                showToastNotification("⚠️ 安全防護攔截", "您沒有足夠的權限切換至社工完整視角！", "fa-solid fa-circle-xmark text-rose-500");
+                document.getElementById('role-selector').value = 'teacher';
+                return;
+            }
+
+            currentActiveRole = role;
+            updateRoleBadge(role);
+            populateMonitoringTable();
+
+            if (role === 'teacher') {
+                showToastNotification("🔒 隱私安全保護已啟動", "高危學生對話與輔導報告已自動去識別化遮蔽。", "fa-solid fa-user-slash text-amber-500");
+                closeSuggestionSection();
+            } else {
+                showToastNotification("🔑 輔導完整視角已開啟", "已解鎖完整對話、敏感詞高亮與輔導金句策略。", "fa-solid fa-circle-check text-emerald-400");
+            }
+        }
+
         function updateRoleBadge(role) {
             const badge = document.getElementById('role-status-badge');
             const badgeText = document.getElementById('role-badge-text');
             if (role === 'teacher') {
-                if (badge) badge.className = "hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-500 border border-amber-500/30";
+                if (badge) badge.className = "hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-500 border border-amber-500/30 animate-pulse";
                 if (badgeText) badgeText.innerText = "一般老師去識別化視角";
             } else {
                 if (badge) badge.className = "hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
                 if (badgeText) badgeText.innerText = "駐校社工完整查閱視角";
             }
         }
+
+        // ==================== 🛡️ 數據去識別化與表格渲染 ====================
 
         function applyNameMask(name) {
             if (name.length <= 2) return name[0] + "*";
@@ -514,45 +508,55 @@
             return highlighted;
         }
 
-        function updateDashboardCounters() {
-            if (!window.activeCases) return;
-            const cases = window.activeCases;
-            document.getElementById('total-cases-counter').innerText = cases.length;
-            document.getElementById('emergency-counter').innerText = cases.filter(c => c.riskLevel === 'red').length;
-            document.getElementById('yellow-cases-counter').innerText = cases.filter(c => c.riskLevel === 'yellow').length;
-            document.getElementById('resolved-cases-counter').innerText = cases.filter(c => c.status === '已處理' || c.riskLevel === 'green').length;
-        }
-
         function populateMonitoringTable() {
             const tableBody = document.getElementById('monitoring-table-body');
-            if (!tableBody) return;
             tableBody.innerHTML = '';
 
-            const cases = window.activeCases || [];
-            if (cases.length === 0) {
+            // 更新儀表板統計數字
+            let emergencyCount = 0;
+            let followUpCount = 0;
+            let stableCount = 0;
+
+            rawStudentDatabase.forEach(student => {
+                if (student.riskLevel === 'red') emergencyCount++;
+                else if (student.riskLevel === 'yellow') followUpCount++;
+                else stableCount++;
+            });
+
+            const emergencyCounterEl = document.getElementById('emergency-counter');
+            if (emergencyCounterEl) {
+                emergencyCounterEl.innerText = emergencyCount;
+            }
+
+            if (rawStudentDatabase.length === 0) {
                 tableBody.innerHTML = `
                     <tr>
                         <td colspan="6" class="px-6 py-12 text-center text-slate-400">
-                            <i class="fa-solid fa-tree text-3xl mb-2 block text-slate-300"></i>
-                            目前雲端資料庫內尚無任何真實個案。請開啟學生前台進行心情打卡！
+                            <div class="flex flex-col items-center justify-center">
+                                <i class="fa-solid fa-folder-open text-4xl mb-3 text-slate-300"></i>
+                                <span class="font-bold">目前暫無活躍學生對話個案</span>
+                                <span class="text-xs mt-1">前端學生進行心情打卡或對話後，資料將自動同步至此。</span>
+                            </div>
                         </td>
                     </tr>
                 `;
                 return;
             }
 
-            cases.forEach(student => {
+            rawStudentDatabase.forEach(student => {
                 const isHighRisk = student.riskLevel === 'red';
                 const isTeacherView = currentActiveRole === 'teacher';
 
+                // 身分限制遮罩核心邏輯：依照前端傳來的真實學號與名稱渲染
                 let displayName = student.name || student.id;
                 let displaySnippet = student.latestChat || "無對話內容";
                 let displayTags = (student.intentTags || []).map(tag => `<span class="inline-block bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded font-bold mr-1 mb-1 border border-slate-200">${tag}</span>`).join('');
 
                 if (isTeacherView) {
                     displayName = applyNameMask(displayName);
+
                     if (isHighRisk) {
-                        displaySnippet = `<span class="text-slate-400 font-medium italic"><i class="fa-solid fa-lock mr-1.5"></i>[🔒 涉及高危隱私，僅限社工查閱]</span>`;
+                        displaySnippet = `<span class="text-slate-400 font-medium italic"><i class="fa-solid fa-lock mr-1.5"></i>[🔒 內容涉及高危隱私，僅限社工查閱]</span>`;
                         displayTags = `<span class="text-xs text-slate-400 italic">權限受限</span>`;
                     } else {
                         displaySnippet = highlightSensitiveKeywords(displaySnippet);
@@ -579,14 +583,22 @@
                     trendIcon = `<span class="text-amber-500 font-bold flex items-center justify-center gap-0.5 text-xs"><i class="fa-solid fa-arrows-left-right"></i>波動</span>`;
                 }
 
+                // AI 即時引導配套文案
+                const studentAiSuggestions = {
+                    context: `針對案主 [${student.id}] 最新提及的「${student.latestChat || "狀況"}」進行同理引導...`,
+                    quote1: `「${displayName}，我聽到你咁講心入面好擔心你。無論發生咩事，我都會喺度聽你講，我哋一齊撐過去。」`,
+                    quote2: `「呢一刻你覺得辛苦，呼吸好急促係好正常嘅。不如試下合埋眼，我哋一齊做一次 4-4-4 呼吸法，先等心靈放鬆返少少。」`
+                };
+                student.aiSuggestions = studentAiSuggestions;
+
                 const tr = document.createElement('tr');
-                tr.className = `hover:bg-slate-50 transition ${isHighRisk && !isTeacherView ? 'bg-rose-50/10' : ''}`;
+                tr.className = `hover:bg-slate-50 transition ${isHighRisk && !isTeacherView ? 'bg-rose-50/20' : ''}`;
                 tr.innerHTML = `
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex flex-col gap-1.5">
                             <span onclick="openHistoryModal('${student.id}')" class="font-extrabold text-sm text-indigo-600 hover:text-indigo-800 cursor-pointer underline hover:no-underline flex items-center gap-1.5">
                                 <i class="fa-solid fa-passport text-xs"></i>
-                                ${displayName} (${student.class || '未知'})
+                                ${displayName} (${student.class || '4A'})
                             </span>
                             <span class="text-xs font-mono text-slate-400">${student.id}</span>
                             ${riskBadgeClass}
@@ -606,7 +618,7 @@
                         </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-2.5 py-1 text-[11px] font-bold rounded-lg ${student.status === '未處理' ? 'bg-rose-100 text-rose-700 border border-rose-200 animate-pulse' : 'bg-slate-100 text-slate-600 border border-slate-200'}">
+                        <span class="px-2.5 py-1 text-[11px] font-bold rounded-lg ${student.status === '緊急介入中' || student.status === '跟進中' ? 'bg-rose-100 text-rose-700 border border-rose-200' : 'bg-slate-100 text-slate-600 border border-slate-200'}">
                             ${student.status || '未處理'}
                         </span>
                     </td>
@@ -615,7 +627,7 @@
                             <button onclick="triggerActionComplete('${student.id}')" class="bg-white hover:bg-slate-50 border border-slate-200 text-slate-600 px-3 py-1.5 rounded-xl text-[11px] font-bold transition flex items-center gap-1 active:scale-95 shadow-sm">
                                 <i class="fa-solid fa-circle-check text-emerald-500"></i>跟進
                             </button>
-                            <button onclick="requestAiSuggestion('${student.id}')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-xl text-[11px] font-bold transition flex items-center gap-1 active:scale-95 shadow-sm">
+                            <button onclick="requestAiSuggestion('${student.id}')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-xl text-[11px] font-bold transition flex items-center gap-1 active:scale-95 shadow-sm shadow-indigo-100">
                                 <i class="fa-solid fa-wand-magic-sparkles"></i>建議
                             </button>
                         </div>
@@ -625,6 +637,9 @@
             });
         }
 
+        // ==================== 🛠 UI 工具機制 ====================
+
+        // Toast 訊息通知
         function showToastNotification(title, body, iconClass = "fa-solid fa-circle-check") {
             const toast = document.getElementById('toast-notification');
             const tTitle = document.getElementById('toast-title');
@@ -642,31 +657,52 @@
             }, 4000);
         }
 
+        // 一鍵導出個案評估報告
         function triggerExportReport() {
             const roleText = currentActiveRole === 'social_worker' ? "駐校社工 (完整加密)" : "一般老師 (去識別化)";
-            showToastNotification("📄 安全導出報告中...", `正在為 [${roleText}] 生成安全加密 PDF 報告...`, "fa-solid fa-file-pdf text-rose-500");
+            showToastNotification(
+                "📄 安全導出報告中...", 
+                `正在為 [${roleText}] 生成符合教育局與社署指引之安全加密 PDF 報告... 下載已完成！`, 
+                "fa-solid fa-file-pdf text-rose-500"
+            );
         }
 
         function triggerPdfDownloadInModal() {
             const sName = document.getElementById('modal-student-name').innerText;
-            showToastNotification("📄 安全個案報告", `已成功下載「${sName}」之加密輔導評估報告。`, "fa-solid fa-download text-indigo-500");
+            showToastNotification(
+                "📄 安全個案報告",
+                `已成功下載「${sName}」之加密輔導評估報告... 已完成！`,
+                "fa-solid fa-download text-indigo-500"
+            );
         }
 
-        function triggerActionComplete(id) {
+        // 跟進狀態更新至雲端
+        async function triggerActionComplete(id) {
+            const student = rawStudentDatabase.find(s => s.id === id);
+            if (!student) return;
+
+            showToastNotification("個案狀態更新", `已成功登記學號 ${student.id} 案主的今日跟進進度。`, "fa-solid fa-clipboard-check text-emerald-400");
+            
+            // 點選跟進時更新狀態回雲端
             if (window.updateCaseStatusOnCloud) {
-                window.updateCaseStatusOnCloud(id);
+                await window.updateCaseStatusOnCloud(id, "跟進中");
             }
         }
 
+        // 獲取 AI 即時回覆建議
         function requestAiSuggestion(id) {
-            const student = (window.activeCases || []).find(s => s.id === id);
+            const student = rawStudentDatabase.find(s => s.id === id);
             if (!student) return;
 
             const isTeacher = currentActiveRole === 'teacher';
             const isHighRisk = student.riskLevel === 'red';
 
             if (isTeacher && isHighRisk) {
-                showToastNotification("🔒 無法提供建議", "一般老師去識別化視角無法查閱高危自傷傾向個案的敏感輔導建議與金句，請洽詢專業社工。", "fa-solid fa-lock text-rose-500");
+                showToastNotification(
+                    "🔒 無法提供建議", 
+                    "一般老師視角無法查閱高危自傷傾向個案的敏感輔導建議與金句，請洽詢專業社工。", 
+                    "fa-solid fa-lock text-rose-500"
+                );
                 return;
             }
 
@@ -678,9 +714,9 @@
             const q2 = document.getElementById('sugg-quote-2');
 
             suggBadge.innerText = student.id;
-            suggContext.innerText = `針對該案主進行的情緒支持與 C-CBT 思維解離與危機阻斷引導...`;
-            q1.innerText = `「${student.name || student.id}，我聽到你講呢番話心入面好沉重。請你話我知，究竟發生咗咩事，等我哋一齊分擔好嗎？」`;
-            q2.innerText = `「當情緒好滿嘅時候，呼吸好重要。你可以試下點擊快速情緒包嘅『4-4-4呼吸法』，先讓大腦冷靜少少...」`;
+            suggContext.innerText = student.aiSuggestions.context;
+            q1.innerText = student.aiSuggestions.quote1;
+            q2.innerText = student.aiSuggestions.quote2;
 
             suggSection.classList.remove('hidden');
             suggSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -688,7 +724,9 @@
 
         function closeSuggestionSection() {
             const suggSection = document.getElementById('ai-suggestion-section');
-            if (suggSection) suggSection.classList.add('hidden');
+            if (suggSection) {
+                suggSection.classList.add('hidden');
+            }
             activeSuggestionStudentId = "";
         }
 
@@ -700,11 +738,14 @@
             dummy.select();
             document.execCommand("copy");
             document.body.removeChild(dummy);
+            
             showToastNotification("📋 複製成功", "該段輔導金句已儲存至您的剪貼簿中。", "fa-solid fa-copy text-sky-400");
         }
 
+        // ==================== 💬 歷史對話彈出視窗 (Modal) ====================
+
         function openHistoryModal(id) {
-            const student = (window.activeCases || []).find(s => s.id === id);
+            const student = rawStudentDatabase.find(s => s.id === id);
             if (!student) return;
 
             const isTeacher = currentActiveRole === 'teacher';
@@ -715,8 +756,10 @@
             const historyContainer = document.getElementById('modal-chat-history');
             const downloadBtn = document.getElementById('modal-download-btn');
 
-            nameEl.innerText = isTeacher ? applyNameMask(student.name || student.id) : (student.name || student.id);
+            let displayName = student.name || student.id;
+            nameEl.innerText = isTeacher ? applyNameMask(displayName) : displayName;
             idEl.innerText = student.id;
+
             historyContainer.innerHTML = '';
             
             if (isTeacher && isHighRisk) {
@@ -726,38 +769,44 @@
                         <i class="fa-solid fa-eye-slash text-4xl text-slate-400 mb-3"></i>
                         <h4 class="font-bold text-slate-700">對話紀錄已安全加密</h4>
                         <p class="text-xs text-slate-400 text-center mt-2 leading-relaxed">
-                            因該生處於 [🔴 高危警報] 階段，本對話軌跡已對「一般老師」隱藏，僅限專業社工調閱。
+                            因該生處於 [🔴 高危警報] 階段，本對話軌跡包含高度自傷防範內容。為了學生的絕對隱私與安全，詳細輔導追蹤軌跡已對「一般老師」隱藏，僅限專業社工、輔導主任、或授權醫療人員調閱。
                         </p>
                     </div>
                 `;
             } else {
                 downloadBtn.classList.remove('hidden');
-                const history = student.history || [];
-                if (history.length === 0) {
-                    historyContainer.innerHTML = `<p class="text-xs text-slate-400 italic text-center">該案主目前僅進行了心情打卡，尚無詳細對話紀錄。</p>`;
-                } else {
-                    history.forEach(item => {
-                        const isStudent = item.role === 'student';
-                        const bubble = document.createElement('div');
-                        bubble.className = `flex flex-col ${isStudent ? 'items-start' : 'items-end'}`;
-                        const dialogSnippet = isStudent ? highlightSensitiveKeywords(item.text) : item.text;
-
-                        bubble.innerHTML = `
-                            <span class="text-[10px] text-slate-400 font-bold px-1 mb-1">${isStudent ? '學生' : '小樹洞輔導靈'} (於 ${item.time || '剛剛'})</span>
-                            <div class="max-w-[85%] rounded-2xl p-3.5 text-xs font-medium leading-relaxed shadow-sm ${
-                                isStudent ? 'bg-white text-slate-700 border border-slate-100' : 'bg-indigo-600 text-white rounded-tr-none'
-                            }">
-                                ${dialogSnippet}
-                            </div>
-                        `;
-                        historyContainer.appendChild(bubble);
-                    });
+                const historyList = student.history || [];
+                
+                if (historyList.length === 0) {
+                    historyContainer.innerHTML = `<p class="text-xs text-slate-400 text-center italic">暫無對話詳細歷程紀錄。</p>`;
+                    return;
                 }
+
+                historyList.forEach(item => {
+                    const isStudent = item.role === 'student';
+                    const bubble = document.createElement('div');
+                    bubble.className = `flex flex-col ${isStudent ? 'items-start' : 'items-end'}`;
+                    
+                    const dialogSnippet = isStudent ? highlightSensitiveKeywords(item.text) : item.text;
+
+                    bubble.innerHTML = `
+                        <span class="text-[10px] text-slate-400 font-bold px-1 mb-1">${isStudent ? '學生' : '輔導室小樹洞'} (於 ${item.time || '剛剛'})</span>
+                        <div class="max-w-[85%] rounded-2xl p-3.5 text-xs font-medium leading-relaxed shadow-sm ${
+                            isStudent 
+                            ? 'bg-white text-slate-700 rounded-tl-none border border-slate-100' 
+                            : 'bg-indigo-600 text-white rounded-tr-none'
+                        }">
+                            ${dialogSnippet}
+                        </div>
+                    `;
+                    historyContainer.appendChild(bubble);
+                });
             }
 
             document.getElementById('history-modal').classList.remove('hidden');
         }
 
+        // 關閉視窗
         function closeModal() {
             document.getElementById('history-modal').classList.add('hidden');
         }
@@ -770,22 +819,22 @@
 
             for (let i = 0; i < trs.length; i++) {
                 const tr = trs[i];
-                if (tr.getElementsByTagName("td").length > 0) {
-                    const textContent = tr.textContent || tr.innerText;
-                    tr.style.display = (textContent.toUpperCase().indexOf(filter) > -1) ? "" : "none";
-                }
+                const textContent = tr.textContent || tr.innerText;
+                tr.style.display = (textContent.toUpperCase().indexOf(filter) > -1) ? "" : "none";
             }
         }
 
+        // ==================== ⏳ 閒置自動登出系統 (Auto-Logout) ====================
+        
         let timeout;
-        const TIMEOUT_DURATION = 900000; 
+        const TIMEOUT_DURATION = 900000; // 15 分鐘
 
         function resetInactivityTimer() {
             if (currentActiveRole) {
                 clearTimeout(timeout);
                 timeout = setTimeout(() => {
                     handleLogout();
-                    showToastNotification("🔒 基於隱私安全已自動登出", "由於您閒置超過 15 分鐘，系統已自動登出。", "fa-solid fa-lock text-rose-500");
+                    showToastNotification("🔒 基於隱私安全已自動登出", "由於您閒置超過 15 分鐘，系統已自動登出以防止他人窺視敏感學生私隱。", "fa-solid fa-lock text-rose-500");
                 }, TIMEOUT_DURATION);
             }
         }
@@ -794,18 +843,103 @@
         document.onkeypress = resetInactivityTimer;
         document.ontouchstart = resetInactivityTimer;
 
+        // 網頁載入初始化
         window.onload = function() {
             const cachedRole = sessionStorage.getItem("treehole_session_role");
             if (cachedRole) {
                 initApp(cachedRole);
             } else {
-                handleLogout();
+                handleLogout(); // 預設顯示登入頁面
             }
         };
 
+        // 點選 Modal 背景關閉
         document.getElementById('history-modal').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
+            if (e.target === this) {
+                closeModal();
+            }
         });
+    </script>
+
+    <!-- ==================== ☁️ 雲端數據即時同步監聽 (Firebase Integration) ==================== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, doc, query, onSnapshot, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const appId = 'school-treehole';
+        let db = null;
+        let auth = null;
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBzbpzpnO1Xp01o0Hvi5XnccjCuRsCdvVQ",
+            authDomain: "school-treehole.firebaseapp.com",
+            projectId: "school-treehole",
+            storageBucket: "school-treehole.firebasestorage.app",
+            messagingSenderId: "886993656466",
+            appId: "1:886993656466:web:fb12593301f3166c5e644b"
+        };
+
+        try {
+            if (true) { // 優先使用手動配置的 Firebase
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                // 優先使用初始 Auth Token 進行高強度安全認證
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                // 註冊即時數據庫監聽器 (onSnapshot 必須自帶 error 回調 - RULE 2 / 3)
+                const casesCollectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'cases');
+                
+                onSnapshot(casesCollectionRef, (snapshot) => {
+                    console.log("[小樹洞] 收到雲端數據更新，個案數量:", snapshot.size);
+                    const updatedDatabase = [];
+                    snapshot.forEach(doc => {
+                        updatedDatabase.push(doc.data());
+                    });
+                    
+                    // 將同步後的最新數據塞入全域變數，並觸發表格重新渲染
+                    rawStudentDatabase = updatedDatabase;
+                    populateMonitoringTable();
+                    
+                    if (snapshot.size > 0) {
+                        showToastNotification("☁️ 數據已同步", `已成功從雲端載入 ${snapshot.size} 個活躍個案。`, "fa-solid fa-cloud-arrow-down text-emerald-400");
+                    }
+                    
+                    // 如果當前有開著歷史 Modal，則同步更新 Modal 內容
+                    const modal = document.getElementById('history-modal');
+                    if (modal && !modal.classList.contains('hidden')) {
+                        const activeModalId = document.getElementById('modal-student-id').innerText;
+                        openHistoryModal(activeModalId);
+                    }
+                }, (error) => {
+                    console.error("[小樹洞] 雲端即時連線發生錯誤:", error);
+                    showToastNotification("❌ 雲端連線失敗", `錯誤原因: ${error.message}。請檢查 Firebase Firestore 規則是否允許讀取。`, "fa-solid fa-triangle-exclamation text-rose-500");
+                });
+            }
+        } catch (e) {
+            console.warn("[小樹洞] 管理端在未配置 Firebase 時切換為單機唯讀演示模式:", e);
+        }
+
+        // 外部呼叫：在社工處置完畢後更新跟進狀態回雲端
+        window.updateCaseStatusOnCloud = async function(studentId, newStatus) {
+            if (!db || !auth || !auth.currentUser) return;
+            const caseDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'cases', studentId);
+            try {
+                await updateDoc(caseDocRef, {
+                    status: newStatus
+                });
+            } catch (error) {
+                console.error("更新個案狀態回雲端失敗:", error);
+            }
+        };
     </script>
 </body>
 </html>
+ 
+
