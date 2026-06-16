@@ -116,7 +116,7 @@
             <h2 class="text-xl md:text-2xl font-bold text-center text-slate-800 mb-2">歡迎來到安全的小樹洞</h2>
             <p class="text-sm text-center text-slate-500 leading-relaxed mb-5">在開始之前，請了解我們將如何保護與協助你：</p>
             <div class="space-y-3.5 mb-6 text-[14px] text-slate-600">
-                <div class="flex gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-100"><i class="fa-solid fa-lock text-sage-500 mt-0.5 text-base flex-shrink-0"></i><div><strong class="text-slate-700 block">數據絕對保密</strong>所有的對話與運算都在你的裝置上本地進行，不會上傳到任何雲端。這裡是一個不帶批判、專屬你的抒發空間。</div></div>
+                <div class="flex gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-100"><i class="fa-solid fa-lock text-sage-500 mt-0.5 text-base flex-shrink-0"></i><div><strong class="text-slate-700 block">數據加密傳輸</strong>為了保障你的安全，你的對話將會加密傳輸至學校監察系統。只有授權的社工與主任可以查閱，這是一個專屬你的安全抒發空間。</div></div>
                 <div class="flex gap-3 bg-rose-50 p-4 rounded-2xl border border-rose-100"><i class="fa-solid fa-triangle-exclamation text-rose-500 mt-0.5 text-base flex-shrink-0"></i><div><strong class="text-rose-700 block">尋求專業協助</strong>雖然小樹洞可以陪伴你，但若你感到無法承受的痛苦，請務必點擊下方求助熱線尋找專業社工。</div></div>
             </div>
             <button onclick="closeConsent()" class="w-full bg-gradient-to-r from-sage-500 to-emerald-500 text-white font-bold py-3.5 rounded-2xl hover:opacity-90 transition shadow-lg shadow-sage-200 text-base md:text-lg active:scale-[0.98]">我明白並同意，進入樹洞</button>
@@ -1678,13 +1678,21 @@
         import { getFirestore, doc, setDoc, updateDoc, arrayUnion, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // 動態獲取平台注入的雲端安全配置，如在本地/預覽無環境變數則使用 Mock
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'treehole-default-app';
+        const appId = 'school-treehole';
         let db = null;
         let auth = null;
 
+        const firebaseConfig = {
+            apiKey: "AIzaSyBzbpzpnO1Xp01o0Hvi5XnccjCuRsCdvVQ",
+            authDomain: "school-treehole.firebaseapp.com",
+            projectId: "school-treehole",
+            storageBucket: "school-treehole.firebasestorage.app",
+            messagingSenderId: "886993656466",
+            appId: "1:886993656466:web:fb12593301f3166c5e644b"
+        };
+
         try {
-            if (typeof __firebase_config !== 'undefined') {
-                const firebaseConfig = JSON.parse(__firebase_config);
+            if (true) { // 優先使用手動配置的 Firebase
                 const app = initializeApp(firebaseConfig);
                 db = getFirestore(app);
                 auth = getAuth(app);

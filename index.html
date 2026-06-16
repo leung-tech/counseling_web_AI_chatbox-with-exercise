@@ -867,13 +867,21 @@
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, doc, query, onSnapshot, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'treehole-default-app';
+        const appId = 'school-treehole';
         let db = null;
         let auth = null;
 
+        const firebaseConfig = {
+            apiKey: "AIzaSyBzbpzpnO1Xp01o0Hvi5XnccjCuRsCdvVQ",
+            authDomain: "school-treehole.firebaseapp.com",
+            projectId: "school-treehole",
+            storageBucket: "school-treehole.firebasestorage.app",
+            messagingSenderId: "886993656466",
+            appId: "1:886993656466:web:fb12593301f3166c5e644b"
+        };
+
         try {
-            if (typeof __firebase_config !== 'undefined') {
-                const firebaseConfig = JSON.parse(__firebase_config);
+            if (true) { // 優先使用手動配置的 Firebase
                 const app = initializeApp(firebaseConfig);
                 db = getFirestore(app);
                 auth = getAuth(app);
