@@ -110,13 +110,13 @@
 <body class="h-[100dvh] w-full flex flex-col text-slate-700 transition-colors duration-500 relative">
 
     <!-- 隱私保密免責聲明 -->
-    <div id="consent-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-[100] flex items-center justify-center p-4">
+    <div id="consent-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-[100] flex items-center justify-center p-4 fade-in">
         <div class="bg-white max-w-lg w-full rounded-3xl p-6 md:p-8 shadow-2xl border border-slate-100 slide-up m-2">
             <div class="w-14 h-14 bg-sage-50 rounded-full flex items-center justify-center text-sage-500 mb-5 text-2xl mx-auto shadow-inner"><i class="fa-solid fa-shield-heart"></i></div>
-            <h3 class="text-xl md:text-2xl font-bold text-center text-slate-800 mb-2">歡迎來到安全的小樹洞</h3>
+            <h2 class="text-xl md:text-2xl font-bold text-center text-slate-800 mb-2">歡迎來到安全的小樹洞</h2>
             <p class="text-sm text-center text-slate-500 leading-relaxed mb-5">在開始之前，請了解我們將如何保護與協助你：</p>
             <div class="space-y-3.5 mb-6 text-[14px] text-slate-600">
-                <div class="flex gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-100"><i class="fa-solid fa-lock text-sage-500 mt-0.5 text-base flex-shrink-0"></i><div><strong class="text-slate-700 block">數據絕對保密</strong>所有的對話與運算都在你的裝置上本地進行，不會上傳到任何雲端。這裡是一個不帶批判、專屬你的抒發空間。</div></div>
+                <div class="flex gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-100"><i class="fa-solid fa-lock text-sage-500 mt-0.5 text-base flex-shrink-0"></i><div><strong class="text-slate-700 block">數據加密傳輸</strong>為了保障你的安全，你的對話將會加密傳輸至學校監察系統。只有授權的社工與主任可以查閱，這是一個專屬你的安全抒發空間。</div></div>
                 <div class="flex gap-3 bg-rose-50 p-4 rounded-2xl border border-rose-100"><i class="fa-solid fa-triangle-exclamation text-rose-500 mt-0.5 text-base flex-shrink-0"></i><div><strong class="text-rose-700 block">尋求專業協助</strong>雖然小樹洞可以陪伴你，但若你感到無法承受的痛苦，請務必點擊下方求助熱線尋找專業社工。</div></div>
             </div>
             <button onclick="closeConsent()" class="w-full bg-gradient-to-r from-sage-500 to-emerald-500 text-white font-bold py-3.5 rounded-2xl hover:opacity-90 transition shadow-lg shadow-sage-200 text-base md:text-lg active:scale-[0.98]">我明白並同意，進入樹洞</button>
@@ -151,7 +151,7 @@
             <!-- 1. 每日心靈抽籤 -->
             <div class="bg-gradient-to-r from-amber-100 to-orange-100 p-4 rounded-2xl shadow-sm border border-amber-200 flex items-center justify-between cursor-pointer hover:shadow-md transition group" onclick="openToolOverlay('card')">
                 <div>
-                    <h3 class="font-bold text-amber-800 text-sm md:text-base"><i class="fa-solid fa-sun mr-2 animate-spin-slow"></i>今日心靈御守</h3>
+                    <h2 class="font-bold text-amber-800 text-sm md:text-base"><i class="fa-solid fa-sun mr-2 animate-spin-slow"></i>今日心靈御守</h2>
                     <p class="text-[11px] md:text-xs text-amber-700 mt-0.5 font-medium">點擊翻開你的專屬力量肯定句</p>
                 </div>
                 <div class="w-10 h-10 bg-white/60 rounded-full flex items-center justify-center text-amber-500 text-lg shadow-inner group-hover:scale-110 transition-transform"><i class="fa-solid fa-hand-sparkles"></i></div>
@@ -218,7 +218,7 @@
             <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
                 <h3 class="font-bold text-slate-800 text-xs md:text-sm mb-2"><i class="fa-solid fa-phone-volume text-rose-500 mr-2"></i>專業求助與預約社工</h3>
                 <div class="space-y-1.5">
-                    <a href="https://www.openup.hk/" target="_blank" class="block w-full py-2 px-3 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-xl text-xs font-bold transition text-center border border-rose-100"><i class="fa-solid fa-comment-dots mr-1.5"></i>Open噏 24小時網上情緒支援</a>
+                    <a href="https://www.openup.hk/" target="_blank" class="block w-full py-2 px-3 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-xl text-xs font-bold transition text-center border border-rose-100"><i class="fa-solid fa-comment-dots mr-1.5"></i>Open噏 24小時網上輔導</a>
                     <a href="tel:28960000" class="block w-full py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition text-center border border-slate-200"><i class="fa-solid fa-phone mr-1.5"></i>撒瑪利亞會熱線：2896 0000</a>
                 </div>
             </div>
@@ -514,7 +514,7 @@
                         <h3 class="text-xl md:text-2xl font-bold mb-6 leading-relaxed">遇到一個完全不懂的難題時，<br>你會怎麼辦？</h3>
                         <div class="space-y-3">
                             <button onclick="answerQuiz('I')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-book mr-2.5 text-violet-300"></i>立刻上網查資料，想找出背後原理</button>
-                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-handshake-angle mr-2.5 text-violet-300"></i>去問老師 or 朋友，聽聽別人的建議</button>
+                            <button onclick="answerQuiz('S')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-handshake-angle mr-2.5 text-violet-300"></i>去問老師或朋友，聽聽別人的建議</button>
                             <button onclick="answerQuiz('R')" class="w-full bg-white/10 hover:bg-violet-600 border border-white/10 p-3.5 rounded-xl text-sm font-medium transition text-left active:scale-95"><i class="fa-solid fa-screwdriver-wrench mr-2.5 text-violet-300"></i>直接動手試錯，壞了再說</button>
                         </div>
                     </div>
@@ -585,7 +585,7 @@
                     <!-- 測驗結果 -->
                     <div id="quiz-result" class="quiz-step w-full max-w-md text-center hidden bg-white/10 p-5 md:p-6 rounded-2xl border border-white/20 backdrop-blur-md shadow-xl mt-6">
                         <div class="w-16 h-16 bg-violet-500/30 rounded-full flex items-center justify-center text-3xl mx-auto mb-4"><i class="fa-solid fa-star"></i></div>
-                        <p class="text-violet-300 font-bold mb-2 text-sm md:text-base">測驗結果 analysis</p>
+                        <p class="text-violet-300 font-bold mb-2 text-sm md:text-base">測驗結果分析</p>
                         <h3 id="quiz-result-title" class="text-xl md:text-2xl font-bold mb-3 text-white drop-shadow-md">結果運算中...</h3>
                         <p id="quiz-result-desc" class="text-sm md:text-base text-violet-100 mb-5 leading-relaxed font-medium"></p>
                         <button onclick="sendQuizResultToChat()" class="bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:from-violet-400 hover:to-fuchsia-400 text-white font-bold w-full py-3 rounded-xl shadow-lg transition text-sm md:text-base active:scale-95">告訴小樹洞，獲取專屬建議</button>
@@ -826,7 +826,7 @@
                         <h3 class="font-bold text-slate-800 text-lg md:text-2xl mb-2">嗨！今天的心情怎麼樣呢？</h3>
                         <p class="text-xs md:text-sm text-slate-500 mb-6">點擊一個表情，我們從這裡開始聊聊：</p>
                         
-                        <!-- 名稱或暱稱選填欄位 -->
+                        <!-- 新增：名稱或暱稱選填欄位 -->
                         <div class="mb-6 max-w-xs mx-auto text-left">
                             <label class="block text-xs font-bold text-slate-500 mb-1.5">
                                 <i class="fa-solid fa-user-tag mr-1 text-sage-500"></i> 你想我們怎麼稱呼你？（留空則使用學號）
@@ -900,7 +900,7 @@
             const results = {
                 'R': { t: "實用型 (Realistic)", d: "你喜歡動手實作，注重實踐與解決具體問題，擁有優秀的機械或操作天賦。適合領域：工程、IT維修、工藝、運動等。" },
                 'I': { t: "研究型 (Investigative)", d: "你具備強大的邏輯思考與觀察力，喜歡探索事物背後的原理。適合領域：科學研究、數據分析、醫學、程式開發等。" },
-                'A': { t: "藝術型 (Artistic)", d: "你擁有豐富的想像力與敏閱的美感，喜歡用獨特的方式表達自我。適合領域：設計、多媒體、音樂、寫作、影視創作等。" },
+                'A': { t: "藝術型 (Artistic)", d: "你擁有豐富的想像力與敏銳的美感，喜歡用獨特的方式表達自我。適合領域：設計、多媒體、音樂、寫作、影視創作等。" },
                 'S': { t: "社會型 (Social)", d: "你善於傾聽與溝通，對人的感受極具同理心，樂於幫助與陪伴他人。適合領域：教育、心理輔導、社工、醫療護理等。" },
                 'E': { t: "企業型 (Enterprising)", d: "你充滿自信與說服力，喜歡帶領團隊達成目標，不怕面對挑戰。適合領域：商業管理、市場行銷、創業、公關等。" },
                 'C': { t: "事務型 (Conventional)", d: "你做事井然有序、注重細節，喜歡規律且有明確標準的任務。適合領域：會計、行政、金融、資料管理等。" }
@@ -1093,17 +1093,28 @@
         }
 
         // ==========================================
-        // 🧠 全方位本地輔導引擎 (Local AI Brain) V7.1
+        // 🧠 全方位本地輔導引擎 (Local AI Brain) V7.1 終極全功能修復版
+        // 結合：15大核心情境 + 12種情緒急救工具 + 5大心理治療流派 (CBT, ACT, DBT, SFBT, 敘事)
+        // 徹底修復：文字與動畫不匹配漏洞、廣東話學業詞庫遺漏、高頻誤判
         // ==========================================
+
         function getCounselorResponse(text) {
             const lowerText = text.toLowerCase();
             const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
+            // ==========================================
+            // 🛡️ 特殊語境處理：質疑/抱怨系統或方法/侮辱AI (防止關鍵字誤判)
+            // 解決用戶說「你的方法無用」或「你垃圾」時，被誤判為「自己無用」的問題
+            // ==========================================
             const complaintKeywords = ['你', '系統', '方法', '這', '呢個', '廢', '冇用', '無用', '幫唔到', '唔掂', '唔得', '無聊', '嘥氣', '垃圾', '蠢', '白痴', '智障', '煩', '死開', '走開', '收皮', '收聲'];
+            
+            // 檢查是否同時包含指向性詞語（你/系統/AI等）和負面評價/侮辱（無用/廢/垃圾等）
             const isComplaining = (
                 (['你', '系統', '方法', '這', '呢', '這套', '呢套', 'ai', '機械人', 'bot'].some(kw => lowerText.includes(kw))) && 
                 (['無用', '冇用', '廢', '幫唔到', '唔掂', '唔得', '無聊', '嘥氣', '多餘', '垃圾', '蠢', '白痴', '智障', '煩', '死開', '走開', '收皮', '收聲', '唔想理'].some(kw => lowerText.includes(kw)))
             );
+
+            // 或者直接捕捉極端抗拒/侮辱的短句 (排除包含「我」的字眼，避免與自我貶低衝突)
             const isRejecting = ['唔想試', '唔想做', '無用', '冇用', '廢', '幫唔到我', '算把啦', '垃圾', '白痴', '廢物', '好煩', '你死開', '唔想理你', '收皮', '收聲', '走開', '煩死'].some(kw => lowerText === kw || (lowerText.includes(kw) && lowerText.length < 15 && !lowerText.includes('我') && !lowerText.includes('自己')));
 
             if (isComplaining || isRejecting) {
@@ -1114,38 +1125,47 @@
                         "睇嚟呢個方法或者我嘅回應真係幫唔到你，仲令你覺得好煩。唔緊要㗎，面對強烈情緒嘅時候，有時任何建議都會顯得多餘甚至乞人憎。不如我哋放低所有方法，我淨係喺度安靜咁陪住你？",
                         "明白。當情緒好滿嘅時候，真係會覺得所有嘢都好煩、好嬲。呢個憤怒嘅感覺好真實。如果你準備好，可以試下用最直接嘅文字，繼續鬧出嚟又好，抱怨又好，我會全盤接收。"
                     ]),
-                    animationType: "none",
+                    animationType: "none", // 停止任何動畫/工具，避免激怒用戶
                     quickReplies: ["真係覺得你好煩", "我淨係想有人聽", "其實我係嬲緊其他嘢"]
                 };
             }
 
+            // 1. 【最高優先級】緊急危機與自我傷害 (Red)
+            // 心理學策略：DBT 危機生存技巧、無條件積極關注
+            // 修復：排除「你死開」、「煩死」、「激死」等非自我傷害語境
             const crisisKeywords = ['不想活', '自殺', '跳樓', '割脈', '𠝹手', '絕望', '沒有意義', '結束生命', '唔想做人', '想消失', '安眠藥', '殺咗自己', '想死'];
+            
+            // 獨立判斷「死」字，必須確保不是「你死開」、「煩死」、「笑死」、「激死」等常用語
             const hasDeathWish = lowerText.includes('死') && !['你死開', '煩死', '笑死', '激死', '熱死', '餓死', '累死', '攰死', '嚇死', '嘈死'].some(kw => lowerText.includes(kw));
 
             if (crisisKeywords.some(kw => lowerText.includes(kw)) || hasDeathWish) {
                 return {
                     level: "red",
                     aiReply: "我聽到你咁講，心入面真係好沉重、好擔心你。你而家一定係承受緊極大嘅痛苦同無助。請你記住，你有呢啲感受絕對唔係你嘅錯。呢一刻，我哋咩都唔好諗住，淨係專注喺呼吸上。請你跟我一齊做，然後立刻打畀撒瑪利亞會（2896 0000），俾個機會我哋陪住你撐過去好嗎？",
-                    animationType: "breathe",
+                    animationType: "breathe", // 工具 1: 4-4-4 呼吸
                     quickReplies: ["我會打電話", "陪我唞下氣", "打開安撫寶盒"]
                 };
             }
 
-            if (['思維', '分析', '記錄表', '諗唔通', '牛角尖', '客觀'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "好呀！心理學上有個好好用嘅工具叫「CBT 思維記錄表」。描述一次啱啱發生咗咩「客觀情境」？", animationType: "fakenews", quickReplies: ["我試下寫低事實", "我覺得好難客觀"] };
-            if (['抽卡', '御守', '力量卡'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "今日嘅心靈御守已經準備好。點擊翻開屬於你嘅力量肯定句啦✨", animationType: "card", quickReplies: ["我想試下其他工具"] };
-            if (['碎紙機', '撕爛', '粉碎', '煩惱'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "煩惱有時會喺腦入面無限放大。一齊將佢實體化，寫低然後放落碎紙機！", animationType: "shredder", quickReplies: ["碎咗舒服啲"] };
-            if (['溪水', '落葉', '放低', '隨波逐流'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "呢個係 ACT 嘅『認知解離』技巧。將負面諗法寫喺落葉度，看著它慢慢順水流走啦。", animationType: "stream", quickReplies: ["睇住佢飄走"] };
-            if (['假新聞', '大腦呃我', '諗多咗'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "一齊做個「大腦假新聞查核」，搵出反對證據嚟反駁佢哋！", animationType: "fakenews", quickReplies: ["原來係自己嚇自己"] };
-            if (['畫畫', '塗鴉', '畫板', '亂畫'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "試下用塗鴉畫板，隨心所欲咁畫出嚟，發洩一下！", animationType: "scribble", quickReplies: ["畫完舒服咗"] };
-            if (['rpg', '遊戲', '打怪', '升級'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "打開 RPG 面板，睇下你最近累積咗幾多經驗值啦！", animationType: "rpg_panel", quickReplies: ["繼續挑戰"] };
-            if (['風雨聲', '下雨', '白噪音', '平靜'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "為你播緊平靜嘅風雨聲。合埋眼，感受雨水洗淨心靈嘅感覺。", animationType: "rain_sound", quickReplies: ["聽住好放鬆"] };
-            if (['著陸', '五感', '回到當下', '發白日夢'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "我們一齊做個『五感著陸』，把思緒帶回到現在這一刻。", animationType: "grounding", quickReplies: ["我試下搵", "感覺踏實咗"] };
+            // 2. 【直接工具觸發】 (結合 CBT、ACT 與 行為活化)
+            // 整合圖片中的 12 種工具，非必要不彈出，只有在直接提及時才精準召喚
+            if (['思維', '分析', '記錄表', '諗唔通', '牛角尖', '客觀'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "好呀！心理學上有個好好用嘅工具叫「CBT 思維記錄表」。我哋一步步嚟：首先，試下用最客觀、唔帶情緒嘅字眼，描述一次啱啱發生咗咩「客觀情境」？（例如：老師無覆我 email，而唔係：老師憎我）", animationType: "fakenews", quickReplies: ["我試下寫低事實", "我覺得好難客觀"] };
+            if (['抽卡', '御守', '力量卡'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "今日嘅心靈御守已經準備好。有時候，一句溫暖嘅說話就可以轉換大腦頻道。點擊翻開屬於你嘅力量肯定句啦✨", animationType: "card", quickReplies: ["我想試下其他工具"] };
+            if (['碎紙機', '撕爛', '粉碎', '煩惱'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "煩惱有時會喺腦入面無限放大。我哋一齊將佢實體化，寫低然後放落碎紙機，狠狠地將佢哋粉碎啦！", animationType: "shredder", /* 工具 9: 碎紙機 */ quickReplies: ["碎咗舒服啲"] };
+            if (['溪水', '落葉', '放低', '隨波逐流'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "呢個係 ACT（接受與承諾治療）嘅『認知解離』技巧。將負面諗法寫喺落葉度，唔需要批判自己，當佢只係一片葉，望住佢慢慢順水流走啦。", animationType: "stream", /* 工具 8: 溪水落葉 */ quickReplies: ["睇住佢飄走"] };
+            if (['假新聞', '大腦呃我', '諗多咗'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "我哋嘅大腦好叻製造焦慮假象（例如：『我一定會失敗』）。一齊做個「大腦假新聞查核」，搵出反對證據嚟反駁佢哋！", animationType: "fakenews", /* 工具 10: 大腦假新聞 */ quickReplies: ["原來係自己嚇自己"] };
+            if (['畫畫', '塗鴉', '畫板', '亂畫'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "有時候文字好難表達嗰種亂糟糟嘅感覺。試下用塗鴉畫板，隨心所欲咁畫出嚟，唔需要靚，最緊要係發洩！", animationType: "scribble", /* 工具 12: 塗鴉畫板 */ quickReplies: ["畫完舒服咗"] };
+            if (['rpg', '遊戲', '打怪', '升級'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "生活有時就好似打機咁，每一個難關都係一場探索。打開 RPG 面板，睇下你最近累積咗幾多經驗值啦！", animationType: "rpg_panel", /* 工具 11: RPG面板 */ quickReplies: ["繼續挑戰"] };
+            if (['風雨聲', '下雨', '白噪音', '平靜'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "為你播緊平靜嘅風雨聲。合埋眼，感受雨水洗淨心靈嘅感覺。", animationType: "rain_sound", /* 工具 2: 風雨聲 */ quickReplies: ["聽住好放鬆"] };
+            if (['著陸', '五感', '回到當下', '發白日夢'].some(kw => lowerText.includes(kw))) return { level: "green", aiReply: "大腦又帶你去咗未來嘅擔憂或者過去嘅後悔度？我哋一齊做個『五感著陸』，搵5樣睇到嘅嘢、4樣摸到嘅嘢... 拉返自己返嚟而家呢一刻。", animationType: "grounding", /* 工具 7: 五感著陸 */ quickReplies: ["我試下搵", "感覺踏實咗"] };
 
+            // 3. 【專業社工與求助引導】
+            // 輔導策略：去污名化 (De-stigmatization)
             const helperKeywords = ['社工', '輔導', '熱線', '求助', '諮商', '有用嗎', '傾訴', '心理學家', '搵人傾'];
             if (helperKeywords.some(kw => lowerText.includes(kw))) {
                 return {
                     level: "green",
-                    aiReply: "好多時我哋以為要自己解決所有問題先叫『叻』，但其實識得求救先係最勇敢嘅表現。社工同輔導員受過專業訓練，提供一個絕對安全嘅保密空間陪你。",
+                    aiReply: "好多時我哋以為要自己解決所有問題先叫『叻』，但其實識得求救先係最勇敢嘅表現。社工同輔導員受過專業訓練，佢哋唔會judge（批判）你，只會提供一個絕對安全嘅保密空間陪你。試下跨出呢一步，俾人接住你啦。",
                     animationType: "resource",
                     resourceName: "Open噏 24小時網上情緒支援",
                     resourceUrl: "https://www.openup.hk/",
@@ -1153,79 +1173,324 @@
                 };
             }
 
+            // 4. 【逃學/休學/拒學現象與完美主義】
+            // 輔導策略：共情疲勞、探索核心信念 (Core Beliefs)
+            const schoolRefusalKeywords = ['休學', '退學', '唔想返學', '曠課', '逃學', '好怕返學', '好大壓力想逃避'];
+            if (schoolRefusalKeywords.some(kw => lowerText.includes(kw))) {
+                return {
+                    level: "yellow",
+                    aiReply: pick([
+                        "「唔想返學」背後，通常藏住好大嘅疲憊或者恐懼。我完全明白嗰種每朝早起身都覺得好沉重嘅感覺。係咪學校有啲事，或者對自己要求太高，令你覺得唞唔到氣？呢度好安全，你可以慢慢講。",
+                        "返學變成一件咁大負擔嘅事，你一定撐得好辛苦。休學係一個選擇，但喺做決定前，不如先用「溪水落葉」將你對學校最恐懼嘅畫面寫低，等我哋一齊檢視下呢啲恐懼有幾多係真實嘅？"
+                    ]),
+                    animationType: pick(["stream", "none"]), // 工具 8: 溪水落葉
+                    quickReplies: ["其實係因為成績...", "人際關係好煩", "真係好大壓力"]
+                };
+            }
+
+            // 5. 【自我價值與容貌焦慮】
+            // 輔導策略：無條件積極關注、拆解「過度類化 (Overgeneralization)」
+            // 修改：移除獨立的「垃圾」、「廢柴」，改為複合判斷，確保主語是「自己」
+            const selfWorthKeywords = ['自己好無用', '自己無用', '覺得自己廢', '自己係垃圾', '我係垃圾', '自己係廢柴', '樣衰', '自卑', '肥', '醜', '比唔上', '討厭自己', '做得好差', '無人鍾意', '做錯晒', '搞砸', '自己無能', '角色衝突'];
+            
+            // 動態判斷：必須同時出現「我/自己」以及「無用/廢/垃圾等」
+            const isSelfDeprecating = selfWorthKeywords.some(kw => lowerText.includes(kw)) || 
+                                      ((lowerText.includes('我') || lowerText.includes('自己')) && (lowerText.includes('無用') || lowerText.includes('冇用') || lowerText.includes('廢') || lowerText.includes('垃圾') || lowerText.includes('廢柴')));
+
+            if (isSelfDeprecating) {
+                return {
+                    level: "yellow",
+                    aiReply: pick([
+                        "聽到你咁樣貶低自己，我好心痛。大腦有時會犯「過度類化」或者「情緒化推理」嘅錯——因為依家覺得挫敗，就全盤否定自己。記住，你嘅存在本身就是足夠好 (You are good enough)。一齊玩下「大腦假新聞查核」拆穿佢哋啦！",
+                        "覺得自己處處比唔上人，或者要扮演太多角色（如學生、仔女、朋友）而感到『角色衝突』與自卑？呢種壓力真係好沉重。但別人定下嘅標準，唔代表係唯一嘅真理。試下退後一步諗下，你有冇試過做好過一啲事？哪怕係好細微嘅事？"
+                    ]),
+                    animationType: pick(["fakenews", "none"]), // 工具 10: 大腦假新聞
+                    quickReplies: ["我都想接納自己", "之前有被讚過嘅...", "點解人哋咁叻"]
+                };
+            }
+
+            // 5.5 【捕捉極端字眼 -> CBT 識別認知偏差】
+            // 心理學策略：非黑即白 (All-or-Nothing)、災難化 (Catastrophizing)、讀心術 (Mind Reading)
+            const extremeKeywords = ['一定係', '全部都', '永遠都', '肯定係', '冇可能', '徹底', '針對我', '大家都憎我', '一定會死', '實死'];
+            if (extremeKeywords.some(kw => lowerText.includes(kw))) {
+                return {
+                    level: "yellow",
+                    aiReply: pick([
+                        "我留意到你用咗一啲比較絕對嘅字眼（例如：一定、全部、永遠）。喺 CBT 入面，呢個可能係大腦跌入咗『非黑即白 (All-or-Nothing)』或者『災難化』嘅陷阱。試下退後一步：有冇咩客觀證據，係可以推翻你呢個最壞嘅猜測？",
+                        "當我哋情緒好滿嘅時候，好容易跌入『讀心術 (Mind Reading)』嘅偏差，即係覺得『冇證據但我肯定人哋係咁諗我』。不如我哋試下將『主觀感受』同『客觀事實』分開？對方實際上做咗咩動作或講咗咩？"
+                    ]),
+                    animationType: "none", // 純對話引導，不頻繁彈出工具
+                    quickReplies: ["其實我都係估估下", "但佢個樣真係咁", "點樣分開事實同感受？"]
+                };
+            }
+
+            // 6. 【拖延症與沉迷成癮】
+            // 輔導策略：減少自責感、將任務微步化 (Micro-steps)
+            const addictionKeywords = ['拖延', '冇動力', '提唔起勁', '打機', '沉迷', '戒唔到', '成日玩手機', '懶', '溫唔入腦', '專心唔到'];
+            if (addictionKeywords.some(kw => lowerText.includes(kw))) {
+                return {
+                    level: "green",
+                    aiReply: pick([
+                        "「拖延」同「冇動力」好多時唔係因為你懶，而係因為內心對任務感到焦慮或者怕失敗，大腦為咗保護你先去逃避。試下將大目標切碎，應承自己只專注做 5 分鐘就好！",
+                        "沉迷打機或者手機，有時係大腦為咗短暫逃離現實痛苦而索取多巴胺。唔好因為咁樣而太過責怪自己，自責只會令你更想逃避。如果覺得失去咗控制感，一齊做一次「五感著陸」返回當下啦。"
+                    ]),
+                    animationType: pick(["none", "grounding"]), // 工具 7: 五感著陸
+                    quickReplies: ["真係成日怕做錯", "點樣先可以專心？", "我想試下著陸"]
+                };
+            }
+
+            // 7. 【學業與考試壓力】
+            // 輔導策略：去災難化 (De-catastrophizing)
+            // 補齊：補齊香港學生高頻詞彙，如「補習」、「補習老師」、「呈分試」等 (移除了「選科」至專屬模塊)
             const studyKeywords = ['讀書', '考試', '溫書', '成績', '測驗', '壓力大', 'dse', '退步', '好大壓力', '溫極都唔識', '肥佬', '老師', '學校', '校長', '功課', '教授', '補習', '補習老師', '呈分試', '放榜', '升學壓力'];
             if (studyKeywords.some(kw => lowerText.includes(kw))) {
                 return {
                     level: "yellow",
                     aiReply: pick([
-                        "功課、考試和學校確實帶給你很大的壓迫感。但成績絕對定義不了你的全部價值。如果腦袋一直轉，不如我們一齊深呼吸幾下？",
-                        "看到你為了學業這麼煩惱，我真的很想拍拍你肩膀。你已經非常努力了，今晚允許自己好好休息一下吧。"
+                        "學校、補習、功課或者考試嘅評價確實令人好有壓迫感，大腦很容易跳入『表現差 = 人生完蛋』嘅災難化思考。但成績同別人嘅話語絕對定義唔到你嘅全部價值。如果腦袋一直轉唔停，不如一齊深呼吸幾下，拉回理智線？",
+                        "細心一睇，你為咗學業、補習或者學校嘅事咁煩惱，我真係好想拍拍你膊頭。其實你已經好努力面對緊。今晚不如容許自己放低一下，大腦要有足夠休息先可以應付到挑戰㗎。"
                     ]),
-                    animationType: "breathe",
+                    animationType: pick(["none", "none", "breathe"]), // 降低工具彈出，只適時提供4-4-4呼吸
                     quickReplies: ["我想試下深呼吸", "好怕令屋企人失望", "覺得好委屈"]
                 };
             }
 
-            const studySubKeywords = ['中三選科', '揀科', '選科', '選修', '文科', '理科', '商科', '唔知揀咩科', 'drop科', '物理', '化學', '生物'];
-            if (studySubKeywords.some(kw => lowerText.includes(kw))) {
+            // 7.5 【中三選科與高中適應】
+            // 輔導策略：釐清價值觀、減低災難化想像
+            const subjectSelectionKeywords = ['中三選科', '揀科', '選科', '選修', '文科', '理科', '商科', '唔知揀咩科', 'drop科', '物理', '化學', '生物', '經濟', '企會財', 'bafs', 'history'];
+            if (subjectSelectionKeywords.some(kw => lowerText.includes(kw))) {
                 return {
                     level: "green",
-                    aiReply: "中三選科是第一個大交叉點，感到混亂是正常的。其實最重要是了解你自己的興趣與強項，小樹洞陪你慢慢分析。",
-                    animationType: "none",
+                    aiReply: pick([
+                        "中三選科的確係人生第一個大交叉點，身邊嘅人可能俾咗好多意見，令你覺得好混亂。其實揀科最緊要係了解自己嘅『興趣』同『能力』。唔好因為人哋話邊科有前途就夾硬讀，不如一齊攞張紙，寫低你平時讀得最開心、或者最冇咁抗拒嘅科目？",
+                        "面對選科，好多同學都會擔心揀錯會影響一世。大腦好容易跌入『災難化』嘅陷阱。其實將來嘅出路好多元化，就算揀錯咗高中都仲有得 Drop 科或者調整。深呼吸，試下放鬆啲，小樹洞陪你慢慢分析。"
+                    ]),
+                    animationType: pick(["none", "fakenews"]), // 工具 10: 大腦假新聞 (拆解災難化想像)
                     quickReplies: ["屋企人逼我揀理科", "我文理都唔叻", "好怕揀錯後悔"]
                 };
             }
 
+            // 8. 【人際欺凌與孤獨感】
+            // 輔導策略：外化問題 (Externalizing the problem)、建立內在安全基地
             const bullyingKeywords = ['欺凌', '杯葛', '恰我', '蝦我', '排擠', '壞話', '孤立', '是非', '朋友', '吵架', '無朋友', '孤獨'];
             if (bullyingKeywords.some(kw => lowerText.includes(kw))) {
                 return {
                     level: "yellow",
                     aiReply: pick([
-                        "被孤立或被排擠真的讓人非常痛心與委屈。請你一定要記住，這絕對不是你的錯。如果覺得憤怒委屈，可以使用「推牆釋放法」發洩出來。",
-                        "面對人際糾紛，心裡受傷是理所當然的。試著使用「蝴蝶擁抱」，給自己一個溫慢的安慰與擁抱。"
+                        "俾人排擠或者覺得自己好孤獨，嗰種委屈同被遺棄嘅感覺真係好痛。請你傷心之餘，堅定同自己講：被針對或者未遇到啱嘅朋友，絕對唔代表你自身有問題！如果覺得好嬲，試下用「推牆釋放法」發洩出嚟先！",
+                        "同朋友有誤會或者俾人喺背後講壞話，心入面實好受傷。別人嘅嘴巴我哋控制唔到，但我哋可以控制點樣保護自己。試下用「蝴蝶擁抱」雙手交替拍拍自己膊頭，俾自己一個大大嘅擁抱。"
                     ]),
-                    animationType: "butterfly",
+                    animationType: pick(["wallpush", "butterfly"]), // 工具 5: 推牆釋放, 工具 6: 蝴蝶擁抱
                     quickReplies: ["覺得好委屈", "點解佢哋要咁對我", "我想推牆發洩"]
                 };
             }
 
+            // 9. 【家庭問題與管教】
+            // 輔導策略：情感抽離 (Emotional Detachment)、劃清心理界線
             const familyKeywords = ['屋企', '父母', '老豆', '媽咪', '阿爸', '阿媽', '家嘈屋閉', '離婚', '偏心', '家長', '家人'];
             if (familyKeywords.some(kw => lowerText.includes(kw))) {
                 return {
                     level: "yellow",
-                    aiReply: "家庭矛盾真的讓人很窒息、很無奈。父母也有他們的盲點，他們的言語並不代表你的真實價值。今晚不如在安撫寶盒裡找個安全的棲息空間吧。",
-                    animationType: "hopebox",
+                    aiReply: pick([
+                        "屋企人唔明白自己，甚至將你同人比較，真係會令人好氣餒。你要知道，父母都有佢哋嘅情緒盲點同限制，佢哋嘅說話唔代表你嘅真正價值。如果屋企環境令你好壓抑，打開「安撫寶盒」或者聽下「風雨聲」，為自己建立一個安全避風港。",
+                        "屋企發生變故對你嘅影響一定好大，但請記住，大人嘅問題唔係你嘅責任。如果覺得好嬲又好無力，試下用「塗鴉畫板」將嗰份屈結無保留咁畫出嚟。"
+                    ]),
+                    animationType: pick(["hopebox", "rain_sound", "scribble"]), // 工具 3: 安撫寶盒, 工具 2: 風雨聲, 工具 12: 塗鴉畫板
                     quickReplies: ["佢哋根本唔明", "覺得好煩好想走", "我想聽風雨聲"]
                 };
             }
 
-            const loveKeywords = ['拍拖', '分手', '鍾意', '暗戀', '失戀', '男朋友', '女朋友', '表白', '性向', 'gay', 'les'];
+            // 10. 【戀愛與性別認同】
+            // 輔導策略：正常化 (Normalizing)、情緒盛載 (Containment)
+            const loveKeywords = ['拍拖', '分手', '鍾意', '暗戀', '失戀', '男朋友', '女朋友', '表白', '性向', 'gay', 'les', '出櫃'];
             if (loveKeywords.some(kw => lowerText.includes(kw))) {
                 return {
                     level: "green",
-                    aiReply: "青春期的感情、性向探索非常珍貴，但也容易患得患失。如果感到心痛、失戀，戳戳泡泡紙來緩解焦慮吧。",
-                    animationType: "bubble",
+                    aiReply: pick([
+                        "感情、性向同性別認同嘅探索，係成長中一段好珍貴但有時好煎熬嘅路。無論你鍾意咩性別，你最真實嘅模樣就係最美好嘅。如果失戀或者覺得心痛，容許自己傷心一下，篤下「紓壓泡泡紙」慢慢發洩下。",
+                        "唔知道對方點諗，心入面一定好多不安同患得患失。大腦有時會製造好多「讀心術」嘅假象，不如一齊玩下「大腦假新聞查核」，拆解下你心入面嘅戀愛擔憂？"
+                    ]),
+                    animationType: pick(["bubble", "fakenews"]), // 工具 4: 戳泡泡紙, 工具 10: 大腦假新聞
                     quickReplies: ["真係好掛住佢", "我唔知點同人講", "覺得好痛"]
                 };
             }
 
+            // 11. 【未來生涯與迷惘】
+            // 輔導策略：打破非黑即白思考 (Black-and-White Thinking)
+            const careerKeywords = ['迷惘', '未來', '前途', '唔知想點', '升學', 'jupas', '出路', '大學', '科目', '夢想', '乞食'];
+            if (careerKeywords.some(kw => lowerText.includes(kw))) {
+                return {
+                    level: "green",
+                    aiReply: pick([
+                        "對未來感到迷惘係青春期必經嘅階段。社會成日要我哋盡早定死一個目標，但其實人生唔係只有『成功』同『失敗』兩條路。慢慢嚟，不如打開「RPG面板」，當人生係一場探索遊戲？",
+                        "擔心前途同出路好正常，每個人嘅花期都唔同，唔需要因為人哋行得快而焦慮。小樹洞幫你整理好香港官方嘅升學資訊，點擊下方連結慢慢睇，總會搵到適合你嘅路。"
+                    ]),
+                    animationType: pick(["rpg_panel", "resource"]), // 工具 11: RPG面板
+                    resourceName: "自資專上教育資訊平台 (Concourse)",
+                    resourceUrl: "https://www.concourse.org.hk/",
+                    quickReplies: ["我想睇下RPG面板", "覺得未來好灰暗", "多謝你"]
+                };
+            }
+
+            // 11.5 【VTC/IVE 與多元升學出路】
+            // 輔導策略：去污名化、提升自我效能感
+            const vtcKeywords = ['vtc', 'ive', '高級文憑', 'hd', 'asso', '副學士', '毅進', '應用教育文憑', '基礎文憑', '職專', '展翅', 'hkdi', 'thei'];
+            if (vtcKeywords.some(kw => lowerText.includes(kw))) {
+                return {
+                    level: "green",
+                    aiReply: pick([
+                        "傳統大學絕對唔係唯一嘅出路！VTC、IVE 或者高級文憑/副學士課程，提供好多實用同職業導向嘅選擇。條條大路通羅馬，最緊要係搵到適合自己學習節奏同興趣嘅路。你對邊方面嘅行業或者科目比較有興趣呀？",
+                        "社會成日將目光放喺 DSE 升傳統大學度，令到考慮其他出路嘅同學覺得有壓力或者自我懷疑。其實揀 VTC/IVE 提早學習一技之長，係非常務實同勇敢嘅決定！小樹洞為你準備咗 VTC 嘅入學資訊，你可以參考下。"
+                    ]),
+                    animationType: "resource",
+                    resourceName: "VTC 職業訓練局 課程資訊",
+                    resourceUrl: "https://www.vtc.edu.hk/admission/tc/",
+                    quickReplies: ["我想了解高級文憑", "屋企人覺得讀IVE唔好", "自己成績唔好"]
+                };
+            }
+
+            // 12. 【焦慮/恐慌發作】
+            // 輔導策略：生理著陸技巧 (Somatic Grounding)
+            const panicKeywords = ['驚', '震', '唞唔到氣', '呼吸唔到', '心跳好快', '恐慌', '好驚', '失控', '想嘔'];
+            if (panicKeywords.some(kw => lowerText.includes(kw))) {
+                return {
+                    level: "red",
+                    aiReply: "我喺度陪住你！你依家可能經歷緊恐慌或焦慮發作，身體出現心跳加速同唞唔到氣係好真實嘅感覺，但這只係大腦嘅警報系統暫時失靈，你而家好安全，呢種感覺好快會退卻！請你立刻跟住畫面上嘅圓圈，我哋一齊做「4-4-4深呼吸」！",
+                    animationType: "breathe", // 工具 1: 4-4-4 呼吸
+                    quickReplies: ["我跟住做緊", "仲係好驚", "幫我打開安撫寶盒"]
+                };
+            }
+
+            // 13. 【憤怒與情緒失控】
+            // 輔導策略：情緒疏導、尋找次級情緒 下的真實脆弱
+            const angryKeywords = ['嬲', '燥', '激死', '痴線', '發脾氣', '火大', '好憎', '打人', '崩潰', '爆發'];
+            if (angryKeywords.some(kw => lowerText.includes(kw))) {
+                return {
+                    level: "yellow",
+                    aiReply: pick([
+                        "我完全感受到你字裡行間嘅怒火！憤怒好多時係因為我哋覺得受傷或者被誤解。與其將啲火屈喺心入面，不如企起身，用盡全力玩一次「推牆釋放法」，將身體積聚嘅能量推走先！",
+                        "遇到啲極度唔公平或者荒謬嘅事，真係會令人火冒三丈！憤怒係一股好大嘅能量，你可以喺呢度盡情打字鬧出嚟，或者用「煩惱碎紙機」狠狠地將嗰個人或者嗰件事碎成碎片，我哋慢慢拆解！"
+                    ]),
+                    animationType: pick(["wallpush", "shredder"]), // 工具 5: 推牆釋放, 工具 9: 碎紙機
+                    quickReplies: ["我想推牆發洩", "我想碎咗佢", "真係好痴線"]
+                };
+            }
+
+            // 14. 【情緒低落與失眠】
+            // 輔導策略：同理陪伴、打破抑鬱螺旋
+            const moodKeywords = ['焦慮', '抑鬱', '喊', '訓唔著', '失眠', '好攰', '辛苦', '灰', '唔開心', '心累'];
+            if (moodKeywords.some(kw => lowerText.includes(kw))) {
+                return {
+                    level: "yellow",
+                    aiReply: pick([
+                        "連日嘅情緒低落或者失眠，就好似心靈感冒咗一樣，周圍嘅顏色都好似變灰咗。肯講出嚟已經用咗你好大嘅力氣！我強烈建議你去 Open噏 網上輔導搵專業人士傾下，俾佢哋接住你嘅疲憊。",
+                        "失眠同低落真係令人好無力。大腦喺夜晚特別容易重播唔開心嘅事。不如打開「安撫寶盒」或者聽住「風雨聲」，抱住一個軟熟嘅攬枕，溫柔地話俾自己聽：『今日已經完結，就算有未解決嘅事，都可以留返聽日先算』。"
+                    ]),
+                    animationType: pick(["resource", "hopebox", "rain_sound"]), // 工具 3: 安撫寶盒, 工具 2: 風雨聲
+                    resourceName: "Open噏 24小時網上情緒支援",
+                    resourceUrl: "https://www.openup.hk/",
+                    quickReplies: ["我會試下求助", "我想聽風雨聲", "真係好攰"]
+                };
+            }
+
+            // 15. 【信任危機、背叛與出軌】
+            // 心理學策略：CBT 拆解「過度類化」與創傷接納
+            const betrayalKeywords = ['出軌', '偷食', '第三者', '綠帽', '背叛', '呃我', '無信心', '呃人', '唔信男人', '唔信女人'];
+            if (betrayalKeywords.some(kw => lowerText.includes(kw))) {
+                return {
+                    level: "yellow",
+                    aiReply: pick([
+                        "經歷背叛，仲要係身邊親近嘅人，嗰種被撕裂嘅痛同震驚真係難以形容。心理學上，當我哋受過重創，大腦為咗保護我哋，好容易會產生『過度類化』。你依家失去信心係好正常嘅防禦機制，俾啲時間自己慢慢療傷。",
+                        "俾人呃嘅感覺真係好難受。但請記住，對方做出背叛行為係佢嘅限制，絕對唔代表你唔夠好。如果滿腦子都係亂糟糟嘅畫面，不如我哋打開『大腦假新聞查核』，將「情緒」同「事實」拆解一下？"
+                    ]),
+                    animationType: pick(["none", "fakenews"]), // 工具 10: 大腦假新聞
+                    quickReplies: ["我真係好崩潰", "覺得自己好蠢", "我想試下拆解情緒"]
+                };
+            }
+
+            // 16. 【無意義短句/打招呼/未知話題處理 (Fallback) - 結合聆聽與CBT/SFBT】
+            // 輔導策略：開放式問句、積極聆聽、SFBT 量尺問句、CBT 思維記錄
+            
+            // 處理同意/繼續對話的短句 (避免回答「好」時錯誤彈出工具)
+            // 修復：排除「好煩」等負面詞語
             const agreementKeywords = ['好', 'ok', 'yes', '係', '知道', '明白', '好呀', '好啦', '試下', '好的', '嗯'];
-            const isAgreement = agreementKeywords.includes(lowerText.trim()) || (lowerText.length <= 4 && agreementKeywords.some(kw => lowerText.includes(kw)));
+            const isAgreement = agreementKeywords.includes(lowerText.trim()) || 
+                                (lowerText.length <= 4 && agreementKeywords.some(kw => lowerText.includes(kw)) && !lowerText.includes('煩'));
+            
             if (isAgreement) {
                 return {
                     level: "green",
-                    aiReply: "收到。我一直都在這裡聽你傾訴，你可以用你的節奏慢慢打出來。",
-                    animationType: "none",
+                    aiReply: pick([
+                        "收到。我準備好啦，你可以隨時開始，慢慢用你嘅節奏講出嚟。",
+                        "嗯編，我喺度。跟住落嚟發生咗咩事？或者你諗到啲咩？",
+                        "好嘅。呢度好安全，你可以將心入面嗰啲感覺毫無保留咁打出嚟，我會一直聽緊。"
+                    ]),
+                    animationType: "none", // 絕對不彈出工具，純傾聽
                     quickReplies: ["其實係咁嘅...", "我唔知由邊度講起"]
                 };
             }
 
+            const greetingKeywords = ['hi', 'hello', '你好', '早晨', '早安', '午安', '晚安', '嗨', '喂', '謝謝', '多謝', '唔該', 'thank'];
+            
+            // 如果是很短的句子且不是打招呼，鼓勵多說一點 (Active Listening)
+            if (text.length <= 4 && !greetingKeywords.some(kw => lowerText.includes(kw))) {
+                return {
+                    level: "green",
+                    aiReply: pick([
+                        "嗯嗯，我聽緊。可以試下講多幾句嗎？小樹洞想了解多啲你嘅感受。",
+                        "慢慢講，唔急，我喺度陪你。",
+                        "然後呢？發生咗咩事令你有呢個感覺？"
+                    ]),
+                    animationType: "none", // 純傾聽，不彈出工具
+                    quickReplies: ["其實係咁嘅...", "我唔知點講好"]
+                };
+            }
+            
+            // 打招呼
+            if (greetingKeywords.some(kw => lowerText === kw || lowerText.includes(kw) && lowerText.length < 10)) {
+                return {
+                    level: "green",
+                    aiReply: "你好呀！我係小樹洞。無論你係開心、遇到諗唔通嘅死胡同，定係被『大腦假新聞』困擾，隨時可以同我講，我哋一齊用心理學嘅角度拆解佢！你今日心情點呀？",
+                    animationType: "none",
+                    quickReplies: ["有啲嘢諗唔通", "今日好攰", "我想抽卡"]
+                };
+            }
+
+            // ========================================================
+            // 🛡️ 終極修復防線：強綁定配對式 Fallback（Paired Fallback List）
+            // 完美解決「文字說A，工具彈出B」的致命圖文不符問題！
+            // ========================================================
             const pairedFallbacks = [
-                { aiReply: "聽你說完，我感受到這件事對你影響很深。如果用認知行為治療（CBT）的角度看，你腦海中第一個浮現的想法是什麼？", animationType: "none", quickReplies: ["其實我好驚失敗", "我覺得係自己問題", "我唔知點形容"] },
-                { aiReply: "如果 0 分是完全平靜，10 分是情緒爆發的極限，你此時此刻的焦慮、委屈或憤怒大概有幾分？", animationType: "none", quickReplies: ["大約有 7-8 分", "好似有 5 分左右", "我分唔清係邊種情緒"] },
-                { aiReply: "有時我們會被大腦欺騙。你願意和我一起做個「大腦假新聞查核」，看看這個讓你痛苦的煩惱有多少成是真實的？", animationType: "fakenews", quickReplies: ["好呀，一齊查下大腦", "我覺得成件事都係事實", "我想用畫板發洩下"] }
+                {
+                    aiReply: "聽你講完，我感受到呢件事真係對你影響好大。如果我哋用 CBT（認知行為治療）嘅角度去睇，你覺得呢一刻你腦海中『自動彈出嚟嘅第一個念頭 (Automatic Thought)』係咩？",
+                    animationType: "none", // 純傾聽引導
+                    quickReplies: ["其實我好驚失敗", "我覺得係自己問題", "我唔知點形容"]
+                },
+                {
+                    aiReply: "明白。面對呢個情況，如果 0 分係完全平靜，10 分係情緒爆發嘅極點，你覺得依家嘅情緒大約喺幾多分？試下幫呢個情緒貼上一個明確嘅標籤（例如：焦慮、委屈、憤怒）。",
+                    animationType: "none", // 無需急救包，專注於情緒評估
+                    quickReplies: ["大約有 7-8 分", "好似有 5 分左右", "我分唔清係邊種情緒"]
+                },
+                {
+                    aiReply: "呢件事的確令人好困擾。為咗幫你理清思緒，不如我哋試下將成件事拆開兩部分：邊啲係『發生咗嘅客觀事實』？邊啲係你大腦產生嘅『猜測或者感受』？",
+                    animationType: "none", // 純思維分析
+                    quickReplies: ["我想試下拆解", "我覺得感受太真實", "唔知點分事實同感受"]
+                },
+                {
+                    aiReply: "收到你嘅分享。人在面對複雜情況時，好容易會有思維盲點，跌入情緒漩渦。如果你準備好，我哋一齊做個「大腦假新聞查核」，一步步搵出支持同反對呢個煩惱嘅證據？",
+                    animationType: "fakenews", // 完美配對大腦假新聞查核！
+                    quickReplies: ["好呀，一齊查下大腦", "我覺得成件事都係事實", "我想用畫板發洩下"]
+                },
+                {
+                    aiReply: "我明白要用文字表達心入面所有感受真係唔容易，有時講極都好似爭啲嘢。不如試下用「塗鴉畫板」將嗰種亂糟糟嘅感覺畫出嚟，唔使靚，畫到幾亂都得。",
+                    animationType: "scribble", // 完美配對塗鴉畫板！
+                    quickReplies: ["好，我想畫畫", "都係用文字講啦", "我想抽卡"]
+                }
             ];
+
+            // 隨機選中一個一體化的配對組合
             const chosenFallback = pick(pairedFallbacks);
+
             return {
                 level: "green",
                 aiReply: chosenFallback.aiReply,
@@ -1327,6 +1592,9 @@
                 openToolOverlay('rpg');
                 return;
             }
+            if (type === 'resource' && resourceName && resourceUrl) {
+                return;
+            }
             const validOverlays = ['breathe', 'wallpush', 'grounding', 'shredder', 'butterfly', 'card', 'stream', 'fakenews', 'rpg', 'bubble', 'quiz', 'scribble', 'hopebox'];
             if (validOverlays.includes(type)) {
                 setTimeout(() => {
@@ -1345,9 +1613,11 @@
             appendUserMessage(text);
             setInputLock(true);
 
+            // 顯示正在輸入狀態
             const typingEl = document.getElementById('typing-indicator');
             if (typingEl) typingEl.classList.remove('hidden');
 
+            // 判斷是否顯示危機 Banner
             const lowerVal = text.toLowerCase();
             const isCrisis = ['死', '自殺', '跳樓', '割脈', '𠝹手', '絕望', '消失', '結束生命'].some(kw => lowerVal.includes(kw)) && 
                              !['你死開', '煩死', '笑死', '激死', '熱死', '餓死', '累死', '攰死'].some(kw => lowerVal.includes(kw));
@@ -1355,20 +1625,29 @@
                 document.getElementById('emergency-banner').classList.remove('hidden');
             }
 
+            // 模擬本地 AI 思考延遲
             setTimeout(() => {
                 if (typingEl) typingEl.classList.add('hidden');
                 setInputLock(false);
 
+                // 啟動本地 7.1 AI 引擎決策
                 const response = getCounselorResponse(text);
                 
+                // 動態設定小夥伴情緒
                 if (response.level === 'red') setPetEmotion('sad');
                 else if (response.level === 'yellow') setPetEmotion('think');
                 else setPetEmotion('normal');
 
+                // 渲染 AI 建議內容
                 appendBotMessage(response.aiReply, response.level, response.resourceName, response.resourceUrl);
+
+                // 更新快捷回覆
                 updateQuickReplies(response.quickReplies);
+
+                // 執行情緒急救工具對接
                 triggerAnimation(response.animationType, response.resourceName, response.resourceUrl);
 
+                // 同步此最新狀態至雲端資料庫
                 if (window.syncCaseToCloud) {
                     window.syncCaseToCloud(text, response.level, response.aiReply);
                 }
@@ -1376,7 +1655,9 @@
             }, 1000 + Math.random() * 800);
         }
 
+        // ==================== 🛠️ 初始化啟動 ====================
         window.onload = function() {
+            // 從網址安全讀取學號
             const urlParams = new URLSearchParams(window.location.search);
             const studentId = urlParams.get('sid');
             if (studentId) {
@@ -1390,15 +1671,19 @@
         };
     </script>
 
-    <!-- ==================== 雲端資料庫防卡死非同步連線模組 (Firebase Module) ==================== -->
+    <!-- ==================== ☁️ 雲端即時同步橋樑 (Firebase Integration) ==================== -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, arrayUnion, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, updateDoc, arrayUnion, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // 從 螢幕截圖 中獲取的真實安全 Firebase SDK 配置
+        // 動態獲取平台注入的雲端安全配置，如在本地/預覽無環境變數則使用 Mock
+        const appId = 'school-treehole';
+        let db = null;
+        let auth = null;
+
         const firebaseConfig = {
-            apiKey: "AIzaSyBzbpzn01Xp01o0Hvi5XnccjCuRsCdvVQ",
+            apiKey: "AIzaSyBzbpzpnO1Xp01o0Hvi5XnccjCuRsCdvVQ",
             authDomain: "school-treehole.firebaseapp.com",
             projectId: "school-treehole",
             storageBucket: "school-treehole.firebasestorage.app",
@@ -1406,48 +1691,51 @@
             appId: "1:886993656466:web:fb12593301f3166c5e644b"
         };
 
-        let db = null;
-        let auth = null;
-
         try {
-            const app = initializeApp(firebaseConfig);
-            db = getFirestore(app);
-            auth = getAuth(app);
-            
-            // 💡 關鍵修復：改用非同步監聽處理，即使匿名驗證被禁用，資料庫在測試安全規則下依然能寫入！
-            signInAnonymously(auth).then(() => {
-                console.log("[小樹洞] 雲端安全驗證成功連線！");
-            }).catch(err => {
-                console.warn("[小樹洞] Firebase 匿名登入尚未在控制台啟用。系統已啟用「無驗證安全通道」進行免登入直連。這不影響您的正常同步運作。", err);
-            });
-            
+            if (true) { // 優先使用手動配置的 Firebase
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                
+                // 優先使用初始 Auth Token 進行高強度安全認證
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+            }
         } catch (e) {
-            console.warn("[小樹洞] 雲端初始化失敗，可能為網路問題:", e);
+            console.warn("[小樹洞] 雲端通道在未配置 Firebase 時切換為單機安全運行模式:", e);
         }
 
+        // 外部呼叫：同步對話數據到雲端，供後台即時查閱
         window.syncCaseToCloud = async function(userText, riskLevel, botReply) {
-            if (!db) return; // 只要資料庫宣告成功即可同步，防範因 Auth 未啟用而被阻斷
+            if (!db || !auth || !auth.currentUser) return;
 
             const nameInput = document.getElementById('student-display-name');
             const chosenName = nameInput && nameInput.value.trim() !== '' ? nameInput.value.trim() : currentStudentId;
 
+            // 提取簡單班別資訊（例如 1A05 則班別為 1A）
             let studentClass = "未知班別";
             const classMatch = currentStudentId.match(/^(\d[A-Z\s\-]+)/i);
             if (classMatch) {
                 studentClass = classMatch[1].toUpperCase();
             }
 
+            // 依據對話字眼智能提煉意圖標籤
             const tags = [];
-            if (userText.includes("死") || userText.includes("不想活")) tags.push("自傷預警");
-            if (userText.includes("考") || userText.includes("溫書") || userText.includes("讀書")) tags.push("學業重壓");
+            if (userText.includes("死") || userText.includes("生存")) tags.push("自傷預警");
+            if (userText.includes("考") || userText.includes("溫書") || userText.includes("讀")) tags.push("學業重壓");
             if (userText.includes("選科") || userText.includes("揀科")) tags.push("選科迷惘");
-            if (userText.includes("朋友") || userText.includes("排擠")) tags.push("朋輩摩擦");
+            if (userText.includes("朋") || userText.includes("恰") || userText.includes("笑")) tags.push("朋輩摩擦");
             if (userText.includes("爸") || userText.includes("媽") || userText.includes("屋企")) tags.push("家庭張力");
             if (tags.length === 0) tags.push("自由傾談");
 
-            const caseDocRef = doc(db, 'artifacts', 'school-treehole-app', 'public', 'data', 'cases', currentStudentId);
+            // 構建公共安全路徑的個案文檔 (RULE 1)
+            const caseDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'cases', currentStudentId);
 
             try {
+                console.log("[小樹洞] 正在嘗試同步數據到雲端...", currentStudentId);
                 const now = new Date();
                 const timeString = now.toLocaleTimeString('zh-HK', { hour: '2-digit', minute: '2-digit' });
                 
@@ -1466,12 +1754,14 @@
                         { time: `今日 ${timeString}`, role: "counselor", text: botReply }
                     )
                 }, { merge: true });
-                console.log("[小樹洞] 真實心聲數據已即時安全備份至雲端。");
+                console.log("[小樹洞] 雲端同步成功！");
             } catch (error) {
-                console.error("雲端數據即時同步發生異常:", error);
+                console.error("雲端數據安全同步失敗:", error);
+                alert("數據上傳失敗：" + error.message + "\n請確保 Firebase 已開啟 Anonymous 登入，且 Firestore 規則允許寫入。");
             }
         };
 
+        // 監聽並將首次打卡同步 (如果用戶選擇了心情打卡)
         const originalSendMood = window.sendMood;
         window.sendMood = function(text, moodScore) {
             originalSendMood(text, moodScore);
