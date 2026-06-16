@@ -800,7 +800,11 @@
             defaults.forEach(qr => {
                 const btn = document.createElement('button');
                 btn.className = "inline-block flex-shrink-0 bg-slate-100 border border-slate-200 text-slate-600 hover:bg-sage-50 hover:text-sage-700 hover:border-sage-200 text-xs px-3.5 py-1.5 rounded-full transition font-medium shadow-sm slide-up";
-                btn.innerText = qr; btn.onclick = () => { document.getElementById('chat-input').value = qr; handleChatSubmit(); };
+                btn.innerText = qr;
+                btn.onclick = () => {
+                    document.getElementById('chat-input').value = qr;
+                    handleChatSubmit();
+                };
                 qrContainer.appendChild(btn);
             });
         }
@@ -821,6 +825,15 @@
                     <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-sky-100 text-center">
                         <h3 class="font-bold text-slate-800 text-lg md:text-2xl mb-2">嗨！今天的心情怎麼樣呢？</h3>
                         <p class="text-xs md:text-sm text-slate-500 mb-6">點擊一個表情，我們從這裡開始聊聊：</p>
+                        
+                        <!-- 新增：名稱或暱稱選填欄位 -->
+                        <div class="mb-6 max-w-xs mx-auto text-left">
+                            <label class="block text-xs font-bold text-slate-500 mb-1.5">
+                                <i class="fa-solid fa-user-tag mr-1 text-sage-500"></i> 你想我們怎麼稱呼你？（留空則使用學號）
+                            </label>
+                            <input id="student-display-name" type="text" placeholder="例如：1A05 / 小明 / 匿名" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-sage-400 focus:ring-2 focus:ring-sage-100 transition text-slate-700">
+                        </div>
+
                         <div class="flex justify-center gap-3 md:gap-5">
                             <button onclick="sendMood('非常痛苦，快撐不下去了', 1)" class="w-12 h-12 md:w-16 md:h-16 text-3xl md:text-4xl hover:scale-125 transition filter grayscale hover:grayscale-0">😭</button>
                             <button onclick="sendMood('覺得很難難過、委屈', 2)" class="w-12 h-12 md:w-16 md:h-16 text-3xl md:text-4xl hover:scale-125 transition filter grayscale hover:grayscale-0">😢</button>
@@ -1634,6 +1647,11 @@
                 // 執行情緒急救工具對接
                 triggerAnimation(response.animationType, response.resourceName, response.resourceUrl);
 
+                // 同步此最新狀態至雲端資料庫
+                if (window.syncCaseToCloud) {
+                    window.syncCaseToCloud(text, response.level, response.aiReply);
+                }
+
             }, 1000 + Math.random() * 800);
         }
 
@@ -1650,6 +1668,98 @@
             }
             startNewCase();
             renderDiaries();
+        };
+    </script>
+
+    <!-- ==================== ☁️ 雲端即時同步橋樑 (Firebase Integration) ==================== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, updateDoc, arrayUnion, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // 動態獲取平台注入的雲端安全配置，如在本地/預覽無環境變數則使用 Mock
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'treehole-default-app';
+        let db = null;
+        let auth = null;
+
+        try {
+            if (typeof __firebase_config !== 'undefined') {
+                const firebaseConfig = JSON.parse(__firebase_config);
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                
+                // 優先使用初始 Auth Token 進行高強度安全認證
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+            }
+        } catch (e) {
+            console.warn("[小樹洞] 雲端通道在未配置 Firebase 時切換為單機安全運行模式:", e);
+        }
+
+        // 外部呼叫：同步對話數據到雲端，供後台即時查閱
+        window.syncCaseToCloud = async function(userText, riskLevel, botReply) {
+            if (!db || !auth || !auth.currentUser) return;
+
+            const nameInput = document.getElementById('student-display-name');
+            const chosenName = nameInput && nameInput.value.trim() !== '' ? nameInput.value.trim() : currentStudentId;
+
+            // 提取簡單班別資訊（例如 1A05 則班別為 1A）
+            let studentClass = "未知班別";
+            const classMatch = currentStudentId.match(/^(\d[A-Z\s\-]+)/i);
+            if (classMatch) {
+                studentClass = classMatch[1].toUpperCase();
+            }
+
+            // 依據對話字眼智能提煉意圖標籤
+            const tags = [];
+            if (userText.includes("死") || userText.includes("生存")) tags.push("自傷預警");
+            if (userText.includes("考") || userText.includes("溫書") || userText.includes("讀")) tags.push("學業重壓");
+            if (userText.includes("選科") || userText.includes("揀科")) tags.push("選科迷惘");
+            if (userText.includes("朋") || userText.includes("恰") || userText.includes("笑")) tags.push("朋輩摩擦");
+            if (userText.includes("爸") || userText.includes("媽") || userText.includes("屋企")) tags.push("家庭張力");
+            if (tags.length === 0) tags.push("自由傾談");
+
+            // 構建公共安全路徑的個案文檔 (RULE 1)
+            const caseDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'cases', currentStudentId);
+
+            try {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('zh-HK', { hour: '2-digit', minute: '2-digit' });
+                
+                await setDoc(caseDocRef, {
+                    id: currentStudentId,
+                    name: chosenName,
+                    class: studentClass,
+                    riskLevel: riskLevel || "green",
+                    trend: riskLevel === 'red' ? "📉 急速下滑" : (riskLevel === 'yellow' ? "➡️ 起伏不穩" : "📈 情緒平穩"),
+                    latestChat: userText,
+                    intentTags: tags,
+                    status: "未處理",
+                    lastUpdated: serverTimestamp(),
+                    history: arrayUnion(
+                        { time: `今日 ${timeString}`, role: "student", text: userText },
+                        { time: `今日 ${timeString}`, role: "counselor", text: botReply }
+                    )
+                }, { merge: true });
+            } catch (error) {
+                console.error("雲端數據安全同步失敗:", error);
+            }
+        };
+
+        // 監聽並將首次打卡同步 (如果用戶選擇了心情打卡)
+        const originalSendMood = window.sendMood;
+        window.sendMood = function(text, moodScore) {
+            originalSendMood(text, moodScore);
+            setTimeout(() => {
+                if (window.syncCaseToCloud) {
+                    const level = moodScore <= 2 ? 'red' : (moodScore === 3 ? 'yellow' : 'green');
+                    window.syncCaseToCloud(`[心情打卡 ${moodScore}/5] ${text}`, level, "收到你嘅心情打卡。無論面對咩情緒，我都會喺度傾聽。");
+                }
+            }, 500);
         };
     </script>
 </body>
